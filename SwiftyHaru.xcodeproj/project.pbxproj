@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8727D7B41D9EE90200995C39 /* PDFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8727D7B31D9EE90100995C39 /* PDFError.swift */; };
+		_LinkFileRef_SwiftyHaru_via_SwiftyHaruTests /* SwiftyHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftyHaru" /* SwiftyHaru.framework */; };
+		__src_cc_ref_Sources/PDFDocument.swift /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */; };
+		__src_cc_ref_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */; };
+		__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8727D7901D9EE61000995C39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_SwiftyHaru";
+			remoteInfo = SwiftyHaru;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8727D7921D9EE74900995C39 /* hpdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf.h; sourceTree = "<group>"; };
+		8727D7931D9EE74900995C39 /* hpdf_3dmeasure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_3dmeasure.h; sourceTree = "<group>"; };
+		8727D7941D9EE74900995C39 /* hpdf_annotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_annotation.h; sourceTree = "<group>"; };
+		8727D7951D9EE74900995C39 /* hpdf_catalog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_catalog.h; sourceTree = "<group>"; };
+		8727D7961D9EE74900995C39 /* hpdf_conf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_conf.h; sourceTree = "<group>"; };
+		8727D7971D9EE74900995C39 /* hpdf_config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_config.h; sourceTree = "<group>"; };
+		8727D7981D9EE74900995C39 /* hpdf_consts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_consts.h; sourceTree = "<group>"; };
+		8727D7991D9EE74900995C39 /* hpdf_destination.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_destination.h; sourceTree = "<group>"; };
+		8727D79A1D9EE74900995C39 /* hpdf_doc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_doc.h; sourceTree = "<group>"; };
+		8727D79B1D9EE74900995C39 /* hpdf_encoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_encoder.h; sourceTree = "<group>"; };
+		8727D79C1D9EE74900995C39 /* hpdf_encrypt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_encrypt.h; sourceTree = "<group>"; };
+		8727D79D1D9EE74900995C39 /* hpdf_encryptdict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_encryptdict.h; sourceTree = "<group>"; };
+		8727D79E1D9EE74900995C39 /* hpdf_error.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_error.h; sourceTree = "<group>"; };
+		8727D79F1D9EE74900995C39 /* hpdf_exdata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_exdata.h; sourceTree = "<group>"; };
+		8727D7A01D9EE74900995C39 /* hpdf_ext_gstate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_ext_gstate.h; sourceTree = "<group>"; };
+		8727D7A11D9EE74900995C39 /* hpdf_font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_font.h; sourceTree = "<group>"; };
+		8727D7A21D9EE74900995C39 /* hpdf_fontdef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_fontdef.h; sourceTree = "<group>"; };
+		8727D7A31D9EE74900995C39 /* hpdf_gstate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_gstate.h; sourceTree = "<group>"; };
+		8727D7A41D9EE74900995C39 /* hpdf_image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_image.h; sourceTree = "<group>"; };
+		8727D7A51D9EE74900995C39 /* hpdf_info.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_info.h; sourceTree = "<group>"; };
+		8727D7A61D9EE74900995C39 /* hpdf_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_list.h; sourceTree = "<group>"; };
+		8727D7A71D9EE74900995C39 /* hpdf_mmgr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_mmgr.h; sourceTree = "<group>"; };
+		8727D7A81D9EE74900995C39 /* hpdf_namedict.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_namedict.h; sourceTree = "<group>"; };
+		8727D7A91D9EE74900995C39 /* hpdf_objects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_objects.h; sourceTree = "<group>"; };
+		8727D7AA1D9EE74900995C39 /* hpdf_outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_outline.h; sourceTree = "<group>"; };
+		8727D7AB1D9EE74900995C39 /* hpdf_page_label.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_page_label.h; sourceTree = "<group>"; };
+		8727D7AC1D9EE74900995C39 /* hpdf_pages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_pages.h; sourceTree = "<group>"; };
+		8727D7AD1D9EE74900995C39 /* hpdf_pdfa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_pdfa.h; sourceTree = "<group>"; };
+		8727D7AE1D9EE74900995C39 /* hpdf_streams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_streams.h; sourceTree = "<group>"; };
+		8727D7AF1D9EE74900995C39 /* hpdf_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_types.h; sourceTree = "<group>"; };
+		8727D7B01D9EE74900995C39 /* hpdf_u3d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_u3d.h; sourceTree = "<group>"; };
+		8727D7B11D9EE74900995C39 /* hpdf_utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_utils.h; sourceTree = "<group>"; };
+		8727D7B21D9EE74900995C39 /* hpdf_version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_version.h; sourceTree = "<group>"; };
+		8727D7B31D9EE90100995C39 /* PDFError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFError.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HaruBridgeable.swift; sourceTree = "<group>"; };
+		__PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftyHaru.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHaruTests.swift; sourceTree = "<group>"; };
+		"_____Product_SwiftyHaru" /* SwiftyHaru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyHaru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_SwiftyHaruTests" /* SwiftyHaruTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = SwiftyHaruTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_SwiftyHaru" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_SwiftyHaruTests" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_SwiftyHaru_via_SwiftyHaruTests /* SwiftyHaru.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8727D7911D9EE74900995C39 /* CLibHaru */ = {
+			isa = PBXGroup;
+			children = (
+				8727D7921D9EE74900995C39 /* hpdf.h */,
+				8727D7931D9EE74900995C39 /* hpdf_3dmeasure.h */,
+				8727D7941D9EE74900995C39 /* hpdf_annotation.h */,
+				8727D7951D9EE74900995C39 /* hpdf_catalog.h */,
+				8727D7961D9EE74900995C39 /* hpdf_conf.h */,
+				8727D7971D9EE74900995C39 /* hpdf_config.h */,
+				8727D7981D9EE74900995C39 /* hpdf_consts.h */,
+				8727D7991D9EE74900995C39 /* hpdf_destination.h */,
+				8727D79A1D9EE74900995C39 /* hpdf_doc.h */,
+				8727D79B1D9EE74900995C39 /* hpdf_encoder.h */,
+				8727D79C1D9EE74900995C39 /* hpdf_encrypt.h */,
+				8727D79D1D9EE74900995C39 /* hpdf_encryptdict.h */,
+				8727D79E1D9EE74900995C39 /* hpdf_error.h */,
+				8727D79F1D9EE74900995C39 /* hpdf_exdata.h */,
+				8727D7A01D9EE74900995C39 /* hpdf_ext_gstate.h */,
+				8727D7A11D9EE74900995C39 /* hpdf_font.h */,
+				8727D7A21D9EE74900995C39 /* hpdf_fontdef.h */,
+				8727D7A31D9EE74900995C39 /* hpdf_gstate.h */,
+				8727D7A41D9EE74900995C39 /* hpdf_image.h */,
+				8727D7A51D9EE74900995C39 /* hpdf_info.h */,
+				8727D7A61D9EE74900995C39 /* hpdf_list.h */,
+				8727D7A71D9EE74900995C39 /* hpdf_mmgr.h */,
+				8727D7A81D9EE74900995C39 /* hpdf_namedict.h */,
+				8727D7A91D9EE74900995C39 /* hpdf_objects.h */,
+				8727D7AA1D9EE74900995C39 /* hpdf_outline.h */,
+				8727D7AB1D9EE74900995C39 /* hpdf_page_label.h */,
+				8727D7AC1D9EE74900995C39 /* hpdf_pages.h */,
+				8727D7AD1D9EE74900995C39 /* hpdf_pdfa.h */,
+				8727D7AE1D9EE74900995C39 /* hpdf_streams.h */,
+				8727D7AF1D9EE74900995C39 /* hpdf_types.h */,
+				8727D7B01D9EE74900995C39 /* hpdf_u3d.h */,
+				8727D7B11D9EE74900995C39 /* hpdf_utils.h */,
+				8727D7B21D9EE74900995C39 /* hpdf_version.h */,
+			);
+			name = CLibHaru;
+			path = "Packages/CLibHaru-0.1.2/include";
+			sourceTree = "<group>";
+		};
+		TestProducts_ /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_SwiftyHaruTests" /* SwiftyHaruTests.xctest */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Configs_" /* Configs */,
+				8727D7911D9EE74900995C39 /* CLibHaru */,
+				"_____Sources_" /* Sources */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				TestProducts_ /* Tests */,
+				"_____Product_SwiftyHaru" /* SwiftyHaru.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Configs_" /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_SwiftyHaru" /* SwiftyHaru */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_SwiftyHaru" /* SwiftyHaru */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */,
+				__PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */,
+				8727D7B31D9EE90100995C39 /* PDFError.swift */,
+			);
+			name = SwiftyHaru;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_SwiftyHaruTests" /* SwiftyHaruTests */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */,
+			);
+			name = SwiftyHaruTests;
+			path = Tests/SwiftyHaruTests;
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_SwiftyHaruTests" /* SwiftyHaruTests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_SwiftyHaru" /* SwiftyHaru */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_SwiftyHaru" /* Build configuration list for PBXNativeTarget "SwiftyHaru" */;
+			buildPhases = (
+				CompilePhase_SwiftyHaru /* Sources */,
+				"___LinkPhase_SwiftyHaru" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyHaru;
+			productName = SwiftyHaru;
+			productReference = "_____Product_SwiftyHaru" /* SwiftyHaru.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_SwiftyHaruTests" /* SwiftyHaruTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_SwiftyHaruTests" /* Build configuration list for PBXNativeTarget "SwiftyHaruTests" */;
+			buildPhases = (
+				CompilePhase_SwiftyHaruTests /* Sources */,
+				"___LinkPhase_SwiftyHaruTests" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_SwiftyHaru /* PBXTargetDependency */,
+			);
+			name = SwiftyHaruTests;
+			productName = SwiftyHaruTests;
+			productReference = "_____Product_SwiftyHaruTests" /* SwiftyHaruTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "SwiftyHaru" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_SwiftyHaru" /* SwiftyHaru */,
+				"______Target_SwiftyHaruTests" /* SwiftyHaruTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_SwiftyHaru /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */,
+				8727D7B41D9EE90200995C39 /* PDFError.swift in Sources */,
+				__src_cc_ref_Sources/PDFDocument.swift /* PDFDocument.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_SwiftyHaruTests /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_SwiftyHaru /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_SwiftyHaru" /* SwiftyHaru */;
+			targetProxy = 8727D7901D9EE61000995C39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_SwiftyHaru /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
+				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaru_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftyHaru;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_SwiftyHaruTests /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
+				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaruTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		"___DebugConf_SwiftyHaru" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
+				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaru_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = SwiftyHaru;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_SwiftyHaruTests" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
+				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaruTests_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "SwiftyHaru" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_SwiftyHaru" /* Build configuration list for PBXNativeTarget "SwiftyHaru" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_SwiftyHaru" /* Debug */,
+				_ReleaseConf_SwiftyHaru /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_SwiftyHaruTests" /* Build configuration list for PBXNativeTarget "SwiftyHaruTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_SwiftyHaruTests" /* Debug */,
+				_ReleaseConf_SwiftyHaruTests /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}
