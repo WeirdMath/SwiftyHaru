@@ -8,9 +8,10 @@
 
 import CLibHaru
 
+/// A handle that is used to manipulate an individual page.
 public final class PDFPage: _HaruBridgeable {
     
-    public var document: PDFDocument
+    public unowned var document: PDFDocument
     
     internal var _haruObject: HPDF_Page
     
@@ -50,6 +51,21 @@ public final class PDFPage: _HaruBridgeable {
         let success = HPDF_Page_SetSize(_haruObject,
                                         HPDF_PageSizes(size.rawValue),
                                         HPDF_PageDirection(direction.rawValue))
+        
+        if success != UInt(HPDF_OK) {
+            throw document._error
+        }
+    }
+    
+    /// Sets rotation angle of the page.
+    ///
+    /// - parameter angle: The rotation angle of the page. It must be a multiple of 90 degrees. It can
+    ///                    also be negative.
+    ///
+    /// - throws: `PDFError.pageInvalidRotateValue` if an invalid rotation angle was set.
+    public func rotate(byAngle angle: Int) throws {
+        
+        let success = HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
         
         if success != UInt(HPDF_OK) {
             throw document._error

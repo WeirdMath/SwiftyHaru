@@ -190,13 +190,13 @@
 			children = (
 				__PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */,
 				__PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */,
-				8727D7B71D9F11B600995C39 /* Unimplemented.swift */,
 				8727D7B51D9F103700995C39 /* PDFPage.swift */,
 				8727D7B91D9F280100995C39 /* PDFPage.Size.swift */,
 				8727D7BF1D9F33F200995C39 /* PDFPage.Direction.swift */,
+				8727D7B31D9EE90100995C39 /* PDFError.swift */,
 				8727D7BB1D9F2D1500995C39 /* Size.swift */,
 				8727D7BD1D9F2DAE00995C39 /* Numeric.swift */,
-				8727D7B31D9EE90100995C39 /* PDFError.swift */,
+				8727D7B71D9F11B600995C39 /* Unimplemented.swift */,
 			);
 			name = SwiftyHaru;
 			path = Sources;

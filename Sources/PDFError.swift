@@ -10,7 +10,7 @@ import CLibHaru
 
 public struct PDFError: Error {
     
-    public let code: Int32
+    public var code: Int32
     
     internal init(code: Int32) {
         self.code = code

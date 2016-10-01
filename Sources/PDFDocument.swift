@@ -8,6 +8,7 @@
 
 import CLibHaru
 
+/// A handle to operate on a document object.
 public final class PDFDocument: _HaruBridgeable {
     
     internal var _haruObject: HPDF_Doc
@@ -18,8 +19,8 @@ public final class PDFDocument: _HaruBridgeable {
     
     /// Creates an instance of a document object.
     ///
-    /// - returns: An instance of a document object or `nil` on failure.
-    public init?() {
+    /// - returns: An instance of a document.
+    public init() {
         
         _error = PDFError(code: HPDF_OK)
         
@@ -28,12 +29,10 @@ public final class PDFDocument: _HaruBridgeable {
                           userData: UnsafeMutableRawPointer?) {
             
             let error = userData?.assumingMemoryBound(to: PDFError.self)
-            error?.pointee = PDFError(code: Int32(errorCode))
+            error?.pointee.code = Int32(errorCode)
         }
         
-        guard let document = HPDF_New(errorHandler, &_error) else { return nil }
-        
-        _haruObject = document
+        _haruObject = HPDF_New(errorHandler, &_error)
     }
     
     deinit {

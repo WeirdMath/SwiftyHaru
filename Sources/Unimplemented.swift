@@ -6,6 +6,9 @@
 //
 //
 
-internal func Unimplemented(_ function: String = #function, file: StaticString = #file, line: UInt = #line) -> Never {
+internal func Unimplemented(_ function: String = #function,
+                            file: StaticString = #file,
+                            line: UInt = #line) -> Never {
+    
     fatalError("\(function) is not yet implemented", file: file, line: line)
 }
