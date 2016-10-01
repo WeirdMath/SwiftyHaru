@@ -10,9 +10,12 @@ import CLibHaru
 
 public final class PDFPage: _HaruBridgeable {
     
+    public var document: PDFDocument
+    
     internal var _haruObject: HPDF_Page
     
-    internal init(haruObject: HPDF_Page) {
+    internal init(document: PDFDocument, haruObject: HPDF_Page) {
+        self.document = document
         _haruObject = haruObject
     }
     
@@ -43,6 +46,13 @@ public final class PDFPage: _HaruBridgeable {
     ///
     /// - throws: `PDFError.failedToAllocateMemory` if memory allocation fails.
     public func set(size: PDFPage.Size, direction: PDFPage.Direction) throws {
-        HPDF_Page_SetSize(_haruObject, HPDF_PageSizes(size.rawValue), HPDF_PageDirection(direction.rawValue))
+        
+        let success = HPDF_Page_SetSize(_haruObject,
+                                        HPDF_PageSizes(size.rawValue),
+                                        HPDF_PageDirection(direction.rawValue))
+        
+        if success != UInt(HPDF_OK) {
+            throw document._error
+        }
     }
 }

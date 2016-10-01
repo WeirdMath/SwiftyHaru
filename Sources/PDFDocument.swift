@@ -14,14 +14,14 @@ public final class PDFDocument: _HaruBridgeable {
     
     public private(set) var pages: [PDFPage] = []
     
-    internal var _lastError: PDFError
+    internal var _error: PDFError
     
     /// Creates an instance of a document object.
     ///
     /// - returns: An instance of a document object or `nil` on failure.
     public init?() {
         
-        _lastError = PDFError(code: HPDF_OK)
+        _error = PDFError(code: HPDF_OK)
         
         func errorHandler(errorCode: HPDF_STATUS,
                           detailCode: HPDF_STATUS,
@@ -31,7 +31,7 @@ public final class PDFDocument: _HaruBridgeable {
             error?.pointee = PDFError(code: Int32(errorCode))
         }
         
-        guard let document = HPDF_New(errorHandler, &_lastError) else { return nil }
+        guard let document = HPDF_New(errorHandler, &_error) else { return nil }
         
         _haruObject = document
     }
@@ -47,9 +47,9 @@ public final class PDFDocument: _HaruBridgeable {
     /// - returns: A `PDFPage` object.
     public func addPage() throws -> PDFPage {
         
-        guard let haruPage = HPDF_AddPage(_haruObject) else { throw _lastError }
+        guard let haruPage = HPDF_AddPage(_haruObject) else { throw _error }
         
-        let page = PDFPage(haruObject: haruPage)
+        let page = PDFPage(document: self, haruObject: haruPage)
         pages.append(page)
         
         return page
@@ -106,9 +106,9 @@ public final class PDFDocument: _HaruBridgeable {
         
         let haruTargetPage = pages[index]._haruObject
         
-        guard let haruInsertedPage = HPDF_InsertPage(_haruObject, haruTargetPage) else { throw _lastError }
+        guard let haruInsertedPage = HPDF_InsertPage(_haruObject, haruTargetPage) else { throw _error }
         
-        let page = PDFPage(haruObject: haruInsertedPage)
+        let page = PDFPage(document: self, haruObject: haruInsertedPage)
         
         pages.insert(page, at: index)
         
