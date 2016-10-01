@@ -10,11 +10,7 @@ import Foundation
 import XCTest
 
 extension XCTestCase {
-    
-    var recordMode: Bool {
-        return false
-    }
-    
+
     var currentTestName: String {
         
         #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
@@ -25,9 +21,7 @@ extension XCTestCase {
             name.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
     }
     
-    func saveReferenceFileIfNeeded(_ data: Data, ofType type: String) {
-        
-        guard recordMode else { return }
+    func saveReferenceFile(_ data: Data, ofType type: String) {
         
         let destinationURL = URL(fileURLWithPath: #file)
             .deletingLastPathComponent()

@@ -17,28 +17,24 @@ class SwiftyHaruTests: XCTestCase {
         ]
     }
     
-    private var _recordMode = false
-    
-    override var recordMode: Bool {
-        get {
-            return _recordMode
-        }
-        set {
-            _recordMode = newValue
-        }
-    }
+    var recordMode = false
     
     var sut: PDFDocument!
     
     override func setUp() {
         super.setUp()
         
+        recordMode = false
         sut = PDFDocument()
     }
     
     override func tearDown() {
         
-        saveReferenceFileIfNeeded(sut.getData(), ofType: "pdf")
+        if recordMode {
+            saveReferenceFile(sut.getData(), ofType: "pdf")
+        }
+        
+        recordMode = false
         
         super.tearDown()
     }
