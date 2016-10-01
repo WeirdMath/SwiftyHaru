@@ -16,8 +16,13 @@ extension XCTestCase {
     }
     
     var currentTestName: String {
+        
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            let name = self.name!
+        #endif
+        
         return "\(type(of: self))." +
-            self.name!.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
+            name.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
     }
     
     func saveReferenceFileIfNeeded(_ data: Data, ofType type: String) {
