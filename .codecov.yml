@@ -1,18 +1,7 @@
 coverage:
   round: nearest
   range: 60...95
-  status:
-    project:
-      default: off
-      swift:
-        flags: swift
-        ignore:
-          - Sources/CLibHaru/*
-          - Sources/CLibPNG/*
-      c:
-        flags: c
-        ignore:
-          - Sources/SwiftyHaru/*
-
-ignore:
-  - Tests/*
+  ignore:
+    - Tests/*
+    - Sources/CLibHaru/*
+    - Sources/CLibPNG/*
