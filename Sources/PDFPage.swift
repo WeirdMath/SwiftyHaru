@@ -9,34 +9,50 @@
 import CLibHaru
 
 /// A handle that is used to manipulate an individual page.
+///
+/// - Warning: If the `PDFDocument` object that owns the page is deallocated, accessing the page's properties
+///            will cause a crash. The lifetime of a page should always be shorter than the lifetime of
+///            the document that owns the page.
 public final class PDFPage: _HaruBridgeable {
     
-    public unowned var document: PDFDocument
+    public weak var document: PDFDocument?
     
-    internal var _haruObject: HPDF_Page
+    private var _pageHandle: HPDF_Page
+    
+    internal var _haruObject: HPDF_Page {
+        if document == nil {
+            fatalError("The document that owns the page has been deallocated")
+        }
+        
+        return _pageHandle
+    }
     
     internal init(document: PDFDocument, haruObject: HPDF_Page) {
         self.document = document
-        _haruObject = haruObject
+        _pageHandle = haruObject
     }
     
-    /// The width of the page. Valid values are between 3 and 14400.
+    /// The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
     public var width: Float {
         get {
             return HPDF_Page_GetWidth(_haruObject)
         }
         set {
-            HPDF_Page_SetWidth(_haruObject, newValue)
+            if newValue >= 3 || newValue <= 14400 {
+                HPDF_Page_SetWidth(_haruObject, newValue)
+            }
         }
     }
     
-    /// The height of the page. Valid values are between 3 and 14400.
+    /// The height of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
     public var height: Float {
         get {
             return HPDF_Page_GetHeight(_haruObject)
         }
         set {
-            HPDF_Page_SetHeight(_haruObject, newValue)
+            if newValue >= 3 || newValue <= 14400 {
+                HPDF_Page_SetHeight(_haruObject, newValue)
+            }
         }
     }
     
@@ -44,17 +60,11 @@ public final class PDFPage: _HaruBridgeable {
     ///
     /// - parameter size:      A predefined page-size value.
     /// - parameter direction: The direction of the page.
-    ///
-    /// - throws: `PDFError.failedToAllocateMemory` if memory allocation fails.
-    public func set(size: PDFPage.Size, direction: PDFPage.Direction) throws {
+    public func set(size: PDFPage.Size, direction: PDFPage.Direction) {
         
-        let success = HPDF_Page_SetSize(_haruObject,
+        HPDF_Page_SetSize(_haruObject,
                                         HPDF_PageSizes(size.rawValue),
                                         HPDF_PageDirection(direction.rawValue))
-        
-        if success != UInt(HPDF_OK) {
-            throw document._error
-        }
     }
     
     /// Sets rotation angle of the page.
@@ -67,8 +77,13 @@ public final class PDFPage: _HaruBridgeable {
         
         let success = HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
         
-        if success != UInt(HPDF_OK) {
-            throw document._error
+        if success != HPDF_STATUS(HPDF_OK) {
+            
+            if let document = document {
+                HPDF_ResetError(document._haruObject)
+            }
+            
+            throw PDFError(code: Int32(success))
         }
     }
 }
