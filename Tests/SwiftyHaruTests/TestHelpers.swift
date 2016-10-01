@@ -13,12 +13,19 @@ extension XCTestCase {
 
     var currentTestName: String {
         
-        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            let name = self.name!
-        #endif
+        // Since on Apple platforms `self.name` is optional
+        // and of format `-[XCTestCaseSubclassName testMethodName]`,
+        // and on other platforms it is non-optional
+        // and of format `XCTestCaseSubclassName.testMethodName`
+        // we have this workaround in order to unify the names
         
-        return "\(type(of: self))." +
-            name.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            print(name!)
+            return "\(type(of: self))." +
+                name!.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
+        #else
+            return name
+        #endif
     }
     
     func saveReferenceFile(_ data: Data, ofType type: String) {
