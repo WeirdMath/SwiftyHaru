@@ -11,6 +11,35 @@ import XCTest
 
 extension XCTestCase {
     
+    var recordMode: Bool {
+        return false
+    }
+    
+    var currentTestName: String {
+        return "\(type(of: self))." +
+            self.name!.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
+    }
+    
+    func saveReferenceFileIfNeeded(_ data: Data, ofType type: String) {
+        
+        guard recordMode else { return }
+        
+        let destinationURL = URL(fileURLWithPath: #file)
+            .deletingLastPathComponent()
+            .appendingPathComponent("Resources/")
+            .appendingPathComponent(currentTestName + (type.isEmpty ? "" : "." + type))
+        
+        do {
+            try data.write(to: destinationURL)
+        } catch {
+            XCTFail(String(describing: error))
+            return
+        }
+        
+        XCTFail("Test ran in record mode. Reference image is now saved. " +
+            "Disable record mode to perform an actual resource comparison!")
+    }
+    
     func getURLForTestingResource(forFile file: String, ofType type: String?) -> URL? {
         return URL(fileURLWithPath: #file)
             .deletingLastPathComponent()
