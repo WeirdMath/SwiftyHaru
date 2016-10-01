@@ -7,8 +7,8 @@
 //
 
 public struct Size<T: Numeric> {
-    var width: T
-    var height: T
+    public var width: T
+    public var height: T
 }
 
 infix operator ×

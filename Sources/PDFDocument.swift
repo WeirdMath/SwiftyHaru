@@ -45,7 +45,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// Creates a new page and adds it after the last page of the document.
     ///
     /// - returns: A `PDFPage` object.
-    public func addPage() -> PDFPage {
+    @discardableResult public func addPage() -> PDFPage {
         
         let haruPage = HPDF_AddPage(_haruObject)!
         
@@ -61,7 +61,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// - parameter height: The height of the page.
     ///
     /// - returns: A `PDFPage` object.
-    public func addPage(width: Float, height: Float) -> PDFPage {
+    @discardableResult public func addPage(width: Float, height: Float) -> PDFPage {
         
         let page = addPage()
         
@@ -77,7 +77,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// - parameter direction: The direction of the page.
     ///
     /// - returns: A `PDFPage` object.
-    public func addPage(size: PDFPage.Size, direction: PDFPage.Direction) -> PDFPage {
+    @discardableResult public func addPage(size: PDFPage.Size, direction: PDFPage.Direction) -> PDFPage {
         
         let page = addPage()
         
@@ -92,7 +92,7 @@ public final class PDFDocument: _HaruBridgeable {
     ///                    of the array `pages` or equal to its `endIndex` property.
     ///
     /// - returns: A `PDFPage` object.
-    public func insertPage(atIndex index: Int) -> PDFPage {
+    @discardableResult public func insertPage(atIndex index: Int) -> PDFPage {
         
         if index == pages.endIndex {
             return addPage()
@@ -118,7 +118,7 @@ public final class PDFDocument: _HaruBridgeable {
     ///                     of the array `pages` or equal to its `endIndex` property.
     ///
     /// - returns: A `PDFPage` object.
-    func insertPage(width: Float, height: Float, atIndex index: Int) -> PDFPage {
+    @discardableResult func insertPage(width: Float, height: Float, atIndex index: Int) -> PDFPage {
         
         let page = insertPage(atIndex: index)
         
@@ -137,7 +137,7 @@ public final class PDFDocument: _HaruBridgeable {
     ///                        of the array `pages` or equal to its `endIndex` property.
     ///
     /// - returns: A `PDFPage` object.
-    public func insertPage(size: PDFPage.Size,
+    @discardableResult public func insertPage(size: PDFPage.Size,
                            direction: PDFPage.Direction,
                            atIndex index: Int) -> PDFPage {
         
@@ -153,7 +153,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// Returns the document's contents.
     ///
     /// - returns: The dodument's contents
-    func getData() -> Data {
+    public func getData() -> Data {
         
         HPDF_SaveToStream(_haruObject)
 

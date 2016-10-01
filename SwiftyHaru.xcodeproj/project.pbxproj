@@ -14,6 +14,7 @@
 		8727D7BC1D9F2D1500995C39 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8727D7BB1D9F2D1500995C39 /* Size.swift */; };
 		8727D7BE1D9F2DAE00995C39 /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8727D7BD1D9F2DAE00995C39 /* Numeric.swift */; };
 		8727D7C01D9F33F200995C39 /* PDFPage.Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8727D7BF1D9F33F200995C39 /* PDFPage.Direction.swift */; };
+		879F9D361DA00A7300499D19 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879F9D351DA00A7300499D19 /* TestHelpers.swift */; };
 		_LinkFileRef_SwiftyHaru_via_SwiftyHaruTests /* SwiftyHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_SwiftyHaru" /* SwiftyHaru.framework */; };
 		__src_cc_ref_Sources/PDFDocument.swift /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */; };
 		__src_cc_ref_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */; };
@@ -71,6 +72,8 @@
 		8727D7BB1D9F2D1500995C39 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		8727D7BD1D9F2DAE00995C39 /* Numeric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		8727D7BF1D9F33F200995C39 /* PDFPage.Direction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPage.Direction.swift; sourceTree = "<group>"; };
+		879F9D351DA00A7300499D19 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		879F9D371DA00C2C00499D19 /* LinuxMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/PDFDocument.swift /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/_HaruBridgeable.swift /* _HaruBridgeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HaruBridgeable.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */,
+				879F9D351DA00A7300499D19 /* TestHelpers.swift */,
 			);
 			name = SwiftyHaruTests;
 			path = Tests/SwiftyHaruTests;
@@ -214,6 +218,7 @@
 		"_______Tests_" /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				879F9D371DA00C2C00499D19 /* LinuxMain.swift */,
 				"_______Group_SwiftyHaruTests" /* SwiftyHaruTests */,
 			);
 			name = Tests;
@@ -303,6 +308,7 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift in Sources */,
+				879F9D361DA00A7300499D19 /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +349,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaruTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_VERSION = 3.0;
@@ -376,6 +383,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Packages/CLibHaru-0.1.2";
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaruTests_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
