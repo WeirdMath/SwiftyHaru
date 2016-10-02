@@ -186,4 +186,36 @@ public final class PDFDocument: _HaruBridgeable {
             HPDF_SetPageLayout(_haruObject, HPDF_PageLayout(rawValue: newValue.rawValue))
         }
     }
+    
+    /// Adds a page labeling range for the document. The page label is shown in the thumbnails view.
+    ///
+    /// Example:
+    ///
+    /// ```swift
+    /// document.addPageLabel(.lowerRoman, fromPage: 0, startingWith: 1)
+    /// document.addPageLabel(.decimal, fromPage: 4, startingWith: 1)
+    /// document.addPageLabel(.decimal, fromPage: 7, startingWith: 8, withPrefix: "A-")
+    /// ```
+    ///
+    /// Result in a document with pages labeled:
+    ///
+    /// i, ii, iii, iv, 1, 2, 3, A-8, A-9, ...
+    ///
+    /// - parameter style:           `PDFDocument.PageNumberStyle` enum case
+    /// - parameter startingPage:    The first page that applies this labeling range.
+    /// - parameter firstPageNumber: The first page number to use.
+    /// - parameter prefix:          The prefix for the page label. Default is `nil`.
+    public func addPageLabel(_ style: PageNumberStyle,
+                             fromPage startingPage: Int,
+                             startingWith firstPageNumber: Int,
+                             withPrefix prefix: String? = nil) {
+        
+        let prefix = prefix?.cString(using: .ascii)
+        
+        HPDF_AddPageLabel(_haruObject,
+                          HPDF_UINT(startingPage),
+                          HPDF_PageNumStyle(rawValue: style.rawValue),
+                          HPDF_UINT(firstPageNumber),
+                          prefix)
+    }
 }

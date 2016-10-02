@@ -36,6 +36,8 @@ class PDFDocumentTests: XCTestCase {
             saveReferenceFile(sut.getData(), ofType: "pdf")
         }
         
+        sut = nil
+        
         super.tearDown()
     }
     
@@ -98,6 +100,27 @@ class PDFDocumentTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedPageLayout, returnedPageLayout)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testAddPageLabel() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        for _ in 0...8 {
+            sut.addPage()
+        }
+        
+        sut.addPageLabel(.lowerRoman, fromPage: 0, startingWith: 1)
+        sut.addPageLabel(.decimal, fromPage: 4, startingWith: 1)
+        sut.addPageLabel(.decimal, fromPage: 7, startingWith: 8, withPrefix: "A-")
+        let returnedDocumentData = sut.getData()
+        
+        // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
 }

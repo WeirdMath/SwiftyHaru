@@ -36,7 +36,7 @@ public extension PDFDocument {
 
 internal extension PDFDocument.PageLayout {
     
-    internal init!(haruEnum: HPDF_PageLayout) {
+    internal init(haruEnum: HPDF_PageLayout) {
         self.init(rawValue: haruEnum.rawValue)!
     }
 }

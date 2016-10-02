@@ -39,6 +39,8 @@ class PDFPageTests: XCTestCase {
             saveReferenceFile(document.getData(), ofType: "pdf")
         }
         
+        document = nil
+        
         super.tearDown()
     }
     
