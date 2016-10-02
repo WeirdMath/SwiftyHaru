@@ -84,7 +84,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_TextWidth()` | Unimplemented | None | N/A |
 | `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
-| `HPDF_Page_GetCurrentPos()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetCurrentPos()` | **Implemented** | None | `PDFPathContext`'s `currentPosition` instance property |
 | `HPDF_Page_GetCurrentTextPos()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCurrentFont()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCurrentFontSize()` | Unimplemented | None | N/A |
