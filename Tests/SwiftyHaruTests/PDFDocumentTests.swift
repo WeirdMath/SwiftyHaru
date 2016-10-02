@@ -1,5 +1,5 @@
 //
-//  TestHelpers.swift
+//  PDFDocumentTests.swift
 //  SwiftyHaru
 //
 //  Created by Sergej Jaskiewicz on 01.10.16.
@@ -26,6 +26,7 @@ class PDFDocumentTests: XCTestCase {
         super.setUp()
         
         recordMode = false
+        
         sut = PDFDocument()
     }
     
@@ -34,8 +35,6 @@ class PDFDocumentTests: XCTestCase {
         if recordMode {
             saveReferenceFile(sut.getData(), ofType: "pdf")
         }
-        
-        recordMode = false
         
         super.tearDown()
     }

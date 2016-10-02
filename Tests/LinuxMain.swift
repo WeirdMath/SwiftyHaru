@@ -3,4 +3,5 @@ import XCTest
 
 XCTMain([
      testCase(PDFDocumentTests.allTests),
+     testCase(PDFPageTests.allTests)
 ])

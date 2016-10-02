@@ -440,6 +440,11 @@ public struct PDFError: Error {
     ]
     
     public var description: String {
+        
+        if code == 0 {
+            return "No error."
+        }
+        
         return _descriptions[code] ?? "Unknown error."
     }
 }

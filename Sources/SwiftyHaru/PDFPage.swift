@@ -38,7 +38,7 @@ public final class PDFPage: _HaruBridgeable {
             return HPDF_Page_GetWidth(_haruObject)
         }
         set {
-            if newValue >= 3 || newValue <= 14400 {
+            if newValue >= 3 && newValue <= 14400 {
                 HPDF_Page_SetWidth(_haruObject, newValue)
             }
         }
@@ -50,7 +50,7 @@ public final class PDFPage: _HaruBridgeable {
             return HPDF_Page_GetHeight(_haruObject)
         }
         set {
-            if newValue >= 3 || newValue <= 14400 {
+            if newValue >= 3 && newValue <= 14400 {
                 HPDF_Page_SetHeight(_haruObject, newValue)
             }
         }
@@ -75,15 +75,15 @@ public final class PDFPage: _HaruBridgeable {
     /// - throws: `PDFError.pageInvalidRotateValue` if an invalid rotation angle was set.
     public func rotate(byAngle angle: Int) throws {
         
-        let success = HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
+        let status = HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
         
-        if success != HPDF_STATUS(HPDF_OK) {
+        if status != HPDF_STATUS(HPDF_OK) {
             
             if let document = document {
                 HPDF_ResetError(document._haruObject)
             }
             
-            throw PDFError(code: Int32(success))
+            throw PDFError(code: Int32(status))
         }
     }
 }

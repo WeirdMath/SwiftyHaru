@@ -29,8 +29,10 @@ public final class PDFDocument: _HaruBridgeable {
                           detailCode: HPDF_STATUS,
                           userData: UnsafeMutableRawPointer?) {
             
-            let error = userData?.assumingMemoryBound(to: PDFError.self)
-            error?.pointee.code = Int32(errorCode)
+            let error = userData!.assumingMemoryBound(to: PDFError.self)
+            error.pointee = PDFError(code: Int32(errorCode))
+            
+            print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
         }
         
         _haruObject = HPDF_New(errorHandler, &_error)

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705252F1DA1304300D5EF74 /* PDFPageTests.swift */; };
 		879F9D6C1DA055F400499D19 /* hpdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4A1DA055BD00499D19 /* hpdf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D6D1DA055F400499D19 /* hpdf_3dmeasure.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4B1DA055BD00499D19 /* hpdf_3dmeasure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D6E1DA055F400499D19 /* hpdf_annotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4C1DA055BD00499D19 /* hpdf_annotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -135,7 +136,7 @@
 		__src_cc_ref_Sources/SwiftyHaru/Size.swift /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Size.swift /* Size.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */; };
-		__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */; };
+		__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */; };
 		__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 
 /* Begin PBXFileReference section */
 		8705252D1DA0860300D5EF74 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
+		8705252F1DA1304300D5EF74 /* PDFPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageTests.swift; sourceTree = "<group>"; };
 		879F9D4A1DA055BD00499D19 /* hpdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf.h; sourceTree = "<group>"; };
 		879F9D4B1DA055BD00499D19 /* hpdf_3dmeasure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_3dmeasure.h; sourceTree = "<group>"; };
 		879F9D4C1DA055BD00499D19 /* hpdf_annotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_annotation.h; sourceTree = "<group>"; };
@@ -291,7 +293,7 @@
 		__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unimplemented.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HaruBridgeable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftyHaru.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyHaruTests.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 		"_____Product_CLibHaru" /* CLibHaru.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CLibHaru.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_CLibPNG" /* CLibPNG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CLibPNG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -535,13 +537,13 @@
 		"_______Group_SwiftyHaru" /* SwiftyHaru */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Size.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */,
 			);
@@ -552,7 +554,8 @@
 		"_______Group_SwiftyHaruTests" /* SwiftyHaruTests */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift */,
+				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */,
+				8705252F1DA1304300D5EF74 /* PDFPageTests.swift */,
 				__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */,
 			);
 			name = SwiftyHaruTests;
@@ -838,7 +841,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* SwiftyHaruTests.swift in Sources */,
+				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */,
+				870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,7 +919,7 @@
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaru_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftyHaru;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -989,7 +993,7 @@
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/SwiftyHaru_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				OTHER_LDFLAGS = "$(inherited)";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftyHaru;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
