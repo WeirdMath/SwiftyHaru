@@ -141,29 +141,29 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
 | `HPDF_Page_Fill()` | Unimplemented | None | N/A |
 | `HPDF_Page_FillStroke()` | Unimplemented | None | N/A |
-| `HPDF_Page_GRestore()` | Unimplemented | None | N/A |
-| `HPDF_Page_GSave()` | Unimplemented | None | N/A |
-| `HPDF_Page_LineTo()` | Unimplemented | None | N/A |
+| `HPDF_Page_GRestore()` | TBD | None | N/A |
+| `HPDF_Page_GSave()` | TBD | None | N/A |
+| `HPDF_Page_LineTo()` | **Implemented** | None | `PDFPathContext`'s `line(to:)` instance method |
 | `HPDF_Page_MoveTextPos()` | Unimplemented | None | N/A |
 | `HPDF_Page_MoveTextPos2()` | Unimplemented | None | N/A |
-| `HPDF_Page_MoveTo()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTo()` | **Implemented** | None | `PDFPathContext`'s `move(to:)` instance method |
 | `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_Rectangle()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetCMYKFill()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCMYKFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
 | `HPDF_Page_SetCMYKStroke()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetDash()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetGrayFill()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetGrayStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetGrayFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_SetGrayStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineCap()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineJoin()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
 | `HPDF_Page_SetMiterLimit()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetRGBFill()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetRGBStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetRGBFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_SetRGBStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetTextLeading()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
