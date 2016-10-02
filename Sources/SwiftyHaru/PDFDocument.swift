@@ -118,7 +118,7 @@ public final class PDFDocument: _HaruBridgeable {
     ///                     of the array `pages` or equal to its `endIndex` property.
     ///
     /// - returns: A `PDFPage` object.
-    @discardableResult func insertPage(width: Float, height: Float, atIndex index: Int) -> PDFPage {
+    @discardableResult public func insertPage(width: Float, height: Float, atIndex index: Int) -> PDFPage {
         
         let page = insertPage(atIndex: index)
         

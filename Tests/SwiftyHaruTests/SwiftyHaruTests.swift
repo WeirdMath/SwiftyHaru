@@ -9,11 +9,12 @@
 import XCTest
 import SwiftyHaru
 
-class SwiftyHaruTests: XCTestCase {
+class PDFDocumentTests: XCTestCase {
     
-    static var allTests : [(String, (SwiftyHaruTests) -> () throws -> Void)] {
+    static var allTests : [(String, (PDFDocumentTests) -> () throws -> Void)] {
         return [
-            ("testCreateEmptyDocument", testCreateEmptyDocument)
+            ("testCreateEmptyDocument", testCreateEmptyDocument),
+            ("testAddingPages", testAddingPages)
         ]
     }
     
@@ -41,15 +42,33 @@ class SwiftyHaruTests: XCTestCase {
     
     func testCreateEmptyDocument() {
         
-        recordMode = false
+//        recordMode = true
         
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")!
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
         // When
-        sut.addPage(size: .a4, direction: .portrait)
+        let returnedDocumentData = sut.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testAddingPages() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        sut.addPage()
+        sut.addPage(width: 100, height: 100)
         sut.addPage(size: .a4, direction: .landscape)
-        sut.addPage(size: .a4, direction: .portrait)
+        sut.insertPage(atIndex: 3)
+        sut.insertPage(size: .a3, direction: .portrait, atIndex: 0)
+        sut.insertPage(width: 30, height: 30, atIndex: 2)
+        
         let returnedDocumentData = sut.getData()
         
         // Then
