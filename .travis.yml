@@ -1,0 +1,14 @@
+language: generic
+os:
+  - osx
+  - linux
+
+sudo: required
+dist: trusty
+osx_image: xcode8
+
+script:
+  - Scripts/ci.sh
+
+after_success:
+  - Scripts/coverage.sh

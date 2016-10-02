@@ -10,7 +10,7 @@ import CLibHaru
 
 public struct PDFError: Error {
     
-    public let code: Int32
+    public var code: Int32
     
     internal init(code: Int32) {
         self.code = code
@@ -440,6 +440,26 @@ public struct PDFError: Error {
     ]
     
     public var description: String {
+        
+        if code == 0 {
+            return "No error."
+        }
+        
         return _descriptions[code] ?? "Unknown error."
+    }
+}
+
+extension PDFError: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: PDFError, rhs: PDFError) -> Bool {
+        return lhs.code == rhs.code
     }
 }

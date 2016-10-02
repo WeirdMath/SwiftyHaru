@@ -1,0 +1,7 @@
+coverage:
+  round: nearest
+  range: 60...95
+  ignore:
+    - Tests/*
+    - Sources/CLibHaru/*
+    - Sources/CLibPNG/*
