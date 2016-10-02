@@ -14,7 +14,9 @@ class PDFDocumentTests: XCTestCase {
     static var allTests : [(String, (PDFDocumentTests) -> () throws -> Void)] {
         return [
             ("testCreateEmptyDocument", testCreateEmptyDocument),
-            ("testAddingPages", testAddingPages)
+            ("testAddingPages", testAddingPages),
+            ("testPageLayout", testPageLayout),
+            ("testAddPageLabel", testAddPageLabel)
         ]
     }
     

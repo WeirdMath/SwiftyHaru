@@ -47,6 +47,9 @@
               <li class="nav-group-task">
                 <a href="Classes/PDFPage/Size.html">– Size</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/PDFPathContext.html">PDFPathContext</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -85,22 +88,39 @@
             <a href='#swiftyharu' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='swiftyharu'>SwiftyHaru</h1>
 
 <p><a href="https://travis-ci.org/WeirdMath/SwiftyHaru"><img src="https://travis-ci.org/WeirdMath/SwiftyHaru.svg?branch=dev" alt="Build Status"></a>
-<a href="https://codecov.io/gh/WeirdMath/SwiftyHaru"><img src="https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg" alt="codecov"></a></p>
+<a href="https://codecov.io/gh/WeirdMath/SwiftyHaru"><img src="https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg" alt="codecov"></a>
+<img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Language">
+<img src="https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg" alt="Platform"></p>
+
+<p>SwiftyHaru is an object-oriented Swift wrapper for <a href="https://github.com/libharu/libharu">LibHaru</a>, a C library for creating PDF documents. It brings the safety of Swift itself to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.</p>
+
+<p>Check out which <a href="https://github.com/libharu/libharu/wiki">features of LibHaru</a> has already been implemented in <a href="FEATURES.md">FEATURES.md</a></p>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+
+<p>Add SwiftyHaru as a dependency to your <code>Package.swift</code>. For example:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
+    <span class="nv">name</span><span class="p">:</span> <span class="s">"YourPackageName"</span><span class="p">,</span>
+    <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
+        <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/WeirdMath/SwiftyHaru.git"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>   
+</code></pre>
+<a href='#contributing' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='contributing'>Contributing</h2>
 
 <p>Building in macOS:</p>
-<pre class="highlight plaintext"><code>swift build -Xlinker -lz
+<pre class="highlight plaintext"><code>$ swift build -Xlinker -lz
 </code></pre>
 
 <p>Testing in macOS:</p>
-<pre class="highlight plaintext"><code>swift test -Xlinker -lz
+<pre class="highlight plaintext"><code>$ swift test -Xlinker -lz
 </code></pre>
 
 <p>Building in Ubuntu:</p>
-<pre class="highlight plaintext"><code>swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz
+<pre class="highlight plaintext"><code>$ swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz
 </code></pre>
 
 <p>Testing in Ubuntu:</p>
-<pre class="highlight plaintext"><code>swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
+<pre class="highlight plaintext"><code>$ swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
 </code></pre>
 
           </section>

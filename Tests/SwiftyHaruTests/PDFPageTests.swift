@@ -14,7 +14,9 @@ class PDFPageTests: XCTestCase {
     static var allTests : [(String, (PDFPageTests) -> () throws -> Void)] {
         return [
             ("testGetSetWidth", testGetSetWidth),
-            ("testGetSetHeight", testGetSetHeight)
+            ("testGetSetHeight", testGetSetHeight),
+            ("testRotatePage", testRotatePage),
+            ("testPathLineWidth", testPathLineWidth)
         ]
     }
     

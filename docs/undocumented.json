@@ -288,6 +288,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFPathContext.swift",
+      "line": 11,
+      "symbol": "PDFPathContext",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Size.swift",
       "line": 9,
       "symbol": "Size",
