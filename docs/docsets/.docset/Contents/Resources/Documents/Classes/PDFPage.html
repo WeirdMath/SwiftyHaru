@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PDFPage Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/PDFPage" class="dashAnchor"></a>
+    <a title="PDFPage Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (74% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PDFPage Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage.html">PDFPage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage/Size.html">– Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions/×(_:_:).html">×(_:_:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Numeric.html">Numeric</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PDFPage</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                </div>
+              </div>
+            <p>A handle that is used to manipulate an individual page.</p>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    If the <code><a href="../Classes/PDFDocument.html">PDFDocument</a></code> object that owns the page is deallocated, accessing the page&rsquo;s properties
+       will cause a crash. The lifetime of a page should always be shorter than the lifetime of
+       the document that owns the page.
+
+</div>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC10SwiftyHaru7PDFPage8documentXwGSqCS_11PDFDocument_"></a>
+                    <a name="//apple_ref/swift/Property/document" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage8documentXwGSqCS_11PDFDocument_">document</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC10SwiftyHaru7PDFPage5widthSf"></a>
+                    <a name="//apple_ref/swift/Property/width" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage5widthSf">width</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC10SwiftyHaru7PDFPage6heightSf"></a>
+                    <a name="//apple_ref/swift/Property/height" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage6heightSf">height</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The height of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10SwiftyHaru7PDFPage3setFT4sizeOS0_4Size9directionOS0_9Direction_T_"></a>
+                    <a name="//apple_ref/swift/Method/set(size:direction:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage3setFT4sizeOS0_4Size9directionOS0_9Direction_T_">set(size:direction:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the size and direction of a page to a predefined size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span><span class="p">,</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Direction.html">Direction</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A predefined page-size value.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>direction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The direction of the page.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC10SwiftyHaru7PDFPage6rotateFzT7byAngleSi_T_"></a>
+                    <a name="//apple_ref/swift/Method/rotate(byAngle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage6rotateFzT7byAngleSi_T_">rotate(byAngle:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets rotation angle of the page.</p>
+
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError22pageInvalidRotateValueS0_">PDFError.pageInvalidRotateValue</a></code> if an invalid rotation angle was set.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">byAngle</span> <span class="nv">angle</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>angle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The rotation angle of the page. It must be a multiple of 90 degrees. It can also be negative.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:OC10SwiftyHaru7PDFPage9Direction"></a>
+                    <a name="//apple_ref/swift/Enum/Direction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:OC10SwiftyHaru7PDFPage9Direction">Direction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/PDFPage/Direction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:OC10SwiftyHaru7PDFPage4Size"></a>
+                    <a name="//apple_ref/swift/Enum/Size" class="dashAnchor"></a>
+                    <a class="token" href="#/s:OC10SwiftyHaru7PDFPage4Size">Size</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                        <a href="../Classes/PDFPage/Size.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsGVS_4SizeSf_"></a>
+                    <a name="//apple_ref/swift/Property/sizeInPixels" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsGVS_4SizeSf_">sizeInPixels</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesGVS_4SizeSf_"></a>
+                    <a name="//apple_ref/swift/Property/sizeInInches" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesGVS_4SizeSf_">sizeInInches</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersGVS_4SizeSf_"></a>
+                    <a name="//apple_ref/swift/Property/sizeInMillimeters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersGVS_4SizeSf_">sizeInMillimeters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span><span class="p">:</span> <span class="n">_HaruBridgeable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-02)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

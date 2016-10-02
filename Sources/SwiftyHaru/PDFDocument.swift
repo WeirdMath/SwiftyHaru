@@ -176,6 +176,8 @@ public final class PDFDocument: _HaruBridgeable {
         return data
     }
     
+    // MARK: - General pages parameters
+    
     /// Determines how pages should be displayed.
     /// If this attribute is not set, the setting of the viewer application is used.
     public var pageLayout: PageLayout {
