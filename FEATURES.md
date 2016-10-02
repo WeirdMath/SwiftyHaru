@@ -2,6 +2,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 #### Table Key
 
+**Bold** status means that no changes are planned regarding this feature.
+
 ##### Implementation status:
 * ***Implemented***: Functionality is fully implemented.
 * ***N/A***: This is not planned to be implemented.
@@ -15,14 +17,14 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
     | Function  | Status | Test Coverage | SwiftyHaru equivalent |
     |-----------|--------|---------------|-----------------------|
-    | `HPDF_New()` | **Implemented** | **Complete** | `PDFDocument.init()` |
+    | `HPDF_New()` | **Implemented** | Complete | `PDFDocument.init()` |
     | `HPDF_Free()` | **For internal use only** | N/A | N/A |
     | `HPDF_NewDoc()` | **N/A** | N/A | N/A |
     | `HPDF_FreeDoc()` | **N/A** | N/A | N/A |
     | `HPDF_SaveToFile()` | **N/A** | N/A | `document.getData().write(to: url)` |
     | `HPDF_SaveToStream()` | **For internal use only** | N/A | N/A |
     | `HPDF_GetStreamSize()` | **For internal use only** | N/A | N/A |
-    | `HPDF_ReadFromStream()` | **Implemented** | **Complete** | `PDFDocument`'s `getData()` instance method |
+    | `HPDF_ReadFromStream()` | **Implemented** | Complete | `PDFDocument`'s `getData()` instance method |
     | `HPDF_ResetStream()` | **For internal use only** | N/A | N/A |
     | `HPDF_HasDoc()` | **N/A** | N/A | N/A |  |
     | `HPDF_SetErrorHandler()` | **N/A** | N/A | N/A |  |
@@ -34,20 +36,20 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | Function  | Status | Test Coverage | SwiftyHaru equivalent |
     |-----------|--------|---------------|-----------------------|
     | `HPDF_SetPagesConfiguration()` | Unimplemented | None | N/A |
-    | `HPDF_SetPageLayout()` | **Implemented** | **Complete** | `PDFDocument`'s `pageLayout` instance property |
-    | `HPDF_GetPageLayout()` | **Implemented** | **Complete** | `PDFDocument`'s `pageLayout` instance property |
+    | `HPDF_SetPageLayout()` | **Implemented** | Complete | `PDFDocument`'s `pageLayout` instance property |
+    | `HPDF_GetPageLayout()` | **Implemented** | Complete | `PDFDocument`'s `pageLayout` instance property |
     | `HPDF_SetPageMode()` | Unimplemented | None | N/A |
     | `HPDF_GetPageMode()` | Unimplemented | None | N/A |
     | `HPDF_SetOpenAction()` | Unimplemented | None | N/A |
     | `HPDF_GetCurrentPage()` | **N/A** | N/A | N/A |
-    | `HPDF_AddPage()` | **Implemented** | **Complete** | `PDFDocument`'s `addPage()`, `addPage(width:height:)`, `addPage(size:direction:)` instance methods |
-    | `HPDF_InsertPage()` | **Implemented** | **Complete** | `PDFDocument`'s  `insertPage(atIndex:)`, `insertPage(width:height:atIndex:)`, `insertPage(size:direction:atIndex:)` instance methods |
+    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument`'s `addPage()`, `addPage(width:height:)`, `addPage(size:direction:)` instance methods |
+    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument`'s  `insertPage(atIndex:)`, `insertPage(width:height:atIndex:)`, `insertPage(size:direction:atIndex:)` instance methods |
     
 * **[Font Handling](https://github.com/libharu/libharu/wiki/API%3A-Document#Font_Handling)**
 
     | Function  | Status | Test Coverage | SwiftyHaru equivalent |
     |-----------|--------|---------------|-----------------------|
-    | `HPDF_AddPageLabel()` | **Implemented** | **Complete** | `PDFDocument`'s `addPageLabel(_:fromPage:startingWith:withPrefix)` instance method |
+    | `HPDF_AddPageLabel()` | **Implemented** | Complete | `PDFDocument`'s `addPageLabel(_:fromPage:startingWith:withPrefix)` instance method |
     | `HPDF_GetFont()` | Unimplemented | None | N/A |
     | `HPDF_LoadType1FontFromFile()` | TBD | N/A | N/A |
     | `HPDF_LoadTTFontFromFile()` | TBD | N/A | N/A |
@@ -69,25 +71,25 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 | Function  | Status | Test Coverage | SwiftyHaru equivalent |
 |-----------|--------|---------------|-----------------------|
-| `HPDF_Page_SetWidth()` | **Implemented** | **Complete** | `PDFPage`'s `width` instance property |
-| `HPDF_Page_SetHeight()` | **Implemented** | **Complete** | `PDFPage`'s `height` instance property |
-| `HPDF_Page_SetSize()` | **Implemented** | **Complete** | `PDFPage`'s `set(size:direction:)` instance method |
-| `HPDF_Page_SetRotate()` | **Implemented** | **Complete** | `PDFPage`'s `rotate(byAngle:)` instance method |
-| `HPDF_Page_GetWidth()` | **Implemented** | **Complete** | `PDFPage`'s `width` instance property |
-| `HPDF_Page_GetHeight()` | **Implemented** | **Complete** | `PDFPage`'s `height` instance property |
+| `HPDF_Page_SetWidth()` | **Implemented** | Complete | `PDFPage`'s `width` instance property |
+| `HPDF_Page_SetHeight()` | **Implemented** | Complete | `PDFPage`'s `height` instance property |
+| `HPDF_Page_SetSize()` | **Implemented** | Complete | `PDFPage`'s `set(size:direction:)` instance method |
+| `HPDF_Page_SetRotate()` | **Implemented** | Complete | `PDFPage`'s `rotate(byAngle:)` instance method |
+| `HPDF_Page_GetWidth()` | **Implemented** | Complete | `PDFPage`'s `width` instance property |
+| `HPDF_Page_GetHeight()` | **Implemented** | Complete | `PDFPage`'s `height` instance property |
 | `HPDF_Page_CreateDestination()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateTextAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateLinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateURILinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_TextWidth()` | Unimplemented | None | N/A |
 | `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetGMode()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCurrentTextPos()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCurrentFont()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCurrentFontSize()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetLineWidth()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
 | `HPDF_Page_GetLineCap()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetLineJoin()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetMiterLimit()` | Unimplemented | None | N/A |
@@ -115,7 +117,64 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 ## Graphics
 
-Unimplemented
+| Function  | Status | Test Coverage | SwiftyHaru equivalent |
+|-----------|--------|---------------|-----------------------|
+| `HPDF_Page_Arc()` | Unimplemented | None | N/A |
+| `HPDF_Page_BeginText()` | Unimplemented | None | N/A |
+| `HPDF_Page_Circle()` | Unimplemented | None | N/A |
+| `HPDF_Page_Clip()` | Unimplemented | None | N/A |
+| `HPDF_Page_ClosePath()` | Unimplemented | None | N/A |
+| `HPDF_Page_ClosePathStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_ClosePathEofillStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_ClosePathFillStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_Concat()` | Unimplemented | None | N/A |
+| `HPDF_Page_CurveTo()` | Unimplemented | None | N/A |
+| `HPDF_Page_CurveTo2()` | Unimplemented | None | N/A |
+| `HPDF_Page_CurveTo3()` | Unimplemented | None | N/A |
+| `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
+| `HPDF_Page_Ellipse()` | Unimplemented | None | N/A |
+| `HPDF_Page_EndPath()` | Unimplemented | None | N/A |
+| `HPDF_Page_EndText()` | Unimplemented | None | N/A |
+| `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
+| `HPDF_Page_Eofill()` | Unimplemented | None | N/A |
+| `HPDF_Page_EofillStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
+| `HPDF_Page_Fill()` | Unimplemented | None | N/A |
+| `HPDF_Page_FillStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_GRestore()` | Unimplemented | None | N/A |
+| `HPDF_Page_GSave()` | Unimplemented | None | N/A |
+| `HPDF_Page_LineTo()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTextPos()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTextPos2()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTo()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
+| `HPDF_Page_Rectangle()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCMYKFill()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCMYKStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetDash()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetGrayFill()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetGrayStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetLineCap()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetLineJoin()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
+| `HPDF_Page_SetMiterLimit()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetRGBFill()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetRGBStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextLeading()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextMatrix()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowText()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowTextNextLine()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowTextNextLineEx()` | Unimplemented | None | N/A |
+| `HPDF_Page_Stroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextOut()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextRect()` | Unimplemented | None | N/A |
 
 ## Font Handling
 

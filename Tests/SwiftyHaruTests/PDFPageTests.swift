@@ -142,4 +142,42 @@ class PDFPageTests: XCTestCase {
         
         XCTAssertThrowsError(try page3.rotate(byAngle: 45))
     }
+    
+    // MARK: - Path painting tests
+    
+    func testPathLineWidth() {
+        
+        // Given
+        let expectedInitialLineWidth: Float = 1
+        let expectedLineWidth: Float = 10
+        let expectedFinalizedLineWidth = expectedInitialLineWidth
+        
+        // When
+        var returnedInitialLineWidth: Float = -1
+        sut.drawPath { context in
+            returnedInitialLineWidth = context.lineWidth
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialLineWidth, returnedInitialLineWidth)
+        
+        // When
+        var returnedLineWidth: Float = -1
+        sut.drawPath { context in
+            context.lineWidth = 10
+            returnedLineWidth = context.lineWidth
+        }
+        
+        // Then
+        XCTAssertEqual(expectedLineWidth, returnedLineWidth)
+        
+        // When
+        var returnedFinalizedLineWidth: Float = -1
+        sut.drawPath { context in
+            returnedFinalizedLineWidth = context.lineWidth
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalizedLineWidth, returnedFinalizedLineWidth)
+    }
 }

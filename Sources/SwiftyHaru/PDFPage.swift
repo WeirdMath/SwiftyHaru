@@ -32,6 +32,8 @@ public final class PDFPage: _HaruBridgeable {
         _pageHandle = haruObject
     }
     
+    // MARK: - Page layout
+    
     /// The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
     public var width: Float {
         get {
@@ -85,5 +87,68 @@ public final class PDFPage: _HaruBridgeable {
             
             throw PDFError(code: Int32(status))
         }
+    }
+    
+    // MARK: - Graphics
+    
+    // In libHaru, each page object maintains a flag named "graphics mode".
+    // The graphics mode corresponds to the graphics-object of the PDF specification.
+    // The graphics mode is changed by invoking particular functions.
+    // The functions that can be invoked are decided by the value of the graphics mode.
+    // The following figure shows the relationships of the graphics mode.
+    //
+    //     +=============================+
+    //     / HPDF_GMODE_PAGE_DESCRIPTION /
+    //     /                             /<-------------------------------+
+    //     / Allowed operators:          /                                |
+    //     / * General graphics state    /                                |
+    //     / * Special graphics state    /-----------------+      +---------------------+
+    //     / * Color                     /                 |      | HPDF_Page_EndText() |
+    //     +=============================+                 |      +---------------------+
+    //             |                ^                      |              |
+    //             |                |        +-----------------------+    |
+    // +-----------------------+    |        | HPDF_Page_BeginText() |    |
+    // | HPDF_Page_MoveTo()    |    |        +-----------------------+    |
+    // | HPDF_Page_Rectangle() |    |                      |              |
+    // | HPDF_Page_Arc()       |    |                      V              |
+    // | HPDF_Page_Circle()    |    |                +========================+
+    // +-----------------------+    |                / HPDF_GMODE_TEXT_OBJECT /
+    //             |                |                /                        /
+    //             |   +-------------------------+   / Allowed operators      /
+    //             |   | Path Painting Operators |   / * Graphics state       /
+    //             |   +-------------------------+   / * Color                /
+    //             |                |                / * Text state           /
+    //             V                |                / * Text-showing         /
+    //     +=============================+           / * Text-positioning     /
+    //     / HPDF_GMODE_PATH_OBJECT      /           +========================+
+    //     /                             /
+    //     / Allowed operators:          /
+    //     / * Path construction         /
+    //     +=============================+
+    //
+    // In SwiftyHaru we don't want the make the user maintain this state machine manually,
+    // so there are context objects like PDFPathContext which maintain it automatically.
+    // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION must be entered only within a closure.
+    //
+    // We invoke `drawPath(_:)` method with a closure that takes a context object and performs path construction
+    // or text creation on the context object which is implicitly connected with the page object.
+    // If by the end of the closure none of the operators that return the page to the HPDF_GMODE_PAGE_DESCRIPTION
+    // graphics mode is invoked, one is invoked automatically during `finalize()` method call.
+    // Also during that method call all the graphics properties of the page like line width or stroke color
+    // are set to their default values.
+    
+    /// Perform path drawing operations on the page.
+    ///
+    /// - Warning: The `PDFPathContext` argument should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
+    ///
+    /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
+    public func drawPath(_ body: ((PDFPathContext) -> Void)) {
+        
+        let pathContext = PDFPathContext(for: _haruObject)
+        
+        body(pathContext)
+
+        pathContext.finalize()
     }
 }
