@@ -40,8 +40,8 @@ public extension PDFPage {
 
 public extension PDFPage.Size {
     
-    internal init?(haruEnum: HPDF_PageSizes) {
-        self.init(rawValue: haruEnum.rawValue)
+    internal init(haruEnum: HPDF_PageSizes) {
+        self.init(rawValue: haruEnum.rawValue)!
     }
 
     public var sizeInPixels: Size<Float> {

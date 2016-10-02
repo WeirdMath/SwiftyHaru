@@ -63,8 +63,8 @@ public final class PDFPage: _HaruBridgeable {
     public func set(size: PDFPage.Size, direction: PDFPage.Direction) {
         
         HPDF_Page_SetSize(_haruObject,
-                                        HPDF_PageSizes(size.rawValue),
-                                        HPDF_PageDirection(direction.rawValue))
+                          HPDF_PageSizes(size.rawValue),
+                          HPDF_PageDirection(direction.rawValue))
     }
     
     /// Sets rotation angle of the page.

@@ -175,4 +175,15 @@ public final class PDFDocument: _HaruBridgeable {
 
         return data
     }
+    
+    /// Determines how pages should be displayed.
+    /// If this attribute is not set, the setting of the viewer application is used.
+    public var pageLayout: PageLayout {
+        get {
+            return PageLayout(haruEnum: HPDF_GetPageLayout(_haruObject))
+        }
+        set {
+            HPDF_SetPageLayout(_haruObject, HPDF_PageLayout(rawValue: newValue.rawValue))
+        }
+    }
 }

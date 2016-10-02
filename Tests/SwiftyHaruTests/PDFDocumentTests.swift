@@ -73,4 +73,31 @@ class PDFDocumentTests: XCTestCase {
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
+    
+    func testPageLayout() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let expectedPageLayout = PDFDocument.PageLayout.twoColumnRight
+        
+        // When
+        sut.addPage()
+        sut.addPage()
+        sut.addPage()
+        sut.addPage()
+        
+        // Then
+        XCTAssertEqual(.default, sut.pageLayout)
+        
+        // When
+        sut.pageLayout = .twoColumnRight
+        let returnedPageLayout = sut.pageLayout
+        let returnedDocumentData = sut.getData()
+        
+        // Then
+        XCTAssertEqual(expectedPageLayout, returnedPageLayout)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
 }

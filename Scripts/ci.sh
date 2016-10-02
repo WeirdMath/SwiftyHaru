@@ -69,7 +69,7 @@ if [[ $OS == "macOS" ]];
 then
     swift build -c release -Xlinker -lz;
 else
-    swift build -c release -Xlinker -rpath=.build/debug/ -Xlinker -lz;
+    swift build -c release -Xlinker -rpath=.build/release/ -Xlinker -lz;
 fi
 
 if [[ $? != 0 ]]; 
