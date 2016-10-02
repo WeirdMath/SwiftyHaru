@@ -25,10 +25,11 @@ public final class PDFPathContext {
         
         // Reset to default state
         
-        if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PAGE_DESCRIPTION {
-            move(to: (x: 0, y: 0))
-            HPDF_Page_Stroke(_page)
-        }
+        move(to: (x: 0, y: 0))
+        
+        HPDF_Page_EndPath(_page)
+        
+        // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION
         
         lineWidth = 1
     }

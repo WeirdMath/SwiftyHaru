@@ -151,7 +151,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Rectangle()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetCMYKFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_SetCMYKStroke()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCMYKStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetDash()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
