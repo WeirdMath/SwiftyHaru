@@ -143,9 +143,9 @@ public final class PDFPathContext {
             case .lineTo(let point):
                 HPDF_Page_LineTo(_page, point.x, point.y)
             }
-            
-            assert(currentPosition == Point(HPDF_Page_GetCurrentPos(_page)))
         }
+        
+        assert(currentPosition == Point(HPDF_Page_GetCurrentPos(_page)))
         
         _pathConstructionSequence = []
     }
@@ -165,7 +165,7 @@ public final class PDFPathContext {
     /// - parameter point: The end point of the path.
     public func line(to point: Point) {
         _currentPosition = point
-        _pathConstructionSequence.append(.moveTo(point))
+        _pathConstructionSequence.append(.lineTo(point))
     }
     
     // MARK: - Path painting

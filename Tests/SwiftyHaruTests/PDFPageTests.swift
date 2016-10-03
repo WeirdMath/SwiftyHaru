@@ -345,4 +345,32 @@ class PDFPageTests: XCTestCase {
         XCTAssertEqual(expectedFillColor, returnedFillColor)
         XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
+    
+    func testDrawPathWithoutPainting() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let expectedPositionAfterAddingLine1 = Point(x: 10, y: 10)
+        let expectedPositionAfterEndingPath = Point(x: 10, y: 20)
+        
+        // When
+        var returnedPositionAfterAddingLine1 = Point.zero
+        var returnedPositionAfterEndingPath = Point.zero
+        sut.drawPath { context in
+            context.move(to: .zero)
+            context.line(to: Point(x: 10, y: 10))
+            returnedPositionAfterAddingLine1 = context.currentPosition
+            context.line(to: Point(x: 10, y: 20))
+            context.endPath()
+            returnedPositionAfterEndingPath = context.currentPosition
+        }
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedPositionAfterAddingLine1, returnedPositionAfterAddingLine1)
+        XCTAssertEqual(expectedPositionAfterEndingPath, returnedPositionAfterEndingPath)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
 }

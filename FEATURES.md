@@ -133,7 +133,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_CurveTo3()` | Unimplemented | None | N/A |
 | `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
 | `HPDF_Page_Ellipse()` | Unimplemented | None | N/A |
-| `HPDF_Page_EndPath()` | **Implemented** | Incomplete | `PDFPathContext`'s `endPath()` instance method |
+| `HPDF_Page_EndPath()` | **Implemented** | Complete | `PDFPathContext`'s `endPath()` instance method |
 | `HPDF_Page_EndText()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eofill()` | Unimplemented | None | N/A |
@@ -143,7 +143,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_FillStroke()` | Unimplemented | None | N/A |
 | `HPDF_Page_GRestore()` | TBD | None | N/A |
 | `HPDF_Page_GSave()` | TBD | None | N/A |
-| `HPDF_Page_LineTo()` | **Implemented** | None | `PDFPathContext`'s `line(to:)` instance method |
+| `HPDF_Page_LineTo()` | **Implemented** | Incomplete | `PDFPathContext`'s `line(to:)` instance method |
 | `HPDF_Page_MoveTextPos()` | Unimplemented | None | N/A |
 | `HPDF_Page_MoveTextPos2()` | Unimplemented | None | N/A |
 | `HPDF_Page_MoveTo()` | **Implemented** | Complete | `PDFPathContext`'s `move(to:)` instance method |
