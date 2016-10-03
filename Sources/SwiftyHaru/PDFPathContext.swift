@@ -23,6 +23,7 @@ public final class PDFPathContext {
         lineWidth = 1
         strokeColor = .black
         fillColor = .black
+        
         move(to: .zero)
     }
     
@@ -73,7 +74,7 @@ public final class PDFPathContext {
                 HPDF_Page_SetCMYKStroke(_page,
                                         color.cyan,
                                         color.magenta,
-                                        color.magenta,
+                                        color.yellow,
                                         color.black)
             case .rgb(let color):
                 HPDF_Page_SetRGBStroke(_page,
@@ -104,15 +105,15 @@ public final class PDFPathContext {
             switch newValue._wrapped {
             case .cmyk(let color):
                 HPDF_Page_SetCMYKFill(_page,
-                                        color.cyan,
-                                        color.magenta,
-                                        color.magenta,
-                                        color.black)
+                                      color.cyan,
+                                      color.magenta,
+                                      color.yellow,
+                                      color.black)
             case .rgb(let color):
                 HPDF_Page_SetRGBFill(_page,
-                                       color.red,
-                                       color.green,
-                                       color.blue)
+                                     color.red,
+                                     color.green,
+                                     color.blue)
             case .gray(let color):
                 HPDF_Page_SetGrayFill(_page, color)
             }
@@ -178,6 +179,9 @@ public final class PDFPathContext {
     
     /// Ends the path without filling or painting. Does nothing if no path is currently being constructed.
     public func endPath() {
-        _pathConstructionSequence = []
+        
+        _constructPath()
+        
+        HPDF_Page_EndPath(_page)
     }
 }

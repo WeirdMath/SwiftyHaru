@@ -101,14 +101,14 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetTextLeading()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTextRise()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetRGBFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_GetRGBStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
-| `HPDF_Page_GetCMYKFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_GetCMYKStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
-| `HPDF_Page_GetGrayFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_GetGrayStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
-| `HPDF_Page_GetStrokingColorSpace()` | **Implemented** | None | `PDFPathContext`'s `strokingColorSpace` instance property |
-| `HPDF_Page_GetFillingColorSpace()` | **Implemented** | None | `PDFPathContext`'s `fillingColorSpace` instance property |
+| `HPDF_Page_GetRGBFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_GetRGBStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_GetCMYKFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_GetCMYKStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_GetGrayFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_GetGrayStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_GetStrokingColorSpace()` | **Implemented** | Complete | `PDFPathContext`'s `strokingColorSpace` instance property |
+| `HPDF_Page_GetFillingColorSpace()` | **Implemented** | Complete | `PDFPathContext`'s `fillingColorSpace` instance property |
 | `HPDF_Page_GetTextMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetGStateDepth()` | TBD | None | N/A |
 | `HPDF_Page_SetSlideShow()` | Unimplemented | None | N/A |
@@ -150,20 +150,20 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_Rectangle()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetCMYKFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_SetCMYKStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_SetCMYKFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_SetCMYKStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetDash()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetGrayFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_SetGrayStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_SetGrayFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_SetGrayStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineCap()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineJoin()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
 | `HPDF_Page_SetMiterLimit()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetRGBFill()` | **Implemented** | None | `PDFPathContext`'s `fillColor` instance property |
-| `HPDF_Page_SetRGBStroke()` | **Implemented** | None | `PDFPathContext`'s `strokeColor` instance property |
+| `HPDF_Page_SetRGBFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
+| `HPDF_Page_SetRGBStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetTextLeading()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |

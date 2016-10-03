@@ -17,7 +17,13 @@ class PDFPageTests: XCTestCase {
             ("testGetSetHeight", testGetSetHeight),
             ("testRotatePage", testRotatePage),
             ("testPathLineWidth", testPathLineWidth),
-            ("testPathMoveDrawingPoint", testPathMoveDrawingPoint)
+            ("testPathMoveDrawingPoint", testPathMoveDrawingPoint),
+            ("testStrokeColorRGB", testStrokeColorRGB),
+            ("testStrokeColorCMYK", testStrokeColorCMYK),
+            ("testStrokeColorGray", testStrokeColorGray),
+            ("testFillColorRGB", testFillColorRGB),
+            ("testFillColorCMYK", testFillColorCMYK),
+            ("testFillColorGray", testFillColorGray),
         ]
     }
     
@@ -218,5 +224,125 @@ class PDFPageTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedFinalPoint, returnedFinalPoint)
+    }
+    
+    func testStrokeColorRGB() {
+        
+        // Given
+        let expectedStrokeColor = Color(red: 0.1, green: 0.3, blue: 0.5)!
+        let expectedColorSpace = PDFColorSpace.deviceRGB
+        
+        // When
+        var returnedStrokeColor = Color(red: 0, green: 0, blue: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.strokeColor = expectedStrokeColor
+            returnedStrokeColor = context.strokeColor
+            returnedColorSpace = context.strokingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedStrokeColor, returnedStrokeColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
+    }
+    
+    func testStrokeColorCMYK() {
+        
+        // Given
+        let expectedStrokeColor = Color(cyan: 0.1, magenta: 0.3, yellow: 0.5, black: 0.7)!
+        let expectedColorSpace = PDFColorSpace.deviceCMYK
+        
+        // When
+        var returnedStrokeColor = Color(cyan: 0, magenta: 0, yellow: 0, black: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.strokeColor = expectedStrokeColor
+            returnedStrokeColor = context.strokeColor
+            returnedColorSpace = context.strokingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedStrokeColor, returnedStrokeColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
+    }
+    
+    func testStrokeColorGray() {
+        
+        // Given
+        let expectedStrokeColor = Color(gray: 0.7)!
+        let expectedColorSpace = PDFColorSpace.deviceGray
+        
+        // When
+        var returnedStrokeColor = Color(gray: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.strokeColor = expectedStrokeColor
+            returnedStrokeColor = context.strokeColor
+            returnedColorSpace = context.strokingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedStrokeColor, returnedStrokeColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
+    }
+    
+    func testFillColorRGB() {
+        
+        // Given
+        let expectedFillColor = Color(red: 0.1, green: 0.3, blue: 0.5)!
+        let expectedColorSpace = PDFColorSpace.deviceRGB
+        
+        // When
+        var returnedFillColor = Color(red: 0, green: 0, blue: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.fillColor = expectedFillColor
+            returnedFillColor = context.fillColor
+            returnedColorSpace = context.fillingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFillColor, returnedFillColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
+    }
+    
+    func testFillColorCMYK() {
+        
+        // Given
+        let expectedFillColor = Color(cyan: 0.1, magenta: 0.3, yellow: 0.5, black: 0.7)!
+        let expectedColorSpace = PDFColorSpace.deviceCMYK
+        
+        // When
+        var returnedFillColor = Color(cyan: 0, magenta: 0, yellow: 0, black: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.fillColor = expectedFillColor
+            returnedFillColor = context.fillColor
+            returnedColorSpace = context.fillingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFillColor, returnedFillColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
+    }
+    
+    func testFillColorGray() {
+        
+        // Given
+        let expectedFillColor = Color(gray: 0.7)!
+        let expectedColorSpace = PDFColorSpace.deviceGray
+        
+        // When
+        var returnedFillColor = Color(gray: 0)!
+        var returnedColorSpace = PDFColorSpace.undefined
+        sut.drawPath { context in
+            context.fillColor = expectedFillColor
+            returnedFillColor = context.fillColor
+            returnedColorSpace = context.fillingColorSpace
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFillColor, returnedFillColor)
+        XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
 }

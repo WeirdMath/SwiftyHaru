@@ -23,12 +23,12 @@ class ColorTests: XCTestCase {
             ("testSetComponentsForRGBColor", testSetComponentsForRGBColor),
             ("testSetComponentsForCMYKColor", testSetComponentsForCMYKColor),
             ("testSetComponentsForGrayColor", testSetComponentsForGrayColor),
-            ("testConvertingColorSpaces", testConvertingFromRGBToCMYK),
+            ("testConvertingFromRGBToCMYK", testConvertingFromRGBToCMYK),
             ("testConvertingFromCMYKToRGB", testConvertingFromCMYKToRGB)
         ]
     }
     
-    static let colorComparisonAccuracy: Float = 0.00390625 // 1/256
+    static let colorComparisonAccuracy: Float = 0.00390625 // 1/256 — enough accuracy
     
     func testInitializeRGBColor() {
         

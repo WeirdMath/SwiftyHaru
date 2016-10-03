@@ -347,7 +347,7 @@ internal extension Color {
     internal init(_ haruCMYKColor: HPDF_CMYKColor) {
         self.init(cyan: haruCMYKColor.c,
                   magenta: haruCMYKColor.m,
-                  yellow: haruCMYKColor.m,
+                  yellow: haruCMYKColor.y,
                   black: haruCMYKColor.k)!
     }
     
