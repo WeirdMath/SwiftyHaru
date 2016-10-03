@@ -167,11 +167,11 @@ public final class PDFPage: _HaruBridgeable {
         
         let pathContext = PDFPathContext(for: _haruObject)
         
-        pathContext.initialize()
-        
+        pathContext._cleanup()
+                
         body(pathContext)
 
-        pathContext.finalize()
+        pathContext._cleanup()
         
         _contextIsPresent = false
     }

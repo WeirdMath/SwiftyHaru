@@ -36,6 +36,8 @@ extension Size: Equatable {
 
 public struct Point {
     
+    public static let zero = Point(x: 0, y: 0)
+    
     public var x: Float
     public var y: Float
     

@@ -133,7 +133,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_CurveTo3()` | Unimplemented | None | N/A |
 | `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
 | `HPDF_Page_Ellipse()` | Unimplemented | None | N/A |
-| `HPDF_Page_EndPath()` | Unimplemented | None | N/A |
+| `HPDF_Page_EndPath()` | **Implemented** | Incomplete | `PDFPathContext`'s `endPath()` instance method |
 | `HPDF_Page_EndText()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eofill()` | Unimplemented | None | N/A |

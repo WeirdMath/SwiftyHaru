@@ -16,78 +16,31 @@ public final class PDFPathContext {
         _page = page
     }
     
-    internal func initialize() {
+    internal func _cleanup() {
         
-        // Reset to default state
+        // Reset to the default state
         
         lineWidth = 1
-        
-        move(to: Point(x: 0, y: 0))
-        
-        // By this time the graphics mode is HPDF_GMODE_PATH_OBJECT
+        strokeColor = .black
+        fillColor = .black
+        move(to: .zero)
     }
-    
-    internal func finalize() {
-        
-        // If by the time this method is called the `_page` object's graphics mode is not
-        // HPDF_GMODE_PAGE_DESCRIPTION, one of the path painting operators is invoked automatically
-        // during this method call.
-        
-        endPath()
-        
-    }
-    
-    /// This method must be called each time the graphics mode changes from HPDF_GMODE_PATH_OBJECT
-    /// to HPDF_GMODE_PAGE_DESCRIPTION
-    private func deferredCalls() {
-        
-        if let strokeColor = _strokeColor {
-            self.strokeColor = strokeColor
-            _strokeColor = nil
-        }
-        
-        if let fillColor = _fillColor {
-            self.fillColor = fillColor
-            _fillColor = nil
-        }
-        
-        if let lineWidth = _lineWidth {
-            self.lineWidth = lineWidth
-            _lineWidth = nil
-        }
-    }
-    
-    private var _lineWidth: Float?
     
     /// The current line width for path painting of the page. Default value is 1.
     public var lineWidth: Float {
         get {
-            
-            if let lineWidth = _lineWidth {
-                return lineWidth
-            }
-            
             return HPDF_Page_GetLineWidth(_page)
         }
         set {
-            
-            // If the current graphics mode is not appropriate for setting line width, defer it
-            // until we switch to the HPDF_GMODE_PAGE_DESCRIPTION mode
-            if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PAGE_DESCRIPTION  {
-                _lineWidth = newValue
-                return
-            }
-            
             HPDF_Page_SetLineWidth(_page, newValue)
         }
     }
     
-    /// The current position for path painting. Default value is (x: 0, y: 0).
+    private var _currentPosition = Point.zero
+    
+    /// The current position for path painting. Default value is `Point.zero`.
     public var currentPosition: Point {
-        
-        let point = HPDF_Page_GetCurrentPos(_page)
-        
-        return Point(point)
+        return _currentPosition
     }
     
     /// The current value of the page's stroking color space.
@@ -100,16 +53,9 @@ public final class PDFPathContext {
         return PDFColorSpace(haruEnum: HPDF_Page_GetFillingColorSpace(_page))
     }
     
-    private var _strokeColor: Color?
-    
-    /// The current value of the page's stroking color.
+    /// The current value of the page's stroking color. Default is RGB black.
     public var strokeColor: Color {
         get {
-            
-            if let strokeColor = _strokeColor {
-                return strokeColor
-            }
-            
             switch strokingColorSpace {
             case .deviceRGB:
                 return Color(HPDF_Page_GetRGBStroke(_page))
@@ -122,14 +68,6 @@ public final class PDFPathContext {
             }
         }
         set {
-            
-            // If the current graphics mode is not appropriate for setting color, defer it
-            // until we switch to the HPDF_GMODE_PAGE_DESCRIPTION mode
-            if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PAGE_DESCRIPTION  {
-                _strokeColor = newValue
-                return
-            }
-            
             switch strokingColorSpace {
             case .deviceCMYK:
                 HPDF_Page_SetCMYKStroke(_page,
@@ -137,28 +75,15 @@ public final class PDFPathContext {
                                         newValue.magenta,
                                         newValue.yellow,
                                         newValue.black)
-            case .deviceGray:
-                if newValue.isGray {
-                    HPDF_Page_SetGrayStroke(_page, newValue.red)
-                } else {
-                    HPDF_Page_SetRGBStroke(_page, newValue.red, newValue.green, newValue.blue)
-                }
             default:
                 HPDF_Page_SetRGBStroke(_page, newValue.red, newValue.green, newValue.blue)
             }
         }
     }
     
-    private var _fillColor: Color?
-    
-    /// The current value of the page's filling color.
+    /// The current value of the page's filling color. Default is RGB black.
     public var fillColor: Color {
         get {
-            
-            if let fillColor = _fillColor {
-                return fillColor
-            }
-            
             switch fillingColorSpace {
             case .deviceRGB:
                 return Color(HPDF_Page_GetRGBFill(_page))
@@ -171,14 +96,6 @@ public final class PDFPathContext {
             }
         }
         set {
-            
-            // If the current graphics mode is not appropriate for setting color, defer it
-            // until we switch to the HPDF_GMODE_PAGE_DESCRIPTION mode
-            if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PAGE_DESCRIPTION  {
-                _fillColor = newValue
-                return
-            }
-            
             switch fillingColorSpace {
             case .deviceCMYK:
                 HPDF_Page_SetCMYKFill(_page,
@@ -200,54 +117,63 @@ public final class PDFPathContext {
     
     // MARK: Path construction
     
+    // In LibHaru we use state maching to switch between construction state and general state.
+    // In SwiftyHaru calling path construction methods defers actual construction operations
+    // until the moment the path is about to be drawn. It makes it easier for the end user.
+    
+    private enum _PathConstructionOperation {
+        case moveTo(Point)
+        case lineTo(Point)
+    }
+    
+    private var _pathConstructionSequence: [_PathConstructionOperation] = []
+    
+    private func _constructPath() {
+        
+        for operation in _pathConstructionSequence {
+            
+            switch operation {
+            case .moveTo(let point):
+                HPDF_Page_MoveTo(_page, point.x, point.y)
+            case .lineTo(let point):
+                HPDF_Page_LineTo(_page, point.x, point.y)
+            }
+            
+            assert(currentPosition == Point(HPDF_Page_GetCurrentPos(_page)))
+        }
+        
+        _pathConstructionSequence = []
+    }
+    
     /// Starts a new subpath and moves the current point for drawing path,
     /// sets the start point for the path to the `point`.
     ///
     /// - parameter point: The start point for drawing path
     public func move(to point: Point) {
-        
-        HPDF_Page_MoveTo(_page, point.x, point.y)
-        
-        // By this time graphics mode is HPDF_GMODE_PATH_OBJECT
+        _currentPosition = point
+        _pathConstructionSequence.append(.moveTo(point))
     }
     
     /// Appends a path from the current point to the specified point. If this method has been called before
-    /// setting the current position by calling `move(to:)`, then (x: 0, y: 0) is used as one.
+    /// setting the current position by calling `move(to:)`, then `Point.zero` is used as one.
     ///
     /// - parameter point: The end point of the path.
     public func line(to point: Point) {
-        
-        // By this time graphics mode is HPDF_GMODE_PATH_OBJECT
-        
-        HPDF_Page_LineTo(_page, point.x, point.y)
-        
-        // By this time graphics mode is still HPDF_GMODE_PATH_OBJECT
+        _currentPosition = point
+        _pathConstructionSequence.append(.moveTo(point))
     }
     
     // MARK: - Path painting
     
     public func closePathFill(stroke: Bool, fill: Bool, evenOddRule: Bool) {
         
+        _constructPath()
+        
         Unimplemented()
-        
-        // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION,
-        
-        deferredCalls()
     }
     
     /// Ends the path without filling or painting. Does nothing if no path is currently being constructed.
     public func endPath() {
-        
-        guard Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT else {
-            return
-        }
-        
-        // By this time graphics mode is HPDF_GMODE_PATH_OBJECT
-        
-        HPDF_Page_EndPath(_page)
-        
-        // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION
-        
-        deferredCalls()
+        _pathConstructionSequence = []
     }
 }

@@ -16,7 +16,8 @@ class PDFPageTests: XCTestCase {
             ("testGetSetWidth", testGetSetWidth),
             ("testGetSetHeight", testGetSetHeight),
             ("testRotatePage", testRotatePage),
-            ("testPathLineWidth", testPathLineWidth)
+            ("testPathLineWidth", testPathLineWidth),
+            ("testPathMoveDrawingPoint", testPathMoveDrawingPoint)
         ]
     }
     
