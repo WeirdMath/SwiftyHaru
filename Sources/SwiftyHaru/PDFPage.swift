@@ -137,18 +137,42 @@ public final class PDFPage: _HaruBridgeable {
     // Also during that method call all the graphics properties of the page like line width or stroke color
     // are set to their default values.
     
+    private var _contextIsPresent = false
+    
     /// Perform path drawing operations on the page.
     ///
     /// - Warning: The `PDFPathContext` argument should not be stored and used outside of the lifetime
     ///            of the call to the closure.
     ///
+    /// - Precondition: No drawing context must be present for this current page, i. e. you cannot run the
+    ///   following code:
+    ///
+    /// ```swift
+    /// page.drawPath { context in
+    ///     
+    ///     self.page.drawPath { innerContext in
+    ///         // do things
+    ///     }
+    /// }
+    /// ```
+    ///
     /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
     public func drawPath(_ body: ((PDFPathContext) -> Void)) {
         
+        if _contextIsPresent {
+            preconditionFailure("Cannot begin a new drawing context while the previous one is not revoked.")
+        }
+        
+        _contextIsPresent = true
+        
         let pathContext = PDFPathContext(for: _haruObject)
+        
+        pathContext.initialize()
         
         body(pathContext)
 
         pathContext.finalize()
+        
+        _contextIsPresent = false
     }
 }

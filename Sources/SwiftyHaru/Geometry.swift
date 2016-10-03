@@ -8,11 +8,64 @@
 
 import CLibHaru
 
-public typealias Size = (width: Float, height: Float)
-public typealias Point = (x: Float, y: Float)
+public struct Size {
+    
+    public var width: Float
+    public var height: Float
+    
+    public init(width: Float, height: Float) {
+        self.width = width
+        self.height = height
+    }
+}
 
-internal func _Point(_ hpdfPoint: HPDF_Point) -> Point {
-    return (x: hpdfPoint.x, y: hpdfPoint.y)
+extension Size: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: Size, rhs: Size) -> Bool{
+        return lhs.width == rhs.width && lhs.height == rhs.height
+    }
+}
+
+public struct Point {
+    
+    public var x: Float
+    public var y: Float
+    
+    public init(x: Float, y: Float) {
+        self.x = x
+        self.y = y
+    }
+}
+
+extension Point: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: Point, rhs: Point) -> Bool{
+        return lhs.x == rhs.x && lhs.y == rhs.y
+    }
+}
+
+internal extension Point {
+    
+    internal init(_ hpdfPoint: HPDF_Point) {
+        x = hpdfPoint.x
+        y = hpdfPoint.y
+    }
 }
 
 infix operator ×
@@ -24,5 +77,5 @@ infix operator ×
 ///
 /// - returns: The size representing provided width and height.
 public func × (width: Float, height: Float) -> Size {
-    return (width: width, height: height)
+    return Size(width: width, height: height)
 }

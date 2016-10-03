@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>PDFPathContext Class Reference</title>
+    <title>Color Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Class/PDFPathContext" class="dashAnchor"></a>
-    <a title="PDFPathContext Class Reference"></a>
+    <a name="//apple_ref/swift/Struct/Color" class="dashAnchor"></a>
+    <a title="Color Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html"> Docs</a> (65% documented)</p>
@@ -21,7 +21,7 @@
       <p id="breadcrumbs">
         <a href="../index.html"> Reference</a>
         <img id="carat" src="../img/carat.png" />
-        PDFPathContext Class Reference
+        Color Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -91,299 +91,32 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>PDFPathContext</h1>
-            <p>Undocumented</p>
+            <h1>Color</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                </div>
+              </div>
+            <p>This structure represents a color. Property values must be between 0 and 1.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext9lineWidthSf"></a>
-                    <a name="//apple_ref/swift/Property/lineWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext9lineWidthSf">lineWidth</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current line width for path painting of the page. Default value is 1.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext15currentPositionVS_5Point"></a>
-                    <a name="//apple_ref/swift/Property/currentPosition" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext15currentPositionVS_5Point">currentPosition</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current position for path painting. Default value is (x: 0, y: 0).</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentPosition</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext18strokingColorSpaceOS_13PDFColorSpace"></a>
-                    <a name="//apple_ref/swift/Property/strokingColorSpace" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext18strokingColorSpaceOS_13PDFColorSpace">strokingColorSpace</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current value of the page&rsquo;s stroking color space.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext17fillingColorSpaceOS_13PDFColorSpace"></a>
-                    <a name="//apple_ref/swift/Property/fillingColorSpace" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext17fillingColorSpaceOS_13PDFColorSpace">fillingColorSpace</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current value of the page&rsquo;s filling color space.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext11strokeColorVS_5Color"></a>
-                    <a name="//apple_ref/swift/Property/strokeColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext11strokeColorVS_5Color">strokeColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current value of the page&rsquo;s stroking color.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokeColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC10SwiftyHaru14PDFPathContext9fillColorVS_5Color"></a>
-                    <a name="//apple_ref/swift/Property/fillColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14PDFPathContext9fillColorVS_5Color">fillColor</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current value of the page&rsquo;s filling color.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
               <div class="task-name-container">
-                <a name="/Path%20construction"></a>
-                <a name="//apple_ref/swift/Section/Path construction" class="dashAnchor"></a>
-                <a href="#/Path%20construction">
-                  <h3 class="section-name">Path construction</h3>
+                <a name="/TODO:%20Now%20only%20RGB%20color%20model%20is%20supported.%20If%20different%20color%20model%20is%20used%20in%20Libharu,%20colors"></a>
+                <a name="//apple_ref/swift/Section/TODO: Now only RGB color model is supported. If different color model is used in Libharu, colors" class="dashAnchor"></a>
+                <a href="#/TODO:%20Now%20only%20RGB%20color%20model%20is%20supported.%20If%20different%20color%20model%20is%20used%20in%20Libharu,%20colors">
+                  <h3 class="section-name">TODO: Now only RGB color model is supported. If different color model is used in Libharu, colors</h3>
                 </a>
               </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14PDFPathContext4moveFT2toVS_5Point_T_"></a>
-                    <a name="//apple_ref/swift/Method/move(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14PDFPathContext4moveFT2toVS_5Point_T_">move(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Starts a new subpath and moves the current point for drawing path,
-sets the start point for the path to the <code>point</code>.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">move</span><span class="p">(</span><span class="n">to</span> <span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>point</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The start point for drawing path</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru14PDFPathContext4lineFT2toVS_5Point_T_"></a>
-                    <a name="//apple_ref/swift/Method/line(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14PDFPathContext4lineFT2toVS_5Point_T_">line(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Appends a path from the current point to the specified point. If this method has been called before
-setting the current position by calling <code><a href="../Classes/PDFPathContext.html#/s:FC10SwiftyHaru14PDFPathContext4moveFT2toVS_5Point_T_">move(to:)</a></code>, then (x: 0, y: 0) is used as one.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">line</span><span class="p">(</span><span class="n">to</span> <span class="nv">point</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>point</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The end point of the path.</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Path%20painting"></a>
-                <a name="//apple_ref/swift/Section/Path painting" class="dashAnchor"></a>
-                <a href="#/Path%20painting">
-                  <h3 class="section-name">Path painting</h3>
-                </a>
-              </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru14PDFPathContext13closePathFillFT6strokeSb4fillSb11evenOddRuleSb_T_"></a>
-                    <a name="//apple_ref/swift/Method/closePathFill(stroke:fill:evenOddRule:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14PDFPathContext13closePathFillFT6strokeSb4fillSb11evenOddRuleSb_T_">closePathFill(stroke:fill:evenOddRule:)</a>
+                    <a name="/s:vV10SwiftyHaru5Color3redSf"></a>
+                    <a name="//apple_ref/swift/Property/red" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color3redSf">red</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -394,15 +127,23 @@ setting the current position by calling <code><a href="../Classes/PDFPathContext
                         <p>Undocumented</p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
                     </section>
                   </div>
                 </li>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14PDFPathContext7endPathFT_T_"></a>
-                    <a name="//apple_ref/swift/Method/endPath()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14PDFPathContext7endPathFT_T_">endPath()</a>
+                    <a name="/s:vV10SwiftyHaru5Color5greenSf"></a>
+                    <a name="//apple_ref/swift/Property/green" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color5greenSf">green</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -410,14 +151,315 @@ setting the current position by calling <code><a href="../Classes/PDFPathContext
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Ends the path without filling or painting. Does nothing if no path is currently being constructed.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">endPath</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color4blueSf"></a>
+                    <a name="//apple_ref/swift/Property/blue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color4blueSf">blue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color5alphaSf"></a>
+                    <a name="//apple_ref/swift/Property/alpha" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color5alphaSf">alpha</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color4cyanSf"></a>
+                    <a name="//apple_ref/swift/Property/cyan" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color4cyanSf">cyan</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color7magentaSf"></a>
+                    <a name="//apple_ref/swift/Property/magenta" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color7magentaSf">magenta</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color6yellowSf"></a>
+                    <a name="//apple_ref/swift/Property/yellow" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color6yellowSf">yellow</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color5blackSf"></a>
+                    <a name="//apple_ref/swift/Property/black" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color5blackSf">black</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color6isGraySb"></a>
+                    <a name="//apple_ref/swift/Property/isGray" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color6isGraySb">isGray</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5ColorcFT3redSf5greenSf4blueSf5alphaSf_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/init(red:green:blue:alpha:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT3redSf5greenSf4blueSf5alphaSf_GSqS0__">init(red:green:blue:alpha:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5ColorcFT4cyanSf7magentaSf6yellowSf5blackSf5alphaSf_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/init(cyan:magenta:yellow:black:alpha:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT4cyanSf7magentaSf6yellowSf5blackSf5alphaSf_GSqS0__">init(cyan:magenta:yellow:black:alpha:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5ColorcFT4graySf5alphaSf_GSqS0__"></a>
+                    <a name="//apple_ref/swift/Method/init(gray:alpha:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT4graySf5alphaSf_GSqS0__">init(gray:alpha:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5ColorcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(colorLiteralRed:green:blue:alpha:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_S0_">init(colorLiteralRed:green:blue:alpha:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
 
                         </div>
                       </div>

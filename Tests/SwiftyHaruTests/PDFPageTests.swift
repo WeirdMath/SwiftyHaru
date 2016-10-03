@@ -152,7 +152,7 @@ class PDFPageTests: XCTestCase {
         // Given
         let expectedInitialLineWidth: Float = 1
         let expectedLineWidth: Float = 10
-        let expectedFinalizedLineWidth = expectedInitialLineWidth
+        let expectedFinalLineWidth = expectedInitialLineWidth
         
         // When
         var returnedInitialLineWidth: Float = -1
@@ -174,12 +174,48 @@ class PDFPageTests: XCTestCase {
         XCTAssertEqual(expectedLineWidth, returnedLineWidth)
         
         // When
-        var returnedFinalizedLineWidth: Float = -1
+        var returnedFinalLineWidth: Float = -1
         sut.drawPath { context in
-            returnedFinalizedLineWidth = context.lineWidth
+            returnedFinalLineWidth = context.lineWidth
         }
         
         // Then
-        XCTAssertEqual(expectedFinalizedLineWidth, returnedFinalizedLineWidth)
+        XCTAssertEqual(expectedFinalLineWidth, returnedFinalLineWidth)
+    }
+    
+    func testPathMoveDrawingPoint() {
+        
+        // Given
+        let expectedInitialPoint = Point(x: 0, y: 0)
+        let expectedPoint = Point(x: 10, y: 20)
+        let expectedFinalPoint = expectedInitialPoint
+        
+        // When
+        var returnedInitialPoint = Point(x: -1000, y: -1000)
+        sut.drawPath { context in
+            returnedInitialPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialPoint, returnedInitialPoint)
+        
+        // When
+        var returnedPoint = Point(x: -1000, y: -1000)
+        sut.drawPath { context in
+            context.move(to: Point(x: 10, y: 20))
+            returnedPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedPoint, returnedPoint)
+        
+        // When
+        var returnedFinalPoint = Point(x: -1000, y: -1000)
+        sut.drawPath { context in
+            returnedFinalPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalPoint, returnedFinalPoint)
     }
 }

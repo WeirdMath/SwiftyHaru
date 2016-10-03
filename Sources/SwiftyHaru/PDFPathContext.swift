@@ -16,40 +16,78 @@ public final class PDFPathContext {
         _page = page
     }
     
-    internal func finalize() {
-        
-        // If by the this method is called the `_page` object's graphics mode is not HPDF_GMODE_PAGE_DESCRIPTION,
-        // one of the path painting operators is invoked automatically during this method call.
-        // Also during this method call all the graphics properties of the page like line width or stroke color
-        // are set to their default values.
+    internal func initialize() {
         
         // Reset to default state
         
-        move(to: (x: 0, y: 0))
-        
-        HPDF_Page_EndPath(_page)
-        
-        // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION
-        
         lineWidth = 1
+        
+        move(to: Point(x: 0, y: 0))
+        
+        // By this time the graphics mode is HPDF_GMODE_PATH_OBJECT
     }
+    
+    internal func finalize() {
+        
+        // If by the time this method is called the `_page` object's graphics mode is not
+        // HPDF_GMODE_PAGE_DESCRIPTION, one of the path painting operators is invoked automatically
+        // during this method call.
+        
+        endPath()
+        
+    }
+    
+    /// This method must be called each time the graphics mode changes from HPDF_GMODE_PATH_OBJECT
+    /// to HPDF_GMODE_PAGE_DESCRIPTION
+    private func deferredCalls() {
+        
+        if let strokeColor = _strokeColor {
+            self.strokeColor = strokeColor
+            _strokeColor = nil
+        }
+        
+        if let fillColor = _fillColor {
+            self.fillColor = fillColor
+            _fillColor = nil
+        }
+        
+        if let lineWidth = _lineWidth {
+            self.lineWidth = lineWidth
+            _lineWidth = nil
+        }
+    }
+    
+    private var _lineWidth: Float?
     
     /// The current line width for path painting of the page. Default value is 1.
     public var lineWidth: Float {
         get {
+            
+            if let lineWidth = _lineWidth {
+                return lineWidth
+            }
+            
             return HPDF_Page_GetLineWidth(_page)
         }
         set {
+            
+            // If the current graphics mode is not appropriate for setting line width, defer it
+            // until we switch to the HPDF_GMODE_PAGE_DESCRIPTION mode
+            if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PAGE_DESCRIPTION  {
+                _lineWidth = newValue
+                return
+            }
+            
             HPDF_Page_SetLineWidth(_page, newValue)
         }
     }
     
-    /// The current position for path painting. Default value is (x: 0, y: 0)
+    /// The current position for path painting. Default value is (x: 0, y: 0).
     public var currentPosition: Point {
         
         let point = HPDF_Page_GetCurrentPos(_page)
         
-        return _Point(point)
+        return Point(point)
     }
     
     /// The current value of the page's stroking color space.
@@ -179,13 +217,11 @@ public final class PDFPathContext {
     /// - parameter point: The end point of the path.
     public func line(to point: Point) {
         
-        if Int32(HPDF_Page_GetGMode(_page)) != HPDF_GMODE_PATH_OBJECT {
-            HPDF_Page_MoveTo(_page, 0, 0)
-        }
-        
         // By this time graphics mode is HPDF_GMODE_PATH_OBJECT
         
         HPDF_Page_LineTo(_page, point.x, point.y)
+        
+        // By this time graphics mode is still HPDF_GMODE_PATH_OBJECT
     }
     
     // MARK: - Path painting
@@ -195,17 +231,8 @@ public final class PDFPathContext {
         Unimplemented()
         
         // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION,
-        // so we can set the stroke and fill colors
         
-        if let strokeColor = _strokeColor {
-            HPDF_Page_SetRGBStroke(_page, strokeColor.red, strokeColor.green, strokeColor.blue)
-            _strokeColor = nil
-        }
-        
-        if let fillColor = _fillColor {
-            HPDF_Page_SetRGBFill(_page, fillColor.red, fillColor.green, fillColor.blue)
-            _fillColor = nil
-        }
+        deferredCalls()
     }
     
     /// Ends the path without filling or painting. Does nothing if no path is currently being constructed.
@@ -215,19 +242,12 @@ public final class PDFPathContext {
             return
         }
         
+        // By this time graphics mode is HPDF_GMODE_PATH_OBJECT
+        
         HPDF_Page_EndPath(_page)
         
-        // By this time graphics mode should be HPDF_GMODE_PAGE_DESCRIPTION or HPDF_GMODE_TEXT_OBJECT
-        // so we can set the stroke and fill colors
+        // By this time graphics mode is HPDF_GMODE_PAGE_DESCRIPTION
         
-        if let strokeColor = _strokeColor {
-            HPDF_Page_SetRGBStroke(_page, strokeColor.red, strokeColor.green, strokeColor.blue)
-            _strokeColor = nil
-        }
-        
-        if let fillColor = _fillColor {
-            HPDF_Page_SetRGBFill(_page, fillColor.red, fillColor.green, fillColor.blue)
-            _fillColor = nil
-        }
+        deferredCalls()
     }
 }

@@ -14,7 +14,7 @@
     <a title="PDFPage Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (74% documented)</p>
+        <p><a href="../index.html"> Docs</a> (65% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -54,18 +54,18 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Functions.html">Functions</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions/×(_:_:).html">×(_:_:)</a>
+                <a href="../Enums/PDFColorSpace.html">PDFColorSpace</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Protocols.html">Protocols</a>
+            <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Numeric.html">Numeric</a>
+                <a href="../Functions.html#/s:F10SwiftyHaruXoi3rcaFTSfSf_VS_4Size">×(_:_:)</a>
               </li>
             </ul>
           </li>
@@ -73,7 +73,13 @@
             <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Structs/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Point.html">Point</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Size.html">Size</a>
@@ -344,6 +350,21 @@
 
 </div>
 
+<div class="aside aside-precondition">
+    <p class="aside-title">Precondition</p>
+    <p>No drawing context must be present for this current page, i. e. you cannot run the
+following code:</p>
+
+</div>
+
+<pre class="highlight swift"><code><span class="n">page</span><span class="o">.</span><span class="n">drawPath</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+
+    <span class="k">self</span><span class="o">.</span><span class="n">page</span><span class="o">.</span><span class="n">drawPath</span> <span class="p">{</span> <span class="n">innerContext</span> <span class="k">in</span>
+        <span class="c1">// do things</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -447,9 +468,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsGVS_4SizeSf_"></a>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsVS_4Size"></a>
                     <a name="//apple_ref/swift/Property/sizeInPixels" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsGVS_4SizeSf_">sizeInPixels</a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsVS_4Size">sizeInPixels</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -474,9 +495,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesGVS_4SizeSf_"></a>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesVS_4Size"></a>
                     <a name="//apple_ref/swift/Property/sizeInInches" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesGVS_4SizeSf_">sizeInInches</a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesVS_4Size">sizeInInches</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -501,9 +522,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersGVS_4SizeSf_"></a>
+                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersVS_4Size"></a>
                     <a name="//apple_ref/swift/Property/sizeInMillimeters" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersGVS_4SizeSf_">sizeInMillimeters</a>
+                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersVS_4Size">sizeInMillimeters</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -530,7 +551,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-02)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-03)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
