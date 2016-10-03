@@ -68,15 +68,20 @@ public final class PDFPathContext {
             }
         }
         set {
-            switch strokingColorSpace {
-            case .deviceCMYK:
+            switch newValue._wrapped {
+            case .cmyk(let color):
                 HPDF_Page_SetCMYKStroke(_page,
-                                        newValue.cyan,
-                                        newValue.magenta,
-                                        newValue.yellow,
-                                        newValue.black)
-            default:
-                HPDF_Page_SetRGBStroke(_page, newValue.red, newValue.green, newValue.blue)
+                                        color.cyan,
+                                        color.magenta,
+                                        color.magenta,
+                                        color.black)
+            case .rgb(let color):
+                HPDF_Page_SetRGBStroke(_page,
+                                       color.red,
+                                       color.green,
+                                       color.blue)
+            case .gray(let color):
+                HPDF_Page_SetGrayStroke(_page, color)
             }
         }
     }
@@ -96,21 +101,20 @@ public final class PDFPathContext {
             }
         }
         set {
-            switch fillingColorSpace {
-            case .deviceCMYK:
+            switch newValue._wrapped {
+            case .cmyk(let color):
                 HPDF_Page_SetCMYKFill(_page,
-                                        newValue.cyan,
-                                        newValue.magenta,
-                                        newValue.yellow,
-                                        newValue.black)
-            case .deviceGray:
-                if newValue.isGray {
-                    HPDF_Page_SetGrayFill(_page, newValue.red)
-                } else {
-                    HPDF_Page_SetRGBFill(_page, newValue.red, newValue.green, newValue.blue)
-                }
-            default:
-                HPDF_Page_SetRGBFill(_page, newValue.red, newValue.green, newValue.blue)
+                                        color.cyan,
+                                        color.magenta,
+                                        color.magenta,
+                                        color.black)
+            case .rgb(let color):
+                HPDF_Page_SetRGBFill(_page,
+                                       color.red,
+                                       color.green,
+                                       color.blue)
+            case .gray(let color):
+                HPDF_Page_SetGrayFill(_page, color)
             }
         }
     }

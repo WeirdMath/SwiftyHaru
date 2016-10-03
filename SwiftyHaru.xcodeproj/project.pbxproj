@@ -53,6 +53,7 @@
 		879F9D991DA0562B00499D19 /* pnglibconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D921DA0561900499D19 /* pnglibconf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D9A1DA0562B00499D19 /* pngpriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D931DA0561900499D19 /* pngpriv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D9B1DA0562B00499D19 /* pngstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D941DA0561900499D19 /* pngstruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A8AAFA1DA276E300EB7DDF /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8AAF91DA276E200EB7DDF /* ColorTests.swift */; };
 		_LinkFileRef_CLibHaru_via_SwiftyHaru /* CLibHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibHaru" /* CLibHaru.framework */; };
 		_LinkFileRef_CLibHaru_via_SwiftyHaruTests /* CLibHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibHaru" /* CLibHaru.framework */; };
 		_LinkFileRef_CLibPNG_via_CLibHaru /* CLibPNG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibPNG" /* CLibPNG.framework */; };
@@ -218,6 +219,7 @@
 		879F9D941DA0561900499D19 /* pngstruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pngstruct.h; sourceTree = "<group>"; };
 		879F9D9C1DA057AD00499D19 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		879F9D9D1DA057B800499D19 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		87A8AAF91DA276E200EB7DDF /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_3dmeasure.c /* hpdf_3dmeasure.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_3dmeasure.c; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_annotation.c /* hpdf_annotation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_annotation.c; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */,
+				87A8AAF91DA276E200EB7DDF /* ColorTests.swift */,
 				8705252F1DA1304300D5EF74 /* PDFPageTests.swift */,
 				__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */,
 			);
@@ -858,6 +861,7 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */,
+				87A8AAFA1DA276E300EB7DDF /* ColorTests.swift in Sources */,
 				870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */,
 			);
