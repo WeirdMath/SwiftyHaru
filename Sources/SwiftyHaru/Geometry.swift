@@ -70,6 +70,50 @@ internal extension Point {
     }
 }
 
+public struct Rectangle {
+    
+    public var origin: Point
+    
+    public var size: Size
+    
+    public var x: Float {
+        return origin.x
+    }
+    
+    public var y: Float {
+        return origin.y
+    }
+    
+    public var width: Float {
+        return size.width
+    }
+    
+    public var height: Float {
+        return size.height
+    }
+    
+    public var center: Point {
+        return Point(x: (x + width) / 2, y: (y + height) / 2)
+    }
+    
+    public var midX: Float {
+        return center.x
+    }
+    
+    public var midY: Float {
+        return center.y
+    }
+    
+    public init(origin: Point, size: Size) {
+        self.origin = origin
+        self.size = size
+    }
+    
+    public init(x: Float, y: Float, width: Float, height: Float) {
+        self.init(origin: Point(x: x, y: y), size: Size(width: width, height: height))
+    }
+}
+
 infix operator ×
 
 /// Constructs a size from provided numeric values

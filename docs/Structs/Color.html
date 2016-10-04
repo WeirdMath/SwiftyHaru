@@ -14,7 +14,7 @@
     <a title="Color Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (65% documented)</p>
+        <p><a href="../index.html"> Docs</a> (64% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -82,6 +82,9 @@
                 <a href="../Structs/Point.html">Point</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Rectangle.html">Rectangle</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/Size.html">Size</a>
               </li>
             </ul>
@@ -100,17 +103,231 @@
               </div>
             <p>This structure represents a color. Property values must be between 0 and 1.</p>
 
+<p>Supported color spaces:
+* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code>
+* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceCMYKFMS0_S0_">PDFColorSpace.deviceCMYK</a></code>
+* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceGrayFMS0_S0_">PDFColorSpace.deviceGray</a></code></p>
+
           </section>
           <section class="section task-group-section">
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/TODO:%20Now%20only%20RGB%20color%20model%20is%20supported.%20If%20different%20color%20model%20is%20used%20in%20Libharu,%20colors"></a>
-                <a name="//apple_ref/swift/Section/TODO: Now only RGB color model is supported. If different color model is used in Libharu, colors" class="dashAnchor"></a>
-                <a href="#/TODO:%20Now%20only%20RGB%20color%20model%20is%20supported.%20If%20different%20color%20model%20is%20used%20in%20Libharu,%20colors">
-                  <h3 class="section-name">TODO: Now only RGB color model is supported. If different color model is used in Libharu, colors</h3>
-                </a>
-              </div>
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color3redS0_"></a>
+                    <a name="//apple_ref/swift/Variable/red" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color3redS0_">red</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the red color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">red</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color5greenS0_"></a>
+                    <a name="//apple_ref/swift/Variable/green" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color5greenS0_">green</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the green color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">green</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color4blueS0_"></a>
+                    <a name="//apple_ref/swift/Variable/blue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color4blueS0_">blue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the blue color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">blue</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color5blackS0_"></a>
+                    <a name="//apple_ref/swift/Variable/black" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color5blackS0_">black</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the black color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">black</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color5whiteS0_"></a>
+                    <a name="//apple_ref/swift/Variable/white" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color5whiteS0_">white</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the white color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">white</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV10SwiftyHaru5Color5clearS0_"></a>
+                    <a name="//apple_ref/swift/Variable/clear" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV10SwiftyHaru5Color5clearS0_">clear</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the transparent white color in <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code> space</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">clear</span> <span class="o">=</span> <span class="kt">Color</span><span class="p">(</span><span class="nv">red</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace"></a>
+                    <a name="//apple_ref/swift/Property/colorSpace" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru5Color5alphaSf"></a>
+                    <a name="//apple_ref/swift/Property/alpha" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru5Color5alphaSf">alpha</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -171,33 +388,6 @@
                     <a name="/s:vV10SwiftyHaru5Color4blueSf"></a>
                     <a name="//apple_ref/swift/Property/blue" class="dashAnchor"></a>
                     <a class="token" href="#/s:vV10SwiftyHaru5Color4blueSf">blue</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vV10SwiftyHaru5Color5alphaSf"></a>
-                    <a name="//apple_ref/swift/Property/alpha" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV10SwiftyHaru5Color5alphaSf">alpha</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -330,33 +520,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vV10SwiftyHaru5Color6isGraySb"></a>
-                    <a name="//apple_ref/swift/Property/isGray" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vV10SwiftyHaru5Color6isGraySb">isGray</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:FV10SwiftyHaru5ColorcFT3redSf5greenSf4blueSf5alphaSf_GSqS0__"></a>
                     <a name="//apple_ref/swift/Method/init(red:green:blue:alpha:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT3redSf5greenSf4blueSf5alphaSf_GSqS0__">init(red:green:blue:alpha:)</a>
@@ -435,6 +598,60 @@
                     </section>
                   </div>
                 </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5Color7convertFT2toOS_13PDFColorSpace_T_"></a>
+                    <a name="//apple_ref/swift/Method/convert(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5Color7convertFT2toOS_13PDFColorSpace_T_">convert(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru5Color10convertingFT2toOS_13PDFColorSpace_S0_"></a>
+                    <a name="//apple_ref/swift/Method/converting(to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru5Color10convertingFT2toOS_13PDFColorSpace_S0_">converting(to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
               </ul>
             </div>
             <div class="task-group">
@@ -468,10 +685,86 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFV10SwiftyHaru5Coloroi2eeFTS0_S0__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFV10SwiftyHaru5Coloroi2eeFTS0_S0__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+<ul>
+<li>Parameters:
+
+<ul>
+<li>lhs: A value to compare.</li>
+<li>rhs: Another value to compare.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Color</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Color</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-03)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-04)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

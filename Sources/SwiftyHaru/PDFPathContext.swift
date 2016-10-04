@@ -129,6 +129,13 @@ public final class PDFPathContext {
     private enum _PathConstructionOperation {
         case moveTo(Point)
         case lineTo(Point)
+        case arc(center: Point, radius: Float, beginningAngle: Float, endAngle: Float)
+        case circle(center: Point, radius: Float)
+        case rectangle(Rectangle)
+        case curve(controlPoint1: Point, controlPoint2: Point, endPoint: Point)
+        case curve2(controlPoint2: Point, endPoint: Point)
+        case curve3(controlPoint1: Point, endPoint: Point)
+        case ellipse(center: Point, xRadius: Float, yRadius: Float)
     }
     
     private var _pathConstructionSequence: [_PathConstructionOperation] = []
@@ -142,6 +149,25 @@ public final class PDFPathContext {
                 HPDF_Page_MoveTo(_page, point.x, point.y)
             case .lineTo(let point):
                 HPDF_Page_LineTo(_page, point.x, point.y)
+            case .arc(let center, let radius, let beginningAngle, let endAngle):
+                HPDF_Page_Arc(_page, center.x, center.y, radius, beginningAngle, endAngle)
+            case .circle(let center, let radius):
+                HPDF_Page_Circle(_page, center.x, center.y, radius)
+            case .rectangle(let rectangle):
+                HPDF_Page_Rectangle(_page,
+                                    rectangle.origin.x, rectangle.origin.y,
+                                    rectangle.width, rectangle.height)
+            case .curve(let controlPoint1, let controlPoint2, let endPoint):
+                HPDF_Page_CurveTo(_page,
+                                  controlPoint1.x, controlPoint1.y,
+                                  controlPoint2.x, controlPoint2.y,
+                                  endPoint.x, endPoint.y)
+            case .curve2(let controlPoint2, let endPoint):
+                HPDF_Page_CurveTo2(_page, controlPoint2.x, controlPoint2.y, endPoint.x, endPoint.y)
+            case .curve3(let controlPoint1, let endPoint):
+                HPDF_Page_CurveTo3(_page, controlPoint1.x, controlPoint1.y, endPoint.x, endPoint.y)
+            case .ellipse(let center, let xRadius, let yRadius):
+                HPDF_Page_Ellipse(_page, center.x, center.y, xRadius, yRadius)
             }
         }
         
@@ -153,10 +179,19 @@ public final class PDFPathContext {
     /// Starts a new subpath and moves the current point for drawing path,
     /// sets the start point for the path to the `point`.
     ///
-    /// - parameter point: The start point for drawing path
+    /// - parameter point: The start point for drawing path.
     public func move(to point: Point) {
         _currentPosition = point
         _pathConstructionSequence.append(.moveTo(point))
+    }
+    
+    /// Starts a new subpath and moves the current point for drawing path,
+    /// sets the start point for the path to the point with the specified coordinates.
+    ///
+    /// - parameter x: The x coordinate of th start point for drawing path.
+    /// - parameter y: The y coordinate of th start point for drawing path.
+    public func move(toX x: Float, y: Float) {
+        move(to: Point(x: x, y: y))
     }
     
     /// Appends a path from the current point to the specified point. If this method has been called before
@@ -166,6 +201,151 @@ public final class PDFPathContext {
     public func line(to point: Point) {
         _currentPosition = point
         _pathConstructionSequence.append(.lineTo(point))
+    }
+    
+    /// Appends a path from the current point to the specified point. If this method has been called before
+    /// setting the current position by calling `move(to:)`, then `Point.zero` is used as one.
+    ///
+    /// - parameter x: The x coordinate of end point of the path.
+    /// - parameter y: The y coordinate of end point of the path.
+    public func line(toX x: Float, y: Float) {
+        line(to: Point(x: x, y: y))
+    }
+    
+    /// Appends a circle arc to the current path. Angles are given in degrees, with 0 degrees being vertical,
+    /// upward.
+    ///
+    /// - parameter center:         The center point of the arc.
+    /// - parameter radius:         The radius of the arc.
+    /// - parameter beginningAngle: The angle of the begining of the arc.
+    /// - parameter endAngle:       The angle of the end of the arc. It must be greater than `beginningAngle`.
+    public func arc(center: Point, radius: Float, beginningAngle: Float, endAngle: Float) {
+        _pathConstructionSequence.append(.arc(center: center,
+                                              radius: radius,
+                                              beginningAngle: beginningAngle,
+                                              endAngle: endAngle))
+    }
+    
+    /// Appends a circle arc to the current path. Angles are given in degrees, with 0 degrees being vertical,
+    /// upward.
+    ///
+    /// - parameter x:              The x coordinate of the center point of the arc.
+    /// - parameter y:              The y coordinate of the center point of the arc.
+    /// - parameter radius:         The radius of the arc.
+    /// - parameter beginningAngle: The angle of the begining of the arc.
+    /// - parameter endAngle:       The angle of the end of the arc. It must be greater than `beginningAngle`.
+    public func arc(x: Float, y: Float, radius: Float, beginningAngle: Float, endAngle: Float) {
+        arc(center: Point(x: x, y: y), radius: radius, beginningAngle: beginningAngle, endAngle: endAngle)
+    }
+    
+    /// Appends a circle to the current path.
+    ///
+    /// - parameter center: The center point of the circle.
+    /// - parameter radius: The radius of the circle.
+    public func circle(center: Point, radius: Float) {
+        _pathConstructionSequence.append(.circle(center: center, radius: radius))
+    }
+    
+    /// Appends a circle to the current path.
+    ///
+    /// - parameter x:      The x coordinate of the center point of the circle.
+    /// - parameter y:      The y coordinate of the center point of the circle.
+    /// - parameter radius: The radius of the circle.
+    public func circle(x: Float, y: Float, radius: Float) {
+        circle(center: Point(x: x, y: y), radius: radius)
+    }
+    
+    /// Appends a rectangle to the current path.
+    ///
+    /// - parameter rect: The rectangle to append.
+    public func rectangle(_ rect: Rectangle) {
+        _pathConstructionSequence.append(.rectangle(rect))
+    }
+    
+    /// Appends a rectangle to the current path.
+    ///
+    /// - parameter origin: The lower-left point of the rectangle.
+    /// - parameter size:   The size of the rectangle.
+    public func rectangle(origin: Point, size: Size) {
+        rectangle(Rectangle(origin: origin, size: size))
+    }
+    
+    /// Appends a rectangle to the current path.
+    ///
+    /// - parameter x:      The x coordinate of the lower-left point of the rectangle.
+    /// - parameter y:      The y coordinate of the lower-left point of the rectangle.
+    /// - parameter width:  The width of the rectangle.
+    /// - parameter height: The height of the rectangle.
+    func rectangle(x: Float, y: Float, width: Float, height: Float) {
+        rectangle(origin: Point(x: x, y:y), size: Size(width: width, height: height))
+    }
+    
+    /// Appends a Bézier curve to the current path using the control points `controlPoint1`,
+    ///`controlPoint2` and `endPoint`, then sets the current point to `endPoint`.
+    ///
+    /// ![figure](http://libharu.org/figures/figure20.png "figure")
+    ///
+    /// - parameter controlPoint1: The first control point of the curve.
+    /// - parameter controlPoint2: The second control point of the curve.
+    /// - parameter endPoint: The end point of the curve.
+    public func curve(controlPoint1: Point, controlPoint2: Point, endPoint: Point) {
+        _currentPosition = endPoint
+        _pathConstructionSequence.append(.curve(controlPoint1: controlPoint1,
+                                                controlPoint2: controlPoint2,
+                                                endPoint: endPoint))
+    }
+    
+    /// Appends a Bézier curve to the current path using two spesified points.
+    /// The point `controlPoint1` and the point `endPoint` are used as the control points for
+    /// a Bézier curve and current point is moved to the point `endPoint.`
+    ///
+    /// ![figure](http://libharu.org/figures/figure22.png "figure")
+    ///
+    /// - parameter controlPoint1: The first control point of the curve.
+    /// - parameter endPoint:      The end point of the curve.
+    public func curve(controlPoint1: Point, endPoint: Point) {
+        _currentPosition = endPoint
+        _pathConstructionSequence.append(.curve3(controlPoint1: controlPoint1, endPoint: endPoint))
+    }
+    
+    /// Appends a Bézier curve to the current path using the current point, `controlPoint2` and
+    /// `endPoint` as control points. Then, the current point is set to `endPoint`.
+    ///
+    /// ![figure](http://libharu.org/figures/figure21.png "figure")
+    ///
+    /// - parameter controlPoint2: The second control point of the curve.
+    /// - parameter endPoint:      The end point of the curve.
+    public func curve(controlPoint2: Point, endPoint: Point) {
+        _currentPosition = endPoint
+        _pathConstructionSequence.append(.curve2(controlPoint2: controlPoint2, endPoint: endPoint))
+    }
+    
+    /// Appends an ellipse to the current path.
+    ///
+    /// - parameter center:           The center point of the ellipse.
+    /// - parameter horizontalRadius: The horizontal radius of the ellipse.
+    /// - parameter verticalRadius:   The vertical radius of the ellipse.
+    public func ellipse(center: Point, horizontalRadius: Float, verticalRadius: Float) {
+        _pathConstructionSequence.append(.ellipse(center: center,
+                                                  xRadius: horizontalRadius,
+                                                  yRadius: verticalRadius))
+    }
+    
+    /// Appends an ellipse to the current path.
+    ///
+    /// - parameter x:                The x coordinate of the center point of the ellipse.
+    /// - parameter y:                The x coordinate of the center point of the ellipse.
+    /// - parameter horizontalRadius: The horizontal radius of the ellipse.
+    /// - parameter verticalRadius:   The vertical radius of the ellipse.
+    public func ellipse(x: Float, y: Float, horizontalRadius: Float, verticalRadius: Float) {
+        ellipse(center: Point(x: x, y: y), horizontalRadius: horizontalRadius, verticalRadius: verticalRadius)
+    }
+    
+    /// Appends an ellipse to the current path.
+    ///
+    /// - parameter rectangle: The rectangle the ellipse should be inscribed in.
+    public func ellipse(inscribedIn rectangle: Rectangle) {
+        ellipse(center: rectangle.center, horizontalRadius: rectangle.width, verticalRadius: rectangle.height)
     }
     
     // MARK: - Path painting

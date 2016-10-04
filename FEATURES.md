@@ -119,20 +119,20 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 | Function  | Status | Test Coverage | SwiftyHaru equivalent |
 |-----------|--------|---------------|-----------------------|
-| `HPDF_Page_Arc()` | Unimplemented | None | N/A |
+| `HPDF_Page_Arc()` | **Implemented** | None | `PDFPathContext`'s `arc(center:radius:beginningAngle:endAngle:)` and `arc(x:y:radius:beginningAngle:endAngle:)` instance methods |
 | `HPDF_Page_BeginText()` | Unimplemented | None | N/A |
-| `HPDF_Page_Circle()` | Unimplemented | None | N/A |
+| `HPDF_Page_Circle()` | **Implemented** | None | `PDFPathContext`'s `circle(center:radius:)` and `circle(x:y:radius:)` instance methods |
 | `HPDF_Page_Clip()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePath()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePathStroke()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePathEofillStroke()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePathFillStroke()` | Unimplemented | None | N/A |
 | `HPDF_Page_Concat()` | Unimplemented | None | N/A |
-| `HPDF_Page_CurveTo()` | Unimplemented | None | N/A |
-| `HPDF_Page_CurveTo2()` | Unimplemented | None | N/A |
-| `HPDF_Page_CurveTo3()` | Unimplemented | None | N/A |
+| `HPDF_Page_CurveTo()` | **Implemented** | None | `PDFPathContext`'s `curve(controlPoint1:controlPoint2:endPoint:)` instance method |
+| `HPDF_Page_CurveTo2()` | **Implemented** | None | `PDFPathContext`'s `curve(controlPoint2:endPoint:)` instance method |
+| `HPDF_Page_CurveTo3()` | **Implemented** | None | `PDFPathContext`'s `curve(controlPoint1:endPoint:)` instance method |
 | `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
-| `HPDF_Page_Ellipse()` | Unimplemented | None | N/A |
+| `HPDF_Page_Ellipse()` | **Implemented** | None | `PDFPathContext`'s `ellipse(center:horizontalRadius:verticalRadius:)`, `ellipse(x:y:horizontalRadius:verticalRadius:)` and `ellipse(inscribedIn:)` instance methods |
 | `HPDF_Page_EndPath()` | **Implemented** | Complete | `PDFPathContext`'s `endPath()` instance method |
 | `HPDF_Page_EndText()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
