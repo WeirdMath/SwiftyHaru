@@ -93,7 +93,7 @@ public struct Rectangle {
     }
     
     public var center: Point {
-        return Point(x: (x + width) / 2, y: (y + height) / 2)
+        return Point(x: (2 * x + width) / 2, y: (2 * y + height) / 2)
     }
     
     public var midX: Float {

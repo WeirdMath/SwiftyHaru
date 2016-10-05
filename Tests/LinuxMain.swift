@@ -5,4 +5,5 @@ XCTMain([
      testCase(PDFDocumentTests.allTests),
      testCase(PDFPageTests.allTests),
      testCase(ColorTests.allTests),
+     testCase(PDFPathContextTests.allTests)
 ])
