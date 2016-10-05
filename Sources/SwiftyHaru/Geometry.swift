@@ -45,6 +45,11 @@ public struct Point {
         self.x = x
         self.y = y
     }
+    
+    public static func +(lhs: Point, rhs: Vector) -> Point {
+        
+        return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
 }
 
 extension Point: Equatable {
@@ -69,6 +74,8 @@ internal extension Point {
         y = hpdfPoint.y
     }
 }
+
+public typealias Vector = Point
 
 public struct Rectangle {
     
@@ -114,6 +121,21 @@ public struct Rectangle {
     }
 }
 
+extension Rectangle: Equatable {
+    
+    /// Returns a Boolean value indicating whether two values are equal.
+    ///
+    /// Equality is the inverse of inequality. For any values `a` and `b`,
+    /// `a == b` implies that `a != b` is `false`.
+    ///
+    /// - Parameters:
+    ///   - lhs: A value to compare.
+    ///   - rhs: Another value to compare.
+    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool{
+        return lhs.origin == rhs.origin && lhs.size == rhs.size
+    }
+}
+
 infix operator ×
 
 /// Constructs a size from provided numeric values
@@ -122,6 +144,6 @@ infix operator ×
 /// - parameter height: The height.
 ///
 /// - returns: The size representing provided width and height.
-public func × (width: Float, height: Float) -> Size {
+internal func × (width: Float, height: Float) -> Size {
     return Size(width: width, height: height)
 }

@@ -451,7 +451,7 @@ public final class PDFPathContext {
             HPDF_Page_Fill(_page)
         }
         
-        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT)
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
     }
     
     /// Paints the current path.

@@ -22,7 +22,8 @@ class PDFPathContextTests: XCTestCase {
             ("testFillColorCMYK", testFillColorCMYK),
             ("testFillColorGray", testFillColorGray),
             ("testDrawPathWithoutPainting", testDrawPathWithoutPainting),
-            ("testConstructPath", testConstructPath)
+            ("testConstructPath", testConstructPath),
+            ("testPaintPath", testPaintPath)
         ]
     }
     
@@ -310,6 +311,146 @@ class PDFPathContextTests: XCTestCase {
             
             context.strokePath()
         }
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    private func constructUnclosedCurve(in context: PDFPathContext, startingWith point: Point) {
+        context.move(to: point)
+        context.line(to: point + Vector(x: 37.5, y: -25))
+        context.curve(controlPoint1: point + Vector(x: 75, y: 0),
+                      controlPoint2: point + Vector(x: 75, y: 137.5),
+                      endPoint: point + Vector(x: 50, y: 125))
+        context.curve(controlPoint1: point + Vector(x: 25, y: 112.5),
+                      controlPoint2: point + Vector(x: 12.5, y: 12.5),
+                      endPoint: point + Vector(x: 62.5, y: 12.5))
+        context.curve(controlPoint1: point + Vector(x: 87.5, y: 12.5),
+                      controlPoint2: point + Vector(x: 100, y: 25),
+                      endPoint: point + Vector(x: 100, y: 0))
+        context.curve(controlPoint1: point + Vector(x: 100, y: -25),
+                      controlPoint2: point + Vector(x: 50, y: -25),
+                      endPoint: point + Vector(x: 25, y: 0))
+        context.curve(controlPoint1: point + Vector(x: 0, y: 25),
+                      controlPoint2: point + Vector(x: -25, y: 75),
+                      endPoint: point + Vector(x: 37.5, y: 87.5))
+        context.curve(controlPoint1: point + Vector(x: 100, y: 100),
+                      controlPoint2: point + Vector(x: 100, y: -12.5),
+                      endPoint: point + Vector(x: 25, y: -50))
+    }
+    
+    func testPaintPath() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        
+        // Draw some simple paths
+        
+        page.drawPath { context in
+            
+            context.lineWidth = 3
+            context.move(toX: 100, y: 100)
+            context.line(toX: 500, y: 100)
+            context.strokeColor = .red
+            context.strokePath()
+            
+            context.lineWidth = 5
+            context.move(toX: 100, y: 150)
+            context.line(toX: 500, y: 150)
+            context.line(toX: 500, y: 200)
+            context.line(toX: 100, y: 200)
+            context.fillColor = .blue
+            context.fillPath(stroke: true)
+        }
+        
+        // Filling using even-odd rule with stroking
+        
+        page.drawPath { context in
+            XCTAssertEqual(context.currentPosition, Point.zero)
+            XCTAssertEqual(context.lineWidth, 1)
+            XCTAssertEqual(context.strokeColor, .black)
+            XCTAssertEqual(context.fillColor, .black)
+            
+            constructUnclosedCurve(in: context, startingWith: Point(x: 100, y: 300))
+            context.closePath()
+            
+            context.fillColor = .green
+            context.fillPath(evenOddRule: true, stroke: true)
+        }
+        
+        // Filling using nonzero winding number rule with stroking
+        
+        page.drawPath { context in
+
+            constructUnclosedCurve(in: context, startingWith: Point(x: 225, y: 300))
+            context.closePath()
+            
+            context.fillColor = .green
+            context.fillPath(evenOddRule: false, stroke: true)
+        }
+        
+        // Filling using even-odd number rule without stroking
+        
+        page.drawPath { context in
+            
+            constructUnclosedCurve(in: context, startingWith: Point(x: 100, y: 500))
+            context.closePath()
+            
+            context.fillColor = .green
+            context.fillPath(evenOddRule: true, stroke: false)
+        }
+        
+        // Filling using nonzero winding number rule without stroking
+        
+        page.drawPath { context in
+            
+            constructUnclosedCurve(in: context, startingWith: Point(x: 225, y: 500))
+            context.closePath()
+            
+            context.fillColor = .green
+            context.fillPath(evenOddRule: false, stroke: false)
+        }
+        
+        // Closing path with filling using even-odd rule
+        
+        page.drawPath { context in
+
+            context.fillColor = .blue
+            context.lineWidth = 5
+            
+            constructUnclosedCurve(in: context, startingWith: Point(x: 100, y: 700))
+            
+            context.closePathFillStroke(evenOddRule: true)
+        }
+        
+        // Closing path with filling using nonzero winding number rule
+        
+        page.drawPath { context in
+            
+            context.fillColor = .blue
+            context.lineWidth = 5
+            
+            constructUnclosedCurve(in: context, startingWith: Point(x: 225, y: 700))
+            
+            context.closePathFillStroke(evenOddRule: false)
+        }
+        
+        // Closing path with stroking
+        
+        page.drawPath { context in
+            
+            context.move(toX: 400, y: 250)
+            context.line(toX: 400, y: 600)
+            context.line(toX: 500, y: 600)
+            
+            context.closePathStroke()
+        }
+        
         let returnedDocumentData = document.getData()
         
         // Then

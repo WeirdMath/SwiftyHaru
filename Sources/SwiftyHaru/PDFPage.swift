@@ -128,13 +128,11 @@ public final class PDFPage: _HaruBridgeable {
     //
     // In SwiftyHaru we don't want the make the user maintain this state machine manually,
     // so there are context objects like PDFPathContext which maintain it automatically.
-    // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION must be entered only within a closure.
+    // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION is entered only within a closure.
     //
     // We invoke `drawPath(_:)` method with a closure that takes a context object and performs path construction
     // or text creation on the context object which is implicitly connected with the page object.
-    // If by the end of the closure none of the operators that return the page to the HPDF_GMODE_PAGE_DESCRIPTION
-    // graphics mode is invoked, one is invoked automatically during `finalize()` method call.
-    // Also during that method call all the graphics properties of the page like line width or stroke color
+    // Also during `_cleanup()` method call all the graphics properties of the page like line width or stroke color
     // are set to their default values.
     
     private var _contextIsPresent = false

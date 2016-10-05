@@ -124,9 +124,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `PDFPathContext`'s `circle(center:radius:)` and `circle(x:y:radius:)` instance methods |
 | `HPDF_Page_Clip()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `PDFPathContext`'s `closePath()` instance method |
-| `HPDF_Page_ClosePathStroke()` | **Implemented** | None | `PDFPathContext`'s `closePathStroke()` instance method |
-| `HPDF_Page_ClosePathEofillStroke()` | **Implemented** | None | `PDFPathContext`'s `closePathFillStroke(evenOddRule:)` instance method |
-| `HPDF_Page_ClosePathFillStroke()` | **Implemented** | None | `PDFPathContext`'s `closePathFillStroke(evenOddRule:)` instance method |
+| `HPDF_Page_ClosePathStroke()` | **Implemented** | Complete | `PDFPathContext`'s `closePathStroke()` instance method |
+| `HPDF_Page_ClosePathEofillStroke()` | **Implemented** | Complete | `PDFPathContext`'s `closePathFillStroke(evenOddRule:)` instance method |
+| `HPDF_Page_ClosePathFillStroke()` | **Implemented** | Complete | `PDFPathContext`'s `closePathFillStroke(evenOddRule:)` instance method |
 | `HPDF_Page_Concat()` | Unimplemented | None | N/A |
 | `HPDF_Page_CurveTo()` | **Implemented** | Complete | `PDFPathContext`'s `curve(controlPoint1:controlPoint2:endPoint:)` instance method |
 | `HPDF_Page_CurveTo2()` | **Implemented** | Complete | `PDFPathContext`'s `curve(controlPoint2:endPoint:)` instance method |
@@ -136,11 +136,11 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_EndPath()` | **Implemented** | Complete | `PDFPathContext`'s `endPath()` instance method |
 | `HPDF_Page_EndText()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
-| `HPDF_Page_Eofill()` | **Implemented** | None | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
-| `HPDF_Page_EofillStroke()` | **Implemented** | None | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
+| `HPDF_Page_Eofill()` | **Implemented** | Complete | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
+| `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
-| `HPDF_Page_Fill()` | **Implemented** | None | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
-| `HPDF_Page_FillStroke()` | **Implemented** | None | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
+| `HPDF_Page_Fill()` | **Implemented** | Complete | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
+| `HPDF_Page_FillStroke()` | **Implemented** | Complete | `PDFPathContext`'s `fillPath(evenOddRule:stroke:)` instance method |
 | `HPDF_Page_GRestore()` | TBD | None | N/A |
 | `HPDF_Page_GSave()` | TBD | None | N/A |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `PDFPathContext`'s `line(to:)` instance method |
@@ -172,7 +172,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_ShowText()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowTextNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowTextNextLineEx()` | Unimplemented | None | N/A |
-| `HPDF_Page_Stroke()` | **Implemented** | None | `PDFPathContex`'s `strokePath()` instance method |
+| `HPDF_Page_Stroke()` | **Implemented** | Complete | `PDFPathContex`'s `strokePath()` instance method |
 | `HPDF_Page_TextOut()` | Unimplemented | None | N/A |
 | `HPDF_Page_TextRect()` | Unimplemented | None | N/A |
 
