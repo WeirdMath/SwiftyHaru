@@ -77,16 +77,11 @@ public final class PDFPage: _HaruBridgeable {
     /// - throws: `PDFError.pageInvalidRotateValue` if an invalid rotation angle was set.
     public func rotate(byAngle angle: Int) throws {
         
-        let status = HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
-        
-        if status != HPDF_STATUS(HPDF_OK) {
-            
-            if let document = document {
-                HPDF_ResetError(document._haruObject)
-            }
-            
-            throw PDFError(code: Int32(status))
+        guard angle % 90 == 0 else {
+            throw PDFError.pageInvalidRotateValue
         }
+        
+        HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
     }
     
     // MARK: - Graphics

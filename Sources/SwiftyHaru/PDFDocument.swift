@@ -32,7 +32,7 @@ public final class PDFDocument: _HaruBridgeable {
             let error = userData!.assumingMemoryBound(to: PDFError.self)
             error.pointee = PDFError(code: Int32(errorCode))
             
-            print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            assertionFailure("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
         }
         
         _haruObject = HPDF_New(errorHandler, &_error)
