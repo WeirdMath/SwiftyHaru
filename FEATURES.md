@@ -93,7 +93,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetLineCap()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetLineJoin()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetMiterLimit()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetDash()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetDash()` | **Implemented** | Complete | `PDFPathContext`'s `dashStyle` instance property |
 | `HPDF_Page_GetFlat()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetCharSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetWordSpace()` | Unimplemented | None | N/A |
@@ -152,7 +152,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetCMYKFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |
 | `HPDF_Page_SetCMYKStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
-| `HPDF_Page_SetDash()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetDash()` | **Implemented** | Complete | `PDFPathContext`'s `dashStyle` instance property |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetGrayFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |

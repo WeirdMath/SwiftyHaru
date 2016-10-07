@@ -14,13 +14,14 @@ class PDFPathContextTests: XCTestCase {
     static var allTests : [(String, (PDFPathContextTests) -> () throws -> Void)] {
         return [
             ("testPathLineWidth", testPathLineWidth),
-            ("testPathMoveDrawingPoint", testPathMoveDrawingPoint),
+            ("testPathDashStyle", testPathDashStyle),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
             ("testFillColorRGB", testFillColorRGB),
             ("testFillColorCMYK", testFillColorCMYK),
             ("testFillColorGray", testFillColorGray),
+            ("testPathMoveDrawingPoint", testPathMoveDrawingPoint),
             ("testDrawPathWithoutPainting", testDrawPathWithoutPainting),
             ("testConstructPath", testConstructPath),
             ("testPaintPath", testPaintPath)
@@ -52,6 +53,8 @@ class PDFPathContextTests: XCTestCase {
         
         super.tearDown()
     }
+    
+    // MARK: - Graphics state
     
     func testPathLineWidth() {
         
@@ -89,40 +92,51 @@ class PDFPathContextTests: XCTestCase {
         XCTAssertEqual(expectedFinalLineWidth, returnedFinalLineWidth)
     }
     
-    func testPathMoveDrawingPoint() {
+    func testPathDashStyle() {
         
         // Given
-        let expectedInitialPoint = Point(x: 0, y: 0)
-        let expectedPoint = Point(x: 10, y: 20)
-        let expectedFinalPoint = expectedInitialPoint
+        let expectedInitialDashStyle = DashStyle.straightLine
+        let expectedDashStyle1 = DashStyle(pattern: [10, 5], phase: 3)!
+        let expectedDashStyle2 = DashStyle(pattern: [], phase: 0)!
+        let expectedFinalDashStyle = expectedInitialDashStyle
         
         // When
-        var returnedInitialPoint = Point(x: -1000, y: -1000)
+        var returnedInitialDashStyle: DashStyle?
         page.drawPath { context in
-            returnedInitialPoint = context.currentPosition
+            returnedInitialDashStyle = context.dashStyle
         }
         
         // Then
-        XCTAssertEqual(expectedInitialPoint, returnedInitialPoint)
+        XCTAssertEqual(expectedInitialDashStyle, returnedInitialDashStyle)
         
         // When
-        var returnedPoint = Point(x: -1000, y: -1000)
+        var returnedDashStyle1: DashStyle?
         page.drawPath { context in
-            context.move(to: Point(x: 10, y: 20))
-            returnedPoint = context.currentPosition
+            context.dashStyle = DashStyle(pattern: [10, 5], phase: 3)!
+            returnedDashStyle1 = context.dashStyle
         }
         
         // Then
-        XCTAssertEqual(expectedPoint, returnedPoint)
+        XCTAssertEqual(expectedDashStyle1, returnedDashStyle1)
         
         // When
-        var returnedFinalPoint = Point(x: -1000, y: -1000)
+        var returnedDashStyle2: DashStyle?
         page.drawPath { context in
-            returnedFinalPoint = context.currentPosition
+            context.dashStyle = DashStyle(pattern: [], phase: 10)!
+            returnedDashStyle2 = context.dashStyle
         }
         
         // Then
-        XCTAssertEqual(expectedFinalPoint, returnedFinalPoint)
+        XCTAssertEqual(expectedDashStyle2, returnedDashStyle2)
+        
+        // When
+        var returnedFinalDashStyle: DashStyle?
+        page.drawPath { context in
+            returnedFinalDashStyle = context.dashStyle
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalDashStyle, returnedFinalDashStyle)
     }
     
     func testStrokeColorRGB() {
@@ -245,6 +259,44 @@ class PDFPathContextTests: XCTestCase {
         XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
     
+    // MARK: - Path construction
+    
+    func testPathMoveDrawingPoint() {
+        
+        // Given
+        let expectedInitialPoint = Point(x: 0, y: 0)
+        let expectedPoint = Point(x: 10, y: 20)
+        let expectedFinalPoint = expectedInitialPoint
+        
+        // When
+        var returnedInitialPoint = Point(x: -1000, y: -1000)
+        page.drawPath { context in
+            returnedInitialPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialPoint, returnedInitialPoint)
+        
+        // When
+        var returnedPoint = Point(x: -1000, y: -1000)
+        page.drawPath { context in
+            context.move(to: Point(x: 10, y: 20))
+            returnedPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedPoint, returnedPoint)
+        
+        // When
+        var returnedFinalPoint = Point(x: -1000, y: -1000)
+        page.drawPath { context in
+            returnedFinalPoint = context.currentPosition
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalPoint, returnedFinalPoint)
+    }
+    
     func testDrawPathWithoutPainting() {
         
 //        recordMode = true
@@ -339,6 +391,8 @@ class PDFPathContextTests: XCTestCase {
                       controlPoint2: point + Vector(x: 100, y: -12.5),
                       endPoint: point + Vector(x: 25, y: -50))
     }
+    
+    // MARK: - Path paiting
     
     func testPaintPath() {
         

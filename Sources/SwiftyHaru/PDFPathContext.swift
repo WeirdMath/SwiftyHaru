@@ -23,6 +23,7 @@ public final class PDFPathContext {
         lineWidth = 1
         strokeColor = .black
         fillColor = .black
+        dashStyle = .straightLine
         
         move(to: .zero)
     }
@@ -36,6 +37,20 @@ public final class PDFPathContext {
         }
         set {
             HPDF_Page_SetLineWidth(_page, newValue)
+        }
+    }
+    
+    /// The dash pattern for lines in the page.
+    public var dashStyle: DashStyle {
+        get {
+            return DashStyle(HPDF_Page_GetDash(_page))
+        }
+        set {
+            let pattern = newValue.pattern.map(UInt16.init(_:))
+            HPDF_Page_SetDash(_page,
+                              pattern,
+                              HPDF_UINT(pattern.count),
+                              HPDF_UINT(pattern.isEmpty ? 0 : newValue.phase))
         }
     }
     

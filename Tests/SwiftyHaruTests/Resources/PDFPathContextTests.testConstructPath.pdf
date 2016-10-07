@@ -37,6 +37,7 @@ stream
 1 w
 0 0 0 RG
 0 0 0 rg
+[] 0 d
 0 0 m
 100 100 m
 400 100 l
@@ -82,11 +83,12 @@ S
 1 w
 0 0 0 RG
 0 0 0 rg
+[] 0 d
 
 endstream
 endobj
 6 0 obj
-1064
+1078
 endobj
 xref
 0 7
@@ -96,7 +98,7 @@ xref
 0000000123 00000 n
 0000000187 00000 n
 0000000341 00000 n
-0000001459 00000 n
+0000001473 00000 n
 trailer
 <<
 /Root 1 0 R
@@ -104,5 +106,5 @@ trailer
 /Size 7
 >>
 startxref
-1479
+1493
 %%EOF
