@@ -26,6 +26,7 @@ public final class PDFPathContext {
         dashStyle = .straightLine
         lineCap = .butt
         lineJoin = .miter
+        miterLimit = 10
         
         move(to: .zero)
     }
@@ -73,6 +74,16 @@ public final class PDFPathContext {
         }
         set {
             HPDF_Page_SetLineJoin(_page, HPDF_LineJoin(rawValue: newValue.rawValue))
+        }
+    }
+    
+    /// The miter limit for the joins of connected lines. Minimum value is 1. Default value is 10.
+    public var miterLimit: Float {
+        get {
+            return HPDF_Page_GetMiterLimit(_page)
+        }
+        set {
+            HPDF_Page_SetMiterLimit(_page, newValue)
         }
     }
     

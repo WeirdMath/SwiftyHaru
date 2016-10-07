@@ -17,6 +17,7 @@ class PDFPathContextTests: XCTestCase {
             ("testPathDashStyle", testPathDashStyle),
             ("testPathLineCap", testPathLineCap),
             ("testPathLineJoin", testPathLineJoin),
+            ("testPathMiterLimit", testPathMiterLimit),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
@@ -212,6 +213,44 @@ class PDFPathContextTests: XCTestCase {
         // Then
         XCTAssertEqual(expectedFinalLineJoin, returnedFinalLineJoin)
     }
+    
+    func testPathMiterLimit() {
+        
+        // Given
+        let expectedInitialMiterLimit: Float = 10
+        let expectedMiterLimit: Float = 5
+        let expectedFinalMiterLimit = expectedInitialMiterLimit
+        
+        // When
+        var returnedInitialMiterLimit: Float = -1
+        page.drawPath { context in
+            returnedInitialMiterLimit = context.miterLimit
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialMiterLimit, returnedInitialMiterLimit)
+        
+        // When
+        var returnedMiterLimit: Float = -1
+        page.drawPath { context in
+            context.miterLimit = 5
+            returnedMiterLimit = context.miterLimit
+        }
+        
+        // Then
+        XCTAssertEqual(expectedMiterLimit, returnedMiterLimit)
+        
+        // When
+        var returnedFinalMiterLimit: Float = -1
+        page.drawPath { context in
+            returnedFinalMiterLimit = context.miterLimit
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalMiterLimit, returnedFinalMiterLimit)
+    }
+    
+    // MARK: - Color
     
     func testStrokeColorRGB() {
         
