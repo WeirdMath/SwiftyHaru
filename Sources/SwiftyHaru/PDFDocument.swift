@@ -10,9 +10,9 @@ import Foundation
 import CLibHaru
 
 /// A handle to operate on a document object.
-public final class PDFDocument: _HaruBridgeable {
+public final class PDFDocument {
     
-    internal var _haruObject: HPDF_Doc
+    internal var _documentHandle: HPDF_Doc
     
     public private(set) var pages: [PDFPage] = []
     
@@ -35,11 +35,11 @@ public final class PDFDocument: _HaruBridgeable {
             assertionFailure("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
         }
         
-        _haruObject = HPDF_New(errorHandler, &_error)
+        _documentHandle = HPDF_New(errorHandler, &_error)
     }
     
     deinit {
-        HPDF_Free(_haruObject)
+        HPDF_Free(_documentHandle)
     }
     
     // MARK: - Creating pages
@@ -49,7 +49,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// - returns: A `PDFPage` object.
     @discardableResult public func addPage() -> PDFPage {
         
-        let haruPage = HPDF_AddPage(_haruObject)!
+        let haruPage = HPDF_AddPage(_documentHandle)!
         
         let page = PDFPage(document: self, haruObject: haruPage)
         pages.append(page)
@@ -100,9 +100,9 @@ public final class PDFDocument: _HaruBridgeable {
             return addPage()
         }
         
-        let haruTargetPage = pages[index]._haruObject
+        let haruTargetPage = pages[index]._pageHandle
         
-        let haruInsertedPage = HPDF_InsertPage(_haruObject, haruTargetPage)!
+        let haruInsertedPage = HPDF_InsertPage(_documentHandle, haruTargetPage)!
         
         let page = PDFPage(document: self, haruObject: haruInsertedPage)
         
@@ -157,16 +157,16 @@ public final class PDFDocument: _HaruBridgeable {
     /// - returns: The dodument's contents
     public func getData() -> Data {
         
-        HPDF_SaveToStream(_haruObject)
+        HPDF_SaveToStream(_documentHandle)
 
-        let sizeOfStream = HPDF_GetStreamSize(_haruObject)
+        let sizeOfStream = HPDF_GetStreamSize(_documentHandle)
         
-        HPDF_ResetStream(_haruObject)
+        HPDF_ResetStream(_documentHandle)
         
         let buffer = UnsafeMutablePointer<HPDF_BYTE>.allocate(capacity: Int(sizeOfStream))
         var sizeOfBuffer = sizeOfStream
         
-        HPDF_ReadFromStream(_haruObject, buffer, &sizeOfBuffer)
+        HPDF_ReadFromStream(_documentHandle, buffer, &sizeOfBuffer)
         
         let data = Data(bytes: buffer, count: Int(sizeOfBuffer))
         
@@ -182,10 +182,10 @@ public final class PDFDocument: _HaruBridgeable {
     /// If this attribute is not set, the setting of the viewer application is used.
     public var pageLayout: PageLayout {
         get {
-            return PageLayout(haruEnum: HPDF_GetPageLayout(_haruObject))
+            return PageLayout(haruEnum: HPDF_GetPageLayout(_documentHandle))
         }
         set {
-            HPDF_SetPageLayout(_haruObject, HPDF_PageLayout(rawValue: newValue.rawValue))
+            HPDF_SetPageLayout(_documentHandle, HPDF_PageLayout(rawValue: newValue.rawValue))
         }
     }
     
@@ -214,7 +214,7 @@ public final class PDFDocument: _HaruBridgeable {
         
         let prefix = prefix?.cString(using: .ascii)
         
-        HPDF_AddPageLabel(_haruObject,
+        HPDF_AddPageLabel(_documentHandle,
                           HPDF_UINT(startingPage),
                           HPDF_PageNumStyle(rawValue: style.rawValue),
                           HPDF_UINT(firstPageNumber),

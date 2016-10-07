@@ -13,23 +13,23 @@ import CLibHaru
 /// - Warning: If the `PDFDocument` object that owns the page is deallocated, accessing the page's properties
 ///            will cause a crash. The lifetime of a page should always be shorter than the lifetime of
 ///            the document that owns the page.
-public final class PDFPage: _HaruBridgeable {
+public final class PDFPage {
     
     public weak var document: PDFDocument?
     
-    private var _pageHandle: HPDF_Page
+    private var __pageHandle: HPDF_Page
     
-    internal var _haruObject: HPDF_Page {
+    internal var _pageHandle: HPDF_Page {
         if document == nil {
             fatalError("The document that owns the page has been deallocated")
         }
         
-        return _pageHandle
+        return __pageHandle
     }
     
     internal init(document: PDFDocument, haruObject: HPDF_Page) {
         self.document = document
-        _pageHandle = haruObject
+        __pageHandle = haruObject
     }
     
     // MARK: - Page layout
@@ -37,11 +37,11 @@ public final class PDFPage: _HaruBridgeable {
     /// The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
     public var width: Float {
         get {
-            return HPDF_Page_GetWidth(_haruObject)
+            return HPDF_Page_GetWidth(_pageHandle)
         }
         set {
             if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetWidth(_haruObject, newValue)
+                HPDF_Page_SetWidth(_pageHandle, newValue)
             }
         }
     }
@@ -49,11 +49,11 @@ public final class PDFPage: _HaruBridgeable {
     /// The height of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
     public var height: Float {
         get {
-            return HPDF_Page_GetHeight(_haruObject)
+            return HPDF_Page_GetHeight(_pageHandle)
         }
         set {
             if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetHeight(_haruObject, newValue)
+                HPDF_Page_SetHeight(_pageHandle, newValue)
             }
         }
     }
@@ -64,7 +64,7 @@ public final class PDFPage: _HaruBridgeable {
     /// - parameter direction: The direction of the page.
     public func set(size: PDFPage.Size, direction: PDFPage.Direction) {
         
-        HPDF_Page_SetSize(_haruObject,
+        HPDF_Page_SetSize(_pageHandle,
                           HPDF_PageSizes(size.rawValue),
                           HPDF_PageDirection(direction.rawValue))
     }
@@ -81,7 +81,7 @@ public final class PDFPage: _HaruBridgeable {
             throw PDFError.pageInvalidRotateValue
         }
         
-        HPDF_Page_SetRotate(_haruObject, HPDF_UINT16((angle % 360 + 360) % 360))
+        HPDF_Page_SetRotate(_pageHandle, HPDF_UINT16((angle % 360 + 360) % 360))
     }
     
     // MARK: - Graphics
@@ -130,8 +130,6 @@ public final class PDFPage: _HaruBridgeable {
     // Also during `_cleanup()` method call all the graphics properties of the page like line width or stroke color
     // are set to their default values.
     
-    private var _contextIsPresent = false
-    
     /// Perform path drawing operations on the page.
     ///
     /// - Warning: The `PDFPathContext` argument should not be stored and used outside of the lifetime
@@ -142,7 +140,7 @@ public final class PDFPage: _HaruBridgeable {
     ///
     /// ```swift
     /// page.drawPath { context in
-    ///     
+    ///
     ///     self.page.drawPath { innerContext in
     ///         // do things
     ///     }
@@ -158,14 +156,39 @@ public final class PDFPage: _HaruBridgeable {
         
         _contextIsPresent = true
         
-        let pathContext = PDFPathContext(for: _haruObject)
+        let pathContext = PDFPathContext(for: _pageHandle)
         
         pathContext._cleanup()
-                
+        
         body(pathContext)
-
+        
         pathContext._cleanup()
+        
+        pathContext._invalidate()
         
         _contextIsPresent = false
     }
+    
+    public func putText(_ body: ((PDFTextContext) -> Void)) {
+        
+        if _contextIsPresent {
+            preconditionFailure("Cannot begin a new drawing context while the previous one is not revoked.")
+        }
+        
+        _contextIsPresent = true
+
+        let textContext = PDFTextContext(for: _pageHandle)
+        
+        textContext._cleanup()
+        
+        body(textContext)
+        
+        textContext._cleanup()
+        
+        textContext._invalidate()
+        
+        _contextIsPresent = false
+    }
+    
+    private var _contextIsPresent = false
 }
