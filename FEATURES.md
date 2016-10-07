@@ -91,7 +91,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
 | `HPDF_Page_GetLineCap()` | **Implemented** | Complete | `PDFPathContext`'s `lineCap` instance property |
-| `HPDF_Page_GetLineJoin()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetLineJoin()` | **Implemented** | Complete | `PDFPathContext`'s `lineJoin` instance property |
 | `HPDF_Page_GetMiterLimit()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetDash()` | **Implemented** | Complete | `PDFPathContext`'s `dashStyle` instance property |
 | `HPDF_Page_GetFlat()` | Unimplemented | None | N/A |
@@ -159,7 +159,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetGrayStroke()` | **Implemented** | Complete | `PDFPathContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetLineCap()` | **Implemented** | Complete | `PDFPathContext`'s `lineCap` instance property |
-| `HPDF_Page_SetLineJoin()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetLineJoin()` | **Implemented** | Complete | `PDFPathContext`'s `lineJoin` instance property |
 | `HPDF_Page_SetLineWidth()` | **Implemented** | Complete | `PDFPathContext`'s `lineWidth` instance property |
 | `HPDF_Page_SetMiterLimit()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetRGBFill()` | **Implemented** | Complete | `PDFPathContext`'s `fillColor` instance property |

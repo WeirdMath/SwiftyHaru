@@ -16,6 +16,7 @@ class PDFPathContextTests: XCTestCase {
             ("testPathLineWidth", testPathLineWidth),
             ("testPathDashStyle", testPathDashStyle),
             ("testPathLineCap", testPathLineCap),
+            ("testPathLineJoin", testPathLineJoin),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
@@ -174,6 +175,42 @@ class PDFPathContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedFinalLineCap, returnedFinalLineCap)
+    }
+    
+    func testPathLineJoin() {
+        
+        // Given
+        let expectedInitialLineJoin = LineJoin.miter
+        let expectedLineJoin = LineJoin.round
+        let expectedFinalLineJoin = expectedInitialLineJoin
+        
+        // When
+        var returnedInitialLineJoin: LineJoin?
+        page.drawPath { context in
+            returnedInitialLineJoin = context.lineJoin
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialLineJoin, returnedInitialLineJoin)
+        
+        // When
+        var returnedLineJoin: LineJoin?
+        page.drawPath { context in
+            context.lineJoin = .round
+            returnedLineJoin = context.lineJoin
+        }
+        
+        // Then
+        XCTAssertEqual(expectedLineJoin, returnedLineJoin)
+        
+        // When
+        var returnedFinalLineJoin: LineJoin?
+        page.drawPath { context in
+            returnedFinalLineJoin = context.lineJoin
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalLineJoin, returnedFinalLineJoin)
     }
     
     func testStrokeColorRGB() {

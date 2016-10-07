@@ -6,7 +6,7 @@
 //
 //
 
-import CLibHaru
+import typealias CLibHaru.HPDF_Point
 
 public struct Size {
     

@@ -6,7 +6,7 @@
 //
 //
 
-import CLibHaru
+import typealias CLibHaru.HPDF_LineCap
 
 /// The shape to be used at the ends of lines.
 ///

@@ -25,6 +25,7 @@ public final class PDFPathContext {
         fillColor = .black
         dashStyle = .straightLine
         lineCap = .butt
+        lineJoin = .miter
         
         move(to: .zero)
     }
@@ -55,13 +56,23 @@ public final class PDFPathContext {
         }
     }
     
-    /// The shape to be used at the ends of lines. Default value is `LineCap.buttEnd`
+    /// The shape to be used at the ends of lines. Default value is `LineCap.buttEnd`.
     public var lineCap: LineCap {
         get {
             return LineCap(HPDF_Page_GetLineCap(_page))
         }
         set {
             HPDF_Page_SetLineCap(_page, HPDF_LineCap(rawValue: newValue.rawValue))
+        }
+    }
+    
+    /// The line join style in the page. Default value is `LineJoin.miter`.
+    public var lineJoin: LineJoin {
+        get {
+            return LineJoin(HPDF_Page_GetLineJoin(_page))
+        }
+        set {
+            HPDF_Page_SetLineJoin(_page, HPDF_LineJoin(rawValue: newValue.rawValue))
         }
     }
     
