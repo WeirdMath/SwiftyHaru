@@ -15,6 +15,7 @@ class PDFPathContextTests: XCTestCase {
         return [
             ("testPathLineWidth", testPathLineWidth),
             ("testPathDashStyle", testPathDashStyle),
+            ("testPathLineCap", testPathLineCap),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
@@ -137,6 +138,42 @@ class PDFPathContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedFinalDashStyle, returnedFinalDashStyle)
+    }
+    
+    func testPathLineCap() {
+        
+        // Given
+        let expectedInitialLineCap = LineCap.butt
+        let expectedLineCap = LineCap.round
+        let expectedFinalLineCap = expectedInitialLineCap
+        
+        // When
+        var returnedInitialLineCap: LineCap?
+        page.drawPath { context in
+            returnedInitialLineCap = context.lineCap
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialLineCap, returnedInitialLineCap)
+        
+        // When
+        var returnedLineCap: LineCap?
+        page.drawPath { context in
+            context.lineCap = .round
+            returnedLineCap = context.lineCap
+        }
+        
+        // Then
+        XCTAssertEqual(expectedLineCap, returnedLineCap)
+        
+        // When
+        var returnedFinalLineCap: LineCap?
+        page.drawPath { context in
+            returnedFinalLineCap = context.lineCap
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalLineCap, returnedFinalLineCap)
     }
     
     func testStrokeColorRGB() {

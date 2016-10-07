@@ -24,6 +24,7 @@ public final class PDFPathContext {
         strokeColor = .black
         fillColor = .black
         dashStyle = .straightLine
+        lineCap = .butt
         
         move(to: .zero)
     }
@@ -51,6 +52,16 @@ public final class PDFPathContext {
                               pattern,
                               HPDF_UINT(pattern.count),
                               HPDF_UINT(pattern.isEmpty ? 0 : newValue.phase))
+        }
+    }
+    
+    /// The shape to be used at the ends of lines. Default value is `LineCap.buttEnd`
+    public var lineCap: LineCap {
+        get {
+            return LineCap(HPDF_Page_GetLineCap(_page))
+        }
+        set {
+            HPDF_Page_SetLineCap(_page, HPDF_LineCap(rawValue: newValue.rawValue))
         }
     }
     
