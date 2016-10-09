@@ -1,19 +1,20 @@
 //
-//  PDFContext.swift
+//  DrawingContext.swift
 //  SwiftyHaru
 //
-//  Created by Sergej Jaskiewicz on 07.10.16.
+//  Created by Sergej Jaskiewicz on 02.10.16.
 //
 //
 
 import CLibHaru
+import CoreGraphics
 
-public class PDFContext {
+public final class DrawingContext {
     
     private var _pageHandle: HPDF_Page
     private var _isInvalidated = false
     
-    internal final var _page: HPDF_Page {
+    internal var _page: HPDF_Page {
         if _isInvalidated {
             fatalError("The context has been revoked.")
         }
@@ -36,6 +37,7 @@ public class PDFContext {
         lineCap = .butt
         lineJoin = .miter
         miterLimit = 10
+        
     }
     
     internal func _invalidate() {
@@ -45,7 +47,7 @@ public class PDFContext {
     // MARK: - Graphics state
     
     /// The current line width for path painting of the page. Default value is 1.
-    public final var lineWidth: Float {
+    public var lineWidth: Float {
         get {
             return HPDF_Page_GetLineWidth(_page)
         }
@@ -55,7 +57,7 @@ public class PDFContext {
     }
     
     /// The dash pattern for lines in the page.
-    public final var dashStyle: DashStyle {
+    public var dashStyle: DashStyle {
         get {
             return DashStyle(HPDF_Page_GetDash(_page))
         }
@@ -69,7 +71,7 @@ public class PDFContext {
     }
     
     /// The shape to be used at the ends of lines. Default value is `LineCap.buttEnd`.
-    public final var lineCap: LineCap {
+    public var lineCap: LineCap {
         get {
             return LineCap(HPDF_Page_GetLineCap(_page))
         }
@@ -79,7 +81,7 @@ public class PDFContext {
     }
     
     /// The line join style in the page. Default value is `LineJoin.miter`.
-    public final var lineJoin: LineJoin {
+    public var lineJoin: LineJoin {
         get {
             return LineJoin(HPDF_Page_GetLineJoin(_page))
         }
@@ -89,7 +91,7 @@ public class PDFContext {
     }
     
     /// The miter limit for the joins of connected lines. Minimum value is 1. Default value is 10.
-    public final var miterLimit: Float {
+    public var miterLimit: Float {
         get {
             return HPDF_Page_GetMiterLimit(_page)
         }
@@ -102,17 +104,17 @@ public class PDFContext {
     // MARK: - Color
     
     /// The current value of the page's stroking color space.
-    public final var strokingColorSpace: PDFColorSpace {
+    public var strokingColorSpace: PDFColorSpace {
         return PDFColorSpace(haruEnum: HPDF_Page_GetStrokingColorSpace(_page))
     }
     
     /// The current value of the page's filling color space.
-    public final var fillingColorSpace: PDFColorSpace {
+    public var fillingColorSpace: PDFColorSpace {
         return PDFColorSpace(haruEnum: HPDF_Page_GetFillingColorSpace(_page))
     }
     
     /// The current value of the page's stroking color. Default is RGB black.
-    public final var strokeColor: Color {
+    public var strokeColor: Color {
         get {
             switch strokingColorSpace {
             case .deviceRGB:
@@ -145,7 +147,7 @@ public class PDFContext {
     }
     
     /// The current value of the page's filling color. Default is RGB black.
-    public final var fillColor: Color {
+    public var fillColor: Color {
         get {
             switch fillingColorSpace {
             case .deviceRGB:
@@ -176,5 +178,94 @@ public class PDFContext {
             }
         }
     }
-
+    
+    
+    // MARK: - Path construction
+    
+    // In LibHaru we use state maching to switch between construction state and general state.
+    // In SwiftyHaru calling path construction methods defers actual construction operations
+    // until the moment the path is about to be drawn. It makes it easier for the end user.
+    
+    private func _construct(_ path: Path) {
+        
+        for operation in path._pathConstructionSequence {
+            
+            switch operation {
+            case .moveTo(let point):
+                HPDF_Page_MoveTo(_page, point.x, point.y)
+            case .lineTo(let point):
+                HPDF_Page_LineTo(_page, point.x, point.y)
+            case .closePath:
+                HPDF_Page_ClosePath(_page)
+            case .arc(let center, let radius, let beginningAngle, let endAngle):
+                HPDF_Page_Arc(_page, center.x, center.y, radius, beginningAngle, endAngle)
+            case .circle(let center, let radius):
+                HPDF_Page_Circle(_page, center.x, center.y, radius)
+            case .rectangle(let rectangle):
+                HPDF_Page_Rectangle(_page,
+                                    rectangle.origin.x, rectangle.origin.y,
+                                    rectangle.width, rectangle.height)
+            case .curve(let controlPoint1, let controlPoint2, let endPoint):
+                HPDF_Page_CurveTo(_page,
+                                  controlPoint1.x, controlPoint1.y,
+                                  controlPoint2.x, controlPoint2.y,
+                                  endPoint.x, endPoint.y)
+            case .curve2(let controlPoint2, let endPoint):
+                HPDF_Page_CurveTo2(_page, controlPoint2.x, controlPoint2.y, endPoint.x, endPoint.y)
+            case .curve3(let controlPoint1, let endPoint):
+                HPDF_Page_CurveTo3(_page, controlPoint1.x, controlPoint1.y, endPoint.x, endPoint.y)
+            case .ellipse(let center, let xRadius, let yRadius):
+                HPDF_Page_Ellipse(_page, center.x, center.y, xRadius, yRadius)
+            }
+        }
+        
+        assert(path.currentPosition == Point(HPDF_Page_GetCurrentPos(_page)))
+    }
+    
+    // MARK: - Path painting
+    
+    /// Fills the `path`.
+    ///
+    /// - parameter path:        The path to fill.
+    /// - parameter evenOddRule: If specified `true`, fills the path using the even-odd rule.
+    ///                          Otherwise fills it using the nonzero winding number rule.
+    ///                          Default value is `false`.
+    /// - parameter stroke:      If specified `true`, also paints the path itself. Default value is `false`.
+    public func fill(_ path: Path, evenOddRule: Bool = false, stroke: Bool = false) {
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
+        
+        _construct(path)
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT)
+        
+        switch (evenOddRule, stroke) {
+        case (true, true):
+            HPDF_Page_EofillStroke(_page)
+        case (true, false):
+            HPDF_Page_Eofill(_page)
+        case (false, true):
+            HPDF_Page_FillStroke(_page)
+        case (false, false):
+            HPDF_Page_Fill(_page)
+        }
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
+    }
+    
+    /// Paints the `path`.
+    ///
+    /// - parameter path: The path to paint.
+    public func stroke(_ path: Path) {
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
+        
+        _construct(path)
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT)
+        
+        HPDF_Page_Stroke(_page)
+        
+        assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
+    }
 }

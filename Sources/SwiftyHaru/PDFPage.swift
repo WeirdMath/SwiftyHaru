@@ -125,7 +125,7 @@ public final class PDFPage {
     // so there are context objects like PDFPathContext which maintain it automatically.
     // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION is entered only within a closure.
     //
-    // We invoke `drawPath(_:)` method with a closure that takes a context object and performs path construction
+    // We invoke `draw(_:)` method with a closure that takes a context object and performs path construction
     // or text creation on the context object which is implicitly connected with the page object.
     // Also during `_cleanup()` method call all the graphics properties of the page like line width or stroke color
     // are set to their default values.
@@ -148,7 +148,7 @@ public final class PDFPage {
     /// ```
     ///
     /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
-    public func drawPath(_ body: ((PDFPathContext) -> Void)) {
+    public func draw(_ body: ((DrawingContext) -> Void)) {
         
         if _contextIsPresent {
             preconditionFailure("Cannot begin a new drawing context while the previous one is not revoked.")
@@ -156,36 +156,15 @@ public final class PDFPage {
         
         _contextIsPresent = true
         
-        let pathContext = PDFPathContext(for: _pageHandle)
+        let context = DrawingContext(for: _pageHandle)
         
-        pathContext._cleanup()
+        context._cleanup()
         
-        body(pathContext)
+        body(context)
         
-        pathContext._cleanup()
+        context._cleanup()
         
-        pathContext._invalidate()
-        
-        _contextIsPresent = false
-    }
-    
-    public func putText(_ body: ((PDFTextContext) -> Void)) {
-        
-        if _contextIsPresent {
-            preconditionFailure("Cannot begin a new drawing context while the previous one is not revoked.")
-        }
-        
-        _contextIsPresent = true
-
-        let textContext = PDFTextContext(for: _pageHandle)
-        
-        textContext._cleanup()
-        
-        body(textContext)
-        
-        textContext._cleanup()
-        
-        textContext._invalidate()
+        context._invalidate()
         
         _contextIsPresent = false
     }

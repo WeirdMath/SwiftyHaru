@@ -13,7 +13,7 @@
     <a title="Enums  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (64% documented)</p>
+        <p><a href="index.html"> Docs</a> (65% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -29,6 +29,9 @@
           <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/DrawingContext.html">DrawingContext</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Classes/PDFDocument.html">PDFDocument</a>
               </li>
@@ -47,24 +50,19 @@
               <li class="nav-group-task">
                 <a href="Classes/PDFPage/Size.html">– Size</a>
               </li>
-              <li class="nav-group-task">
-                <a href="Classes/PDFPathContext.html">PDFPathContext</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/PDFColorSpace.html">PDFColorSpace</a>
+                <a href="Enums/LineCap.html">LineCap</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F10SwiftyHaruXoi3rcaFTSfSf_VS_4Size">×(_:_:)</a>
+                <a href="Enums/LineJoin.html">LineJoin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/PDFColorSpace.html">PDFColorSpace</a>
               </li>
             </ul>
           </li>
@@ -75,7 +73,16 @@
                 <a href="Structs/Color.html">Color</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/DashStyle.html">DashStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Path.html">Path</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Point.html">Point</a>
@@ -122,10 +129,86 @@
                 </li>
               </ul>
             </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O10SwiftyHaru8LineJoin"></a>
+                    <a name="//apple_ref/swift/Enum/LineJoin" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O10SwiftyHaru8LineJoin">LineJoin</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Line join style.</p>
+
+<ul>
+<li>miter: A join with a sharp (angled) corner.</li>
+<li>round: A join with a rounded end.</li>
+<li>bevel: A join with a squared-off end.</li>
+</ul>
+
+                        <a href="Enums/LineJoin.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LineJoin</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:O10SwiftyHaru7LineCap"></a>
+                    <a name="//apple_ref/swift/Enum/LineCap" class="dashAnchor"></a>
+                    <a class="token" href="#/s:O10SwiftyHaru7LineCap">LineCap</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The shape to be used at the ends of lines.</p>
+
+<ul>
+<li>butt:             Line is squared off at path endpoint.</li>
+<li>round:            End of line becomes a semicircle whose center is at path endpoint.</li>
+<li>projectingSquare: Line continues beyond endpoint, goes on half the endpoint stroke width.</li>
+</ul>
+
+                        <a href="Enums/LineCap.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LineCap</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-04)</p>
+          <p>&copy; 2016 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2016-10-09)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
