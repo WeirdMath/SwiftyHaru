@@ -7,7 +7,6 @@
 //
 
 import CLibHaru
-import CoreGraphics
 
 public final class DrawingContext {
     
