@@ -69,7 +69,7 @@ public final class PDFDocument {
         
         page.width = width
         page.height = height
-        
+
         return page
     }
     
