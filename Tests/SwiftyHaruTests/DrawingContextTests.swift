@@ -523,4 +523,3 @@ class DrawingContextTests: XCTestCase {
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
 }
-

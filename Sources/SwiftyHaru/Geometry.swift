@@ -62,7 +62,7 @@ extension Point: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Point, rhs: Point) -> Bool{
+    public static func ==(lhs: Point, rhs: Point) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
@@ -131,7 +131,7 @@ extension Rectangle: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool{
+    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool {
         return lhs.origin == rhs.origin && lhs.size == rhs.size
     }
 }
