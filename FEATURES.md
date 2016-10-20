@@ -50,7 +50,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | Function  | Status | Test Coverage | SwiftyHaru equivalent |
     |-----------|--------|---------------|-----------------------|
     | `HPDF_AddPageLabel()` | **Implemented** | Complete | `PDFDocument`'s `addPageLabel(_:fromPage:startingWith:withPrefix)` instance method |
-    | `HPDF_GetFont()` | Unimplemented | None | N/A |
+    | `HPDF_GetFont()` | **For internal use only** | N/A | N/A |
     | `HPDF_LoadType1FontFromFile()` | TBD | N/A | N/A |
     | `HPDF_LoadTTFontFromFile()` | TBD | N/A | N/A |
     | `HPDF_LoadTTFontFromFile2()` | TBD | N/A | N/A |
@@ -86,8 +86,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | **Implemented** | Complete | `Path`'s `currentPosition` instance property |
 | `HPDF_Page_GetCurrentTextPos()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetCurrentFont()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetCurrentFontSize()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetCurrentFont()` | **Implemented** | Complete | `DrawingContext`'s `font` instance property |
+| `HPDF_Page_GetCurrentFontSize()` | **Implemented** | Complete | `DrawingContext`'s `fontSize` instance property |
 | `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `DrawingContext`'s `lineWidth` instance property |
 | `HPDF_Page_GetLineCap()` | **Implemented** | Complete | `DrawingContext`'s `lineCap` instance property |
@@ -154,7 +154,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetCMYKStroke()` | **Implemented** | Complete | `DrawingContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetDash()` | **Implemented** | Complete | `DrawingContext`'s `dashStyle` instance property |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetFontAndSize()` | **Implemented** | Complete | `DrawingContext`'s `font` and `fontSize` instance properties |
 | `HPDF_Page_SetGrayFill()` | **Implemented** | Complete | `DrawingContext`'s `fillColor` instance property |
 | `HPDF_Page_SetGrayStroke()` | **Implemented** | Complete | `DrawingContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |

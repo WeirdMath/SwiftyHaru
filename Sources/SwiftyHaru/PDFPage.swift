@@ -15,7 +15,7 @@ import CLibHaru
 ///            the document that owns the page.
 public final class PDFPage {
     
-    public weak var document: PDFDocument?
+    public private(set) weak var document: PDFDocument?
     
     private var __pageHandle: HPDF_Page
     
@@ -73,13 +73,9 @@ public final class PDFPage {
     ///
     /// - parameter angle: The rotation angle of the page. It must be a multiple of 90 degrees. It can
     ///                    also be negative.
-    ///
-    /// - throws: `PDFError.pageInvalidRotateValue` if an invalid rotation angle was set.
-    public func rotate(byAngle angle: Int) throws {
+    public func rotate(byAngle angle: Int) {
         
-        guard angle % 90 == 0 else {
-            throw PDFError.pageInvalidRotateValue
-        }
+        guard angle % 90 == 0 else { return }
         
         HPDF_Page_SetRotate(_pageHandle, HPDF_UINT16((angle % 360 + 360) % 360))
     }
@@ -150,13 +146,14 @@ public final class PDFPage {
     /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
     public func draw(_ body: ((DrawingContext) -> Void)) {
         
-        if _contextIsPresent {
-            preconditionFailure("Cannot begin a new drawing context while the previous one is not revoked.")
-        }
+        precondition(!_contextIsPresent,
+                     "Cannot begin a new drawing context while the previous one is not revoked.")
+        
+        precondition(document != nil, "The document has been deallocated")
         
         _contextIsPresent = true
         
-        let context = DrawingContext(for: _pageHandle)
+        let context = DrawingContext(for: _pageHandle, document: document!._documentHandle)
         
         context._cleanup()
         

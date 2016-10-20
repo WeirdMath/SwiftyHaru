@@ -10,7 +10,8 @@ import CLibHaru
 
 public final class DrawingContext {
     
-    private var _pageHandle: HPDF_Page
+    private var __page: HPDF_Page
+    private var _documentHandle: HPDF_Doc
     private var _isInvalidated = false
     
     internal var _page: HPDF_Page {
@@ -18,11 +19,13 @@ public final class DrawingContext {
             fatalError("The context has been revoked.")
         }
         
-        return _pageHandle
+        return __page
     }
     
-    internal init(for page: HPDF_Page) {
-        _pageHandle = page
+    internal init(for page: HPDF_Page, document: HPDF_Doc) {
+        
+        _documentHandle = document
+        __page = page
     }
     
     internal func _cleanup() {
@@ -37,6 +40,9 @@ public final class DrawingContext {
         lineJoin = .miter
         miterLimit = 10
         
+        let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, encoding.name)
+        
+        HPDF_Page_SetFontAndSize(__page, font, 11)
     }
     
     internal func _invalidate() {
@@ -266,5 +272,77 @@ public final class DrawingContext {
         HPDF_Page_Stroke(_page)
         
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
+    }
+    
+    // MARK: - Test state
+    
+    /// Tha current font of the context.
+    public var font: Font {
+        get {
+            let fontHandle = HPDF_Page_GetCurrentFont(_page)
+            return Font(name: String(cString: HPDF_Font_GetFontName(fontHandle)))
+        }
+        set {
+            let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name)
+            
+            HPDF_Page_SetFontAndSize(_page, font, fontSize)
+        }
+    }
+    
+    /// The maximum size of a font that can be set.
+    public var maximumFontSize: Float {
+        return Float(HPDF_MAX_FONTSIZE)
+    }
+    
+    /// The size of the current font of the context. Valid values are between 0 and `maximumFontSize`.
+    /// Setting an invalid value makes mo change. Default value is 11.
+    public var fontSize: Float {
+        get {
+            return HPDF_Page_GetCurrentFontSize(_page)
+        }
+        set {
+            guard newValue > 0 && newValue < maximumFontSize else { return }
+            
+            let font = HPDF_GetFont(_documentHandle, self.font.name, encoding.name)
+            
+            HPDF_Page_SetFontAndSize(_page, font, newValue)
+        }
+    }
+    
+    /// The encoding to use for a text.
+    public var encoding: Encoding = .standard {
+        didSet {
+            _enableMultibyteEncoding(for: encoding)
+        }
+    }
+    
+    private func _enableMultibyteEncoding(for encoding: Encoding) {
+        
+        guard encoding._isMultibyte else { return }
+        
+        switch encoding {
+        case Encoding.gbEucCnHorisontal,
+             Encoding.gbEucCnVertical,
+             Encoding.gbkEucHorisontal,
+             Encoding.gbkEucVertical:
+            HPDF_UseCNSEncodings(_documentHandle)
+        case Encoding.eTenB5Vertical,
+             Encoding.eTenB5Horisontal:
+            HPDF_UseCNTEncodings(_documentHandle)
+        case Encoding.rksjHorisontal,
+             Encoding.rksjVertical,
+             Encoding.rksjHorisontalProportional,
+             Encoding.eucHorisontal,
+             Encoding.eucVertical:
+            HPDF_UseJPEncodings(_documentHandle)
+        case Encoding.kscEucHorisontal,
+             Encoding.kscEucVertical,
+             Encoding.kscMsUhcProportional,
+             Encoding.kscMsUhsVerticalFixedWidth,
+             Encoding.kscMsUhsHorisontalFixedWidth:
+            HPDF_UseKREncodings(_documentHandle)
+        default:
+            return
+        }
     }
 }
