@@ -16,6 +16,8 @@ public final class PDFDocument {
     
     public private(set) var pages: [PDFPage] = []
     
+    public private(set) var fonts: [Font] = []
+    
     internal var _error: PDFError
     
     /// Creates an instance of a document object.
@@ -32,7 +34,7 @@ public final class PDFDocument {
             let error = userData!.assumingMemoryBound(to: PDFError.self)
             error.pointee = PDFError(code: Int32(errorCode))
             
-            assertionFailure("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
         }
         
         _documentHandle = HPDF_New(errorHandler, &_error)
@@ -69,7 +71,7 @@ public final class PDFDocument {
         
         page.width = width
         page.height = height
-
+        
         return page
     }
     
@@ -140,8 +142,8 @@ public final class PDFDocument {
     ///
     /// - returns: A `PDFPage` object.
     @discardableResult public func insertPage(size: PDFPage.Size,
-                           direction: PDFPage.Direction,
-                           atIndex index: Int) -> PDFPage {
+                                              direction: PDFPage.Direction,
+                                              atIndex index: Int) -> PDFPage {
         
         let page = insertPage(atIndex: index)
         
@@ -151,14 +153,14 @@ public final class PDFDocument {
     }
     
     // MARK: - Getting data
-
+    
     /// Returns the document's contents.
     ///
     /// - returns: The dodument's contents
     public func getData() -> Data {
         
         HPDF_SaveToStream(_documentHandle)
-
+        
         let sizeOfStream = HPDF_GetStreamSize(_documentHandle)
         
         HPDF_ResetStream(_documentHandle)
@@ -172,7 +174,7 @@ public final class PDFDocument {
         
         buffer.deinitialize(count: Int(sizeOfBuffer))
         buffer.deallocate(capacity: Int(sizeOfBuffer))
-
+        
         return data
     }
     
@@ -219,5 +221,42 @@ public final class PDFDocument {
                           HPDF_PageNumStyle(rawValue: style.rawValue),
                           HPDF_UINT(firstPageNumber),
                           prefix)
+    }
+    
+    /// Loads a TrueType font from `data` and registers it to a document.
+    ///
+    /// - parameter data:               Contents of a `.ttf` file.
+    /// - parameter embeddingGlyphData: If this parameter is set to `true`, the glyph data of the font is embedded,
+    ///                                 otherwise only the matrix data is included in PDF file.
+    ///
+    /// - throws: `PDFError.fontExists`, `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`, 
+    ///           `PDFError.ttfInvalidCMap`, `PDFError.ttfInvalidFormat`, `PDFError.ttfMissingTable`,
+    ///           `PDFError.ttfCannotEmbedFont`.
+    ///
+    /// - returns: The loaded font.
+    public func loadFont(from data: Data, embeddingGlyphData: Bool) throws -> Font {
+        
+        let embedding: Int32 = embeddingGlyphData ? 1 : 0
+        
+        let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
+            let cString = HPDF_LoadTTFontFromMemory(self._documentHandle,
+                                                   pointer,
+                                                   HPDF_UINT(data.count),
+                                                   embedding)
+            if let cString = cString {
+                return String(cString: cString)
+            } else {
+                return nil
+            }
+        }
+        
+        if let name = name {
+            let font = Font(name: name)
+            fonts.append(font)
+            return font
+        } else {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
     }
 }
