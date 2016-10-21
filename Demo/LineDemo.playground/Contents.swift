@@ -68,9 +68,9 @@ page.draw { context in
     drawLine(in: context, x: 60, y: 680,
              label: "pattern == [3], phase == 1: 2 on, 3 off, 3 on...")
     
-    context.dashStyle = DashStyle(pattern: [3, 7], phase: 2)!
+    context.dashStyle = DashStyle(pattern: [7, 3], phase: 2)!
     drawLine(in: context, x: 60, y: 650,
-             label: "pattern == [7, 3], phase == 2: 5 on 3 off, 7 on,...")
+             label: "pattern == [7, 3], phase == 2: 5 on, 3 off, 7 on,...")
     
     context.dashStyle = DashStyle(pattern: [8, 7, 2, 7])!
     drawLine(in: context, x: 60, y: 620,
@@ -144,9 +144,24 @@ page.draw { context in
     
     let fillStrokeRectangle = constructRect(in: context, x: 300, y: 670, label: "Fill and Stroke")
     context.fill(fillStrokeRectangle, stroke: true)
+}
+
+// Clip Rectangle
+page.draw { context in
+    
+    context.lineWidth = 2
+    context.strokeColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    context.fillColor = #colorLiteral(red: 0.7529411765, green: 0, blue: 0, alpha: 1)
     
     let clipRectangle = constructRect(in: context, x: 300, y: 620, label: "Clip Rectangle")
     context.stroke(clipRectangle)
+    
+    context.fontSize = 13
+    context.textLeading = 12
+    context.show(text: "Clip Clip Clip Clip Clip Clipi Clip Clip Clip\n" +
+        "Clip Clip Clip Clip Clip Clipi Clip Clip Clip\n" +
+        "Clip Clip Clip Clip Clip Clipi Clip Clip Clip",
+                 atX: 290, y: 600)
 }
 
 page.draw { context in
