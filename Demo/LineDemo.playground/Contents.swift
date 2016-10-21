@@ -156,12 +156,15 @@ page.draw { context in
     let clipRectangle = constructRect(in: context, x: 300, y: 620, label: "Clip Rectangle")
     context.stroke(clipRectangle)
     
-    context.fontSize = 13
-    context.textLeading = 12
-    context.show(text: "Clip Clip Clip Clip Clip Clipi Clip Clip Clip\n" +
-        "Clip Clip Clip Clip Clip Clipi Clip Clip Clip\n" +
-        "Clip Clip Clip Clip Clip Clipi Clip Clip Clip",
-                 atX: 290, y: 600)
+    context.clip(to: clipRectangle) {
+        
+        context.fontSize = 13
+        context.textLeading = 12
+        context.show(text: "Clip Clip Clip Clip Clip Clip Clip Clip Clip\n" +
+                           "Clip Clip Clip Clip Clip Clip Clip Clip Clip\n" +
+                           "Clip Clip Clip Clip Clip Clip Clip Clip Clip",
+                     atX: 290, y: 600)
+    }
 }
 
 page.draw { context in
@@ -217,7 +220,7 @@ page.draw { context in
     
     context.stroke(Path().moving(to: point).appendingCurve(controlPoint1: point1, endPoint: point2))
     
-    // Curve example ()
+    // Curve example (appendCurve(controlPoint1:controlPoint2:endPoint))
     point = point + Vector(x: 0, y: -150)
     point1 = point1 + Vector(x: 0, y: -160)
     point2 = point2 + Vector(x: 10, y: -130)
