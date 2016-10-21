@@ -149,8 +149,6 @@ public final class PDFPage {
         precondition(!_contextIsPresent,
                      "Cannot begin a new drawing context while the previous one is not revoked.")
         
-        precondition(document != nil, "The document has been deallocated")
-        
         _contextIsPresent = true
         
         let context = DrawingContext(for: _pageHandle, document: document!._documentHandle)
