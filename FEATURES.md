@@ -178,11 +178,27 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 ## Font Handling
 
-Unimplemented
+| Function  | Status | Test Coverage | SwiftyHaru equivalent |
+|-----------|--------|---------------|-----------------------|
+| `HPDF_Font_GetFontName()` | **Implemented** | Complete | `Font`'s `name` instance property |
+| `HPDF_Font_GetEncodingName()` | **Implemented** | Complete | `Encoding`'s `name` instance property |
+| `HPDF_Font_GetUnicodeWidth()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetBBox()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetAscent()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetDescent()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetXHeight()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetCapHeight()` | Unimplemented | None | N/A |
+| `HPDF_Font_TextWidth()` | Unimplemented | None | N/A |
+| `HPDF_Font_MeasureText()` | Unimplemented | None | N/A |
 
 ## Encoding
 
-Unimplemented
+| Function  | Status | Test Coverage | SwiftyHaru equivalent |
+|-----------|--------|---------------|-----------------------|
+| `HPDF_Encoder_GetType()` |  TBD | N/A | N/A |
+| `HPDF_Encoder_GetByteType()` | TBD | N/A | N/A |
+| `HPDF_Encoder_GetUnicode()` | TBD | N/A | N/A |
+| `HPDF_Encoder_GetWritingMode()` | TBD | N/A | N/A |
 
 ## Annotation
 

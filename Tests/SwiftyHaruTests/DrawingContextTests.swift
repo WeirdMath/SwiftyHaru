@@ -27,7 +27,8 @@ class DrawingContextTests: XCTestCase {
             ("testConstructPath", testConstructPath),
             ("testPaintPath", testPaintPath),
             ("testTextFont", testTextFont),
-            ("testTextFontSize", testTextFontSize)
+            ("testTextFontSize", testTextFontSize),
+            ("testTextEncoding", testTextEncoding)
         ]
     }
     
@@ -599,5 +600,42 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedFinalFontSize, returnedFinalFontSize)
+    }
+    
+    func testTextEncoding() {
+        
+        // Given
+        let expectedInitialEncoding = Encoding.standard
+        let expectedEncoding = Encoding.cp1251
+        let expectedFinalEncoding = expectedInitialEncoding
+        
+        // When
+        var returnedInitialEncoding: Encoding?
+        page.draw { context in
+            returnedInitialEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialEncoding, returnedInitialEncoding)
+        
+        // When
+        var returnedEncoding: Encoding?
+        page.draw { context in
+            
+            context.encoding = .cp1251
+            returnedEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedEncoding, returnedEncoding)
+        
+        // When
+        var returnedFinalEncoding: Encoding?
+        page.draw { context in
+            returnedFinalEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalEncoding, returnedFinalEncoding)
     }
 }

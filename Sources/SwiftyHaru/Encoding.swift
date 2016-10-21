@@ -149,11 +149,9 @@ public struct Encoding {
     // MARK: - Interface
     
     internal let _name: String
-    internal let _isMultibyte: Bool
     
     internal init(name: String, isMultibyte: Bool = false) {
         _name = name
-        _isMultibyte = isMultibyte
     }
     
     /// The name of the encoding

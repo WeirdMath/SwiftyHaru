@@ -40,7 +40,7 @@ public final class DrawingContext {
         lineJoin = .miter
         miterLimit = 10
         
-        let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, encoding.name)
+        let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
         
         HPDF_Page_SetFontAndSize(__page, font, 11)
     }
@@ -310,15 +310,20 @@ public final class DrawingContext {
     }
     
     /// The encoding to use for a text.
-    public var encoding: Encoding = .standard {
-        didSet {
-            _enableMultibyteEncoding(for: encoding)
+    public var encoding: Encoding {
+        get {
+            let font = HPDF_Page_GetCurrentFont(_page)
+            let encodingName = HPDF_Font_GetEncodingName(font)!
+            return Encoding(name: String(cString: encodingName))
+        }
+        set {
+            _enableMultibyteEncoding(for: newValue)
+            let font = HPDF_GetFont(_documentHandle, self.font.name, newValue.name)
+            HPDF_Page_SetFontAndSize(_page, font, fontSize)
         }
     }
     
     private func _enableMultibyteEncoding(for encoding: Encoding) {
-        
-        guard encoding._isMultibyte else { return }
         
         switch encoding {
         case Encoding.gbEucCnHorisontal,

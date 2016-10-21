@@ -29,7 +29,7 @@ extension Size: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Size, rhs: Size) -> Bool{
+    public static func ==(lhs: Size, rhs: Size) -> Bool {
         return lhs.width == rhs.width && lhs.height == rhs.height
     }
 }
