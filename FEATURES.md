@@ -81,7 +81,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_CreateTextAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateLinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateURILinkAnnot()` | Unimplemented | None | N/A |
-| `HPDF_Page_TextWidth()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextWidth()` | **Implemented** | Complete | `DrawingContext`'s `textWidth(for:)` instance method |
 | `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | **Implemented** | Complete | `Path`'s `currentPosition` instance property |

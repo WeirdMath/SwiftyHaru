@@ -638,4 +638,20 @@ class DrawingContextTests: XCTestCase {
         // Then
         XCTAssertEqual(expectedFinalEncoding, returnedFinalEncoding)
     }
+    
+    func testTextWidthForString() {
+        
+        // Given
+        let expectedWidth: Float = 62.953
+        let text = "Hello, World!"
+        
+        // When
+        var returnedWidth: Float?
+        page.draw { context in
+            returnedWidth = context.textWidth(for: text)
+        }
+        
+        // Then
+        XCTAssertEqual(expectedWidth, returnedWidth)
+    }
 }

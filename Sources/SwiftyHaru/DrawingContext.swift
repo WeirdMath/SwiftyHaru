@@ -350,4 +350,13 @@ public final class DrawingContext {
             return
         }
     }
+    
+    /// Gets the width of the text in current fontsize, character spacing and word spacing.
+    ///
+    /// - parameter text:  The text to get width of.
+    ///
+    /// - returns: The width of the text in current fontsize, character spacing and word spacing.
+    public func textWidth(for text: String) -> Float {
+        return HPDF_Page_TextWidth(_page, text)
+    }
 }
