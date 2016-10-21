@@ -26,6 +26,8 @@ class DrawingContextTests: XCTestCase {
             ("testFillColorGray", testFillColorGray),
             ("testConstructPath", testConstructPath),
             ("testPaintPath", testPaintPath),
+            ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
+            ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
             ("testTextFont", testTextFont),
             ("testTextFontSize", testTextFontSize),
             ("testTextEncoding", testTextEncoding),
@@ -520,6 +522,72 @@ class DrawingContextTests: XCTestCase {
             
             context.fillColor = .green
             context.fill(curve, evenOddRule: false, stroke: false)
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testClipToPathNonzeroWindingNumberRule() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        
+        let path = Path()
+            .moving(toX: 100, y: 100)
+            .appendingLine(toX: 200, y: 400)
+            .appendingLine(toX: 300, y: 100)
+            .appendingLine(toX: 50, y: 300)
+            .appendingLine(toX: 350, y: 300)
+            .closingSubpath()
+        
+        let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
+        
+        page.draw { context in
+            
+            context.stroke(path)
+            context.clip(to: path, evenOddRule: false) {
+                context.fill(rectangle)
+            }
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testClipToPathEvenOddRule() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        
+        let path = Path()
+            .moving(toX: 100, y: 100)
+            .appendingLine(toX: 200, y: 400)
+            .appendingLine(toX: 300, y: 100)
+            .appendingLine(toX: 50, y: 300)
+            .appendingLine(toX: 350, y: 300)
+            .closingSubpath()
+        
+        let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
+        
+        page.draw { context in
+            
+            context.stroke(path)
+            context.clip(to: path, evenOddRule: true) {
+                context.fill(rectangle)
+            }
         }
         
         let returnedDocumentData = document.getData()

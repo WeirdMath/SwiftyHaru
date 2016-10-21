@@ -231,6 +231,41 @@ public final class DrawingContext {
     
     // MARK: - Path painting
     
+    /// Sets the clipping area for drawing.
+    ///
+    /// - Important: Graphics parameters that are set inside the `drawInsideClippingArea` closure do not
+    ///              persist outside the call of that closure. I. e. if, for example, the context's fill color
+    ///              had been black
+    ///              and then was set to red inside the `drawInsideClippingArea` closure, after the closure
+    ///              returns it is black again.
+    ///
+    /// - parameter path:                   The path that constraints the clipping area. Must be closed.
+    /// - parameter evenOddRule:            If `true`, uses even-odd rule for specifying a clipping area.
+    ///                                     Otherwise uses nonzero winding number rule.
+    /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
+    ///                                     provided `path`.
+    public func clip(to path: Path, evenOddRule: Bool = false,
+                     _ drawInsideClippingArea: (Void) -> Void) {
+        
+        HPDF_Page_GSave(_page)
+        
+        _construct(path)
+        
+        HPDF_Page_ClosePath(_page)
+        
+        if evenOddRule {
+            HPDF_Page_Eoclip(_page)
+        } else {
+            HPDF_Page_Clip(_page)
+        }
+        
+        HPDF_Page_EndPath(_page)
+        
+        drawInsideClippingArea()
+        
+        HPDF_Page_GRestore(_page)
+    }
+    
     /// Fills the `path`.
     ///
     /// - parameter path:        The path to fill.
