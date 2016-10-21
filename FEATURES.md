@@ -85,7 +85,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | **Implemented** | Complete | `Path`'s `currentPosition` instance property |
-| `HPDF_Page_GetCurrentTextPos()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetCurrentTextPos()` | **Implemented** | None | `DrawingContext`'s `currentTextPosition` instance property |
 | `HPDF_Page_GetCurrentFont()` | **Implemented** | Complete | `DrawingContext`'s `font` instance property |
 | `HPDF_Page_GetCurrentFontSize()` | **Implemented** | Complete | `DrawingContext`'s `fontSize` instance property |
 | `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
@@ -120,7 +120,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | Function  | Status | Test Coverage | SwiftyHaru equivalent |
 |-----------|--------|---------------|-----------------------|
 | `HPDF_Page_Arc()` | **Implemented** | Complete | `Path`'s `appendArc(center:radius:beginningAngle:endAngle:)` and `arc(x:y:radius:beginningAngle:endAngle:)` instance methods |
-| `HPDF_Page_BeginText()` | Unimplemented | None | N/A |
+| `HPDF_Page_BeginText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `Path`'s `appendCircle(center:radius:)` and `appendCircle(x:y:radius:)` instance methods |
 | `HPDF_Page_Clip()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `Path`'s `close()` instance method |
@@ -134,7 +134,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
 | `HPDF_Page_Ellipse()` | **Implemented** | Complete | `Path`'s `appendEllipse(center:horizontalRadius:verticalRadius:)`, `appendEllipse(x:y:horizontalRadius:verticalRadius:)` and `appendEllipse(inscribedIn:)` instance methods |
 | `HPDF_Page_EndPath()` | **N/A** | N/A | N/A |
-| `HPDF_Page_EndText()` | Unimplemented | None | N/A |
+| `HPDF_Page_EndText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
 | `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
@@ -144,8 +144,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GRestore()` | TBD | None | N/A |
 | `HPDF_Page_GSave()` | TBD | None | N/A |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `Path`'s `appendLine(to:)` instance method |
-| `HPDF_Page_MoveTextPos()` | Unimplemented | None | N/A |
-| `HPDF_Page_MoveTextPos2()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTextPos()` | **For internal use only** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
+| `HPDF_Page_MoveTextPos2()` | TBD | None | N/A |
 | `HPDF_Page_MoveTo()` | **Implemented** | Complete | `Path`'s `move(to:)` instance method |
 | `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_Rectangle()` | **Implemented** | Complete | `Path`'s `appendRectangle(_:)`, `appendRectangle(origin:size:)` and `appendRectangle(x:y:width:height:)` instance methods |
@@ -169,7 +169,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_ShowText()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowText()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
 | `HPDF_Page_ShowTextNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowTextNextLineEx()` | Unimplemented | None | N/A |
 | `HPDF_Page_Stroke()` | **Implemented** | Complete | `DrawingContext`'s `stroke(_:)` instance method |

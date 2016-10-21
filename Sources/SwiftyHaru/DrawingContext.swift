@@ -41,7 +41,6 @@ public final class DrawingContext {
         miterLimit = 10
         
         let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
-        
         HPDF_Page_SetFontAndSize(__page, font, 11)
     }
     
@@ -274,7 +273,7 @@ public final class DrawingContext {
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
     }
     
-    // MARK: - Test state
+    // MARK: - Text state
     
     /// Tha current font of the context.
     public var font: Font {
@@ -358,5 +357,26 @@ public final class DrawingContext {
     /// - returns: The width of the text in current fontsize, character spacing and word spacing.
     public func textWidth(for text: String) -> Float {
         return HPDF_Page_TextWidth(_page, text)
+    }
+    
+    // MARK: - Text showing
+    
+    /// Prints the text at the specified position position on the page.
+    ///
+    /// - parameter text: The text to print.
+    /// - parameter position: The position to show the text at.
+    public func show(text: String, atPosition position: Point) {
+        
+        HPDF_Page_BeginText(_page)
+        
+        let currentTextPosition = Point(HPDF_Page_GetCurrentTextPos(_page))
+        let offsetFromCurrentToSpecifiedPosition = position - currentTextPosition
+        HPDF_Page_MoveTextPos(_page,
+                              offsetFromCurrentToSpecifiedPosition.x,
+                              offsetFromCurrentToSpecifiedPosition.y)
+        
+        HPDF_Page_ShowText(_page, text)
+        
+        HPDF_Page_EndText(_page)
     }
 }

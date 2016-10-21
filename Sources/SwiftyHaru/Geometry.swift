@@ -50,6 +50,11 @@ public struct Point {
         
         return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
+    
+    public static func -(lhs: Point, rhs: Vector) -> Point {
+        
+        return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
 }
 
 extension Point: Equatable {
