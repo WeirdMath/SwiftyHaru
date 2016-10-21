@@ -7,6 +7,7 @@
 //
 
 import CLibHaru
+import Foundation
 
 public final class DrawingContext {
     
@@ -42,6 +43,8 @@ public final class DrawingContext {
         
         let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
         HPDF_Page_SetFontAndSize(__page, font, 11)
+        
+        textLeading = 11
     }
     
     internal func _invalidate() {
@@ -359,9 +362,28 @@ public final class DrawingContext {
         return HPDF_Page_TextWidth(_page, text)
     }
     
+    /// Text leading (line spacing) for text showing. Default value is 11.
+    public var textLeading: Float {
+        get {
+            return HPDF_Page_GetTextLeading(_page)
+        }
+        set {
+            HPDF_Page_SetTextLeading(_page, newValue)
+        }
+    }
+    
     // MARK: - Text showing
     
-    /// Prints the text at the specified position position on the page.
+    private func moveTextPosition(to point: Point) {
+        
+        let currentTextPosition = Point(HPDF_Page_GetCurrentTextPos(_page))
+        let offsetFromCurrentToSpecifiedPosition = point - currentTextPosition
+        HPDF_Page_MoveTextPos(_page,
+                              offsetFromCurrentToSpecifiedPosition.x,
+                              offsetFromCurrentToSpecifiedPosition.y)
+    }
+    
+    /// Prints the text at the specified position on the page. You can use "`\n`" to print multiline text.
     ///
     /// - parameter text: The text to print.
     /// - parameter position: The position to show the text at.
@@ -369,14 +391,25 @@ public final class DrawingContext {
         
         HPDF_Page_BeginText(_page)
         
-        let currentTextPosition = Point(HPDF_Page_GetCurrentTextPos(_page))
-        let offsetFromCurrentToSpecifiedPosition = position - currentTextPosition
-        HPDF_Page_MoveTextPos(_page,
-                              offsetFromCurrentToSpecifiedPosition.x,
-                              offsetFromCurrentToSpecifiedPosition.y)
+        moveTextPosition(to: position)
         
-        HPDF_Page_ShowText(_page, text)
+        let lines = text.components(separatedBy: .newlines)
+        
+        HPDF_Page_ShowText(_page, lines.first!)
+        
+        for line in lines.dropFirst() {
+            HPDF_Page_ShowTextNextLine(_page, line)
+        }
         
         HPDF_Page_EndText(_page)
+    }
+    
+    /// Prints the text at the specified position on the page. You can use "`\n`" to print multiline text.
+    ///
+    /// - parameter text: The text to print.
+    /// - parameter x:    x coordinate of the position to show the text at.
+    /// - parameter y:    y coordinate of the position to show the text at.
+    public func show(text: String, atX x: Float, y: Float) {
+        show(text: text, atPosition: Point(x: x, y: y))
     }
 }

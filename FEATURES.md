@@ -98,7 +98,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetCharSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetWordSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetHorizontalScalling()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetTextLeading()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetTextLeading()` | **Implemented** | Complete | `DrawingContext`'s `textLeading` instance property |
 | `HPDF_Page_GetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetRGBFill()` | **Implemented** | Complete | `DrawingContext`'s `fillColor` instance property |
@@ -164,14 +164,14 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetMiterLimit()` | **Implemented** | Complete | `DrawingContext`'s `miterLimit` instance property |
 | `HPDF_Page_SetRGBFill()` | **Implemented** | Complete | `DrawingContext`'s `fillColor` instance property |
 | `HPDF_Page_SetRGBStroke()` | **Implemented** | Complete | `DrawingContext`'s `strokeColor` instance property |
-| `HPDF_Page_SetTextLeading()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextLeading()` | **Implemented** | Complete | `DrawingContext`'s `textLeading` instance property |
 | `HPDF_Page_SetTextMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowText()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
-| `HPDF_Page_ShowTextNextLine()` | Unimplemented | None | N/A |
-| `HPDF_Page_ShowTextNextLineEx()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowTextNextLine()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
+| `HPDF_Page_ShowTextNextLineEx()` | TBD | N/A | N/A |
 | `HPDF_Page_Stroke()` | **Implemented** | Complete | `DrawingContext`'s `stroke(_:)` instance method |
 | `HPDF_Page_TextOut()` | Unimplemented | None | N/A |
 | `HPDF_Page_TextRect()` | Unimplemented | None | N/A |

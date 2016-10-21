@@ -29,7 +29,9 @@ class DrawingContextTests: XCTestCase {
             ("testTextFont", testTextFont),
             ("testTextFontSize", testTextFontSize),
             ("testTextEncoding", testTextEncoding),
-            ("testTextWidthForString", testTextWidthForString)
+            ("testTextWidthForString", testTextWidthForString),
+            ("testShowOnelineText", testShowOnelineText),
+            ("testShowMultilineText", testShowMultilineText)
         ]
     }
     
@@ -455,7 +457,6 @@ class DrawingContextTests: XCTestCase {
         // When
         
         // Draw some simple paths
-        
         page.draw { context in
             
             let path1 = Path()
@@ -654,5 +655,81 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedWidth, returnedWidth)
+    }
+    
+    func testTextLeading() {
+        
+        // Given
+        let expectedInitialTextLeading: Float = 11
+        let expectedTextLeading: Float = 24
+        let expectedFinalTextLeading = expectedInitialTextLeading
+        
+        // When
+        var returnedInitialTextLeading: Float?
+        page.draw { context in
+            returnedInitialTextLeading = context.textLeading
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialTextLeading, returnedInitialTextLeading)
+        
+        // When
+        var returnedTextLeading: Float?
+        page.draw { context in
+            context.textLeading = 24
+            returnedTextLeading = context.textLeading
+        }
+        
+        // Then
+        XCTAssertEqual(expectedTextLeading, returnedTextLeading)
+        
+        // When
+        var returnedFinalTextLeading: Float?
+        page.draw { context in
+            returnedFinalTextLeading = context.textLeading
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalTextLeading, returnedFinalTextLeading)
+    }
+    
+    // MARK: - Text Showing
+    
+    func testShowOnelineText() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        page.draw { context in
+            context.show(text: "Hello World!", atX: 100, y: 100)
+            context.show(text: "", atX: 100, y: 200)
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testShowMultilineText() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        
+        // When
+        page.draw { context in
+            context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
+                         atX: 100, y: 200)
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
 }
