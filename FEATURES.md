@@ -122,7 +122,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Arc()` | **Implemented** | Complete | `Path`'s `appendArc(center:radius:beginningAngle:endAngle:)` and `arc(x:y:radius:beginningAngle:endAngle:)` instance methods |
 | `HPDF_Page_BeginText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `Path`'s `appendCircle(center:radius:)` and `appendCircle(x:y:radius:)` instance methods |
-| `HPDF_Page_Clip()` | Unimplemented | None | N/A |
+| `HPDF_Page_Clip()` | **Implemented** | Complete | `DrawingContext`'s `clip(to:evenOddRule:_:)` instance method |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `Path`'s `close()` instance method |
 | `HPDF_Page_ClosePathStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathEofillStroke()` | **N/A** | N/A | N/A |
@@ -135,7 +135,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Ellipse()` | **Implemented** | Complete | `Path`'s `appendEllipse(center:horizontalRadius:verticalRadius:)`, `appendEllipse(x:y:horizontalRadius:verticalRadius:)` and `appendEllipse(inscribedIn:)` instance methods |
 | `HPDF_Page_EndPath()` | **N/A** | N/A | N/A |
 | `HPDF_Page_EndText()` | **For internal use only** | N/A | N/A |
-| `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
+| `HPDF_Page_Eoclip()` | **Implemented** | Complete | `DrawingContext`'s `clip(to:evenOddRule:_:)` instance method |
 | `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
 | `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
