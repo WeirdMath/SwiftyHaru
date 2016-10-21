@@ -25,7 +25,11 @@ class DrawingContextTests: XCTestCase {
             ("testFillColorCMYK", testFillColorCMYK),
             ("testFillColorGray", testFillColorGray),
             ("testConstructPath", testConstructPath),
-            ("testPaintPath", testPaintPath)
+            ("testPaintPath", testPaintPath),
+            ("testTextFont", testTextFont),
+            ("testTextFontSize", testTextFontSize),
+            ("testTextEncoding", testTextEncoding),
+            ("testTextWidthForString", testTextWidthForString)
         ]
     }
     
@@ -522,5 +526,133 @@ class DrawingContextTests: XCTestCase {
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
+    
+    // MARK: - Text State
+    
+    func testTextFont() {
+        
+        // Given
+        let expectedInitialFont = Font.helvetica
+        let expectedFont = Font.courierBold
+        let expectedFinalFont = expectedInitialFont
+        
+        // When
+        var returnedInitialFont: Font?
+        page.draw { context in
+            returnedInitialFont = context.font
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialFont, returnedInitialFont)
+        
+        // When
+        var returnedFont: Font?
+        page.draw { context in
+            
+            context.font = .courierBold
+            returnedFont = context.font
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFont, returnedFont)
+        
+        // When
+        var returnedFinalFont: Font?
+        page.draw { context in
+            returnedFinalFont = context.font
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalFont, returnedFinalFont)
+    }
+    
+    func testTextFontSize() {
+        
+        // Given
+        let expectedInitialFontSize: Float = 11
+        let expectedFontSize: Float = 64
+        let expectedFinalFontSize = expectedInitialFontSize
+        
+        // When
+        var returnedInitialFontSize: Float?
+        page.draw { context in
+            returnedInitialFontSize = context.fontSize
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialFontSize, returnedInitialFontSize)
+        
+        // When
+        var returnedFontSize: Float?
+        page.draw { context in
+            
+            context.fontSize = 64
+            returnedFontSize = context.fontSize
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFontSize, returnedFontSize)
+        
+        // When
+        var returnedFinalFontSize: Float?
+        page.draw { context in
+            returnedFinalFontSize = context.fontSize
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalFontSize, returnedFinalFontSize)
+    }
+    
+    func testTextEncoding() {
+        
+        // Given
+        let expectedInitialEncoding = Encoding.standard
+        let expectedEncoding = Encoding.cp1251
+        let expectedFinalEncoding = expectedInitialEncoding
+        
+        // When
+        var returnedInitialEncoding: Encoding?
+        page.draw { context in
+            returnedInitialEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedInitialEncoding, returnedInitialEncoding)
+        
+        // When
+        var returnedEncoding: Encoding?
+        page.draw { context in
+            
+            context.encoding = .cp1251
+            returnedEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedEncoding, returnedEncoding)
+        
+        // When
+        var returnedFinalEncoding: Encoding?
+        page.draw { context in
+            returnedFinalEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedFinalEncoding, returnedFinalEncoding)
+    }
+    
+    func testTextWidthForString() {
+        
+        // Given
+        let expectedWidth: Float = 62.953
+        let text = "Hello, World!"
+        
+        // When
+        var returnedWidth: Float?
+        page.draw { context in
+            returnedWidth = context.textWidth(for: text)
+        }
+        
+        // Then
+        XCTAssertEqual(expectedWidth, returnedWidth)
+    }
 }
-

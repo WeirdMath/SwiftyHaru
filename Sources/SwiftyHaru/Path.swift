@@ -10,8 +10,6 @@
 public struct Path {
     
     /// Creates an empty path.
-    ///
-    /// - returns: An empty path.
     public init() {}
     
     internal enum _PathConstructionOperation {
@@ -334,7 +332,7 @@ public struct Path {
     }
     
     /// Appends a Bézier curve to the current path using the control points `controlPoint1`,
-    ///`controlPoint2` and `endPoint`, then sets the current point to `endPoint`.
+    /// `controlPoint2` and `endPoint`, then sets the current point to `endPoint`.
     ///
     /// ![figure](http://libharu.org/figures/figure20.png "figure")
     ///
@@ -349,7 +347,7 @@ public struct Path {
     }
     
     /// Creates a new path by appending a Bézier curve to the old path using the control points `controlPoint1`,
-    ///`controlPoint2` and `endPoint`, then sets the current point to `endPoint`.
+    /// `controlPoint2` and `endPoint`, then sets the current point to `endPoint`.
     ///
     /// ![figure](http://libharu.org/figures/figure20.png "figure")
     ///

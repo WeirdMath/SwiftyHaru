@@ -29,7 +29,7 @@ extension Size: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Size, rhs: Size) -> Bool{
+    public static func ==(lhs: Size, rhs: Size) -> Bool {
         return lhs.width == rhs.width && lhs.height == rhs.height
     }
 }
@@ -50,6 +50,11 @@ public struct Point {
         
         return Point(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
+    
+    public static func -(lhs: Point, rhs: Vector) -> Point {
+        
+        return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
 }
 
 extension Point: Equatable {
@@ -62,7 +67,7 @@ extension Point: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Point, rhs: Point) -> Bool{
+    public static func ==(lhs: Point, rhs: Point) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
@@ -131,7 +136,7 @@ extension Rectangle: Equatable {
     /// - Parameters:
     ///   - lhs: A value to compare.
     ///   - rhs: Another value to compare.
-    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool{
+    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool {
         return lhs.origin == rhs.origin && lhs.size == rhs.size
     }
 }

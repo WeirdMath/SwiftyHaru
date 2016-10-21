@@ -50,7 +50,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | Function  | Status | Test Coverage | SwiftyHaru equivalent |
     |-----------|--------|---------------|-----------------------|
     | `HPDF_AddPageLabel()` | **Implemented** | Complete | `PDFDocument`'s `addPageLabel(_:fromPage:startingWith:withPrefix)` instance method |
-    | `HPDF_GetFont()` | Unimplemented | None | N/A |
+    | `HPDF_GetFont()` | **For internal use only** | N/A | N/A |
     | `HPDF_LoadType1FontFromFile()` | TBD | N/A | N/A |
     | `HPDF_LoadTTFontFromFile()` | TBD | N/A | N/A |
     | `HPDF_LoadTTFontFromFile2()` | TBD | N/A | N/A |
@@ -81,13 +81,13 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_CreateTextAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateLinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateURILinkAnnot()` | Unimplemented | None | N/A |
-| `HPDF_Page_TextWidth()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextWidth()` | **Implemented** | Complete | `DrawingContext`'s `textWidth(for:)` instance method |
 | `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | **Implemented** | Complete | `Path`'s `currentPosition` instance property |
-| `HPDF_Page_GetCurrentTextPos()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetCurrentFont()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetCurrentFontSize()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetCurrentTextPos()` | **Implemented** | None | `DrawingContext`'s `currentTextPosition` instance property |
+| `HPDF_Page_GetCurrentFont()` | **Implemented** | Complete | `DrawingContext`'s `font` instance property |
+| `HPDF_Page_GetCurrentFontSize()` | **Implemented** | Complete | `DrawingContext`'s `fontSize` instance property |
 | `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `DrawingContext`'s `lineWidth` instance property |
 | `HPDF_Page_GetLineCap()` | **Implemented** | Complete | `DrawingContext`'s `lineCap` instance property |
@@ -120,7 +120,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | Function  | Status | Test Coverage | SwiftyHaru equivalent |
 |-----------|--------|---------------|-----------------------|
 | `HPDF_Page_Arc()` | **Implemented** | Complete | `Path`'s `appendArc(center:radius:beginningAngle:endAngle:)` and `arc(x:y:radius:beginningAngle:endAngle:)` instance methods |
-| `HPDF_Page_BeginText()` | Unimplemented | None | N/A |
+| `HPDF_Page_BeginText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `Path`'s `appendCircle(center:radius:)` and `appendCircle(x:y:radius:)` instance methods |
 | `HPDF_Page_Clip()` | Unimplemented | None | N/A |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `Path`'s `close()` instance method |
@@ -134,7 +134,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_DrawImage()` | Unimplemented | None | N/A |
 | `HPDF_Page_Ellipse()` | **Implemented** | Complete | `Path`'s `appendEllipse(center:horizontalRadius:verticalRadius:)`, `appendEllipse(x:y:horizontalRadius:verticalRadius:)` and `appendEllipse(inscribedIn:)` instance methods |
 | `HPDF_Page_EndPath()` | **N/A** | N/A | N/A |
-| `HPDF_Page_EndText()` | Unimplemented | None | N/A |
+| `HPDF_Page_EndText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Eoclip()` | Unimplemented | None | N/A |
 | `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
 | `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext`'s `fill(_:evenOddRule:stroke:)` instance method |
@@ -144,8 +144,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GRestore()` | TBD | None | N/A |
 | `HPDF_Page_GSave()` | TBD | None | N/A |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `Path`'s `appendLine(to:)` instance method |
-| `HPDF_Page_MoveTextPos()` | Unimplemented | None | N/A |
-| `HPDF_Page_MoveTextPos2()` | Unimplemented | None | N/A |
+| `HPDF_Page_MoveTextPos()` | **For internal use only** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
+| `HPDF_Page_MoveTextPos2()` | TBD | None | N/A |
 | `HPDF_Page_MoveTo()` | **Implemented** | Complete | `Path`'s `move(to:)` instance method |
 | `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_Rectangle()` | **Implemented** | Complete | `Path`'s `appendRectangle(_:)`, `appendRectangle(origin:size:)` and `appendRectangle(x:y:width:height:)` instance methods |
@@ -154,7 +154,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetCMYKStroke()` | **Implemented** | Complete | `DrawingContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetDash()` | **Implemented** | Complete | `DrawingContext`'s `dashStyle` instance property |
 | `HPDF_Page_SetExtGState()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetFontAndSize()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetFontAndSize()` | **Implemented** | Complete | `DrawingContext`'s `font` and `fontSize` instance properties |
 | `HPDF_Page_SetGrayFill()` | **Implemented** | Complete | `DrawingContext`'s `fillColor` instance property |
 | `HPDF_Page_SetGrayStroke()` | **Implemented** | Complete | `DrawingContext`'s `strokeColor` instance property |
 | `HPDF_Page_SetHorizontalScalling()` | Unimplemented | None | N/A |
@@ -169,7 +169,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_ShowText()` | Unimplemented | None | N/A |
+| `HPDF_Page_ShowText()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
 | `HPDF_Page_ShowTextNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowTextNextLineEx()` | Unimplemented | None | N/A |
 | `HPDF_Page_Stroke()` | **Implemented** | Complete | `DrawingContext`'s `stroke(_:)` instance method |
@@ -178,11 +178,27 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 ## Font Handling
 
-Unimplemented
+| Function  | Status | Test Coverage | SwiftyHaru equivalent |
+|-----------|--------|---------------|-----------------------|
+| `HPDF_Font_GetFontName()` | **Implemented** | Complete | `Font`'s `name` instance property |
+| `HPDF_Font_GetEncodingName()` | **Implemented** | Complete | `Encoding`'s `name` instance property |
+| `HPDF_Font_GetUnicodeWidth()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetBBox()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetAscent()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetDescent()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetXHeight()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetCapHeight()` | Unimplemented | None | N/A |
+| `HPDF_Font_TextWidth()` | Unimplemented | None | N/A |
+| `HPDF_Font_MeasureText()` | Unimplemented | None | N/A |
 
 ## Encoding
 
-Unimplemented
+| Function  | Status | Test Coverage | SwiftyHaru equivalent |
+|-----------|--------|---------------|-----------------------|
+| `HPDF_Encoder_GetType()` |  TBD | N/A | N/A |
+| `HPDF_Encoder_GetByteType()` | TBD | N/A | N/A |
+| `HPDF_Encoder_GetUnicode()` | TBD | N/A | N/A |
+| `HPDF_Encoder_GetWritingMode()` | TBD | N/A | N/A |
 
 ## Annotation
 

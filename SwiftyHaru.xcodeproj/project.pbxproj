@@ -12,6 +12,7 @@
 		871C07951DA1B56C00C02640 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C07941DA1B56C00C02640 /* Color.swift */; };
 		872239D51DA145AF006DD44C /* PDFDocument.PageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */; };
 		8734A8371DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */; };
+		873D403E1DB8FF140022F621 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D403C1DB8FF020022F621 /* Encoding.swift */; };
 		875073571DA67E4000956E8D /* DashStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875073561DA67E4000956E8D /* DashStyleTests.swift */; };
 		8750736D1DA79CDA00956E8D /* LineCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750736C1DA79CDA00956E8D /* LineCap.swift */; };
 		8750736F1DA7A8C600956E8D /* LineJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750736E1DA7A8C600956E8D /* LineJoin.swift */; };
@@ -182,6 +183,7 @@
 		871C07941DA1B56C00C02640 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageLayout.swift; sourceTree = "<group>"; };
 		8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageNumberStyle.swift; sourceTree = "<group>"; };
+		873D403C1DB8FF020022F621 /* Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
 		875073561DA67E4000956E8D /* DashStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyleTests.swift; sourceTree = "<group>"; };
 		8750736C1DA79CDA00956E8D /* LineCap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCap.swift; sourceTree = "<group>"; };
 		8750736E1DA7A8C600956E8D /* LineJoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineJoin.swift; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
 				875073741DA82AD700956E8D /* Font.swift */,
+				873D403C1DB8FF020022F621 /* Encoding.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */,
 				8767BB2E1DA64280003A3A8F /* DashStyle.swift */,
 				8750736C1DA79CDA00956E8D /* LineCap.swift */,
@@ -858,6 +861,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				873D403E1DB8FF140022F621 /* Encoding.swift in Sources */,
 				877187B71DA1BF300050769E /* PDFColorSpace.swift in Sources */,
 				8750736F1DA7A8C600956E8D /* LineJoin.swift in Sources */,
 				872239D51DA145AF006DD44C /* PDFDocument.PageLayout.swift in Sources */,
