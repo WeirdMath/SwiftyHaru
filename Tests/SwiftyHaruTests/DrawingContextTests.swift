@@ -28,7 +28,8 @@ class DrawingContextTests: XCTestCase {
             ("testPaintPath", testPaintPath),
             ("testTextFont", testTextFont),
             ("testTextFontSize", testTextFontSize),
-            ("testTextEncoding", testTextEncoding)
+            ("testTextEncoding", testTextEncoding),
+            ("testTextWidthForString", testTextWidthForString)
         ]
     }
     
