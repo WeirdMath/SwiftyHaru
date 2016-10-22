@@ -418,7 +418,7 @@ public final class DrawingContext {
                               offsetFromCurrentToSpecifiedPosition.y)
     }
     
-    /// Prints the text at the specified position on the page. You can use "`\n`" to print multiline text.
+    /// Prints the text at the specified position on the page. You can use "\n" to print multiline text.
     ///
     /// - parameter text: The text to print.
     /// - parameter position: The position to show the text at.
@@ -439,7 +439,7 @@ public final class DrawingContext {
         HPDF_Page_EndText(_page)
     }
     
-    /// Prints the text at the specified position on the page. You can use "`\n`" to print multiline text.
+    /// Prints the text at the specified position on the page. You can use "\n" to print multiline text.
     ///
     /// - parameter text: The text to print.
     /// - parameter x:    x coordinate of the position to show the text at.
