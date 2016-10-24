@@ -22,7 +22,7 @@ func constructRect(in context: DrawingContext, x: Float, y: Float, label: String
     return Path().appendingRectangle(x: x, y: y - 40, width: 220, height: 25)
 }
 
-let document = SwiftyHaru.PDFDocument()
+let document = PDFDocument()
 let page = document.addPage()
 let pageTitle = "Line Example"
 
