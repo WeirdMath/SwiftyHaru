@@ -169,11 +169,11 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_ShowText()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
+| `HPDF_Page_ShowText()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ShowTextNextLine()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
 | `HPDF_Page_ShowTextNextLineEx()` | TBD | N/A | N/A |
 | `HPDF_Page_Stroke()` | **Implemented** | Complete | `DrawingContext`'s `stroke(_:)` instance method |
-| `HPDF_Page_TextOut()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextOut()` | **Implemented** | None | `DrawingContext`'s `show(text:atPosition:)` instance method |
 | `HPDF_Page_TextRect()` | Unimplemented | None | N/A |
 
 ## Font Handling
