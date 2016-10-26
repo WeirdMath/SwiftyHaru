@@ -11,6 +11,7 @@ import Foundation
 
 public final class DrawingContext {
     
+    private weak var _document: PDFDocument?
     private var __page: HPDF_Page
     private var _documentHandle: HPDF_Doc
     private var _isInvalidated = false
@@ -23,10 +24,13 @@ public final class DrawingContext {
         return __page
     }
     
-    internal init(for page: HPDF_Page, document: HPDF_Doc) {
+    internal init(for page: PDFPage) {
         
-        _documentHandle = document
-        __page = page
+        __page = page._pageHandle
+        
+        _document = page.document
+        
+        _documentHandle = _document!._documentHandle
     }
     
     internal func _cleanup() {
@@ -346,7 +350,7 @@ public final class DrawingContext {
         }
     }
     
-    /// The encoding to use for a text.
+    /// The encoding to use for a text. If the encoding cannot be used with the specified font, does nothing.
     public var encoding: Encoding {
         get {
             let font = HPDF_Page_GetCurrentFont(_page)
@@ -355,8 +359,14 @@ public final class DrawingContext {
         }
         set {
             _enableMultibyteEncoding(for: newValue)
+            
             let font = HPDF_GetFont(_documentHandle, self.font.name, newValue.name)
-            HPDF_Page_SetFontAndSize(_page, font, fontSize)
+            
+            if let font = font {
+                HPDF_Page_SetFontAndSize(_page, font, fontSize)
+            } else {
+                HPDF_ResetError(_documentHandle)
+            }
         }
     }
     
@@ -367,22 +377,24 @@ public final class DrawingContext {
              Encoding.gbEucCnVertical,
              Encoding.gbkEucHorisontal,
              Encoding.gbkEucVertical:
-            HPDF_UseCNSEncodings(_documentHandle)
+            _document?._useCNSEncodings()
         case Encoding.eTenB5Vertical,
              Encoding.eTenB5Horisontal:
-            HPDF_UseCNTEncodings(_documentHandle)
+            _document?._useCNTEncodings()
         case Encoding.rksjHorisontal,
              Encoding.rksjVertical,
              Encoding.rksjHorisontalProportional,
              Encoding.eucHorisontal,
              Encoding.eucVertical:
-            HPDF_UseJPEncodings(_documentHandle)
+            _document?._useJPEncodings()
         case Encoding.kscEucHorisontal,
              Encoding.kscEucVertical,
              Encoding.kscMsUhcProportional,
              Encoding.kscMsUhsVerticalFixedWidth,
              Encoding.kscMsUhsHorisontalFixedWidth:
-            HPDF_UseKREncodings(_documentHandle)
+            _document?._useKREncodings()
+        case Encoding.utf8:
+            _document?._useUTFEncodings()
         default:
             return
         }

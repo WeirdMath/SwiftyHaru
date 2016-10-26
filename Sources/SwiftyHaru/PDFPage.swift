@@ -151,7 +151,7 @@ public final class PDFPage {
         
         _contextIsPresent = true
         
-        let context = DrawingContext(for: _pageHandle, document: document!._documentHandle)
+        let context = DrawingContext(for: self)
         
         context._cleanup()
         

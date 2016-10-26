@@ -16,7 +16,7 @@ public final class PDFDocument {
     
     public private(set) var pages: [PDFPage] = []
     
-    public private(set) var fonts: [Font] = []
+    public private(set) var fonts: Set<Font> = []
     
     internal var _error: PDFError
     
@@ -229,14 +229,14 @@ public final class PDFDocument {
     /// - parameter embeddingGlyphData: If this parameter is set to `true`, the glyph data of the font is embedded,
     ///                                 otherwise only the matrix data is included in PDF file.
     ///
-    /// - throws: `PDFError.fontExists`, `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`, 
+    /// - throws: `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`,
     ///           `PDFError.ttfInvalidCMap`, `PDFError.ttfInvalidFormat`, `PDFError.ttfMissingTable`,
     ///           `PDFError.ttfCannotEmbedFont`.
     ///
     /// - returns: The loaded font.
-    public func loadFont(from data: Data, embeddingGlyphData: Bool) throws -> Font {
+    public func loadTrueTypeFont(from data: Data, embeddingGlyphData: Bool) throws -> Font {
         
-        let embedding: Int32 = embeddingGlyphData ? 1 : 0
+        let embedding = embeddingGlyphData ? HPDF_TRUE : HPDF_FALSE
         
         let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
             let cString = HPDF_LoadTTFontFromMemory(self._documentHandle,
@@ -252,11 +252,52 @@ public final class PDFDocument {
         
         if let name = name {
             let font = Font(name: name)
-            fonts.append(font)
+            fonts.insert(font)
             return font
         } else {
             HPDF_ResetError(_documentHandle)
             throw _error
+        }
+    }
+    
+    private var _jpEncodingsEnabled = false
+    private var _krEncodingsEnabled = false
+    private var _cnsEncodingsEnabled = false
+    private var _cntEncodingsEnabled = false
+    private var _utfEncodingsEnabled = false
+    
+    internal func _useJPEncodings() {
+        if !_jpEncodingsEnabled {
+            HPDF_UseJPEncodings(_documentHandle)
+            _jpEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useKREncodings() {
+        if !_krEncodingsEnabled {
+            HPDF_UseKREncodings(_documentHandle)
+            _krEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useCNSEncodings() {
+        if !_cnsEncodingsEnabled {
+            HPDF_UseCNSEncodings(_documentHandle)
+            _cnsEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useCNTEncodings() {
+        if !_cntEncodingsEnabled {
+            HPDF_UseCNTEncodings(_documentHandle)
+            _cntEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useUTFEncodings() {
+        if !_utfEncodingsEnabled {
+            HPDF_UseUTFEncodings(_documentHandle)
+            _utfEncodingsEnabled = true
         }
     }
 }

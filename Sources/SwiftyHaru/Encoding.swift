@@ -146,6 +146,9 @@ public struct Encoding {
     /// Vertical writing version of `kscMsUhsHorisontalFixedWidth` (*KSCms-UHC-HW-V*)
     public static let kscMsUhsVerticalFixedWidth = Encoding(name: "KSCms-UHC-HW-V", isMultibyte: true)
     
+    /// Unicode (*UTF-8*)
+    public static let utf8 = Encoding(name: "UTF-8", isMultibyte: true)
+    
     // MARK: - Interface
     
     internal let _name: String

@@ -7,7 +7,8 @@
 //
 
 import XCTest
-import SwiftyHaru
+import Foundation
+@testable import SwiftyHaru
 
 class PDFDocumentTests: XCTestCase {
     
@@ -16,7 +17,8 @@ class PDFDocumentTests: XCTestCase {
             ("testCreateEmptyDocument", testCreateEmptyDocument),
             ("testAddingPages", testAddingPages),
             ("testPageLayout", testPageLayout),
-            ("testAddPageLabel", testAddPageLabel)
+            ("testAddPageLabel", testAddPageLabel),
+            ("testLoadTrueTypeFont", testLoadTrueTypeFont)
         ]
     }
     
@@ -124,5 +126,24 @@ class PDFDocumentTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testLoadTrueTypeFont() {
+        
+        // Given
+        let expectedFont = Font(name: "AndaleMono")
+        
+        // When
+        let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
+        let loadedFont = try! sut.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
+        
+        // Then
+        XCTAssertEqual(expectedFont, loadedFont)
+        
+        // When
+        let incorrectFontData = Data()
+        
+        // Then
+        XCTAssertThrowsError(try sut.loadTrueTypeFont(from: incorrectFontData, embeddingGlyphData: true))
     }
 }

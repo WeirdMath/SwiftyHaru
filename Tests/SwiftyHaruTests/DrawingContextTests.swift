@@ -31,9 +31,11 @@ class DrawingContextTests: XCTestCase {
             ("testTextFont", testTextFont),
             ("testTextFontSize", testTextFontSize),
             ("testTextEncoding", testTextEncoding),
+            ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
             ("testTextWidthForString", testTextWidthForString),
             ("testShowOnelineText", testShowOnelineText),
-            ("testShowMultilineText", testShowMultilineText)
+            ("testShowMultilineText", testShowMultilineText),
+            ("testShowUnicodeText", testShowUnicodeText)
         ]
     }
     
@@ -380,7 +382,7 @@ class DrawingContextTests: XCTestCase {
     
     func testConstructPath() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -451,7 +453,7 @@ class DrawingContextTests: XCTestCase {
     
     func testPaintPath() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -532,7 +534,7 @@ class DrawingContextTests: XCTestCase {
     
     func testClipToPathNonzeroWindingNumberRule() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -565,7 +567,7 @@ class DrawingContextTests: XCTestCase {
     
     func testClipToPathEvenOddRule() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -709,6 +711,23 @@ class DrawingContextTests: XCTestCase {
         XCTAssertEqual(expectedFinalEncoding, returnedFinalEncoding)
     }
     
+    func testTextEncodingUnsupportedByCurrentFont() {
+        
+        // Given
+        let expectedEncoding = Encoding.standard
+        
+        // When
+        var returnedEncoding: Encoding?
+        page.draw { context in
+            context.font = .helvetica
+            context.encoding = .utf8
+            returnedEncoding = context.encoding
+        }
+        
+        // Then
+        XCTAssertEqual(expectedEncoding, returnedEncoding)
+    }
+    
     func testTextWidthForString() {
         
         // Given
@@ -765,7 +784,7 @@ class DrawingContextTests: XCTestCase {
     
     func testShowOnelineText() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -784,7 +803,7 @@ class DrawingContextTests: XCTestCase {
     
     func testShowMultilineText() {
         
-//        recordMode = true
+        //        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -793,6 +812,39 @@ class DrawingContextTests: XCTestCase {
         page.draw { context in
             context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
                          atX: 100, y: 200)
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testShowUnicodeText() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
+        let loadedFont = try! document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
+        
+        // When
+        page.draw { context in
+            
+            context.font = loadedFont
+            context.encoding = .utf8
+            
+            context.show(text: "Math poetry!", atX: 100, y: 220)
+            
+            context.show(text: "Гомоморфный образ группы,\n" +
+                "(Будь во имя коммунизма)\n" +
+                "Изоморфен фактор-группе\n" +
+                "По ядру гомоморфизма.",
+                         atX: 100, y: 200)
+            
+            // Test that setting a multibyte encoding twice doesn't cause an error in LibHaru
+            context.encoding = .utf8
         }
         
         let returnedDocumentData = document.getData()

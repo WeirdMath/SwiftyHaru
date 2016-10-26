@@ -1510,7 +1510,13 @@ HPDF_LoadTTFontFromMemory (HPDF_Doc       pdf,
         return NULL;
     }
     
-    return LoadTTFontFromStream (pdf, font_data, embedding, "");
+    ret = LoadTTFontFromStream (pdf, font_data, embedding, "");
+    
+    if (!ret) {
+        HPDF_CheckError(&pdf->error);
+    }
+    
+    return ret;
 }
 
 HPDF_EXPORT(const char*)

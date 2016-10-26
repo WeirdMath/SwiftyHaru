@@ -51,9 +51,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     |-----------|--------|---------------|-----------------------|
     | `HPDF_AddPageLabel()` | **Implemented** | Complete | `PDFDocument`'s `addPageLabel(_:fromPage:startingWith:withPrefix)` instance method |
     | `HPDF_GetFont()` | **For internal use only** | N/A | N/A |
-    | `HPDF_LoadType1FontFromFile()` | TBD | N/A | N/A |
-    | `HPDF_LoadTTFontFromFile()` | TBD | N/A | N/A |
-    | `HPDF_LoadTTFontFromFile2()` | TBD | N/A | N/A |
+    | `HPDF_LoadType1FontFromFile()` | Unimplemented | None | N/A |
+    | `HPDF_LoadTTFontFromFile()` | **Implemented** | Complete | `PDFDocument`'s `loadTrueTypeFont(from:embeddingGlyphData:)` instance method |
+    | `HPDF_LoadTTFontFromFile2()` | Unimplemented | None | N/A |
     | `HPDF_UseJPFonts()` | Unimplemented | None | N/A |
     | `HPDF_UseKRFonts()` | Unimplemented | None | N/A |
     | `HPDF_UseCNSFonts()` | Unimplemented | None | N/A |
@@ -61,7 +61,16 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 * **[Encodings](https://github.com/libharu/libharu/wiki/API%3A-Document#Encodings)**
     
-    Unimplemented
+    | Function  | Status | Test Coverage | SwiftyHaru equivalent |
+    |-----------|--------|---------------|-----------------------|
+    | `HPDF_GetEncoder()` | Unimplemented | None | N/A |
+    | `HPDF_GetCurrentEncoder()` | Unimplemented | None | N/A |
+    | `HPDF_SetCurrentEncoder()` | Unimplemented | None | N/A |
+    | `HPDF_UseJPEncodings()` | **For internal use only** | N/A | N/A |
+    | `HPDF_UseKREncodings()` | **For internal use only** | N/A | N/A |
+    | `HPDF_UseCNSEncodings()` | **For internal use only** | N/A | N/A |
+    | `HPDF_UseCNTEncodings()` | **For internal use only** | N/A | N/A |
+    | `HPDF_UseUTFEncodings()` | **For internal use only** | N/A | N/A |
 
 * **[Other Functions](https://github.com/libharu/libharu/wiki/API%3A-Document#Other_Functions)**
     
