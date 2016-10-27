@@ -36,6 +36,6 @@ Pod::Spec.new do |s|
   s.subspec 'SwiftyHaru' do |ss|
     ss.dependency 'SwiftyHaru/CLibHaru'
     ss.source_files = 'Sources/SwiftyHaru/**/*.swift'
-    ss.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/SwiftyHaru/CLibHaru/**'}
+    ss.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/SwiftyHaru/Sources/CLibHaru/**'}
   end
 end
