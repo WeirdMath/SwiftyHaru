@@ -22,6 +22,8 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = "2.0"
   s.requires_arc = true
 
+  s.default_subspec = 'Core'
+
   s.subspec 'CLibPNG' do |ss|
     ss.source_files = 'Sources/CLibPNG/**/*.{h,c}'
     ss.preserve_paths = 'Sources/CLibPNG/module.modulemap'
@@ -33,7 +35,7 @@ Pod::Spec.new do |s|
     ss.preserve_paths = 'Sources/CLibHaru/module.modulemap'
     ss.libraries = 'z'
   end
-  s.subspec 'SwiftyHaru' do |ss|
+  s.subspec 'Core' do |ss|
     ss.dependency 'SwiftyHaru/CLibHaru'
     ss.source_files = 'Sources/SwiftyHaru/**/*.swift'
     ss.pod_target_xcconfig = {'SWIFT_INCLUDE_PATHS' => '$(PODS_ROOT)/SwiftyHaru/Sources/CLibHaru/**'}
