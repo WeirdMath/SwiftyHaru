@@ -6,6 +6,7 @@
 [![codebeat badge](https://codebeat.co/badges/4ce84f1a-1ab5-4533-a609-afb168128538)](https://codebeat.co/projects/github-com-weirdmath-swiftyharu)
 ![Language](https://img.shields.io/badge/Swift-3.0-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)
+![Cocoapods](https://img.shields.io/cocoapods/v/SwiftyHaru.svg?style=flat)
 
 SwiftyHaru is an object-oriented Swift wrapper for [LibHaru](https://github.com/libharu/libharu), a C library for creating PDF documents. It brings the safety of Swift itself to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.
 
