@@ -231,6 +231,8 @@ public final class DrawingContext {
         }
         
         assert(path.currentPosition == Point(HPDF_Page_GetCurrentPos(_page)))
+        
+        HPDF_Page_MoveTo(_page, 0, 0)
     }
     
     // MARK: - Path painting

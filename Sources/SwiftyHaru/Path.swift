@@ -219,7 +219,7 @@ public struct Path {
     /// - parameter center: The center point of the circle.
     /// - parameter radius: The radius of the circle.
     public mutating func appendCircle(center: Point, radius: Float) {
-        _currentPosition = Point(x: center.x - radius, y: center.y)
+        move(toX: center.x - radius, y: center.y)
         _pathConstructionSequence.append(.circle(center: center, radius: radius))
     }
     
@@ -267,7 +267,7 @@ public struct Path {
     ///
     /// - parameter rect: The rectangle to append.
     public mutating func appendRectangle(_ rect: Rectangle) {
-        _currentPosition = rect.origin
+        move(to: rect.origin)
         _pathConstructionSequence.append(.rectangle(rect))
     }
     
@@ -425,7 +425,7 @@ public struct Path {
     /// - parameter horizontalRadius: The horizontal radius of the ellipse.
     /// - parameter verticalRadius:   The vertical radius of the ellipse.
     public mutating func appendEllipse(center: Point, horizontalRadius: Float, verticalRadius: Float) {
-        _currentPosition = Point(x: center.x - horizontalRadius, y: center.y)
+        move(toX: center.x - horizontalRadius, y: center.y)
         _pathConstructionSequence.append(.ellipse(center: center,
                                                   xRadius: horizontalRadius,
                                                   yRadius: verticalRadius))

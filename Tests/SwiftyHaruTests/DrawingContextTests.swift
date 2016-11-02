@@ -380,9 +380,11 @@ class DrawingContextTests: XCTestCase {
         XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
     
+    // MARK: - Path construction
+    
     func testConstructPath() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -415,11 +417,39 @@ class DrawingContextTests: XCTestCase {
             
             context.stroke(path)
         }
+        
+        // Test that creating circles, ellipses and rectangles starts a new subpath in `currentPosition`
+        page.draw { context in
+            let pathWithCircle = Path()
+                .appendingCircle(x: 100, y: 400, radius: 30)
+                .appendingLine(toX: 150, y: 400)
+                .appendingLine(toX: 150, y: 450)
+                .closingSubpath()
+            
+            let pathWithEllipse = Path()
+                .appendingEllipse(x: 200, y: 400, horizontalRadius: 30, verticalRadius: 20)
+                .appendingLine(toX: 250, y: 400)
+                .appendingLine(toX: 250, y: 450)
+                .closingSubpath()
+            
+            let pathWithRectangle = Path()
+                .appendingRectangle(x: 270, y: 380, width: 60, height: 40)
+                .appendingLine(toX: 350, y: 400)
+                .appendingLine(toX: 350, y: 450)
+                .closingSubpath()
+            
+            context.stroke(pathWithCircle)
+            context.stroke(pathWithEllipse)
+            context.stroke(pathWithRectangle)
+        }
+        
         let returnedDocumentData = document.getData()
         
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
+    
+    // MARK: - Path paiting
     
     private func constructExampleCurve(startingWith point: Point) -> Path {
         
@@ -449,11 +479,9 @@ class DrawingContextTests: XCTestCase {
         return path
     }
     
-    // MARK: - Path paiting
-    
     func testPaintPath() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -534,7 +562,7 @@ class DrawingContextTests: XCTestCase {
     
     func testClipToPathNonzeroWindingNumberRule() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -567,7 +595,7 @@ class DrawingContextTests: XCTestCase {
     
     func testClipToPathEvenOddRule() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
