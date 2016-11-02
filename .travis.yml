@@ -1,14 +1,27 @@
 language: generic
-os:
-  - osx
-  - linux
 
-sudo: required
-dist: trusty
-osx_image: xcode8
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8
+      env: RUN_TESTS="NO" POD_LINT="YES"
+    - os: osx
+      osx_image: xcode8
+      env: RUN_TESTS="YES" POD_LINT="NO"
+    - os: linux
+      sudo: required
+      dist: trusty
+      env: RUN_TESTS="YES" POD_LINT="NO"
 
 script:
-  - Scripts/ci.sh
+  - if [[ $POD_LINT == "YES" ]]; then
+      gem install cocoapods && pod lib lint --sources=https://github.com/WeirdMath/Specs.git,master --allow-warnings;
+    fi
+  - if [[ $RUN_TESTS == "YES" ]]; then
+      eval Scripts/ci.sh;
+    fi
 
 after_success:
-  - Scripts/coverage.sh
+  - if [[ $RUN_TESTS == "YES" ]]; then
+      eval Scripts/coverage.sh;
+    fi
