@@ -11,8 +11,36 @@ SwiftyHaru is an object-oriented Swift wrapper for [LibHaru](https://github.com/
 
 Check out which [features of LibHaru](https://github.com/libharu/libharu/wiki) has already been implemented in [FEATURES.md](FEATURES.md)
 
+## Requirements
+
+* Swift 3
+* iOS 8.0+
+* OSX 10.10+
+* tvOS 9.0+
+* watchOS 2.0+
+* Ubuntu 14.04+
+
 ## Installation
 
+#### CocoaPods
+
+For the latest release in CocoaPods add the following to your `Podfile`:
+
+```ruby
+use_frameworks!
+
+pod 'SwiftyHaru'
+```
+
+For the latest dev build:
+
+```ruby
+use_frameworks!
+
+pod 'SwiftyHaru', :git => 'https://github.com/WeirdMath/SwiftyHaru.git', :branch => 'dev'
+```
+
+### Swift Package Manager
 Add SwiftyHaru as a dependency to your `Package.swift`. For example:
 
 ```swift
@@ -22,6 +50,46 @@ let package = Package(
         .Package(url: "https://github.com/WeirdMath/SwiftyHaru.git", majorVersion: 1)
     ]
 )
+```
+
+## Documentation
+
+Available [here](https://weirdmath.github.io/SwiftyHaru/).
+
+## Getting started
+
+```swift
+import SwiftyHaru
+
+// Initialize stuff
+let document = PDFDocument()
+let page = document.addPage(width: 600, height: 400)
+
+// Construct a path
+let path = Path()
+    .moving(toX: 100, y: 100)
+    .appendingLine(toX: 400, y: 100)
+    .moving(toX: 500, y: 200)
+    .appendingArc(x: 400, y: 200, radius: 100, beginningAngle: 90, endAngle: 180)
+    .appendingCircle(x: 200, y: 200, radius: 50)
+    .moving(toX: 500, y: 200)
+    .appendingCurve(controlPoint1: Point(x: 400, y: 200),
+                    controlPoint2: Point(x: 400, y: 300),
+                    endPoint: Point(x: 500, y: 300))
+    .closingSubpath()
+
+// Paint the path
+page.draw { context in
+    
+    context.strokeColor = .blue
+    context.stroke(path)
+}
+
+// Put some text
+page.draw { context in
+    context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
+                 atX: 300, y: 200)
+}
 ```
 
 ## Contributing
