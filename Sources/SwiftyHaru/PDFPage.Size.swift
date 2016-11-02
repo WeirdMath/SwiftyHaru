@@ -44,7 +44,7 @@ public extension PDFPage.Size {
         self.init(rawValue: haruEnum.rawValue)!
     }
 
-    public var sizeInPixels: Size<Float> {
+    public var sizeInPixels: Size {
         
         switch self {
         case .letter:        return     612 × 792
@@ -62,7 +62,7 @@ public extension PDFPage.Size {
         }
     }
     
-    public var sizeInInches: Size<Float> {
+    public var sizeInInches: Size {
         
         switch self {
         case .letter:        return     8.5 × 11
@@ -80,7 +80,7 @@ public extension PDFPage.Size {
         }
     }
     
-    public var sizeInMillimeters: Size<Float> {
+    public var sizeInMillimeters: Size {
         return (sizeInInches.width * 25.4) × (sizeInInches.height * 25.4)
     }
 }

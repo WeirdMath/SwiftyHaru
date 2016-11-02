@@ -8,8 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705252F1DA1304300D5EF74 /* PDFPageTests.swift */; };
+		871C07911DA1837F00C02640 /* DrawingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C07901DA1837F00C02640 /* DrawingContext.swift */; };
+		871C07951DA1B56C00C02640 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C07941DA1B56C00C02640 /* Color.swift */; };
 		872239D51DA145AF006DD44C /* PDFDocument.PageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */; };
 		8734A8371DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */; };
+		873D403E1DB8FF140022F621 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D403C1DB8FF020022F621 /* Encoding.swift */; };
+		875073571DA67E4000956E8D /* DashStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875073561DA67E4000956E8D /* DashStyleTests.swift */; };
+		8750736D1DA79CDA00956E8D /* LineCap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750736C1DA79CDA00956E8D /* LineCap.swift */; };
+		8750736F1DA7A8C600956E8D /* LineJoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8750736E1DA7A8C600956E8D /* LineJoin.swift */; };
+		875073751DA82AD700956E8D /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875073741DA82AD700956E8D /* Font.swift */; };
+		8767BB2D1DA4E130003A3A8F /* DrawingContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8767BB2C1DA4E130003A3A8F /* DrawingContextTests.swift */; };
+		8767BB301DA64289003A3A8F /* DashStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8767BB2E1DA64280003A3A8F /* DashStyle.swift */; };
+		877187B71DA1BF300050769E /* PDFColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877187B51DA1B92D0050769E /* PDFColorSpace.swift */; };
 		879F9D6C1DA055F400499D19 /* hpdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4A1DA055BD00499D19 /* hpdf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D6D1DA055F400499D19 /* hpdf_3dmeasure.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4B1DA055BD00499D19 /* hpdf_3dmeasure.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D6E1DA055F400499D19 /* hpdf_annotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D4C1DA055BD00499D19 /* hpdf_annotation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,6 +60,8 @@
 		879F9D991DA0562B00499D19 /* pnglibconf.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D921DA0561900499D19 /* pnglibconf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D9A1DA0562B00499D19 /* pngpriv.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D931DA0561900499D19 /* pngpriv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		879F9D9B1DA0562B00499D19 /* pngstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = 879F9D941DA0561900499D19 /* pngstruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A8AAFA1DA276E300EB7DDF /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A8AAF91DA276E200EB7DDF /* ColorTests.swift */; };
+		87E2CE7C1DA85812009DCE42 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E2CE7A1DA857C2009DCE42 /* Path.swift */; };
 		_LinkFileRef_CLibHaru_via_SwiftyHaru /* CLibHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibHaru" /* CLibHaru.framework */; };
 		_LinkFileRef_CLibHaru_via_SwiftyHaruTests /* CLibHaru.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibHaru" /* CLibHaru.framework */; };
 		_LinkFileRef_CLibPNG_via_CLibHaru /* CLibPNG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_CLibPNG" /* CLibPNG.framework */; };
@@ -129,15 +141,13 @@
 		__src_cc_ref_Sources/CLibPNG/pngwrite.c /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/CLibPNG/pngwrite.c /* pngwrite.c */; };
 		__src_cc_ref_Sources/CLibPNG/pngwtran.c /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/CLibPNG/pngwtran.c /* pngwtran.c */; };
 		__src_cc_ref_Sources/CLibPNG/pngwutil.c /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/CLibPNG/pngwutil.c /* pngwutil.c */; };
-		__src_cc_ref_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */; };
-		__src_cc_ref_Sources/SwiftyHaru/Size.swift /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Size.swift /* Size.swift */; };
+		__src_cc_ref_Sources/SwiftyHaru/Size.swift /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */; };
 		__src_cc_ref_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */; };
-		__src_cc_ref_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */; };
 		__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */; };
 		__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
@@ -169,8 +179,18 @@
 /* Begin PBXFileReference section */
 		8705252D1DA0860300D5EF74 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		8705252F1DA1304300D5EF74 /* PDFPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageTests.swift; sourceTree = "<group>"; };
+		871C07901DA1837F00C02640 /* DrawingContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContext.swift; sourceTree = "<group>"; };
+		871C07941DA1B56C00C02640 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageLayout.swift; sourceTree = "<group>"; };
 		8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageNumberStyle.swift; sourceTree = "<group>"; };
+		873D403C1DB8FF020022F621 /* Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		875073561DA67E4000956E8D /* DashStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyleTests.swift; sourceTree = "<group>"; };
+		8750736C1DA79CDA00956E8D /* LineCap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCap.swift; sourceTree = "<group>"; };
+		8750736E1DA7A8C600956E8D /* LineJoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineJoin.swift; sourceTree = "<group>"; };
+		875073741DA82AD700956E8D /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		8767BB2C1DA4E130003A3A8F /* DrawingContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContextTests.swift; sourceTree = "<group>"; };
+		8767BB2E1DA64280003A3A8F /* DashStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyle.swift; sourceTree = "<group>"; };
+		877187B51DA1B92D0050769E /* PDFColorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFColorSpace.swift; sourceTree = "<group>"; };
 		879F9D4A1DA055BD00499D19 /* hpdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf.h; sourceTree = "<group>"; };
 		879F9D4B1DA055BD00499D19 /* hpdf_3dmeasure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_3dmeasure.h; sourceTree = "<group>"; };
 		879F9D4C1DA055BD00499D19 /* hpdf_annotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_annotation.h; sourceTree = "<group>"; };
@@ -213,6 +233,8 @@
 		879F9D941DA0561900499D19 /* pngstruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pngstruct.h; sourceTree = "<group>"; };
 		879F9D9C1DA057AD00499D19 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		879F9D9D1DA057B800499D19 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		87A8AAF91DA276E200EB7DDF /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		87E2CE7A1DA857C2009DCE42 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_3dmeasure.c /* hpdf_3dmeasure.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_3dmeasure.c; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_annotation.c /* hpdf_annotation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_annotation.c; sourceTree = "<group>"; };
@@ -287,15 +309,13 @@
 		__PBXFileRef_Sources/CLibPNG/pngwrite.c /* pngwrite.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibPNG/pngwtran.c /* pngwtran.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibPNG/pngwutil.c /* pngwutil.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numeric.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocument.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFError.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.Direction.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.Size.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unimplemented.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _HaruBridgeable.swift; sourceTree = "<group>"; };
 		__PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftyHaru.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -543,14 +563,21 @@
 			children = (
 				__PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */,
+				87E2CE7A1DA857C2009DCE42 /* Path.swift */,
+				871C07901DA1837F00C02640 /* DrawingContext.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */,
 				872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */,
 				8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Size.swift */,
+				875073741DA82AD700956E8D /* Font.swift */,
+				873D403C1DB8FF020022F621 /* Encoding.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */,
+				8767BB2E1DA64280003A3A8F /* DashStyle.swift */,
+				8750736C1DA79CDA00956E8D /* LineCap.swift */,
+				8750736E1DA7A8C600956E8D /* LineJoin.swift */,
+				871C07941DA1B56C00C02640 /* Color.swift */,
+				877187B51DA1B92D0050769E /* PDFColorSpace.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */,
 			);
 			name = SwiftyHaru;
@@ -561,7 +588,10 @@
 			isa = PBXGroup;
 			children = (
 				__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */,
+				87A8AAF91DA276E200EB7DDF /* ColorTests.swift */,
 				8705252F1DA1304300D5EF74 /* PDFPageTests.swift */,
+				8767BB2C1DA4E130003A3A8F /* DrawingContextTests.swift */,
+				875073561DA67E4000956E8D /* DashStyleTests.swift */,
 				__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */,
 			);
 			name = SwiftyHaruTests;
@@ -831,16 +861,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				__src_cc_ref_Sources/SwiftyHaru/_HaruBridgeable.swift /* _HaruBridgeable.swift in Sources */,
+				873D403E1DB8FF140022F621 /* Encoding.swift in Sources */,
+				877187B71DA1BF300050769E /* PDFColorSpace.swift in Sources */,
+				8750736F1DA7A8C600956E8D /* LineJoin.swift in Sources */,
 				872239D51DA145AF006DD44C /* PDFDocument.PageLayout.swift in Sources */,
-				__src_cc_ref_Sources/SwiftyHaru/Numeric.swift /* Numeric.swift in Sources */,
+				8767BB301DA64289003A3A8F /* DashStyle.swift in Sources */,
+				871C07911DA1837F00C02640 /* DrawingContext.swift in Sources */,
+				8750736D1DA79CDA00956E8D /* LineCap.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift in Sources */,
+				871C07951DA1B56C00C02640 /* Color.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift in Sources */,
 				8734A8371DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift in Sources */,
-				__src_cc_ref_Sources/SwiftyHaru/Size.swift /* Size.swift in Sources */,
+				87E2CE7C1DA85812009DCE42 /* Path.swift in Sources */,
+				875073751DA82AD700956E8D /* Font.swift in Sources */,
+				__src_cc_ref_Sources/SwiftyHaru/Size.swift /* Geometry.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,8 +887,11 @@
 			buildActionMask = 0;
 			files = (
 				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */,
+				8767BB2D1DA4E130003A3A8F /* DrawingContextTests.swift in Sources */,
+				87A8AAFA1DA276E300EB7DDF /* ColorTests.swift in Sources */,
 				870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */,
+				875073571DA67E4000956E8D /* DashStyleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

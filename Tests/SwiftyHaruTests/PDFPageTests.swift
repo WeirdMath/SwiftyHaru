@@ -14,7 +14,8 @@ class PDFPageTests: XCTestCase {
     static var allTests : [(String, (PDFPageTests) -> () throws -> Void)] {
         return [
             ("testGetSetWidth", testGetSetWidth),
-            ("testGetSetHeight", testGetSetHeight)
+            ("testGetSetHeight", testGetSetHeight),
+            ("testRotatePage", testRotatePage),
         ]
     }
     
@@ -129,17 +130,14 @@ class PDFPageTests: XCTestCase {
         let page0 = sut!
         let page1 = document.addPage()
         let page2 = document.addPage()
-        let page3 = document.addPage()
         
         // When
-        try! page0.rotate(byAngle: 90)
-        try! page1.rotate(byAngle: 810)
-        try! page2.rotate(byAngle: -270)
+        page0.rotate(byAngle: 90)
+        page1.rotate(byAngle: 810)
+        page2.rotate(byAngle: -270)
         let returnedDocumentData = document.getData()
         
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        XCTAssertThrowsError(try page3.rotate(byAngle: 45))
     }
 }

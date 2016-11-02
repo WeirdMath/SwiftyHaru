@@ -10,11 +10,13 @@ import Foundation
 import CLibHaru
 
 /// A handle to operate on a document object.
-public final class PDFDocument: _HaruBridgeable {
+public final class PDFDocument {
     
-    internal var _haruObject: HPDF_Doc
+    internal var _documentHandle: HPDF_Doc
     
     public private(set) var pages: [PDFPage] = []
+    
+    public private(set) var fonts: Set<Font> = []
     
     internal var _error: PDFError
     
@@ -35,11 +37,11 @@ public final class PDFDocument: _HaruBridgeable {
             print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
         }
         
-        _haruObject = HPDF_New(errorHandler, &_error)
+        _documentHandle = HPDF_New(errorHandler, &_error)
     }
     
     deinit {
-        HPDF_Free(_haruObject)
+        HPDF_Free(_documentHandle)
     }
     
     // MARK: - Creating pages
@@ -49,7 +51,7 @@ public final class PDFDocument: _HaruBridgeable {
     /// - returns: A `PDFPage` object.
     @discardableResult public func addPage() -> PDFPage {
         
-        let haruPage = HPDF_AddPage(_haruObject)!
+        let haruPage = HPDF_AddPage(_documentHandle)!
         
         let page = PDFPage(document: self, haruObject: haruPage)
         pages.append(page)
@@ -100,9 +102,9 @@ public final class PDFDocument: _HaruBridgeable {
             return addPage()
         }
         
-        let haruTargetPage = pages[index]._haruObject
+        let haruTargetPage = pages[index]._pageHandle
         
-        let haruInsertedPage = HPDF_InsertPage(_haruObject, haruTargetPage)!
+        let haruInsertedPage = HPDF_InsertPage(_documentHandle, haruTargetPage)!
         
         let page = PDFPage(document: self, haruObject: haruInsertedPage)
         
@@ -140,8 +142,8 @@ public final class PDFDocument: _HaruBridgeable {
     ///
     /// - returns: A `PDFPage` object.
     @discardableResult public func insertPage(size: PDFPage.Size,
-                           direction: PDFPage.Direction,
-                           atIndex index: Int) -> PDFPage {
+                                              direction: PDFPage.Direction,
+                                              atIndex index: Int) -> PDFPage {
         
         let page = insertPage(atIndex: index)
         
@@ -151,28 +153,28 @@ public final class PDFDocument: _HaruBridgeable {
     }
     
     // MARK: - Getting data
-
+    
     /// Returns the document's contents.
     ///
     /// - returns: The dodument's contents
     public func getData() -> Data {
         
-        HPDF_SaveToStream(_haruObject)
-
-        let sizeOfStream = HPDF_GetStreamSize(_haruObject)
+        HPDF_SaveToStream(_documentHandle)
         
-        HPDF_ResetStream(_haruObject)
+        let sizeOfStream = HPDF_GetStreamSize(_documentHandle)
+        
+        HPDF_ResetStream(_documentHandle)
         
         let buffer = UnsafeMutablePointer<HPDF_BYTE>.allocate(capacity: Int(sizeOfStream))
         var sizeOfBuffer = sizeOfStream
         
-        HPDF_ReadFromStream(_haruObject, buffer, &sizeOfBuffer)
+        HPDF_ReadFromStream(_documentHandle, buffer, &sizeOfBuffer)
         
         let data = Data(bytes: buffer, count: Int(sizeOfBuffer))
         
         buffer.deinitialize(count: Int(sizeOfBuffer))
         buffer.deallocate(capacity: Int(sizeOfBuffer))
-
+        
         return data
     }
     
@@ -182,10 +184,10 @@ public final class PDFDocument: _HaruBridgeable {
     /// If this attribute is not set, the setting of the viewer application is used.
     public var pageLayout: PageLayout {
         get {
-            return PageLayout(haruEnum: HPDF_GetPageLayout(_haruObject))
+            return PageLayout(haruEnum: HPDF_GetPageLayout(_documentHandle))
         }
         set {
-            HPDF_SetPageLayout(_haruObject, HPDF_PageLayout(rawValue: newValue.rawValue))
+            HPDF_SetPageLayout(_documentHandle, HPDF_PageLayout(rawValue: newValue.rawValue))
         }
     }
     
@@ -214,10 +216,88 @@ public final class PDFDocument: _HaruBridgeable {
         
         let prefix = prefix?.cString(using: .ascii)
         
-        HPDF_AddPageLabel(_haruObject,
+        HPDF_AddPageLabel(_documentHandle,
                           HPDF_UINT(startingPage),
                           HPDF_PageNumStyle(rawValue: style.rawValue),
                           HPDF_UINT(firstPageNumber),
                           prefix)
+    }
+    
+    /// Loads a TrueType font from `data` and registers it to a document.
+    ///
+    /// - parameter data:               Contents of a `.ttf` file.
+    /// - parameter embeddingGlyphData: If this parameter is set to `true`, the glyph data of the font is embedded,
+    ///                                 otherwise only the matrix data is included in PDF file.
+    ///
+    /// - throws: `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`,
+    ///           `PDFError.ttfInvalidCMap`, `PDFError.ttfInvalidFormat`, `PDFError.ttfMissingTable`,
+    ///           `PDFError.ttfCannotEmbedFont`.
+    ///
+    /// - returns: The loaded font.
+    public func loadTrueTypeFont(from data: Data, embeddingGlyphData: Bool) throws -> Font {
+        
+        let embedding = embeddingGlyphData ? HPDF_TRUE : HPDF_FALSE
+        
+        let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
+            let cString = HPDF_LoadTTFontFromMemory(self._documentHandle,
+                                                   pointer,
+                                                   HPDF_UINT(data.count),
+                                                   embedding)
+            if let cString = cString {
+                return String(cString: cString)
+            } else {
+                return nil
+            }
+        }
+        
+        if let name = name {
+            let font = Font(name: name)
+            fonts.insert(font)
+            return font
+        } else {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+    
+    private var _jpEncodingsEnabled = false
+    private var _krEncodingsEnabled = false
+    private var _cnsEncodingsEnabled = false
+    private var _cntEncodingsEnabled = false
+    private var _utfEncodingsEnabled = false
+    
+    internal func _useJPEncodings() {
+        if !_jpEncodingsEnabled {
+            HPDF_UseJPEncodings(_documentHandle)
+            _jpEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useKREncodings() {
+        if !_krEncodingsEnabled {
+            HPDF_UseKREncodings(_documentHandle)
+            _krEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useCNSEncodings() {
+        if !_cnsEncodingsEnabled {
+            HPDF_UseCNSEncodings(_documentHandle)
+            _cnsEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useCNTEncodings() {
+        if !_cntEncodingsEnabled {
+            HPDF_UseCNTEncodings(_documentHandle)
+            _cntEncodingsEnabled = true
+        }
+    }
+    
+    internal func _useUTFEncodings() {
+        if !_utfEncodingsEnabled {
+            HPDF_UseUTFEncodings(_documentHandle)
+            _utfEncodingsEnabled = true
+        }
     }
 }
