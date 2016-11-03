@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
 
   s.source_files = 'Sources/SwiftyHaru/**/*.swift'
-  s.dependency 'CLibHaru', '~> 0.1.0+CLibHaru.0.0.1'
+  s.dependency 'CLibHaru', '~> 0.1.0'
 end
