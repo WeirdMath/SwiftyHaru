@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CLibHaru'
-  s.version          = '0.1.0'
+  s.version          = '0.1.0+CLibHaru.0.0.1'
   s.summary          = 'libharu - free PDF library'
 
   s.homepage         = 'http://libharu.org'
