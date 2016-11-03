@@ -165,4 +165,24 @@ public final class PDFPage {
     }
     
     private var _contextIsPresent = false
+    
+    /// Puts the `object` visualization onto the page at the specified position.
+    ///
+    /// - parameter object:   The entity to draw.
+    /// - parameter position: The position to put the `object` at. The meaning of this property depends
+    ///                       on the `object`'s implementation.
+    public func draw(object: Drawable, position: Point) {
+        draw { context in
+            object.draw(in: context, position: position)
+        }
+    }
+    
+    /// Puts the `object` visualization onto the page at the specified position.
+    ///
+    /// - parameter object: The entity to draw.
+    /// - parameter x:      The x coordinate of the position to put the `object` at.
+    /// - parameter y:      The y coordinate of the position.
+    public func draw(object: Drawable, x: Float, y: Float) {
+        draw(object: object, position: Point(x: x, y: y))
+    }
 }
