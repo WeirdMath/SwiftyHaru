@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CLibHaru'
-  s.version          = '0.1.0+CLibHaru.0.0.1'
+  s.version          = '0.1.0'
   s.summary          = 'libharu - free PDF library'
 
   s.homepage         = 'http://libharu.org'
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
                  LICENSE
                }
   s.author           = 'Takeshi Kanno', 'Antony Dovgal'
-  s.source           = { :git => 'https://github.com/WeirdMath/SwiftyHaru.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/WeirdMath/SwiftyHaru.git', :tag => s.version.to_s + '+CLibHaru.0.0.1' }
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
