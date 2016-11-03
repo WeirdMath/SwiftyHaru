@@ -301,6 +301,13 @@ HPDF_LoadTTFontFromMemory (HPDF_Doc         pdf,
                            const HPDF_BYTE *buffer,
                            HPDF_UINT        size,
                            HPDF_BOOL        embedding);
+    
+HPDF_EXPORT(const char*)
+HPDF_LoadTTFontFromMemory2 (HPDF_Doc         pdf,
+                            const HPDF_BYTE *buffer,
+                            HPDF_UINT        size,
+                            HPDF_UINT        index,
+                            HPDF_BOOL        embedding);
 
 
 HPDF_EXPORT(HPDF_STATUS)

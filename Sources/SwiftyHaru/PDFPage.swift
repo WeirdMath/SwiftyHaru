@@ -118,7 +118,7 @@ public final class PDFPage {
     //     +=============================+
     //
     // In SwiftyHaru we don't want the make the user maintain this state machine manually,
-    // so there are context objects like PDFPathContext which maintain it automatically.
+    // so there are context objects of type DrawingContext which maintain it automatically.
     // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION is entered only within a closure.
     //
     // We invoke `draw(_:)` method with a closure that takes a context object and performs path construction

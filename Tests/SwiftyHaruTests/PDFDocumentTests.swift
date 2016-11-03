@@ -18,7 +18,8 @@ class PDFDocumentTests: XCTestCase {
             ("testAddingPages", testAddingPages),
             ("testPageLayout", testPageLayout),
             ("testAddPageLabel", testAddPageLabel),
-            ("testLoadTrueTypeFont", testLoadTrueTypeFont)
+            ("testLoadTrueTypeFont", testLoadTrueTypeFont),
+            ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection)
         ]
     }
     
@@ -145,5 +146,32 @@ class PDFDocumentTests: XCTestCase {
         
         // Then
         XCTAssertThrowsError(try sut.loadTrueTypeFont(from: incorrectFontData, embeddingGlyphData: true))
+    }
+    
+    func testLoadTrueTypeFontFromCollection() {
+        
+        // Given
+        let expectedFont = Font(name: "AvenirNext-Regular")
+        
+        // When
+        let collectionData = getTestingResource(fromFile: "Avenir Next", ofType: "ttc")!
+        let loadedFont = try! sut.loadTrueTypeFontFromCollection(from: collectionData,
+                                                                 index: 7,
+                                                                 embeddingGlyphData: true)
+        
+        // Then
+        XCTAssertEqual(expectedFont, loadedFont)
+        
+        // When
+        let incorrectData = Data()
+        
+        // Then
+        XCTAssertThrowsError(try sut.loadTrueTypeFontFromCollection(from: incorrectData,
+                                                                    index: 0,
+                                                                    embeddingGlyphData: true))
+        
+        XCTAssertThrowsError(try sut.loadTrueTypeFontFromCollection(from: collectionData,
+                                                                    index: 100,
+                                                                    embeddingGlyphData: true))
     }
 }

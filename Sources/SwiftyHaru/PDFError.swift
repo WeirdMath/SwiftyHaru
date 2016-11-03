@@ -332,7 +332,7 @@ public struct PDFError: Error {
     
     public static let invalidICCComponentNumber = PDFError(code: HPDF_INVALID_ICC_COMPONENT_NUM)
     
-    private var _descriptions = [
+    private static var _descriptions = [
         HPDF_ARRAY_COUNT_ERR : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_NOT_FOUND : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_UNEXPECTED_TYPE : "Internal error. Data consistency was lost.",
@@ -445,7 +445,7 @@ public struct PDFError: Error {
             return "No error."
         }
         
-        return _descriptions[code] ?? "Unknown error."
+        return PDFError._descriptions[code] ?? "Unknown error."
     }
 }
 

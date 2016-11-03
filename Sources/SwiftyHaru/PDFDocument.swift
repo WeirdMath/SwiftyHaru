@@ -34,7 +34,9 @@ public final class PDFDocument {
             let error = userData!.assumingMemoryBound(to: PDFError.self)
             error.pointee = PDFError(code: Int32(errorCode))
             
-            print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            #if DEBUG
+                print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            #endif
         }
         
         _documentHandle = HPDF_New(errorHandler, &_error)
@@ -243,6 +245,49 @@ public final class PDFDocument {
                                                    pointer,
                                                    HPDF_UINT(data.count),
                                                    embedding)
+            if let cString = cString {
+                return String(cString: cString)
+            } else {
+                return nil
+            }
+        }
+        
+        if let name = name {
+            let font = Font(name: name)
+            fonts.insert(font)
+            return font
+        } else {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+    
+    /// Loads a TrueType font from a TrueType Collection and and registers it to a document.
+    ///
+    /// - parameter data:               Contents of a `.ttc` file.
+    /// - parameter index:              The index of the font to be loaded.
+    /// - parameter embeddingGlyphData: If this parameter is set to `true`, the glyph data of the font is embedded,
+    ///                                 otherwise only the matrix data is included in PDF file.
+    ///
+    /// - throws: `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`,
+    ///           `PDFError.ttfInvalidCMap`, `PDFError.ttfInvalidFormat`, `PDFError.ttfMissingTable`,
+    ///           `PDFError.ttfCannotEmbedFont`.
+    ///
+    /// - returns: The loaded font.
+    public func loadTrueTypeFontFromCollection(from data: Data,
+                                               index: Int,
+                                               embeddingGlyphData: Bool) throws -> Font {
+        
+        let embedding = embeddingGlyphData ? HPDF_TRUE : HPDF_FALSE
+        
+        let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
+            
+            let cString = HPDF_LoadTTFontFromMemory2(self._documentHandle,
+                                                     pointer,
+                                                     HPDF_UINT(data.count),
+                                                     HPDF_UINT(index),
+                                                     embedding)
+            
             if let cString = cString {
                 return String(cString: cString)
             } else {
