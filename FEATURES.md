@@ -53,7 +53,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_GetFont()` | **For internal use only** | N/A | N/A |
     | `HPDF_LoadType1FontFromFile()` | Unimplemented | None | N/A |
     | `HPDF_LoadTTFontFromFile()` | **Implemented** | Complete | `PDFDocument`'s `loadTrueTypeFont(from:embeddingGlyphData:)` instance method |
-    | `HPDF_LoadTTFontFromFile2()` | Unimplemented | None | N/A |
+    | `HPDF_LoadTTFontFromFile2()` | **Implemented** | Complete | `PDFDocument`'s `loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)` instance method |
     | `HPDF_UseJPFonts()` | Unimplemented | None | N/A |
     | `HPDF_UseKRFonts()` | Unimplemented | None | N/A |
     | `HPDF_UseCNSFonts()` | Unimplemented | None | N/A |
