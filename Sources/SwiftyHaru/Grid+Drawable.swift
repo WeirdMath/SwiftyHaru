@@ -61,6 +61,14 @@ extension Grid: Drawable {
         return stride(from: initialPoint.y, through: initialPoint.y + size.height, by: _stride)
     }
     
+    private var _verticalLineLengthCorrection: Float {
+        return max(lines.horizontalMajor.lineWidth, lines.horizontalMinor?.lineWidth ?? 0) / 2
+    }
+    
+    private var _horizontalLineLengthCorrection: Float {
+        return max(lines.verticalMajor.lineWidth, lines.verticalMinor?.lineWidth ?? 0) / 2
+    }
+    
     private func _drawVerticalMajorLines(context: DrawingContext, initialPoint: Point) {
         
         context.strokeColor = lines.verticalMajor.lineColor
@@ -70,8 +78,8 @@ extension Grid: Drawable {
         
         for x in _strideHorizontally(initialPoint: initialPoint, by: lines.verticalMajor.lineSpacing) {
             
-            path.move(toX: x, y: initialPoint.y)
-            path.appendLine(toX: x, y: initialPoint.y + size.height)
+            path.move(toX: x, y: initialPoint.y - _verticalLineLengthCorrection)
+            path.appendLine(toX: x, y: initialPoint.y + size.height + _verticalLineLengthCorrection)
         }
         
         context.stroke(path)
@@ -86,8 +94,8 @@ extension Grid: Drawable {
         
         for y in _strideVertically(initialPoint: initialPoint, by: lines.horizontalMajor.lineSpacing) {
             
-            path.move(toX: initialPoint.x, y: y)
-            path.appendLine(toX: initialPoint.x + size.width, y: y)
+            path.move(toX: initialPoint.x - _horizontalLineLengthCorrection, y: y)
+            path.appendLine(toX: initialPoint.x + size.width + _horizontalLineLengthCorrection, y: y)
         }
         
         context.stroke(path)
@@ -106,8 +114,8 @@ extension Grid: Drawable {
         
         for x in _strideHorizontally(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: x, y: initialPoint.y)
-            path.appendLine(toX: x, y: initialPoint.y + size.height)
+            path.move(toX: x, y: initialPoint.y - _verticalLineLengthCorrection)
+            path.appendLine(toX: x, y: initialPoint.y + size.height + _verticalLineLengthCorrection)
         }
         
         context.stroke(path)
@@ -126,8 +134,8 @@ extension Grid: Drawable {
         
         for y in _strideVertically(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: initialPoint.x, y: y)
-            path.appendLine(toX: initialPoint.x + size.width, y: y)
+            path.move(toX: initialPoint.x - _horizontalLineLengthCorrection, y: y)
+            path.appendLine(toX: initialPoint.x + size.width + _horizontalLineLengthCorrection, y: y)
         }
         
         context.stroke(path)
@@ -142,15 +150,14 @@ extension Grid: Drawable {
         context.strokeColor = top.color
         context.lineWidth = top.width
         
-        var path = Path()
-        
         let stride = Float(top.frequency) * lines.verticalMajor.lineSpacing
-        
         let topY = initialPoint.y + size.height
+        
+        var path = Path()
         
         for x in _strideHorizontally(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: x, y: topY)
+            path.move(toX: x, y: topY + _verticalLineLengthCorrection)
             path.appendLine(toX: x, y: topY - top.length)
         }
         
@@ -170,7 +177,7 @@ extension Grid: Drawable {
         
         for x in _strideHorizontally(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: x, y: initialPoint.y)
+            path.move(toX: x, y: initialPoint.y - _verticalLineLengthCorrection)
             path.appendLine(toX: x, y: initialPoint.y + bottom.length)
         }
         
@@ -190,7 +197,7 @@ extension Grid: Drawable {
         
         for y in _strideVertically(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: initialPoint.x, y: y)
+            path.move(toX: initialPoint.x - _horizontalLineLengthCorrection, y: y)
             path.appendLine(toX: initialPoint.x + left.length, y: y)
         }
         
@@ -212,7 +219,7 @@ extension Grid: Drawable {
         
         for y in _strideVertically(initialPoint: initialPoint, by: stride) {
             
-            path.move(toX: rightmostX, y: y)
+            path.move(toX: rightmostX + _horizontalLineLengthCorrection, y: y)
             path.appendLine(toX: rightmostX - right.length, y: y)
         }
         
