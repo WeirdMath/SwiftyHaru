@@ -402,13 +402,39 @@ public final class DrawingContext {
         }
     }
     
-    /// Gets the width of the text in current fontsize, character spacing and word spacing.
+    /// Gets the width of the text in current fontsize, character spacing and word spacing. If the text
+    /// is multiline, returns the width of the longest line.
     ///
     /// - parameter text:  The text to get width of.
     ///
     /// - returns: The width of the text in current fontsize, character spacing and word spacing.
     public func textWidth(for text: String) -> Float {
-        return HPDF_Page_TextWidth(_page, text)
+        
+        let lines = text.components(separatedBy: .newlines)
+        
+        return lines.map { HPDF_Page_TextWidth(_page, $0) }.max()!
+    }
+    
+    /// Gets the bounding box of the text in current font size and leading. Text can be multiline.
+    ///
+    /// - parameter text:     The text to get the bounding box of.
+    /// - parameter position: The assumed position of the text.
+    ///
+    /// - returns: The bounding box of the text.
+    public func boundingBox(for text: String, atPosition position: Point) -> Rectangle {
+        
+        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
+        
+        let textWidth = self.textWidth(for: text)
+        let capHeight = Float(HPDF_Font_GetAscent(fontHandle)) * fontSize / 1000
+        let descent = Float(HPDF_Font_GetDescent(fontHandle)) * fontSize / 1000
+        
+        let numberOfLines = text.components(separatedBy: .newlines).count
+        
+        return Rectangle(x: position.x,
+                         y: position.y + descent - textLeading * Float(numberOfLines - 1),
+                         width: textWidth,
+                         height: capHeight - descent + textLeading * Float(numberOfLines - 1))
     }
     
     /// Text leading (line spacing) for text showing. Default value is 11.

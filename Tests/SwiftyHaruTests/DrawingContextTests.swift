@@ -33,6 +33,7 @@ class DrawingContextTests: XCTestCase {
             ("testTextEncoding", testTextEncoding),
             ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
             ("testTextWidthForString", testTextWidthForString),
+            ("testTextBoundingBox", testTextBoundingBox),
             ("testShowOnelineText", testShowOnelineText),
             ("testShowMultilineText", testShowMultilineText),
             ("testShowUnicodeText", testShowUnicodeText)
@@ -760,7 +761,9 @@ class DrawingContextTests: XCTestCase {
         
         // Given
         let expectedWidth: Float = 62.953
+        let expectedWidthForMultilineText: Float = 70.3119965
         let text = "Hello, World!"
+        let multilineText = "I don't actually\nlike lemons."
         
         // When
         var returnedWidth: Float?
@@ -770,6 +773,49 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedWidth, returnedWidth)
+        
+        // When
+        var returnedWidthForMultilineText: Float?
+        page.draw { context in
+            returnedWidthForMultilineText = context.textWidth(for: multilineText)
+        }
+        
+        // Then
+        XCTAssertEqual(expectedWidthForMultilineText, returnedWidthForMultilineText)
+    }
+    
+    func testTextBoundingBox() {
+        
+        // Given
+        let expectedBBox = Rectangle(x: 100,
+                                     y: 97.7229996,
+                                     width: 62.9529991,
+                                     height: 10.1749992)
+        let expectedBBoxForMultilineText = Rectangle(x: 100.0,
+                                                     y: 64.7229996,
+                                                     width: 58.0690002,
+                                                     height: 43.1749992)
+        let text = "Hello, World!"
+        let multilineText = "I\ndon't\nactually\nlike lemons."
+        let textPosition = Point(x: 100, y: 100)
+        
+        // When
+        var returnedBBox: Rectangle?
+        page.draw { context in
+            returnedBBox = context.boundingBox(for: text, atPosition: textPosition)
+        }
+        
+        // Then
+        XCTAssertEqual(expectedBBox, returnedBBox)
+        
+        // When
+        var returnedBBoxForMultilineText: Rectangle?
+        page.draw { context in
+            returnedBBoxForMultilineText = context.boundingBox(for: multilineText, atPosition: textPosition)
+        }
+        
+        // Then
+        XCTAssertEqual(expectedBBoxForMultilineText, returnedBBoxForMultilineText)
     }
     
     func testTextLeading() {

@@ -192,7 +192,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Font_GetFontName()` | **Implemented** | Complete | `Font`'s `name` instance property |
 | `HPDF_Font_GetEncodingName()` | **Implemented** | Complete | `Encoding`'s `name` instance property |
 | `HPDF_Font_GetUnicodeWidth()` | Unimplemented | None | N/A |
-| `HPDF_Font_GetBBox()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetBBox()` | **Implemented** | Complete | `DrawingContext`'s `boundingBox(for:atPosition:)` instance method |
 | `HPDF_Font_GetAscent()` | Unimplemented | None | N/A |
 | `HPDF_Font_GetDescent()` | Unimplemented | None | N/A |
 | `HPDF_Font_GetXHeight()` | Unimplemented | None | N/A |
