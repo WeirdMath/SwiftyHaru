@@ -15,10 +15,10 @@ public struct Grid {
     /// - parameter lines:  The parameters of the vertical and horizontal major and minor lines of the grid.
     ///                     Default value is `Lines.default`.
     /// - parameter labels: The parameters of the labels for vertocal and horizontal lines of the grid. If
-    ///                     specified `nil`, no labels will be drawn. Default value is `Labels.default`.
+    ///                     specified `nil`, no labels will be drawn. Default value is `nil`.
     /// - parameter serifs: The parameters of the serifs for vertocal and horizontal lines of the grid. If
     ///                     specified `nil`, no serifs will be drawn. Default value is `Serifs.defalut`.
-    public init(size: Size, lines: Lines = .default, labels: Labels? = .default, serifs: Serifs? = .default) {
+    public init(size: Size, lines: Lines = .default, labels: Labels? = nil, serifs: Serifs? = .default) {
         
         self.size = size
         self.lines = lines
@@ -43,13 +43,13 @@ public struct Grid {
     /// - parameter lines:  The parameters of the vertical and horizontal major and minor lines of the grid.
     ///                     Default value is `Lines.default`.
     /// - parameter labels: The parameters of the labels for vertocal and horizontal lines of the grid. If
-    ///                     specified `nil`, no labels will be drawn. Default value is `Labels.default`.
+    ///                     specified `nil`, no labels will be drawn. Default value is `nil`.
     /// - parameter serifs: The parameters of the serifs for vertocal and horizontal lines of the grid. If
     ///                     specified `nil`, no serifs will be drawn. Default value is `Serifs.defalut`.
     public init(width: Float,
                 height: Float,
                 lines: Lines = .default,
-                labels: Labels? = .default,
+                labels: Labels? = nil,
                 serifs: Serifs? = .default) {
         
         self.init(size: Size(width: width, height: height), lines: lines, labels: labels, serifs: serifs)

@@ -14,9 +14,13 @@ extension Grid: Drawable {
     /// - parameter position: The lower-left corner of the grid.
     public func draw(in context: DrawingContext, position: Point) {
         
+        // Memorize the initial state
         let _lineWidth = context.lineWidth
         let _strokeColor = context.strokeColor
+        let _fillColor = context.fillColor
         let _lineCap = context.lineCap
+        let _font = context.font
+        let _fontSize = context.fontSize
         
         if lines.drawVerticalMinorLinesFirst {
             _drawVerticalMinorLines(context: context, initialPoint: position)
@@ -39,15 +43,18 @@ extension Grid: Drawable {
         _drawLeftSerifs(context: context, initialPoint: position)
         _drawRightSerifs(context: context, initialPoint: position)
         
-        //        _drawTopLabels(context: context, initialPoint: position)
-        //        _drawBottomLabels(context: context, initialPoint: position)
-        //        _drawLeftLabels(context: context, initialPoint: position)
-        //        _drawRightLabels(context: context, initialPoint: position)
+        _drawTopLabels(context: context, initialPoint: position)
+        _drawBottomLabels(context: context, initialPoint: position)
+//        _drawLeftLabels(context: context, initialPoint: position)
+//        _drawRightLabels(context: context, initialPoint: position)
         
         // Return to the initial state
         context.lineWidth = _lineWidth
         context.strokeColor = _strokeColor
+        context.fillColor = _fillColor
         context.lineCap = _lineCap
+        context.font = _font
+        context.fontSize = _fontSize
     }
     
     
@@ -155,7 +162,7 @@ extension Grid: Drawable {
         
         var path = Path()
         
-        for x in _strideHorizontally(initialPoint: initialPoint, by: stride) {
+        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
             
             path.move(toX: x, y: topY + _verticalLineLengthCorrection)
             path.appendLine(toX: x, y: topY - top.length)
@@ -175,7 +182,7 @@ extension Grid: Drawable {
         
         let stride = Float(bottom.frequency) * lines.verticalMajor.lineSpacing
         
-        for x in _strideHorizontally(initialPoint: initialPoint, by: stride) {
+        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
             
             path.move(toX: x, y: initialPoint.y - _verticalLineLengthCorrection)
             path.appendLine(toX: x, y: initialPoint.y + bottom.length)
@@ -195,7 +202,7 @@ extension Grid: Drawable {
         
         let stride = Float(left.frequency) * lines.horizontalMajor.lineSpacing
         
-        for y in _strideVertically(initialPoint: initialPoint, by: stride) {
+        for y in _strideVertically(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
             
             path.move(toX: initialPoint.x - _horizontalLineLengthCorrection, y: y)
             path.appendLine(toX: initialPoint.x + left.length, y: y)
@@ -217,7 +224,7 @@ extension Grid: Drawable {
         
         let rightmostX = initialPoint.x + size.width
         
-        for y in _strideVertically(initialPoint: initialPoint, by: stride) {
+        for y in _strideVertically(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
             
             path.move(toX: rightmostX + _horizontalLineLengthCorrection, y: y)
             path.appendLine(toX: rightmostX - right.length, y: y)
@@ -232,14 +239,52 @@ extension Grid: Drawable {
         
         guard let top = labels.top else { return }
         
-        Unimplemented()
+        context.fillColor = top.fontColor
+        context.font = top.font
+        context.fontSize = top.fontSize
+        
+        let stride = Float(top.frequency) * lines.verticalMajor.lineSpacing
+        
+        let labelIterator = top.sequence.makeIterator()
+        
+        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
+            
+            guard let text = labelIterator.next() else { break }
+            
+            let labelWidth = context.textWidth(for: text)
+            
+            // TODO: Get rid of this magic number 10.
+            let textPosition = Point(x: x - labelWidth / 2 + top.offset.x,
+                                     y: initialPoint.y + size.height - 10 + top.offset.y)
+            
+            context.show(text: text, atPosition: textPosition)
+        }
     }
     
     private func _drawBottomLabels(context: DrawingContext, initialPoint: Point) {
         
         guard let bottom = labels.bottom else { return }
         
-        Unimplemented()
+        context.fillColor = bottom.fontColor
+        context.font = bottom.font
+        context.fontSize = bottom.fontSize
+        
+        let stride = Float(bottom.frequency) * lines.verticalMajor.lineSpacing
+        
+        let labelIterator = bottom.sequence.makeIterator()
+        
+        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
+            
+            guard let text = labelIterator.next() else { break }
+            
+            let labelWidth = context.textWidth(for: text)
+            
+            // TODO: Get rid of this magic number 10.
+            let textPosition = Point(x: x - labelWidth / 2 + bottom.offset.x,
+                                     y: initialPoint.y + 10 + bottom.offset.y)
+            
+            context.show(text: text, atPosition: textPosition)
+        }
     }
     
     private func _drawLeftLabels(context: DrawingContext, initialPoint: Point) {

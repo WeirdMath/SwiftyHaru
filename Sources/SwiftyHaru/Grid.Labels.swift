@@ -10,10 +10,7 @@ public extension Grid {
     
     /// Encapsulates the parameters of the labels for vertical and horizontal lines.
     public struct Labels {
-        
-        /// Default set, where all the label parameters are set to their `.default`.
-        public static let `default` = Labels()
-        
+
         /// The labels for vertical lines at the top of the grid.
         public var top: LabelParameters?
         
@@ -28,24 +25,22 @@ public extension Grid {
         
         /// Creates a new set of the label parameters for each kind of labels.
         ///
-        /// Each parameter's default value is `LabelParameters.default`.
-        ///
         /// - parameter top:     The parameters of the labels for vertical
         ///                      lines at the top of the grid. If specified `nil`, no such labels
-        ///                      will be drawn.
+        ///                      will be drawn. Default value is `nil`.
         /// - parameter bottom:  The parameters of the labels for vertical
         ///                      lines at the bottom of the grid. If specified `nil`, no such labels
-        ///                      will be drawn.
+        ///                      will be drawn. Default value is `nil`.
         /// - parameter left:    The parameters of the labels for horizontal
         ///                      lines on the left of the grid. If specified `nil`, no such labels
-        ///                      will be drawn.
+        ///                      will be drawn. Default value is `nil`.
         /// - parameter right:   The parameters of the labels for horizontal
         ///                      lines on the right of the grid. If specified `nil`, no such labels
-        ///                      will be drawn.
-        public init(top: LabelParameters? = .default,
-                    bottom: LabelParameters? = .default,
-                    left: LabelParameters? = .default,
-                    right: LabelParameters? = .default) {
+        ///                      will be drawn. Default value is `nil`.
+        public init(top: LabelParameters? = nil,
+                    bottom: LabelParameters? = nil,
+                    left: LabelParameters? = nil,
+                    right: LabelParameters? = nil) {
             
             self.top = top
             self.bottom = bottom
