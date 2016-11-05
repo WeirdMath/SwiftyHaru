@@ -403,6 +403,7 @@ class DrawingContextTests: XCTestCase {
                 .appendingLine(toX: 400, y: 100)
                 .moving(toX: 500, y: 200)
                 .appendingArc(x: 400, y: 200, radius: 100, beginningAngle: 90, endAngle: 180)
+                .appendingLine(toX: 500, y: 200)
                 .moving(toX: 500, y: 200)
                 .appendingCircle(x: 200, y: 200, radius: 50)
                 .moving(toX: 500, y: 200)
@@ -971,7 +972,7 @@ class DrawingContextTests: XCTestCase {
     
     func testShowOnelineText() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
@@ -990,7 +991,7 @@ class DrawingContextTests: XCTestCase {
     
     func testShowMultilineText() {
         
-        //        recordMode = true
+//        recordMode = true
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
