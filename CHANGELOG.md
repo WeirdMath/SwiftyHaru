@@ -6,6 +6,10 @@
 
 - Loading TrueType fonts from a .ttc collection
 - Getting a bounding box of a specified text put at a specified position
+- Getting the ascent of a font
+- Getting the descent of a font
+- Getting the x-height of a font
+- Getting the cap height of a font
 
 ## [0.1.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.1.0) (2016-11-02)
 **Closed issues:**

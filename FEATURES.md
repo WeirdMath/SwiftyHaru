@@ -193,10 +193,10 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Font_GetEncodingName()` | **Implemented** | Complete | `Encoding`'s `name` instance property |
 | `HPDF_Font_GetUnicodeWidth()` | Unimplemented | None | N/A |
 | `HPDF_Font_GetBBox()` | **Implemented** | Complete | `DrawingContext`'s `boundingBox(for:atPosition:)` instance method |
-| `HPDF_Font_GetAscent()` | Unimplemented | None | N/A |
-| `HPDF_Font_GetDescent()` | Unimplemented | None | N/A |
-| `HPDF_Font_GetXHeight()` | Unimplemented | None | N/A |
-| `HPDF_Font_GetCapHeight()` | Unimplemented | None | N/A |
+| `HPDF_Font_GetAscent()` | **Implemented** | Complete | `DrawingContext`'s `fontAscent` instance property |
+| `HPDF_Font_GetDescent()` | **Implemented** | Complete | `DrawingContext`'s `fontDescent` instance property |
+| `HPDF_Font_GetXHeight()` | **Implemented** | Complete | `DrawingContext`'s `fontXHeight` instance property |
+| `HPDF_Font_GetCapHeight()` | **Implemented** | Complete | `DrawingContext`'s `fontCapHeight` instance property |
 | `HPDF_Font_TextWidth()` | Unimplemented | None | N/A |
 | `HPDF_Font_MeasureText()` | Unimplemented | None | N/A |
 

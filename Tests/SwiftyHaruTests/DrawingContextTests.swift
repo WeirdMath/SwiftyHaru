@@ -34,6 +34,11 @@ class DrawingContextTests: XCTestCase {
             ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
             ("testTextWidthForString", testTextWidthForString),
             ("testTextBoundingBox", testTextBoundingBox),
+            ("testFontAscent", testFontAscent),
+            ("testFontDescent", testFontDescent),
+            ("testFontXHeight", testFontXHeight),
+            ("testFontCapHeight", testFontCapHeight),
+            ("testTextLeading", testTextLeading),
             ("testShowOnelineText", testShowOnelineText),
             ("testShowMultilineText", testShowMultilineText),
             ("testShowUnicodeText", testShowUnicodeText)
@@ -816,6 +821,114 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedBBoxForMultilineText, returnedBBoxForMultilineText)
+    }
+    
+    func testFontAscent() {
+        
+        // Given
+        let expectedAscentForHelvetica: Float = 7.89799976
+        let expectedAscentForTimes: Float = 20.4899998
+        
+        // When
+        var returnedAscentForHelvetica: Float?
+        page.draw { context in
+            returnedAscentForHelvetica = context.fontAscent
+        }
+        
+        // Then
+        XCTAssertEqual(expectedAscentForHelvetica, returnedAscentForHelvetica)
+        
+        // When
+        var returnedAscentForTimes: Float?
+        page.draw { context in
+            context.font = .timesRoman
+            context.fontSize = 30
+            returnedAscentForTimes = context.fontAscent
+        }
+        
+        // Then
+        XCTAssertEqual(expectedAscentForTimes, returnedAscentForTimes)
+    }
+    
+    func testFontDescent() {
+        
+        // Given
+        let expectedDescentForHelvetica: Float = -2.27699995
+        let expectedDescentForTimes: Float = -6.51000023
+        
+        // When
+        var returnedDescentForHelvetica: Float?
+        page.draw { context in
+            returnedDescentForHelvetica = context.fontDescent
+        }
+        
+        // Then
+        XCTAssertEqual(expectedDescentForHelvetica, returnedDescentForHelvetica)
+        
+        // When
+        var returnedDescentForTimes: Float?
+        page.draw { context in
+            context.font = .timesRoman
+            context.fontSize = 30
+            returnedDescentForTimes = context.fontDescent
+        }
+        
+        // Then
+        XCTAssertEqual(expectedDescentForTimes, returnedDescentForTimes)
+    }
+    
+    func testFontXHeight() {
+        
+        // Given
+        let expectedXHeightForHelvetica: Float = 5.75299978
+        let expectedXHeightForTimes: Float = 13.5
+        
+        // When
+        var returnedXHeightForHelvetica: Float?
+        page.draw { context in
+            returnedXHeightForHelvetica = context.fontXHeight
+        }
+        
+        // Then
+        XCTAssertEqual(expectedXHeightForHelvetica, returnedXHeightForHelvetica)
+        
+        // When
+        var returnedXHeightForTimes: Float?
+        page.draw { context in
+            context.font = .timesRoman
+            context.fontSize = 30
+            returnedXHeightForTimes = context.fontXHeight
+        }
+        
+        // Then
+        XCTAssertEqual(expectedXHeightForTimes, returnedXHeightForTimes)
+    }
+    
+    func testFontCapHeight() {
+        
+        // Given
+        let expectedCapHeightForHelvetica: Float = 7.89799976
+        let expectedCapHeightForTimes: Float = 19.8600006
+        
+        // When
+        var returnedCapHeightForHelvetica: Float?
+        page.draw { context in
+            returnedCapHeightForHelvetica = context.fontCapHeight
+        }
+        
+        // Then
+        XCTAssertEqual(expectedCapHeightForHelvetica, returnedCapHeightForHelvetica)
+        
+        // When
+        var returnedCapHeightForTimes: Float?
+        page.draw { context in
+            context.font = .timesRoman
+            context.fontSize = 30
+            returnedCapHeightForTimes = context.fontCapHeight
+        }
+        
+        // Then
+        XCTAssertEqual(expectedCapHeightForTimes, returnedCapHeightForTimes)
     }
     
     func testTextLeading() {

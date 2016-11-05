@@ -402,7 +402,7 @@ public final class DrawingContext {
         }
     }
     
-    /// Gets the width of the text in current fontsize, character spacing and word spacing. If the text
+    /// Gets the width of the text in the current fontsize, character spacing and word spacing. If the text
     /// is multiline, returns the width of the longest line.
     ///
     /// - parameter text:  The text to get width of.
@@ -415,7 +415,7 @@ public final class DrawingContext {
         return lines.map { HPDF_Page_TextWidth(_page, $0) }.max()!
     }
     
-    /// Gets the bounding box of the text in current font size and leading. Text can be multiline.
+    /// Gets the bounding box of the text in the current font size and leading. Text can be multiline.
     ///
     /// - parameter text:     The text to get the bounding box of.
     /// - parameter position: The assumed position of the text.
@@ -423,18 +423,47 @@ public final class DrawingContext {
     /// - returns: The bounding box of the text.
     public func boundingBox(for text: String, atPosition position: Point) -> Rectangle {
         
-        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
-        
         let textWidth = self.textWidth(for: text)
-        let capHeight = Float(HPDF_Font_GetAscent(fontHandle)) * fontSize / 1000
-        let descent = Float(HPDF_Font_GetDescent(fontHandle)) * fontSize / 1000
         
         let numberOfLines = text.components(separatedBy: .newlines).count
         
         return Rectangle(x: position.x,
-                         y: position.y + descent - textLeading * Float(numberOfLines - 1),
+                         y: position.y + fontDescent - textLeading * Float(numberOfLines - 1),
                          width: textWidth,
-                         height: capHeight - descent + textLeading * Float(numberOfLines - 1))
+                         height: fontAscent - fontDescent + textLeading * Float(numberOfLines - 1))
+    }
+    
+    /// The vertical ascent of the current font in the current font size.
+    public var fontAscent: Float {
+        
+        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
+        
+        return Float(HPDF_Font_GetAscent(fontHandle)) * fontSize / 1000
+    }
+    
+    /// The vertical descent of the current font in the current font size. This value is negative.
+    public var fontDescent: Float {
+        
+        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
+        
+        return Float(HPDF_Font_GetDescent(fontHandle)) * fontSize / 1000
+    }
+    
+    /// The height of lowercase letters reach based on height of lowercase x in the current font and font size;
+    /// does not include ascenders or descenders.
+    public var fontXHeight: Float {
+        
+        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
+        
+        return Float(HPDF_Font_GetXHeight(fontHandle)) * fontSize / 1000
+    }
+    
+    /// The height of a capital letter in the current font and font size measured from the baseline.
+    public var fontCapHeight: Float {
+        
+        let fontHandle = HPDF_GetFont(_documentHandle, font.name, encoding.name)
+        
+        return Float(HPDF_Font_GetCapHeight(fontHandle)) * fontSize / 1000
     }
     
     /// Text leading (line spacing) for text showing. Default value is 11.
