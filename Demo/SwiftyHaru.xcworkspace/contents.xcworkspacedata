@@ -8,6 +8,9 @@
       location = "group:LineDemo.playground">
    </FileRef>
    <FileRef
+      location = "group:GridSheet.playground">
+   </FileRef>
+   <FileRef
       location = "group:../SwiftyHaru.xcodeproj">
    </FileRef>
 </Workspace>
