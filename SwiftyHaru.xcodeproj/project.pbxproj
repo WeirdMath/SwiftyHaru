@@ -201,28 +201,28 @@
 		8705252D1DA0860300D5EF74 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		8705252F1DA1304300D5EF74 /* PDFPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageTests.swift; sourceTree = "<group>"; };
 		871C07901DA1837F00C02640 /* DrawingContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContext.swift; sourceTree = "<group>"; };
-		871C07941DA1B56C00C02640 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		871C07941DA1B56C00C02640 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Graphics/Color.swift; sourceTree = "<group>"; };
 		872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageLayout.swift; sourceTree = "<group>"; };
-		8724A7CC1DCD13AE005BE9B2 /* Grid.MajorLineParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.MajorLineParameters.swift; sourceTree = "<group>"; };
-		8724A7CE1DCD13DF005BE9B2 /* Grid.MinorLineParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.MinorLineParameters.swift; sourceTree = "<group>"; };
-		8724A7D01DCD1404005BE9B2 /* Grid.Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.Lines.swift; sourceTree = "<group>"; };
-		8724A7D21DCD1436005BE9B2 /* Grid.SerifParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.SerifParameters.swift; sourceTree = "<group>"; };
-		8724A7D41DCD1459005BE9B2 /* Grid.Serifs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.Serifs.swift; sourceTree = "<group>"; };
-		8724A7D61DCD1496005BE9B2 /* Grid.LabelParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.LabelParameters.swift; sourceTree = "<group>"; };
-		8724A7D81DCD14BA005BE9B2 /* Grid.Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.Labels.swift; sourceTree = "<group>"; };
-		8724A7DA1DCD1586005BE9B2 /* Grid+Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Grid+Drawable.swift"; sourceTree = "<group>"; };
+		8724A7CC1DCD13AE005BE9B2 /* Grid.MajorLineParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.MajorLineParameters.swift; path = Grid/Grid.MajorLineParameters.swift; sourceTree = "<group>"; };
+		8724A7CE1DCD13DF005BE9B2 /* Grid.MinorLineParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.MinorLineParameters.swift; path = Grid/Grid.MinorLineParameters.swift; sourceTree = "<group>"; };
+		8724A7D01DCD1404005BE9B2 /* Grid.Lines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.Lines.swift; path = Grid/Grid.Lines.swift; sourceTree = "<group>"; };
+		8724A7D21DCD1436005BE9B2 /* Grid.SerifParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.SerifParameters.swift; path = Grid/Grid.SerifParameters.swift; sourceTree = "<group>"; };
+		8724A7D41DCD1459005BE9B2 /* Grid.Serifs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.Serifs.swift; path = Grid/Grid.Serifs.swift; sourceTree = "<group>"; };
+		8724A7D61DCD1496005BE9B2 /* Grid.LabelParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.LabelParameters.swift; path = Grid/Grid.LabelParameters.swift; sourceTree = "<group>"; };
+		8724A7D81DCD14BA005BE9B2 /* Grid.Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.Labels.swift; path = Grid/Grid.Labels.swift; sourceTree = "<group>"; };
+		8724A7DA1DCD1586005BE9B2 /* Grid+Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grid+Drawable.swift"; path = "Grid/Grid+Drawable.swift"; sourceTree = "<group>"; };
 		8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageNumberStyle.swift; sourceTree = "<group>"; };
 		873D403C1DB8FF020022F621 /* Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
-		8748A0321DCB69D3006A8F84 /* Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawable.swift; sourceTree = "<group>"; };
-		8748A0341DCB6F05006A8F84 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		8748A0321DCB69D3006A8F84 /* Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Drawable.swift; path = Graphics/Drawable.swift; sourceTree = "<group>"; };
+		8748A0341DCB6F05006A8F84 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Grid/Grid.swift; sourceTree = "<group>"; };
 		875073561DA67E4000956E8D /* DashStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyleTests.swift; sourceTree = "<group>"; };
-		8750736C1DA79CDA00956E8D /* LineCap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineCap.swift; sourceTree = "<group>"; };
-		8750736E1DA7A8C600956E8D /* LineJoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineJoin.swift; sourceTree = "<group>"; };
+		8750736C1DA79CDA00956E8D /* LineCap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineCap.swift; path = Graphics/LineCap.swift; sourceTree = "<group>"; };
+		8750736E1DA7A8C600956E8D /* LineJoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineJoin.swift; path = Graphics/LineJoin.swift; sourceTree = "<group>"; };
 		875073741DA82AD700956E8D /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		875CE9DB1DCE09F80060A4A0 /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
 		8767BB2C1DA4E130003A3A8F /* DrawingContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContextTests.swift; sourceTree = "<group>"; };
-		8767BB2E1DA64280003A3A8F /* DashStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyle.swift; sourceTree = "<group>"; };
-		877187B51DA1B92D0050769E /* PDFColorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFColorSpace.swift; sourceTree = "<group>"; };
+		8767BB2E1DA64280003A3A8F /* DashStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DashStyle.swift; path = Graphics/DashStyle.swift; sourceTree = "<group>"; };
+		877187B51DA1B92D0050769E /* PDFColorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PDFColorSpace.swift; path = Graphics/PDFColorSpace.swift; sourceTree = "<group>"; };
 		87736D581DCE621E0036EDA1 /* GridTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTests.swift; sourceTree = "<group>"; };
 		879F9D4A1DA055BD00499D19 /* hpdf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf.h; sourceTree = "<group>"; };
 		879F9D4B1DA055BD00499D19 /* hpdf_3dmeasure.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hpdf_3dmeasure.h; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		87A8AAF91DA276E200EB7DDF /* ColorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
 		87E2489D1DCE83910048F2FB /* DefaultStringConvertible.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DefaultStringConvertible.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E248A51DCE86850048F2FB /* DefaultStringConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultStringConvertible.swift; path = "Packages/DefaultStringConvertible-2.0.0/Sources/DefaultStringConvertible.swift"; sourceTree = "<group>"; };
-		87E2CE7A1DA857C2009DCE42 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		87E2CE7A1DA857C2009DCE42 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = Graphics/Path.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_3dmeasure.c /* hpdf_3dmeasure.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_3dmeasure.c; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/CLibHaru/hpdf_annotation.c /* hpdf_annotation.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = hpdf_annotation.c; sourceTree = "<group>"; };
@@ -349,7 +349,7 @@
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.Direction.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.Size.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFPage.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = Graphics/Geometry.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unimplemented.swift; sourceTree = "<group>"; };
 		__PBXFileRef_SwiftyHaru.xcodeproj/Configs/Project.xcconfig /* SwiftyHaru.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SwiftyHaru.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFDocumentTests.swift; sourceTree = "<group>"; };
@@ -490,6 +490,21 @@
 				87E248A51DCE86850048F2FB /* DefaultStringConvertible.swift */,
 			);
 			name = DefaultStringConvertible;
+			sourceTree = "<group>";
+		};
+		87E248AC1DCEA6B00048F2FB /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				8748A0321DCB69D3006A8F84 /* Drawable.swift */,
+				87E2CE7A1DA857C2009DCE42 /* Path.swift */,
+				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */,
+				8767BB2E1DA64280003A3A8F /* DashStyle.swift */,
+				8750736C1DA79CDA00956E8D /* LineCap.swift */,
+				8750736E1DA7A8C600956E8D /* LineJoin.swift */,
+				871C07941DA1B56C00C02640 /* Color.swift */,
+				877187B51DA1B92D0050769E /* PDFColorSpace.swift */,
+			);
+			name = Graphics;
 			sourceTree = "<group>";
 		};
 		TestProducts_ /* Tests */ = {
@@ -638,10 +653,9 @@
 		"_______Group_SwiftyHaru" /* SwiftyHaru */ = {
 			isa = PBXGroup;
 			children = (
+				87E248AC1DCEA6B00048F2FB /* Graphics */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */,
-				8748A0321DCB69D3006A8F84 /* Drawable.swift */,
-				87E2CE7A1DA857C2009DCE42 /* Path.swift */,
 				871C07901DA1837F00C02640 /* DrawingContext.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift */,
@@ -650,12 +664,6 @@
 				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
 				875073741DA82AD700956E8D /* Font.swift */,
 				873D403C1DB8FF020022F621 /* Encoding.swift */,
-				__PBXFileRef_Sources/SwiftyHaru/Size.swift /* Geometry.swift */,
-				8767BB2E1DA64280003A3A8F /* DashStyle.swift */,
-				8750736C1DA79CDA00956E8D /* LineCap.swift */,
-				8750736E1DA7A8C600956E8D /* LineJoin.swift */,
-				871C07941DA1B56C00C02640 /* Color.swift */,
-				877187B51DA1B92D0050769E /* PDFColorSpace.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */,
 				8724A7CB1DCD1387005BE9B2 /* Grid */,
 				875CE9DB1DCE09F80060A4A0 /* Sequence.swift */,
@@ -1270,6 +1278,7 @@
 				87E248A41DCE83910048F2FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		"___RootConfs_" /* Build configuration list for PBXProject "SwiftyHaru" */ = {
 			isa = XCConfigurationList;
