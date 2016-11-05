@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Labels Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Labels" class="dashAnchor"></a>
+    <a title="Labels Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../../index.html">SwiftyHaru Docs</a> (75% documented)</p>
+        <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../../index.html">SwiftyHaru Reference</a>
+        <img id="carat" src="../../img/carat.png" />
+        Labels Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Classes/DrawingContext.html">DrawingContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage.html">PDFPage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage/Size.html">– Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Enums/LineCap.html">LineCap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/LineJoin.html">LineJoin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/PDFColorSpace.html">PDFColorSpace</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Extensions/Sequence.html">Sequence</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/Drawable.html">Drawable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DashStyle.html">DashStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Encoding.html">Encoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid.html">Grid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/LabelParameters.html">– LabelParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Labels.html">– Labels</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Point.html">Point</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Rectangle.html">Rectangle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Labels</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Labels</span></code></pre>
+
+                </div>
+              </div>
+            <p>Encapsulates the parameters of the labels for vertical and horizontal lines.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVV10SwiftyHaru4Grid6Labels3topGSqVS0_15LabelParameters_"></a>
+                    <a name="//apple_ref/swift/Property/top" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid6Labels3topGSqVS0_15LabelParameters_">top</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The labels for vertical lines at the top of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVV10SwiftyHaru4Grid6Labels6bottomGSqVS0_15LabelParameters_"></a>
+                    <a name="//apple_ref/swift/Property/bottom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid6Labels6bottomGSqVS0_15LabelParameters_">bottom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The labels for vertical lines at the bottom of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVV10SwiftyHaru4Grid6Labels4leftGSqVS0_15LabelParameters_"></a>
+                    <a name="//apple_ref/swift/Property/left" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid6Labels4leftGSqVS0_15LabelParameters_">left</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The labels for horizontal lines on the left of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVV10SwiftyHaru4Grid6Labels5rightGSqVS0_15LabelParameters_"></a>
+                    <a name="//apple_ref/swift/Property/right" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid6Labels5rightGSqVS0_15LabelParameters_">right</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The labels for horizontal lines on the right of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FVV10SwiftyHaru4Grid6LabelscFT3topGSqVS0_15LabelParameters_6bottomGSqS2__4leftGSqS2__5rightGSqS2___S1_"></a>
+                    <a name="//apple_ref/swift/Method/init(top:bottom:left:right:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FVV10SwiftyHaru4Grid6LabelscFT3topGSqVS0_15LabelParameters_6bottomGSqS2__4leftGSqS2__5rightGSqS2___S1_">init(top:bottom:left:right:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new set of the label parameters for each kind of labels.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>top</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for vertical lines at the top of the grid. If specified <code>nil</code>, no such labels will be drawn. Default value is <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bottom</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for vertical lines at the bottom of the grid. If specified <code>nil</code>, no such labels will be drawn. Default value is <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for horizontal lines on the left of the grid. If specified <code>nil</code>, no such labels will be drawn. Default value is <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>right</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for horizontal lines on the right of the grid. If specified <code>nil</code>, no such labels will be drawn. Default value is <code>nil</code>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2016-11-06)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

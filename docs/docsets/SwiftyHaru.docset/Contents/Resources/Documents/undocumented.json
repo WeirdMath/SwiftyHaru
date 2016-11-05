@@ -548,14 +548,14 @@
     },
     {
       "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.swift",
-      "line": 17,
+      "line": 18,
       "symbol": "PDFDocument.pages",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.swift",
-      "line": 19,
+      "line": 20,
       "symbol": "PDFDocument.fonts",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
