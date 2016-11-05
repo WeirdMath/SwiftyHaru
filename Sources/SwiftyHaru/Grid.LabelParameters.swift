@@ -30,6 +30,10 @@ public extension Grid {
         /// and the bounding box of a label touches the bound of the grid, but you can specify an offset.
         public var offset: Vector
         
+        /// Normally the sequence of labels is drawn from left to right (bottom to top).
+        /// Setting this property to `true` causes the sequence to be drawn from right to left (top to bottom).
+        public var reversed: Bool
+        
         /// Creates a new label parameter set.
         ///
         /// - parameter sequence:   The sequnce of the text labels to draw.
@@ -38,18 +42,21 @@ public extension Grid {
         /// - parameter fontColor:  The color of labels. Default is 50% gray.
         /// - parameter frequency:  The nubmber of major lines per one label. Default value is 5.
         /// - parameter offset:     The offset of the label. Default value is `.zero`.
+        /// - parameter reversed:   The order in which to draw the labels. Default is `false`.
         public init(sequence: AnySequence<String>,
                     font: Font = .helvetica,
                     fontSize: Float = 5,
                     fontColor: Color = Color(gray: 0.5)!,
                     frequency: Int = 5,
-                    offset: Vector = .zero) {
+                    offset: Vector = .zero,
+                    reversed: Bool = false) {
             self.sequence = sequence
             self.font = font
             self.fontSize = fontSize
             self.fontColor = fontColor
             self.frequency = frequency
             self.offset = offset
+            self.reversed = reversed
         }
     }
 }
@@ -78,6 +85,7 @@ extension Grid.LabelParameters: Equatable {
             lhs.fontColor == rhs.fontColor &&
             lhs.fontSize == rhs.fontSize &&
             lhs.frequency == rhs.frequency &&
-            lhs.offset == rhs.offset
+            lhs.offset == rhs.offset &&
+            lhs.reversed == rhs.reversed
     }
 }

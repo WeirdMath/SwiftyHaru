@@ -45,8 +45,8 @@ extension Grid: Drawable {
         
         _drawTopLabels(context: context, initialPoint: position)
         _drawBottomLabels(context: context, initialPoint: position)
-//        _drawLeftLabels(context: context, initialPoint: position)
-//        _drawRightLabels(context: context, initialPoint: position)
+        _drawLeftLabels(context: context, initialPoint: position)
+        _drawRightLabels(context: context, initialPoint: position)
         
         // Return to the initial state
         context.lineWidth = _lineWidth
@@ -244,18 +244,21 @@ extension Grid: Drawable {
         context.fontSize = top.fontSize
         
         let stride = Float(top.frequency) * lines.verticalMajor.lineSpacing
-        
+        let xSequence = top.reversed ?
+            _strideHorizontally(initialPoint: initialPoint, by: stride).reversed() :
+            Array(_strideHorizontally(initialPoint: initialPoint, by: stride))
         let labelIterator = top.sequence.makeIterator()
         
-        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
+        let ascent = context.fontAscent
+        
+        for x in xSequence.dropLast() {
             
             guard let text = labelIterator.next() else { break }
             
             let labelWidth = context.textWidth(for: text)
             
-            // TODO: Get rid of this magic number 10.
-            let textPosition = Point(x: x - labelWidth / 2 + top.offset.x,
-                                     y: initialPoint.y + size.height - 10 + top.offset.y)
+            let textPosition = Point(x: x - labelWidth / 2,
+                                     y: initialPoint.y + size.height - ascent) + top.offset
             
             context.show(text: text, atPosition: textPosition)
         }
@@ -270,18 +273,21 @@ extension Grid: Drawable {
         context.fontSize = bottom.fontSize
         
         let stride = Float(bottom.frequency) * lines.verticalMajor.lineSpacing
-        
+        let xSequence = bottom.reversed ?
+            _strideHorizontally(initialPoint: initialPoint, by: stride).reversed() :
+            Array(_strideHorizontally(initialPoint: initialPoint, by: stride))
         let labelIterator = bottom.sequence.makeIterator()
         
-        for x in _strideHorizontally(initialPoint: initialPoint, by: stride).dropFirst().dropLast() {
+        let descent = context.fontDescent
+        
+        for x in xSequence.dropLast() {
             
             guard let text = labelIterator.next() else { break }
             
             let labelWidth = context.textWidth(for: text)
             
-            // TODO: Get rid of this magic number 10.
-            let textPosition = Point(x: x - labelWidth / 2 + bottom.offset.x,
-                                     y: initialPoint.y + 10 + bottom.offset.y)
+            let textPosition = Point(x: x - labelWidth / 2,
+                                     y: initialPoint.y - descent) + bottom.offset
             
             context.show(text: text, atPosition: textPosition)
         }
@@ -291,14 +297,58 @@ extension Grid: Drawable {
         
         guard let left = labels.left else { return }
         
-        Unimplemented()
+        context.fillColor = left.fontColor
+        context.font = left.font
+        context.fontSize = left.fontSize
+        
+        let stride = Float(left.frequency) * lines.horizontalMajor.lineSpacing
+        let ySequence = left.reversed ?
+            _strideVertically(initialPoint: initialPoint, by: stride).reversed() :
+            Array(_strideVertically(initialPoint: initialPoint, by: stride))
+        let labelIterator = left.sequence.makeIterator()
+        
+        let ascent = context.fontAscent
+        
+        for y in ySequence.dropLast() {
+            
+            guard let text = labelIterator.next() else { break }
+            
+            let bboxHeight = context.boundingBox(for: text, atPosition: .zero).height
+            
+            let textPosition = Point(x: initialPoint.x,
+                                     y: y + bboxHeight / 2 - ascent) + left.offset
+            
+            context.show(text: text, atPosition: textPosition)
+        }
     }
     
     private func _drawRightLabels(context: DrawingContext, initialPoint: Point) {
         
         guard let right = labels.right else { return }
         
-        Unimplemented()
+        context.fillColor = right.fontColor
+        context.font = right.font
+        context.fontSize = right.fontSize
+        
+        let stride = Float(right.frequency) * lines.horizontalMajor.lineSpacing
+        let ySequence = right.reversed ?
+            _strideVertically(initialPoint: initialPoint, by: stride).reversed() :
+            Array(_strideVertically(initialPoint: initialPoint, by: stride))
+        let labelIterator = right.sequence.makeIterator()
+        
+        let ascent = context.fontAscent
+        
+        for y in ySequence.dropLast() {
+            
+            guard let text = labelIterator.next() else { break }
+            
+            let bboxSize = context.boundingBox(for: text, atPosition: .zero).size
+            
+            let textPosition = Point(x: initialPoint.x + size.width - bboxSize.width,
+                                     y: y + bboxSize.height / 2 - ascent) + right.offset
+            
+            context.show(text: text, atPosition: textPosition)
+        }
     }
 
 }
