@@ -6,6 +6,8 @@
 //
 //
 
+import CoreFoundation
+
 /// A type for graphics paths: mathematical descriptions of shapes or lines to be drawn in a `DrawingContext`.
 public struct Path {
     
@@ -161,6 +163,15 @@ public struct Path {
         // TODO: Allow `beginningAngle` to be greater than `endAngle` by changing the direction.
         
         guard endAngle > beginningAngle else { return }
+        
+        let deltaAngle = (90 - (beginningAngle + endAngle) / 2) / 180 * Float.pi
+        let newAngle = (endAngle - beginningAngle) / 2 / 180 * Float.pi
+        
+        let rx3 = radius * cos(newAngle)
+        let ry3 = -radius * sin(newAngle)
+        
+        _currentPosition = Point(x: rx3 * cos(deltaAngle) - ry3 * sin(deltaAngle) + center.x,
+                                 y: rx3 * sin(deltaAngle) + ry3 * cos(deltaAngle) + center.y)
         
         _pathConstructionSequence.append(.arc(center: center,
                                               radius: radius,

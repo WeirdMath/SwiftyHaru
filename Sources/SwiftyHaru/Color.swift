@@ -24,14 +24,14 @@ public struct Color {
     /// Returns the blue color in `PDFColorSpace.deviceRGB` space
     public static let blue = Color(red: 0, green: 0, blue: 1)!
     
-    /// Returns the black color in `PDFColorSpace.deviceRGB` space
-    public static let black = Color(red: 0, green: 0, blue: 0)!
+    /// Returns the black color in `PDFColorSpace.deviceGray` space
+    public static let black = Color(gray: 0)!
     
-    /// Returns the white color in `PDFColorSpace.deviceRGB` space
-    public static let white = Color(red: 1, green: 1, blue: 1)!
+    /// Returns the white color in `PDFColorSpace.deviceGray` space
+    public static let white = Color(gray: 1)!
     
-    /// Returns the transparent white color in `PDFColorSpace.deviceRGB` space
-    public static let clear = Color(red: 1, green: 1, blue: 1, alpha: 0)!
+    /// Returns the transparent white color in `PDFColorSpace.deviceGray` space
+    public static let clear = Color(gray: 1, alpha: 0)!
     
     internal enum _ColorSpaceWrapper {
         case rgb(red: Float, green: Float, blue: Float)
