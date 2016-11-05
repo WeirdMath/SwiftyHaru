@@ -1,6 +1,9 @@
 # Change Log
 
 ## [Unreleased](https://github.com/WeirdMath/SwiftyHaru/tree/HEAD)
+**Closed issues:**
+
+- Implement high-level grid drawing [\#6](https://github.com/WeirdMath/SwiftyHaru/issues/6)
 
 **Implemented features:**
 
@@ -10,6 +13,7 @@
 - Getting the descent of a font
 - Getting the x-height of a font
 - Getting the cap height of a font
+- **High-level customizable interface for drawing grids!**
 
 ## [0.1.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.1.0) (2016-11-02)
 **Closed issues:**
