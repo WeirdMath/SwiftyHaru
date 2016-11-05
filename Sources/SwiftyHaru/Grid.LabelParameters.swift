@@ -6,6 +6,8 @@
 //
 //
 
+import DefaultStringConvertible
+
 public extension Grid {
     
     /// Represents the properties of a grid's line labels. Labels can only be placed near serifs.
@@ -23,7 +25,7 @@ public extension Grid {
         /// The color of labels.
         public var fontColor: Color
         
-        /// The nubmber of major lines per one label.
+        /// The nubmber of major lines per one label. Must be positive.
         public var frequency: Int
         
         /// Normally labels are placed in such a way that a major line goes through the center of a label,
@@ -40,7 +42,7 @@ public extension Grid {
         /// - parameter font:       The font of labels. Default is Helvetica.
         /// - parameter fontSize:   The font size of labels. Default value is 5.
         /// - parameter fontColor:  The color of labels. Default is 50% gray.
-        /// - parameter frequency:  The nubmber of major lines per one label. Default value is 5.
+        /// - parameter frequency:  The nubmber of major lines per one label. Default value is 5. Must be positive.
         /// - parameter offset:     The offset of the label. Default value is `.zero`.
         /// - parameter reversed:   The order in which to draw the labels. Default is `false`.
         public init(sequence: AnySequence<String>,
@@ -54,7 +56,7 @@ public extension Grid {
             self.font = font
             self.fontSize = fontSize
             self.fontColor = fontColor
-            self.frequency = frequency
+            self.frequency = frequency > 0 ? frequency : 5
             self.offset = offset
             self.reversed = reversed
         }
@@ -75,14 +77,7 @@ extension Grid.LabelParameters: Equatable {
     ///   - rhs: Another value to compare.
     public static func ==(lhs: Grid.LabelParameters, rhs: Grid.LabelParameters) -> Bool {
         
-        let areSequencesEqual = zip(lhs.sequence, rhs.sequence)
-            .prefix(64)
-            .reduce(true) { (result, next) -> Bool in
-                return result && (next.0 == next.1)
-        }
-        
-        return areSequencesEqual &&
-            lhs.font == rhs.font &&
+        return lhs.font == rhs.font &&
             lhs.fontColor == rhs.fontColor &&
             lhs.fontSize == rhs.fontSize &&
             lhs.frequency == rhs.frequency &&
@@ -90,3 +85,5 @@ extension Grid.LabelParameters: Equatable {
             lhs.reversed == rhs.reversed
     }
 }
+
+extension Grid.LabelParameters: CustomStringConvertible {}

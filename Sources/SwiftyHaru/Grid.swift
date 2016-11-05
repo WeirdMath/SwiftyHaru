@@ -6,6 +6,8 @@
 //
 //
 
+import DefaultStringConvertible
+
 /// Represents a grid that can be drawn on a PDF page.
 public struct Grid {
     
@@ -84,7 +86,9 @@ extension Grid: Equatable {
     public static func ==(lhs: Grid, rhs: Grid) -> Bool {
         return lhs.size == rhs.size &&
             lhs.lines == rhs.lines &&
-            lhs.labels == lhs.labels &&
+            lhs.labels == rhs.labels &&
             lhs.serifs == rhs.serifs
     }
 }
+
+extension Grid: CustomStringConvertible {}

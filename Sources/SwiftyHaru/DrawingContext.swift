@@ -57,12 +57,13 @@ public final class DrawingContext {
     
     // MARK: - Graphics state
     
-    /// The current line width for path painting of the page. Default value is 1.
+    /// The current line width for path painting of the page. Must be nonegative. Default value is 1.
     public var lineWidth: Float {
         get {
             return HPDF_Page_GetLineWidth(_page)
         }
         set {
+            guard newValue >= 0 else { return }
             HPDF_Page_SetLineWidth(_page, newValue)
         }
     }

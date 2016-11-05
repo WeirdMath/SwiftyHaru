@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DefaultStringConvertible
 import CLibHaru
 
 /// A handle to operate on a document object.
@@ -346,3 +347,5 @@ public final class PDFDocument {
         }
     }
 }
+
+extension PDFDocument: CustomStringConvertible {}

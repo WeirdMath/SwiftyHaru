@@ -42,6 +42,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "87E2489C1DCE83910048F2FB"
+               BuildableName = "DefaultStringConvertible.framework"
+               BlueprintName = "DefaultStringConvertible"
+               ReferencedContainer = "container:SwiftyHaru.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "______Target_SwiftyHaru"
                BuildableName = "SwiftyHaru.framework"
                BlueprintName = "SwiftyHaru"
@@ -68,6 +82,15 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "______Target_CLibHaru"
+            BuildableName = "CLibHaru.framework"
+            BlueprintName = "CLibHaru"
+            ReferencedContainer = "container:SwiftyHaru.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -99,6 +122,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "______Target_CLibHaru"
+            BuildableName = "CLibHaru.framework"
+            BlueprintName = "CLibHaru"
+            ReferencedContainer = "container:SwiftyHaru.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

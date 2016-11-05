@@ -6,6 +6,8 @@
 //
 //
 
+import DefaultStringConvertible
+
 public extension Grid {
     
     /// Represents the properties of a grid's serifs. Serifs are short lines that can be placed on the edges of
@@ -16,7 +18,7 @@ public extension Grid {
         /// and the color of the serifs is 50% gray.
         public static let `default` = SerifParameters()
         
-        /// The nubmber of major lines per one serif.
+        /// The nubmber of major lines per one serif. Must be positive.
         public var frequency: Int
         
         /// The thickness of the serifs.
@@ -30,7 +32,7 @@ public extension Grid {
         
         /// Creates a new serif parameter set.
         ///
-        /// - parameter frequency: The nubmber of major lines per one serif. Default value is 5.
+        /// - parameter frequency: The nubmber of major lines per one serif. Must be positive. Default value is 5.
         /// - parameter width:     The width of the serifs. Default value is 0.5.
         /// - parameter length:    The length of the serifs. Default value is 5.
         /// - parameter color:     The color of the serifs. Default is 50% gray.
@@ -39,7 +41,7 @@ public extension Grid {
                     length: Float = 5,
                     color: Color = Color(gray: 0.5)!) {
             
-            self.frequency = frequency
+            self.frequency = frequency > 0 ? frequency : 5
             self.width = width
             self.length = length
             self.color = color
@@ -64,3 +66,5 @@ extension Grid.SerifParameters: Equatable {
             lhs.length == rhs.length
     }
 }
+
+extension Grid.SerifParameters: CustomStringConvertible {}

@@ -6,6 +6,8 @@
 //
 //
 
+import DefaultStringConvertible
+
 public extension Grid {
     
     /// Represents the properties of a grid's major lines.
@@ -17,7 +19,7 @@ public extension Grid {
         /// The width of lines.
         public var lineWidth: Float
         
-        /// The spacing between lines.
+        /// The spacing between lines. Must be positive.
         public var lineSpacing: Float
         
         /// The color of lines.
@@ -26,11 +28,11 @@ public extension Grid {
         /// Creates a new line parameter set.
         ///
         /// - parameter lineWidth:   The width of a line. Default value is 0.5.
-        /// - parameter lineSpacing: The spacing between lines. Default value is 10.
+        /// - parameter lineSpacing: The spacing between lines. Must be positive. Default value is 10.
         /// - parameter lineColor:   The color of lines. Default is 80% gray.
         public init(lineWidth: Float = 0.5, lineSpacing: Float = 10, lineColor: Color = Color(gray: 0.8)!) {
             self.lineWidth = lineWidth
-            self.lineSpacing = lineSpacing
+            self.lineSpacing = lineSpacing > 0 ? lineSpacing : 10
             self.lineColor = lineColor
         }
     }
@@ -52,3 +54,5 @@ extension Grid.MajorLineParameters: Equatable {
             lhs.lineWidth == rhs.lineWidth
     }
 }
+
+extension Grid.MajorLineParameters: CustomStringConvertible {}

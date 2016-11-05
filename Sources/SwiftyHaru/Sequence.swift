@@ -6,7 +6,7 @@
 //
 //
 
-extension Sequence {
+public extension Sequence {
     
     /// Concatenates the sequences.
     ///
