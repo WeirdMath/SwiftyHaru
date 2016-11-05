@@ -6,7 +6,7 @@
 //
 //
 
-import CoreFoundation
+import Foundation
 
 /// A type for graphics paths: mathematical descriptions of shapes or lines to be drawn in a `DrawingContext`.
 public struct Path {
