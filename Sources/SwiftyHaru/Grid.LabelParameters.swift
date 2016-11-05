@@ -75,12 +75,13 @@ extension Grid.LabelParameters: Equatable {
     ///   - rhs: Another value to compare.
     public static func ==(lhs: Grid.LabelParameters, rhs: Grid.LabelParameters) -> Bool {
         
-        let areSequencesEqual = zip(lhs.sequence, rhs.sequence).reduce(true) { (result, next) -> Bool in
-            return result && (next.0 == next.1)
+        let areSequencesEqual = zip(lhs.sequence, rhs.sequence)
+            .prefix(64)
+            .reduce(true) { (result, next) -> Bool in
+                return result && (next.0 == next.1)
         }
         
-        return lhs.sequence.underestimatedCount == rhs.sequence.underestimatedCount &&
-            areSequencesEqual &&
+        return areSequencesEqual &&
             lhs.font == rhs.font &&
             lhs.fontColor == rhs.fontColor &&
             lhs.fontSize == rhs.fontSize &&
