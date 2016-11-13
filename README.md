@@ -48,7 +48,7 @@ Add SwiftyHaru as a dependency to your `Package.swift`. For example:
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-        .Package(url: "https://github.com/WeirdMath/SwiftyHaru.git", majorVersion: 1)
+        .Package(url: "https://github.com/WeirdMath/SwiftyHaru.git", majorVersion: 0)
     ]
 )
 ```
