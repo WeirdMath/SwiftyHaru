@@ -252,7 +252,7 @@ class GridTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
-        let parametersNonReversed = Grid.LabelParameters(sequence: AnySequence(["", "1", "10", "100", "1000"]),
+        let parametersNonReversed = Grid.LabelParameters(sequence: ["", "1", "10", "100", "1000"],
                                                          font: .timesBold,
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
@@ -284,7 +284,7 @@ class GridTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
-        let parametersNonReversed = Grid.LabelParameters(sequence: AnySequence(["A", "B", "C", "D", "E"]),
+        let parametersNonReversed = Grid.LabelParameters(sequence: ["A", "B", "C", "D", "E"],
                                                          font: .timesBold,
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
@@ -350,7 +350,7 @@ class GridTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
-        let parametersNonReversed = Grid.LabelParameters(sequence: AnySequence(["0", "1", "2"]),
+        let parametersNonReversed = Grid.LabelParameters(sequence: ["0", "1", "2"],
                                                          font: .timesBold,
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
@@ -401,7 +401,7 @@ class GridTests: XCTestCase {
         
         let serifs = Grid.Serifs(top: topSerifs, bottom: bottomSerifs, left: leftSerifs, right: nil)
         
-        let labelParameters1 = Grid.LabelParameters(sequence: AnySequence(["0", "1", "2", "0"]),
+        let labelParameters1 = Grid.LabelParameters(sequence: ["0", "1", "2", "0"],
                                                     font: .courier,
                                                     fontSize: 3,
                                                     fontColor: .green,

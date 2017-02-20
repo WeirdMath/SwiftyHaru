@@ -45,14 +45,18 @@ public extension Grid {
         /// - parameter frequency:  The nubmber of major lines per one label. Default value is 5. Must be positive.
         /// - parameter offset:     The offset of the label. Default value is `.zero`.
         /// - parameter reversed:   The order in which to draw the labels. Default is `false`.
-        public init(sequence: AnySequence<String>,
-                    font: Font = .helvetica,
-                    fontSize: Float = 5,
-                    fontColor: Color = Color(gray: 0.5)!,
-                    frequency: Int = 5,
-                    offset: Vector = .zero,
-                    reversed: Bool = false) {
-            self.sequence = sequence
+        public init<S : Sequence>(sequence: S,
+                                  font: Font = .helvetica,
+                                  fontSize: Float = 5,
+                                  fontColor: Color = Color(gray: 0.5)!,
+                                  frequency: Int = 5,
+                                  offset: Vector = .zero,
+                                  reversed: Bool = false)
+            where S.Iterator.Element == String, S.SubSequence : Sequence,
+                  S.SubSequence.Iterator.Element == String,
+                  S.SubSequence.SubSequence == S.SubSequence {
+
+            self.sequence = AnySequence(sequence)
             self.font = font
             self.fontSize = fontSize
             self.fontColor = fontColor

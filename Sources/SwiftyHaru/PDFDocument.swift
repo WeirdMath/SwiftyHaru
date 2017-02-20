@@ -263,7 +263,7 @@ public final class PDFDocument {
         }
     }
     
-    /// Loads a TrueType font from a TrueType Collection and and registers it to a document.
+    /// Loads a TrueType font from a TrueType Collection and registers it to a document.
     ///
     /// - parameter data:               Contents of a `.ttc` file.
     /// - parameter index:              The index of the font to be loaded.
