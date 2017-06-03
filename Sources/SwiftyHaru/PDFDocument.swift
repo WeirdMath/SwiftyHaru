@@ -225,6 +225,8 @@ public final class PDFDocument {
                           HPDF_UINT(firstPageNumber),
                           prefix)
     }
+
+    // MARK: Including fonts
     
     /// Loads a TrueType font from `data` and registers it to a document.
     ///
