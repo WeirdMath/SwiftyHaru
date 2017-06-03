@@ -57,16 +57,6 @@ extension XCTestCase {
         
         guard let url = getURLForTestingResource(forFile: file, ofType: type) else { return nil }
         
-        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            return try? Data(contentsOf: url)
-        #else
-            // FIXME: `try? Data(contentsOf: url)` causes segmentation fault in Linux
-            // (probably https://bugs.swift.org/browse/SR-1547)
-            if let nsdata = try? NSData(contentsOfFile: url.path, options: []) {
-                return Data(referencing: nsdata)
-            } else {
-                return nil
-            }
-        #endif
+        return try? Data(contentsOf: url)
     }
 }
