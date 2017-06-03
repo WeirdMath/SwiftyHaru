@@ -521,4 +521,34 @@ public final class DrawingContext {
     public func show(text: String, atX x: Float, y: Float) {
         show(text: text, atPosition: Point(x: x, y: y))
     }
+
+    /// Prints the text inside the specified region.
+    ///
+    /// - Parameters:
+    ///   - text:      The text to show.
+    ///   - rect:      The region to output text.
+    ///   - alignment: The alignment of the text.
+    /// - Returns:    
+    ///     - `isSufficientSpace`: `false` if whole text doesn't fit into declared space.
+    ///     - `charactersPrinted`: The number of characters printed in the area.
+    public func show(text: String,
+                     in rect: Rectangle,
+                     alignment: TextAlignment) -> (isSufficientSpace: Bool, charactersPrinted: Int) {
+
+        HPDF_Page_BeginText(_page)
+
+        defer {
+            HPDF_Page_EndText(_page)
+        }
+
+        var charactersPrinted: HPDF_UINT = 0
+
+        let status = HPDF_Page_TextRect(_page,
+                                        rect.x, rect.maxY, rect.maxX, rect.y,
+                                        text,
+                                        HPDF_TextAlignment(rawValue: alignment.rawValue), &charactersPrinted)
+
+        return (isSufficientSpace: status != UInt(HPDF_PAGE_INSUFFICIENT_SPACE),
+                charactersPrinted: Int(charactersPrinted))
+    }
 }

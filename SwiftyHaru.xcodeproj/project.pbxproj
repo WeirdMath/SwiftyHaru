@@ -21,6 +21,7 @@
 		8724A7DB1DCD1586005BE9B2 /* Grid+Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8724A7DA1DCD1586005BE9B2 /* Grid+Drawable.swift */; };
 		8734A8371DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */; };
 		873D403E1DB8FF140022F621 /* Encoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873D403C1DB8FF020022F621 /* Encoding.swift */; };
+		8743E26D1EE365BC009B62F8 /* TextAlignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8743E26C1EE365BC009B62F8 /* TextAlignment.swift */; };
 		8748A0331DCB69D3006A8F84 /* Drawable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A0321DCB69D3006A8F84 /* Drawable.swift */; };
 		8748A0351DCB6F05006A8F84 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748A0341DCB6F05006A8F84 /* Grid.swift */; };
 		875073571DA67E4000956E8D /* DashStyleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875073561DA67E4000956E8D /* DashStyleTests.swift */; };
@@ -213,6 +214,7 @@
 		8724A7DA1DCD1586005BE9B2 /* Grid+Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grid+Drawable.swift"; path = "Grid/Grid+Drawable.swift"; sourceTree = "<group>"; };
 		8734A8361DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageNumberStyle.swift; sourceTree = "<group>"; };
 		873D403C1DB8FF020022F621 /* Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoding.swift; sourceTree = "<group>"; };
+		8743E26C1EE365BC009B62F8 /* TextAlignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAlignment.swift; sourceTree = "<group>"; };
 		8748A0321DCB69D3006A8F84 /* Drawable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Drawable.swift; path = Graphics/Drawable.swift; sourceTree = "<group>"; };
 		8748A0341DCB6F05006A8F84 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Grid.swift; path = Grid/Grid.swift; sourceTree = "<group>"; };
 		875073561DA67E4000956E8D /* DashStyleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashStyleTests.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 				__PBXFileRef_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift */,
 				875073741DA82AD700956E8D /* Font.swift */,
 				873D403C1DB8FF020022F621 /* Encoding.swift */,
+				8743E26C1EE365BC009B62F8 /* TextAlignment.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/Unimplemented.swift /* Unimplemented.swift */,
 				8724A7CB1DCD1387005BE9B2 /* Grid */,
 				875CE9DB1DCE09F80060A4A0 /* Sequence.swift */,
@@ -1018,6 +1021,7 @@
 				8724A7D31DCD1436005BE9B2 /* Grid.SerifParameters.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift in Sources */,
 				8724A7CF1DCD13DF005BE9B2 /* Grid.MinorLineParameters.swift in Sources */,
+				8743E26D1EE365BC009B62F8 /* TextAlignment.swift in Sources */,
 				8734A8371DA14DA00094FDE6 /* PDFDocument.PageNumberStyle.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift in Sources */,
 				8724A7D51DCD1459005BE9B2 /* Grid.Serifs.swift in Sources */,

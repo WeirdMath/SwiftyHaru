@@ -183,7 +183,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_ShowTextNextLineEx()` | TBD | N/A | N/A |
 | `HPDF_Page_Stroke()` | **Implemented** | Complete | `DrawingContext.stroke(_:)` |
 | `HPDF_Page_TextOut()` | **Implemented** | None | `DrawingContext.show(text:atPosition:)` |
-| `HPDF_Page_TextRect()` | Unimplemented | None | N/A |
+| `HPDF_Page_TextRect()` | **Implemented** | Complete | `DrawingContext.show(text:in:alignment:)` |
 
 ## Font Handling
 

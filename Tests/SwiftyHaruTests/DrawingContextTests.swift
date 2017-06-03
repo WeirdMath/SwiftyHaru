@@ -41,7 +41,8 @@ class DrawingContextTests: XCTestCase {
             ("testTextLeading", testTextLeading),
             ("testShowOnelineText", testShowOnelineText),
             ("testShowMultilineText", testShowMultilineText),
-            ("testShowUnicodeText", testShowUnicodeText)
+            ("testShowUnicodeText", testShowUnicodeText),
+            ("testShowTextInRect", testShowTextInRect)
         ]
     }
     
@@ -1039,5 +1040,58 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+
+    func testShowTextInRect() {
+
+//        recordMode = true
+
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let text =
+            "Lorem ipsum\ndolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
+            " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
+            " exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure" +
+            " dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
+            " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit" +
+            " anim id est laborum."
+
+        // When
+        var result1: (isSufficientSpace: Bool, charactersPrinted: Int)!
+
+        page.draw { context in
+
+            // Center alignment, insufficient space
+
+            let rectangle = Rectangle(x: 100, y: 100, width: 200, height: 100)
+
+            context.stroke(Path().appendingRectangle(rectangle))
+
+            result1 = context.show(text: text, in: rectangle, alignment: .center)
+        }
+
+        var result2: (isSufficientSpace: Bool, charactersPrinted: Int)!
+
+        page.draw { context in
+
+            // Justified, sufficient space
+
+            let rectangle = Rectangle(x: 350, y: 100, width: 200, height: 200)
+
+            context.stroke(Path().appendingRectangle(rectangle))
+
+            result2 = context.show(text: text, in: rectangle, alignment: .justify)
+        }
+
+        let returnedDocumentData = document.getData()
+
+        // Then
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+
+        XCTAssertEqual(result1.charactersPrinted, 284)
+        XCTAssertFalse(result1.isSufficientSpace)
+
+        XCTAssertEqual(result2.charactersPrinted, text.characters.count)
+        XCTAssertTrue(result2.isSufficientSpace)
     }
 }

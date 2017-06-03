@@ -115,6 +115,14 @@ public struct Rectangle {
     public var midY: Float {
         return center.y
     }
+
+    public var maxX: Float {
+        return x + width
+    }
+
+    public var maxY: Float {
+        return y + height
+    }
     
     public init(origin: Point, size: Size) {
         self.origin = origin
