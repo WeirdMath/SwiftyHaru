@@ -74,8 +74,24 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 
 * **[Other Functions](https://github.com/libharu/libharu/wiki/API%3A-Document#Other_Functions)**
     
-    Unimplemented
-
+    | Function  | Status | Test Coverage | SwiftyHaru equivalent |
+    |-----------|--------|---------------|-----------------------|
+    | `HPDF_CreateOutline()` | Unimplemented | None | N/A |
+    | `HPDF_LoadPngImageFromFile()` | Unimplemented | None | N/A |
+    | `HPDF_LoadPngImageFromFile2()` | Unimplemented | None | N/A |
+    | `HPDF_LoadRawImageFromFile()` | Unimplemented | None | N/A |
+    | `HPDF_LoadRawImageFromMem()` | Unimplemented | None | N/A |
+    | `HPDF_LoadPngImageFromMem()` | Unimplemented | None | N/A |
+    | `HPDF_LoadJpegImageFromMem()` | Unimplemented | None | N/A |
+    | `HPDF_LoadJpegImageFromFile()` | Unimplemented | None | N/A |
+    | `HPDF_SetInfoAttr()` | Unimplemented | None | N/A |
+    | `HPDF_GetInfoAttr()` | Unimplemented | None | N/A |
+    | `HPDF_SetInfoDateAttr()` | Unimplemented | None | N/A |
+    | `HPDF_SetPassword()` | Unimplemented | None | N/A |
+    | `HPDF_SetPermission()` | Unimplemented | None | N/A |
+    | `HPDF_SetEncryptionMode()` | Unimplemented | None | N/A |
+    | `HPDF_SetCompressionMode()` | **Implemented** | Incomplete | `PDFDocument.setCompressionMode(to:)` |
+`
 ## Page Handling
 
 | Function  | Status | Test Coverage | SwiftyHaru equivalent |

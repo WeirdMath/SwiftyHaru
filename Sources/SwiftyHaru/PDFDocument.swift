@@ -348,6 +348,19 @@ public final class PDFDocument {
             _utfEncodingsEnabled = true
         }
     }
+
+    // MARK: - Compression
+
+    /// Set the mode of compression.
+    ///
+    /// - Parameter mode: The mode of compression (may be combined).
+    /// - Throws: `PDFError.invalidCompressionMode` if the provided compression mode was invalid.
+    public func setCompressionMode(to mode: CompressionMode) throws {
+        if HPDF_SetCompressionMode(_documentHandle, HPDF_UINT(mode.rawValue)) != UInt(HPDF_OK) {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
 }
 
 extension PDFDocument: CustomStringConvertible {}

@@ -9,6 +9,7 @@
 import XCTest
 import Foundation
 @testable import SwiftyHaru
+import CLibHaru
 
 class PDFDocumentTests: XCTestCase {
     
@@ -19,7 +20,8 @@ class PDFDocumentTests: XCTestCase {
             ("testPageLayout", testPageLayout),
             ("testAddPageLabel", testAddPageLabel),
             ("testLoadTrueTypeFont", testLoadTrueTypeFont),
-            ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection)
+            ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection),
+            ("testSetCompressionMode", testSetCompressionMode)
         ]
     }
     
@@ -173,5 +175,33 @@ class PDFDocumentTests: XCTestCase {
         XCTAssertThrowsError(try sut.loadTrueTypeFontFromCollection(from: collectionData,
                                                                     index: 100,
                                                                     embeddingGlyphData: true))
+    }
+
+    func testSetCompressionMode() {
+
+        // Given
+        let expectedBitmask: HPDF_BOOL = 0b00000011
+
+        // When
+        let validCompressionMode: PDFDocument.CompressionMode = [.image, .text]
+
+        do {
+            try sut.setCompressionMode(to: validCompressionMode)
+        } catch {
+            XCTFail()
+        }
+
+        let compressionModeSet = sut._documentHandle.pointee.compression_mode
+
+        // Then
+        XCTAssertEqual(expectedBitmask, compressionModeSet)
+
+        // When
+        let invalidCompressionMode = PDFDocument.CompressionMode(rawValue: 1024)
+
+        // Then
+        XCTAssertThrowsError(try sut.setCompressionMode(to: invalidCompressionMode)) { error in
+            XCTAssertEqual(PDFError.invalidCompressionMode, error as? PDFError)
+        }
     }
 }
