@@ -21,7 +21,9 @@ class PDFDocumentTests: XCTestCase {
             ("testAddPageLabel", testAddPageLabel),
             ("testLoadTrueTypeFont", testLoadTrueTypeFont),
             ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection),
-            ("testSetCompressionMode", testSetCompressionMode)
+            ("testSetCompressionMode", testSetCompressionMode),
+            ("testSetPassword", testSetPassword),
+            ("testSetPermissions", testSetPermissions)
         ]
     }
     
@@ -188,7 +190,7 @@ class PDFDocumentTests: XCTestCase {
         do {
             try sut.setCompressionMode(to: validCompressionMode)
         } catch {
-            XCTFail()
+            XCTFail(String(describing: error))
         }
 
         let compressionModeSet = sut._documentHandle.pointee.compression_mode
@@ -203,5 +205,78 @@ class PDFDocumentTests: XCTestCase {
         XCTAssertThrowsError(try sut.setCompressionMode(to: invalidCompressionMode)) { error in
             XCTAssertEqual(PDFError.invalidCompressionMode, error as? PDFError)
         }
+    }
+
+    func testSetPassword() {
+
+//        recordMode = true
+
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let ownerPassword = "12345678"
+        let userPassword = "abcdefgh"
+        let page = sut.addPage()
+
+        page.draw { context in
+            context.show(text: "Encrypted PDF.", atX: 200, y: 200)
+        }
+
+        XCTAssertThrowsError(try sut.setEncryptionMode(to: .r2)) { error in
+            XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
+        }
+
+        XCTAssertThrowsError(try sut.setPassword(owner: "")) { error in
+            XCTAssertEqual(PDFError.encryptionInvalidPassword, error as? PDFError)
+        }
+
+        // When
+        do {
+            try sut.setPassword(owner: ownerPassword, user: userPassword)
+            try sut.setEncryptionMode(to: .r2)
+        } catch {
+            XCTFail(String(describing: error))
+        }
+
+        let returnedDocumentData = sut.getData()
+
+        // Then
+
+        // We can't compare the bytes because encryption is used PRGs, so we just count them.
+        XCTAssertEqual(expectedDocumentData?.count, returnedDocumentData.count)
+    }
+
+    func testSetPermissions() {
+
+//        recordMode = true
+
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let ownerPassword = "12345678"
+        let userPassword = "abcdefgh"
+        let page = sut.addPage()
+
+        page.draw { context in
+            context.show(text: "Encrypted PDF with permissions.", atX: 200, y: 200)
+        }
+
+        XCTAssertThrowsError(try sut.setPermissions(to: .read)) { error in
+            XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
+        }
+
+        // When
+        do {
+            try sut.setPassword(owner: ownerPassword, user: userPassword)
+            try sut.setPermissions(to: [])
+            try sut.setEncryptionMode(to: .r3(keyLength: 8))
+        } catch {
+            XCTFail(String(describing: error))
+        }
+
+        let returnedDocumentData = sut.getData()
+
+        // Then
+
+        // We can't compare the bytes because encryption is used PRGs, so we just count them.
+        XCTAssertEqual(expectedDocumentData?.count, returnedDocumentData.count)
     }
 }

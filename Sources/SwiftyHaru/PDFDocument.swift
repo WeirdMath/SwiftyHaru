@@ -361,6 +361,87 @@ public final class PDFDocument {
             throw _error
         }
     }
+
+    // MARK: - Security
+
+    /// Sets the encryption mode. As a side effect, ups the version of PDF to 1.4
+    /// when the mode is set to `.r3`.
+    ///
+    /// - Important: Prior to calling this method you must set the password using
+    ///              the `setPassword(owner:user:)` method.
+    ///
+    /// - Parameter mode: The encryption mode to set.
+    /// - Throws: `PDFError.invalidEncryptionKeyLength` if an invalid key length was specified;
+    ///           `PDFError.documentEncryptionDictionaryNotFound` if you haven't set a password.
+    public func setEncryptionMode(to mode: EncryptionMode) throws {
+
+        let haruMode: HPDF_EncryptMode
+        let keyLength: HPDF_UINT
+
+        switch mode {
+        case .r2:
+            haruMode = HPDF_ENCRYPT_R2
+            keyLength = 5
+        case .r3(keyLength: let length):
+            haruMode = HPDF_ENCRYPT_R3
+
+            if length < 0 { throw PDFError.invalidEncryptionKeyLength }
+
+            keyLength = HPDF_UINT(length)
+        }
+
+        if HPDF_SetEncryptionMode(_documentHandle, haruMode, keyLength) != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    /// Sets the permission flags for the document.
+    ///
+    /// - Important: Prior to calling this method you must set the password using
+    ///              the `setPassword(owner:user:)` method.
+    ///
+    /// - Parameter permissions: The permission flags for the document.
+    /// - Throws: `PDFError.documentEncryptionDictionaryNotFound` if you haven't set a password.
+    public func setPermissions(to permissions: Permissions) throws {
+
+        if HPDF_SetPermission(_documentHandle, HPDF_UINT(permissions.rawValue)) != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    /// Sets a password for the document. If the password is set, the document contents are encrypted.
+    ///
+    /// - Parameters:
+    ///   - owner: The password for the owner of the document. The owner can change the permission of the document.
+    ///            Zero length string and the same value as user password are not allowed.
+    ///   - user:  The password for the user of the document. May be set to `nil` or zero length string.
+    /// - Throws:  `PDFError.encryptionInvalidPassword` if the owner password is zero length string or
+    ///            same value as the user password.
+    public func setPassword(owner: String, user: String? = nil) throws {
+
+        guard !owner.isEmpty, owner != user else {
+            throw PDFError.encryptionInvalidPassword
+        }
+
+        let status: HPDF_STATUS
+
+        // Workaround for https://bugs.swift.org/browse/SR-2814
+        if let user = user {
+            status = HPDF_SetPassword(_documentHandle, owner, user)
+        } else {
+            status = HPDF_SetPassword(_documentHandle, owner, nil)
+        }
+
+        if status != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
 }
 
 extension PDFDocument: CustomStringConvertible {}

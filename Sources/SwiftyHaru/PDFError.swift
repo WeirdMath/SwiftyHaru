@@ -43,7 +43,8 @@ public struct PDFError: Error {
     /// Internal error. Data consistency was lost.
     public static let dictionaryStreamLengthNotFound = PDFError(code: HPDF_DICT_STREAM_LENGTH_NOT_FOUND)
     
-    /// HPDF_SetEncryptMode() or HPDF_SetPermission() called before password set.
+    /// `PDFDocument.setEncryptionMode(to:)` or `PDFDocument.setPermissions(to:)` called
+    /// before password set.
     public static let documentEncryptionDictionaryNotFound = PDFError(code: HPDF_DOC_ENCRYPTDICT_NOT_FOUND)
     
     /// Internal error. Data consistency was lost.

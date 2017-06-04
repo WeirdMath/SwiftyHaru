@@ -87,9 +87,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_SetInfoAttr()` | Unimplemented | None | N/A |
     | `HPDF_GetInfoAttr()` | Unimplemented | None | N/A |
     | `HPDF_SetInfoDateAttr()` | Unimplemented | None | N/A |
-    | `HPDF_SetPassword()` | Unimplemented | None | N/A |
-    | `HPDF_SetPermission()` | Unimplemented | None | N/A |
-    | `HPDF_SetEncryptionMode()` | Unimplemented | None | N/A |
+    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user)` |
+    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPermissions(to:)` |
+    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setEncryptionMode(to:)` |
     | `HPDF_SetCompressionMode()` | **Implemented** | Incomplete | `PDFDocument.setCompressionMode(to:)` |
 `
 ## Page Handling
