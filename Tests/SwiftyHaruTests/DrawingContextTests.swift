@@ -18,6 +18,7 @@ class DrawingContextTests: XCTestCase {
             ("testPathLineCap", testPathLineCap),
             ("testPathLineJoin", testPathLineJoin),
             ("testPathMiterLimit", testPathMiterLimit),
+            ("testSaveRestoreGState", testSaveRestoreGState),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
@@ -263,6 +264,46 @@ class DrawingContextTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedFinalMiterLimit, returnedFinalMiterLimit)
+    }
+
+    func testSaveRestoreGState() {
+
+        // Given
+        let expectedOuterColor = Color.red
+
+        // When
+        var returnedOuterColor: Color?
+        page.draw { context in
+
+            context.fillColor = expectedOuterColor
+
+            do {
+
+                try context.withNewGState {
+                    context.fillColor = .blue
+                }
+            } catch {
+                XCTFail()
+            }
+
+            returnedOuterColor = context.fillColor
+
+        }
+
+        // Doesn't compile without `try`.
+        try! page.draw { context in
+
+            // Compose a function that nests context.withNewGState calls
+            let function = Array(repeating: context.withNewGState, count: 35)
+                .reduce({}, { (result, next) -> () throws -> Void in { try next(result) } })
+
+            XCTAssertThrowsError(try function()) { error in
+                XCTAssertEqual(PDFError.exceedGStateLimit, error as? PDFError)
+            }
+        }
+
+        // Then
+        XCTAssertEqual(expectedOuterColor, returnedOuterColor)
     }
     
     // MARK: - Color

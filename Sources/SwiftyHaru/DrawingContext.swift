@@ -112,6 +112,59 @@ public final class DrawingContext {
             HPDF_Page_SetMiterLimit(_page, newValue)
         }
     }
+
+    /// Saves the page's current graphics state to the stack, then executes `body`,
+    /// then restores the saved graphics state.
+    /// This function supports up to 28 levels of nesting.
+    /// The parameters that are saved at the beginning of the call and restored at the end are:
+    ///
+    ///    - Character Spacing
+    ///    - Clipping Path
+    ///    - Dash Mode
+    ///    - Filling Color
+    ///    - Flatness
+    ///    - Font
+    ///    - Font Size
+    ///    - Horizontal Scalling
+    ///    - Line Width
+    ///    - Line Cap Style
+    ///    - Line Join Style
+    ///    - Miter Limit
+    ///    - Rendering Mode
+    ///    - Stroking Color
+    ///    - Text Leading
+    ///    - Text Rise
+    ///    - Transformation Matrix
+    ///    - Word Spacing
+    ///
+    ///
+    /// Example:
+    /// ```swift
+    /// assert(context.fillColor == .red)
+    ///
+    /// try context.withNewGState {
+    ///
+    ///    context.fillColor = .blue
+    ///    assert(context.fillColor == .blue)
+    /// }
+    ///
+    /// assert(context.fillColor == .red)
+    /// ```
+    ///
+    /// - Parameter body: The code to execute using a new graphics state.
+    /// - Throws:         `PDFError.exceedGStateLimit` if the level of nesting is greater than 28;
+    ///                   rethrows errors thrown by `body`.
+    public func withNewGState(_ body: () throws -> Void) throws {
+
+        if HPDF_Page_GSave(_page) != UInt(HPDF_OK) {
+            HPDF_ResetError(_documentHandle)
+            throw PDFError.exceedGStateLimit
+        }
+
+        try body()
+
+        HPDF_Page_GRestore(_page)
+    }
     
     // MARK: - Color
     
@@ -256,7 +309,7 @@ public final class DrawingContext {
     /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
     ///                                     provided `path`.
     public func clip(to path: Path, evenOddRule: Bool = false,
-                     _ drawInsideClippingArea: (Void) -> Void) {
+                     _ drawInsideClippingArea: (Void) throws -> Void) rethrows {
         
         HPDF_Page_GSave(_page)
         
@@ -272,7 +325,7 @@ public final class DrawingContext {
         
         HPDF_Page_EndPath(_page)
         
-        drawInsideClippingArea()
+        try drawInsideClippingArea()
         
         HPDF_Page_GRestore(_page)
     }

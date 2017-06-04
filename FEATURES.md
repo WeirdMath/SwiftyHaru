@@ -150,8 +150,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
 | `HPDF_Page_Fill()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
 | `HPDF_Page_FillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
-| `HPDF_Page_GRestore()` | TBD | None | N/A |
-| `HPDF_Page_GSave()` | TBD | None | N/A |
+| `HPDF_Page_GRestore()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
+| `HPDF_Page_GSave()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `Path.appendLine(to:)` |
 | `HPDF_Page_MoveTextPos()` | **For internal use only** | None | `DrawingContext.show(text:atPosition:)` |
 | `HPDF_Page_MoveTextPos2()` | TBD | None | N/A |

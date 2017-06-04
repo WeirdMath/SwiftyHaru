@@ -144,7 +144,7 @@ public final class PDFPage {
     /// ```
     ///
     /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
-    public func draw(_ body: ((DrawingContext) -> Void)) {
+    public func draw(_ body: ((DrawingContext) throws -> Void)) rethrows {
         
         precondition(!_contextIsPresent,
                      "Cannot begin a new drawing context while the previous one is not revoked.")
@@ -155,7 +155,7 @@ public final class PDFPage {
         
         context._cleanup()
         
-        body(context)
+        try body(context)
         
         context._cleanup()
         
