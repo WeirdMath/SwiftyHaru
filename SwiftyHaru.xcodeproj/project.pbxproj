@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705252F1DA1304300D5EF74 /* PDFPageTests.swift */; };
+		870B6C2C1EE481230048BBE5 /* PDFDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B6C2B1EE481230048BBE5 /* PDFDateFormatter.swift */; };
+		870B6C471EE7424E0048BBE5 /* PDFDateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B6C461EE7424E0048BBE5 /* PDFDateFormatterTests.swift */; };
 		871C07911DA1837F00C02640 /* DrawingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C07901DA1837F00C02640 /* DrawingContext.swift */; };
 		871C07951DA1B56C00C02640 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871C07941DA1B56C00C02640 /* Color.swift */; };
 		872239D51DA145AF006DD44C /* PDFDocument.PageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */; };
@@ -204,6 +206,8 @@
 /* Begin PBXFileReference section */
 		8705252D1DA0860300D5EF74 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinuxMain.swift; path = Tests/LinuxMain.swift; sourceTree = "<group>"; };
 		8705252F1DA1304300D5EF74 /* PDFPageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageTests.swift; sourceTree = "<group>"; };
+		870B6C2B1EE481230048BBE5 /* PDFDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDateFormatter.swift; sourceTree = "<group>"; };
+		870B6C461EE7424E0048BBE5 /* PDFDateFormatterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDateFormatterTests.swift; sourceTree = "<group>"; };
 		871C07901DA1837F00C02640 /* DrawingContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContext.swift; sourceTree = "<group>"; };
 		871C07941DA1B56C00C02640 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Graphics/Color.swift; sourceTree = "<group>"; };
 		872239D31DA145A3006DD44C /* PDFDocument.PageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFDocument.PageLayout.swift; sourceTree = "<group>"; };
@@ -663,6 +667,7 @@
 			children = (
 				87E248AC1DCEA6B00048F2FB /* Graphics */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFDocument.swift /* PDFDocument.swift */,
+				870B6C2B1EE481230048BBE5 /* PDFDateFormatter.swift */,
 				877AB5F91EE3C84D0063A41C /* PDFDocument.Permissions.swift */,
 				__PBXFileRef_Sources/SwiftyHaru/PDFPage.swift /* PDFPage.swift */,
 				871C07901DA1837F00C02640 /* DrawingContext.swift */,
@@ -694,6 +699,7 @@
 				875073561DA67E4000956E8D /* DashStyleTests.swift */,
 				87736D581DCE621E0036EDA1 /* GridTests.swift */,
 				__PBXFileRef_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift */,
+				870B6C461EE7424E0048BBE5 /* PDFDateFormatterTests.swift */,
 			);
 			name = SwiftyHaruTests;
 			path = Tests/SwiftyHaruTests;
@@ -1028,6 +1034,7 @@
 				__src_cc_ref_Sources/SwiftyHaru/PDFError.swift /* PDFError.swift in Sources */,
 				875CE9DC1DCE09F80060A4A0 /* Sequence.swift in Sources */,
 				871C07951DA1B56C00C02640 /* Color.swift in Sources */,
+				870B6C2C1EE481230048BBE5 /* PDFDateFormatter.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.Direction.swift /* PDFPage.Direction.swift in Sources */,
 				8724A7D31DCD1436005BE9B2 /* Grid.SerifParameters.swift in Sources */,
 				__src_cc_ref_Sources/SwiftyHaru/PDFPage.Size.swift /* PDFPage.Size.swift in Sources */,
@@ -1055,6 +1062,7 @@
 				__src_cc_ref_Tests/SwiftyHaruTests/SwiftyHaruTests.swift /* PDFDocumentTests.swift in Sources */,
 				8767BB2D1DA4E130003A3A8F /* DrawingContextTests.swift in Sources */,
 				87A8AAFA1DA276E300EB7DDF /* ColorTests.swift in Sources */,
+				870B6C471EE7424E0048BBE5 /* PDFDateFormatterTests.swift in Sources */,
 				87736D591DCE621E0036EDA1 /* GridTests.swift in Sources */,
 				870525301DA1304300D5EF74 /* PDFPageTests.swift in Sources */,
 				__src_cc_ref_Tests/SwiftyHaruTests/TestHelpers.swift /* TestHelpers.swift in Sources */,
