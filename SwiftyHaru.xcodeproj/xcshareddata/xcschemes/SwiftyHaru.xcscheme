@@ -14,35 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_CLibHaru"
-               BuildableName = "CLibHaru.framework"
-               BlueprintName = "CLibHaru"
-               ReferencedContainer = "container:SwiftyHaru.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_CLibPNG"
-               BuildableName = "CLibPNG.framework"
-               BlueprintName = "CLibPNG"
-               ReferencedContainer = "container:SwiftyHaru.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87E2489C1DCE83910048F2FB"
+               BlueprintIdentifier = "OBJ_185"
                BuildableName = "DefaultStringConvertible.framework"
                BlueprintName = "DefaultStringConvertible"
                ReferencedContainer = "container:SwiftyHaru.xcodeproj">
@@ -56,9 +28,37 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_SwiftyHaru"
+               BlueprintIdentifier = "OBJ_192"
+               BuildableName = "CLibPNG.framework"
+               BlueprintName = "CLibPNG"
+               ReferencedContainer = "container:SwiftyHaru.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_217"
                BuildableName = "SwiftyHaru.framework"
                BlueprintName = "SwiftyHaru"
+               ReferencedContainer = "container:SwiftyHaru.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "OBJ_263"
+               BuildableName = "CLibHaru.framework"
+               BlueprintName = "CLibHaru"
                ReferencedContainer = "container:SwiftyHaru.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -75,22 +75,13 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "______Target_SwiftyHaruTests"
+               BlueprintIdentifier = "OBJ_331"
                BuildableName = "SwiftyHaruTests.xctest"
                BlueprintName = "SwiftyHaruTests"
                ReferencedContainer = "container:SwiftyHaru.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_CLibHaru"
-            BuildableName = "CLibHaru.framework"
-            BlueprintName = "CLibHaru"
-            ReferencedContainer = "container:SwiftyHaru.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -107,9 +98,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_CLibHaru"
-            BuildableName = "CLibHaru.framework"
-            BlueprintName = "CLibHaru"
+            BlueprintIdentifier = "OBJ_185"
+            BuildableName = "DefaultStringConvertible.framework"
+            BlueprintName = "DefaultStringConvertible"
             ReferencedContainer = "container:SwiftyHaru.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -122,15 +113,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "______Target_CLibHaru"
-            BuildableName = "CLibHaru.framework"
-            BlueprintName = "CLibHaru"
-            ReferencedContainer = "container:SwiftyHaru.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
