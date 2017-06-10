@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 import Foundation
 
 public final class DrawingContext {

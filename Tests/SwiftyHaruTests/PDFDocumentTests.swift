@@ -9,7 +9,9 @@
 import XCTest
 import Foundation
 @testable import SwiftyHaru
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 class PDFDocumentTests: XCTestCase {
     

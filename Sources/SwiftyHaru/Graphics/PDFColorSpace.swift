@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 public enum PDFColorSpace: UInt32 {
     case deviceGray

@@ -21,8 +21,12 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
 
-  s.source_files = 'Sources/SwiftyHaru/**/*.swift'
+  s.source_files = 'Sources/**/*.{swift,h,c}'
+  s.public_header_files = 'Sources/CLibPNG/include/*.h', 'Sources/CLibHaru/include/*.h'
+  s.private_header_files = 'Sources/CLibPNG/include/pngpriv.h',
+                           'Sources/CLibPNG/include/pnginfo.h',
+                           'Sources/CLibPNG/include/pngstruct.h'
+  s.libraries = 'z'
 
-  s.dependency 'CLibHaru', '~> 0.1'
   s.dependency 'DefaultStringConvertible'
 end

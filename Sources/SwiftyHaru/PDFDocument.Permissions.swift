@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 extension PDFDocument {
 

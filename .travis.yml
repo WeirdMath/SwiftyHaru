@@ -15,7 +15,9 @@ matrix:
 
 script:
   - if [[ $POD_LINT == "YES" ]]; then
-      gem install cocoapods && pod repo update --silent && pod lib lint --sources=https://github.com/WeirdMath/Specs,master --allow-warnings;
+      gem install cocoapods;
+      pod repo update --silent;
+      pod lib lint --swift-version=$SWIFT_VERSION --allow-warnings;
     fi
   - if [[ $RUN_TESTS == "YES" ]]; then
       eval .scripts/ci.sh;

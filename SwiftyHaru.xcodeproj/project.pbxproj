@@ -136,70 +136,70 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		87EC00FB1EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC012D1EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_185;
 			remoteInfo = DefaultStringConvertible;
 		};
-		87EC00FC1EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC012E1EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_185;
 			remoteInfo = DefaultStringConvertible;
 		};
-		87EC00FD1EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC012F1EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_192;
 			remoteInfo = CLibPNG;
 		};
-		87EC00FE1EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01301EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_263;
 			remoteInfo = CLibHaru;
 		};
-		87EC00FF1EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01311EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_185;
 			remoteInfo = DefaultStringConvertible;
 		};
-		87EC01001EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01321EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_192;
 			remoteInfo = CLibPNG;
 		};
-		87EC01011EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01331EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_185;
 			remoteInfo = DefaultStringConvertible;
 		};
-		87EC01021EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01341EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_192;
 			remoteInfo = CLibPNG;
 		};
-		87EC01031EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01351EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = OBJ_263;
 			remoteInfo = CLibHaru;
 		};
-		87EC01041EEB8A52007C9B1F /* PBXContainerItemProxy */ = {
+		87EC01361EEBB55D007C9B1F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -1011,52 +1011,52 @@
 		OBJ_216 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_185 /* DefaultStringConvertible */;
-			targetProxy = 87EC00FB1EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC012D1EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_260 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_185 /* DefaultStringConvertible */;
-			targetProxy = 87EC00FC1EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC012E1EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_261 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_192 /* CLibPNG */;
-			targetProxy = 87EC00FD1EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC012F1EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_262 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_263 /* CLibHaru */;
-			targetProxy = 87EC00FE1EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01301EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_329 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_185 /* DefaultStringConvertible */;
-			targetProxy = 87EC00FF1EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01311EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_330 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_192 /* CLibPNG */;
-			targetProxy = 87EC01001EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01321EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_349 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_185 /* DefaultStringConvertible */;
-			targetProxy = 87EC01011EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01331EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_350 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_192 /* CLibPNG */;
-			targetProxy = 87EC01021EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01341EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_351 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_263 /* CLibHaru */;
-			targetProxy = 87EC01031EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01351EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 		OBJ_352 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = OBJ_217 /* SwiftyHaru */;
-			targetProxy = 87EC01041EEB8A52007C9B1F /* PBXContainerItemProxy */;
+			targetProxy = 87EC01361EEBB55D007C9B1F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1118,10 +1118,7 @@
 				);
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/CLibPNG_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lz",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = CLibPNG;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1146,10 +1143,7 @@
 				);
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/CLibPNG_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lz",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = CLibPNG;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1232,10 +1226,7 @@
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/CLibHaru_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lz",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = CLibHaru;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1262,10 +1253,7 @@
 				INFOPLIST_FILE = SwiftyHaru.xcodeproj/CLibHaru_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				LIBRARY_SEARCH_PATHS = "$(PROJECT_TEMP_DIR)/SymlinkLibs/";
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-lz",
-				);
+				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = CLibHaru;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -1287,6 +1275,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lz";
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1356,6 +1345,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_OPTIMIZATION_LEVEL = s;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = "-lz";
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

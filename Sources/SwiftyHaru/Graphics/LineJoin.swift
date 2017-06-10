@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import typealias CLibHaru.HPDF_LineJoin
+#endif
 
 /// Line join style.
 ///

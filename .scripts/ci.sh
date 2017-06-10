@@ -52,9 +52,9 @@ echo "🚀 Building";
 
 if [[ $OS == "macOS" ]];
 then
-    swift build -Xlinker -lz;
+    make debug;
 else
-    swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz;
+    make debug;
 fi
 
 if [[ $? != 0 ]]; 
@@ -67,9 +67,9 @@ echo "💼 Building Release";
 
 if [[ $OS == "macOS" ]];
 then
-    swift build -c release -Xlinker -lz;
+    make release;
 else
-    swift build -c release -Xlinker -rpath=.build/release/ -Xlinker -lz;
+    make release;
 fi
 
 if [[ $? != 0 ]]; 
@@ -82,9 +82,9 @@ echo "🔎 Testing";
 
 if [[ $OS == "macOS" ]];
 then
-    swift test -Xlinker -lz
+    make test
 else
-    swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
+    make test
 fi
 
 if [[ $? != 0 ]];

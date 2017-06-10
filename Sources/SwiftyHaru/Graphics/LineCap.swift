@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import typealias CLibHaru.HPDF_LineCap
+#endif
 
 /// The shape to be used at the ends of lines.
 ///

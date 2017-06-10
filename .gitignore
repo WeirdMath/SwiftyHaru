@@ -16,7 +16,6 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-GeneratedModuleMap/
 *.xcscmblueprint
 
 ## Other
@@ -34,11 +33,10 @@ timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 Packages/
 .build/
 Package.pins
+*.xcodeproj
 
 # CocoaPods
 #
