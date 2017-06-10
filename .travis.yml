@@ -3,25 +3,25 @@ language: generic
 matrix:
   include:
     - os: osx
-      osx_image: xcode8
-      env: RUN_TESTS="NO" POD_LINT="YES"
+      osx_image: xcode8.3
+      env: SWIFT_VERSION="3.1" RUN_TESTS="NO" POD_LINT="YES"
     - os: osx
-      osx_image: xcode8
-      env: RUN_TESTS="YES" POD_LINT="NO"
+      osx_image: xcode8.3
+      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
     - os: linux
       sudo: required
       dist: trusty
-      env: RUN_TESTS="YES" POD_LINT="NO"
+      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
 
 script:
   - if [[ $POD_LINT == "YES" ]]; then
       gem install cocoapods && pod repo update --silent && pod lib lint --sources=https://github.com/WeirdMath/Specs,master --allow-warnings;
     fi
   - if [[ $RUN_TESTS == "YES" ]]; then
-      eval Scripts/ci.sh;
+      eval .scripts/ci.sh;
     fi
 
 after_success:
   - if [[ $RUN_TESTS == "YES" ]]; then
-      eval Scripts/coverage.sh;
+      eval .scripts/coverage.sh;
     fi

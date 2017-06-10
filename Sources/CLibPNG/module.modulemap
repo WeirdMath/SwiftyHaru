@@ -1,5 +1,0 @@
-framework module CLibPNG {
-    umbrella header "png.h"
-    link framework "CLibPNG"
-    export *
-}
