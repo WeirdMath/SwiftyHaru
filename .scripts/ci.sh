@@ -50,12 +50,7 @@ echo "📅 Version: `swift --version`";
 
 echo "🚀 Building";
 
-if [[ $OS == "macOS" ]];
-then
-    make debug;
-else
-    make debug;
-fi
+make debug;
 
 if [[ $? != 0 ]]; 
 then 
@@ -65,12 +60,7 @@ fi
 
 echo "💼 Building Release";
 
-if [[ $OS == "macOS" ]];
-then
-    make release;
-else
-    make release;
-fi
+make release;
 
 if [[ $? != 0 ]]; 
 then 
@@ -80,12 +70,7 @@ fi
 
 echo "🔎 Testing";
 
-if [[ $OS == "macOS" ]];
-then
-    make test
-else
-    make test
-fi
+make test;
 
 if [[ $? != 0 ]];
 then 

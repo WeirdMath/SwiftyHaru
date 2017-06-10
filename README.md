@@ -53,6 +53,14 @@ let package = Package(
 )
 ```
 
+**Important:** when building your project that has SwiftyHaru as a dependency, 
+you need to pass the `-Xlinker -lz` flags to the compiler. This is because SwiftyHaru has to be linked with zlib (which must be intalled on your computer). For example:
+
+```
+$ swift build -Xlinker -lz
+$ swift test -Xlinker -lz
+```
+
 ## Documentation
 
 Available [here](https://weirdmath.github.io/SwiftyHaru/).
@@ -95,26 +103,27 @@ page.draw { context in
 
 ## Contributing
 
-Building in macOS:
+### Building:
 
 ```
-$ swift build -Xlinker -lz
+$ make debug
 ```
-
-Testing in macOS:
-
-```
-$ swift test -Xlinker -lz
-```
-
-Building in Ubuntu:
+Or:
 
 ```
-$ swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz
+$ make release
 ```
 
-Testing in Ubuntu:
+### Testing:
 
 ```
-$ swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
+$ make test
 ```
+
+### Generating Xcode project
+Since the Xcode project is explicitly `gitignore`d, you might want to generate it in order to make development comfortable for you. This can be accomplished by running the following command:
+
+```
+make generate-xcodeproj
+```
+
