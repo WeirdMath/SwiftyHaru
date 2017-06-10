@@ -114,10 +114,28 @@ public final class DrawingContext {
             HPDF_Page_SetMiterLimit(_page, newValue)
         }
     }
+    
+    /// The number of the page's graphics state stack.
+    ///
+    /// This number is increased whenever you call `withNewGState(_:)` or
+    /// `clip(to:evenOddRule:_:)` and decreased as soon as such a function returns.
+    ///
+    /// The maximum value of this property is `DrawingContext.maxGraphicsStateDepth`.
+    public var graphicsStateDepth: Int {
+        return Int(HPDF_Page_GetGStateDepth(_page))
+    }
+    
+    /// The maximum depth of the graphics state stack.
+    public static var maxGraphicsStateDepth: Int {
+        return Int(HPDF_LIMIT_MAX_GSTATE)
+    }
 
     /// Saves the page's current graphics state to the stack, then executes `body`,
     /// then restores the saved graphics state.
-    /// This function supports up to 28 levels of nesting.
+    ///
+    /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
+    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///
     /// The parameters that are saved at the beginning of the call and restored at the end are:
     ///
     ///    - Character Spacing
@@ -154,7 +172,8 @@ public final class DrawingContext {
     /// ```
     ///
     /// - Parameter body: The code to execute using a new graphics state.
-    /// - Throws:         `PDFError.exceedGStateLimit` if the level of nesting is greater than 28;
+    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
+    ///                   `DrawingContext.maxGraphicsStateDepth`;
     ///                   rethrows errors thrown by `body`.
     public func withNewGState(_ body: () throws -> Void) throws {
 
@@ -299,6 +318,9 @@ public final class DrawingContext {
     
     /// Sets the clipping area for drawing.
     ///
+    /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
+    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///
     /// - Important: Graphics parameters that are set inside the `drawInsideClippingArea` closure do not
     ///              persist outside the call of that closure. I. e. if, for example, the context's fill color
     ///              had been black
@@ -310,26 +332,28 @@ public final class DrawingContext {
     ///                                     Otherwise uses nonzero winding number rule.
     /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
     ///                                     provided `path`.
+    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
+    ///                   `DrawingContext.maxGraphicsStateDepth`;
+    ///                   rethrows errors thrown by the`drawInsideClippingArea` block.
     public func clip(to path: Path, evenOddRule: Bool = false,
-                     _ drawInsideClippingArea: (Void) throws -> Void) rethrows {
+                     _ drawInsideClippingArea: () throws -> Void) throws {
         
-        HPDF_Page_GSave(_page)
-        
-        _construct(path)
-        
-        HPDF_Page_ClosePath(_page)
-        
-        if evenOddRule {
-            HPDF_Page_Eoclip(_page)
-        } else {
-            HPDF_Page_Clip(_page)
+        try withNewGState {
+            
+            _construct(path)
+            
+            HPDF_Page_ClosePath(_page)
+            
+            if evenOddRule {
+                HPDF_Page_Eoclip(_page)
+            } else {
+                HPDF_Page_Clip(_page)
+            }
+            
+            HPDF_Page_EndPath(_page)
+            
+            try drawInsideClippingArea()
         }
-        
-        HPDF_Page_EndPath(_page)
-        
-        try drawInsideClippingArea()
-        
-        HPDF_Page_GRestore(_page)
     }
     
     /// Fills the `path`.

@@ -135,7 +135,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetStrokingColorSpace()` | **Implemented** | Complete | `DrawingContext.strokingColorSpace` |
 | `HPDF_Page_GetFillingColorSpace()` | **Implemented** | Complete | `DrawingContext.fillingColorSpace`|
 | `HPDF_Page_GetTextMatrix()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetGStateDepth()` | TBD | None | N/A |
+| `HPDF_Page_GetGStateDepth()` | **Implemented** | Complete | `DrawingContext.graphicsStateDepth`|
 | `HPDF_Page_SetSlideShow()` | Unimplemented | None | N/A |
 | `HPDF_Page_New_Content_Stream()` | TBD | None | N/A |
 | `HPDF_Page_Insert_Shared_Content_Stream()` | TBD | None | N/A |

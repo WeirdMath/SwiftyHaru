@@ -19,6 +19,7 @@ class DrawingContextTests: XCTestCase {
             ("testPathLineJoin", testPathLineJoin),
             ("testPathMiterLimit", testPathMiterLimit),
             ("testSaveRestoreGState", testSaveRestoreGState),
+            ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
@@ -304,6 +305,32 @@ class DrawingContextTests: XCTestCase {
 
         // Then
         XCTAssertEqual(expectedOuterColor, returnedOuterColor)
+    }
+    
+    func testGetGraphicsStateDepth() {
+        
+        do {
+            try page.draw { context in
+                
+                XCTAssertEqual(context.graphicsStateDepth, 1)
+                
+                try context.withNewGState {
+                    
+                    XCTAssertEqual(context.graphicsStateDepth, 2)
+                    
+                    try context.clip(to: Path()) {
+                        
+                        XCTAssertEqual(context.graphicsStateDepth, 3)
+                    }
+                    
+                    XCTAssertEqual(context.graphicsStateDepth, 2)
+                }
+                
+                XCTAssertEqual(context.graphicsStateDepth, 1)
+            }
+        } catch {
+            XCTFail(String(describing: error))
+        }
     }
     
     // MARK: - Color
@@ -628,12 +655,17 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        page.draw { context in
-            
-            context.stroke(path)
-            context.clip(to: path, evenOddRule: false) {
-                context.fill(rectangle)
+        do {
+            try page.draw { context in
+                
+                context.stroke(path)
+                
+                try context.clip(to: path, evenOddRule: false) {
+                    context.fill(rectangle)
+                }
             }
+        } catch {
+            XCTFail(String(describing: error))
         }
         
         let returnedDocumentData = document.getData()
@@ -661,12 +693,17 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        page.draw { context in
-            
-            context.stroke(path)
-            context.clip(to: path, evenOddRule: true) {
-                context.fill(rectangle)
+        do {
+            try page.draw { context in
+                
+                context.stroke(path)
+                
+                try context.clip(to: path, evenOddRule: true) {
+                    context.fill(rectangle)
+                }
             }
+        } catch {
+            XCTFail(String(describing: error))
         }
         
         let returnedDocumentData = document.getData()
