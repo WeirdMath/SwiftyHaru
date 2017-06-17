@@ -1,0 +1,7 @@
+module CLibHaru {
+    header "hpdf.h"
+    link "CLibHaru"
+    link "z"
+    link "png"
+    export *
+}
