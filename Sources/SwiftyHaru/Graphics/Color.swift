@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 
 /// This structure represents a color. Property values must be between 0 and 1.
 ///

@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 
 /// A handle that is used to manipulate an individual page.
 ///

@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import typealias CLibHaru.HPDF_Point
-#endif
 
 public struct Size {
     
