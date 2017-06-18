@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 /// Represents a grid that can be drawn on a PDF page.
 public struct Grid {
     
@@ -90,5 +88,3 @@ extension Grid: Equatable {
             lhs.serifs == rhs.serifs
     }
 }
-
-extension Grid: CustomStringConvertible {}

@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the labels for vertical and horizontal lines.
@@ -69,5 +67,3 @@ extension Grid.Labels: Equatable {
             lhs.bottom == rhs.bottom
     }
 }
-
-extension Grid.Labels: CustomStringConvertible {}

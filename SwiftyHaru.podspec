@@ -27,6 +27,4 @@ Pod::Spec.new do |s|
                            'Sources/CLibPNG/include/pnginfo.h',
                            'Sources/CLibPNG/include/pngstruct.h'
   s.libraries = 'z'
-
-  s.dependency 'DefaultStringConvertible'
 end

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DefaultStringConvertible
 
 /// A type for graphics paths: mathematical descriptions of shapes or lines to be drawn in a `DrawingContext`.
 public struct Path {
@@ -560,5 +559,3 @@ extension Path: Equatable {
     }
 
 }
-
-extension Path: CustomStringConvertible {}

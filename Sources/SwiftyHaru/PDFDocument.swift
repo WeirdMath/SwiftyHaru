@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DefaultStringConvertible
 #if SWIFT_PACKAGE
 import CLibHaru
 #endif
@@ -559,5 +558,3 @@ public final class PDFDocument {
         }
     }
 }
-
-extension PDFDocument: CustomStringConvertible {}

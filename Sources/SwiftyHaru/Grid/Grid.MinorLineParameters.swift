@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's minor lines.
@@ -61,5 +59,3 @@ extension Grid.MinorLineParameters: Equatable {
             lhs.lineWidth == rhs.lineWidth
     }
 }
-
-extension Grid.MinorLineParameters: CustomStringConvertible {}

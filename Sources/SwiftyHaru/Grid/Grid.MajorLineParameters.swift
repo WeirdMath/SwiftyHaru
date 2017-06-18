@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's major lines.
@@ -54,5 +52,3 @@ extension Grid.MajorLineParameters: Equatable {
             lhs.lineWidth == rhs.lineWidth
     }
 }
-
-extension Grid.MajorLineParameters: CustomStringConvertible {}

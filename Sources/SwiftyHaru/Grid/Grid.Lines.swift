@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the vertical and horizontal major and minor lines.
@@ -102,5 +100,3 @@ extension Grid.Lines: Equatable {
             lhs.drawVerticalMinorLinesFirst == rhs.drawVerticalMinorLinesFirst
     }
 }
-
-extension Grid.Lines: CustomStringConvertible {}

@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's serifs. Serifs are short lines that can be placed on the edges of
@@ -66,5 +64,3 @@ extension Grid.SerifParameters: Equatable {
             lhs.length == rhs.length
     }
 }
-
-extension Grid.SerifParameters: CustomStringConvertible {}

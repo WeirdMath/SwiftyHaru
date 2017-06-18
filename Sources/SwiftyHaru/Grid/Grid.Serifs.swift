@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the top, bottom, left and right serifs of the grid.
@@ -74,5 +72,3 @@ extension Grid.Serifs: Equatable {
             lhs.bottom == rhs.bottom
     }
 }
-
-extension Grid.Serifs: CustomStringConvertible {}

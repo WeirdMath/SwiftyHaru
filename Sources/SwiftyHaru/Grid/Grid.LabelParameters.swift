@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's line labels. Labels can only be placed near serifs.
@@ -89,5 +87,3 @@ extension Grid.LabelParameters: Equatable {
             lhs.reversed == rhs.reversed
     }
 }
-
-extension Grid.LabelParameters: CustomStringConvertible {}
