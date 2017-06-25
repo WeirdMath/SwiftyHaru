@@ -147,7 +147,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Arc()` | **Implemented** | Complete | `Path.appendArc(center:radius:beginningAngle:endAngle:)`, `Path.arc(x:y:radius:beginningAngle:endAngle:)` |
 | `HPDF_Page_BeginText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `Path.appendCircle(center:radius:)`, `Path.appendCircle(x:y:radius:)` |
-| `HPDF_Page_Clip()` | **Implemented** | Complete | `DrawingContext.clip(to:evenOddRule:_:)` |
+| `HPDF_Page_Clip()` | **Implemented** | Complete | `DrawingContext.clip(to:rule:_:)` |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `Path.close()` |
 | `HPDF_Page_ClosePathStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathEofillStroke()` | **N/A** | N/A | N/A |
@@ -160,12 +160,12 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Ellipse()` | **Implemented** | Complete | `Path.appendEllipse(center:horizontalRadius:verticalRadius:)`, `Path.appendEllipse(x:y:horizontalRadius:verticalRadius:)`, `Path.appendEllipse(inscribedIn:)` |
 | `HPDF_Page_EndPath()` | **N/A** | N/A | N/A |
 | `HPDF_Page_EndText()` | **For internal use only** | N/A | N/A |
-| `HPDF_Page_Eoclip()` | **Implemented** | Complete | `DrawingContext.clip(to:evenOddRule:_:)` |
-| `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
-| `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
+| `HPDF_Page_Eoclip()` | **Implemented** | Complete | `DrawingContext.clip(to:rule:_:)` |
+| `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
+| `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
-| `HPDF_Page_Fill()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
-| `HPDF_Page_FillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
+| `HPDF_Page_Fill()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
+| `HPDF_Page_FillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
 | `HPDF_Page_GRestore()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
 | `HPDF_Page_GSave()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `Path.appendLine(to:)` |
