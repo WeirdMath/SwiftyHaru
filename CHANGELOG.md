@@ -31,7 +31,7 @@ Please note that this version requires Swift 3.1.
 
 **Fixes:**
 
-- Setting `miterLimit`, `font` and `fontSize` of `DrawingContext` to an invalid value now causes precondition failure.
+- Setting `miterLimit`, `font` and `fontSize` of `DrawingContext`, `width` and `height` of `PDFPage` to an invalid value now causes precondition failure.
 
 ## [0.1.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.1.0) (2016-11-02)
 **Closed issues:**
