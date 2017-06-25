@@ -1,9 +1,13 @@
 # Change Log
 
-## [Unreleased](https://github.com/WeirdMath/SwiftyHaru/tree/HEAD)
+## [0.2.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.2.0) (2017-06-25)
+
+Please note that this version requires Swift 3.1.
+
 **Closed issues:**
 
 - Implement high-level grid drawing [\#6](https://github.com/WeirdMath/SwiftyHaru/issues/6)
+- Package has unsupported layout for linux [\#7](https://github.com/WeirdMath/SwiftyHaru/issues/7)
 
 **Implemented features:**
 
@@ -13,6 +17,12 @@
 - Getting the descent of a font
 - Getting the x-height of a font
 - Getting the cap height of a font
+- Setting metadata (author, creator, title, subject, keywords, creation date, modification date)
+- Setting a password, encryption mode and permissions
+- Setting a compression mode
+- Getting the depth of the graphics state stack
+- Closure-based syntax for saving and restoring the graphics state
+- Showing a text in a provided rectangle
 - **High-level customizable interface for drawing grids!**
 
 ## [0.1.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.1.0) (2016-11-02)
