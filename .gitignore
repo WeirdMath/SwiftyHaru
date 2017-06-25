@@ -33,10 +33,11 @@ timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
 Packages/
 .build/
+Package.pins
+Package.resolved
+*.xcodeproj
 
 # CocoaPods
 #
@@ -64,3 +65,5 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+**/.DS_Store

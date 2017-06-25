@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Metadata Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../../js/jquery.min.js" defer></script>
+    <script src="../../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Metadata" class="dashAnchor"></a>
+    <a title="Metadata Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../../index.html">SwiftyHaru Reference</a>
+        <img id="carat" src="../../img/carat.png" />
+        Metadata Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Classes/DrawingContext.html">DrawingContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDateFormatter.html">PDFDateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/CompressionMode.html">– CompressionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/EncryptionMode.html">– EncryptionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/Metadata.html">– Metadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/Permissions.html">– Permissions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage.html">PDFPage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFPage/Size.html">– Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Enums/LineCap.html">LineCap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/LineJoin.html">LineJoin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/PDFColorSpace.html">PDFColorSpace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Enums/TextAlignment.html">TextAlignment</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Protocols/Drawable.html">Drawable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/DashStyle.html">DashStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Encoding.html">Encoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid.html">Grid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/LabelParameters.html">– LabelParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Labels.html">– Labels</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Path/FillRule.html">– FillRule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Point.html">Point</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Rectangle.html">Rectangle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Metadata</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Metadata</span></code></pre>
+
+                </div>
+              </div>
+            <p>This structure encapsulates the metadata of a document.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata6authorGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/author" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata6authorGSqSS_">author</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The author of the document.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">author</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata7creatorGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/creator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata7creatorGSqSS_">creator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The creator of the document.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">creator</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata5titleGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/title" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata5titleGSqSS_">title</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The title of the document.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata7subjectGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/subject" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata7subjectGSqSS_">subject</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The subject of the document.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata8keywordsGSqGSaSS__"></a>
+                    <a name="//apple_ref/swift/Property/keywords" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata8keywordsGSqGSaSS__">keywords</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The keywords of the document.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keywords</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata8timeZoneV10Foundation8TimeZone"></a>
+                    <a name="//apple_ref/swift/Property/timeZone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata8timeZoneV10Foundation8TimeZone">timeZone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The timezone to use for encoding the creation date and the modification date of the document.
+Default value is <code>TimeZone.current</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">timeZone</span><span class="p">:</span> <span class="kt">TimeZone</span> <span class="o">=</span> <span class="o">.</span><span class="n">current</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata12creationDateGSqV10Foundation4Date_"></a>
+                    <a name="//apple_ref/swift/Property/creationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata12creationDateGSqV10Foundation4Date_">creationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The document’s creation date.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">creationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata16modificationDateGSqV10Foundation4Date_"></a>
+                    <a name="//apple_ref/swift/Property/modificationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata16modificationDateGSqV10Foundation4Date_">modificationDate</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The document’s last-modified date.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FVC10SwiftyHaru11PDFDocument8MetadatacFT6authorGSqSS_7creatorGSqSS_5titleGSqSS_7subjectGSqSS_8keywordsGSqGSaSS__12creationDateGSqV10Foundation4Date_16modificationDateGSqS3___S1_"></a>
+                    <a name="//apple_ref/swift/Method/init(author:creator:title:subject:keywords:creationDate:modificationDate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FVC10SwiftyHaru11PDFDocument8MetadatacFT6authorGSqSS_7creatorGSqSS_5titleGSqSS_7subjectGSqSS_8keywordsGSqGSaSS__12creationDateGSqV10Foundation4Date_16modificationDateGSqS3___S1_">init(author:creator:title:subject:keywords:creationDate:modificationDate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates new metadata.</p>
+
+<p>The default value of each argument is <code>nil</code>. <code>nil</code> value means that the associated key
+will not be added to the document&rsquo;s metadata dictionary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">author</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">creator</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">keywords</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">creationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>author</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The author of the document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>creator</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The creator of the document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The title of the document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>subject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The subject of the document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keywords</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The keywords of the document.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>creationDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The document’s creation date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modificationDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The document’s last-modified date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

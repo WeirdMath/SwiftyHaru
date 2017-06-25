@@ -59,8 +59,8 @@ HPDF_Info_SetInfoAttr (HPDF_Dict        info,
 
     HPDF_PTRACE((" HPDF_Info_SetInfoAttr\n"));
 
-    if (type <= HPDF_INFO_MOD_DATE)
-        return HPDF_SetError (info->error, HPDF_INVALID_PARAMETER, 0);
+    if (!value)
+        return HPDF_Dict_RemoveElement(info, name);
 
     if (type == HPDF_INFO_TRAPPED)
         return HPDF_Dict_AddName(info, name, value);

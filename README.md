@@ -4,8 +4,9 @@
 [![codecov](https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg)](https://codecov.io/gh/WeirdMath/SwiftyHaru)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/66cfcbcec9884191a0f8aa1bef26deb8)](https://www.codacy.com/app/broadway_lamb/SwiftyHaru?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WeirdMath/SwiftyHaru&amp;utm_campaign=Badge_Grade)
 [![codebeat badge](https://codebeat.co/badges/4ce84f1a-1ab5-4533-a609-afb168128538)](https://codebeat.co/projects/github-com-weirdmath-swiftyharu)
-![Language](https://img.shields.io/badge/Swift-3.0-orange.svg)
+![Language](https://img.shields.io/badge/Swift-3.1-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)
+![Cocoapods](https://img.shields.io/cocoapods/v/SwiftyHaru.svg?style=flat)
 
 SwiftyHaru is an object-oriented Swift wrapper for [LibHaru](https://github.com/libharu/libharu), a C library for creating PDF documents. It brings the safety of Swift itself to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.
 
@@ -13,9 +14,9 @@ Check out which [features of LibHaru](https://github.com/libharu/libharu/wiki) h
 
 ## Requirements
 
-* Swift 3
+* Swift 3.1+
 * iOS 8.0+
-* OSX 10.10+
+* macOS 10.10+
 * tvOS 9.0+
 * watchOS 2.0+
 * Ubuntu 14.04+
@@ -47,9 +48,17 @@ Add SwiftyHaru as a dependency to your `Package.swift`. For example:
 let package = Package(
     name: "YourPackageName",
     dependencies: [
-        .Package(url: "https://github.com/WeirdMath/SwiftyHaru.git", majorVersion: 1)
+        .Package(url: "https://github.com/WeirdMath/SwiftyHaru.git", majorVersion: 0)
     ]
 )
+```
+
+**Important:** when building your project that has SwiftyHaru as a dependency, 
+you need to pass the `-Xlinker -lz` flags to the compiler. This is because SwiftyHaru has to be linked with zlib (which must be intalled on your computer). For example:
+
+```
+$ swift build -Xlinker -lz
+$ swift test -Xlinker -lz
 ```
 
 ## Documentation
@@ -94,26 +103,27 @@ page.draw { context in
 
 ## Contributing
 
-Building in macOS:
+### Building:
 
 ```
-$ swift build -Xlinker -lz
+$ make debug
 ```
-
-Testing in macOS:
-
-```
-$ swift test -Xlinker -lz
-```
-
-Building in Ubuntu:
+Or:
 
 ```
-$ swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz
+$ make release
 ```
 
-Testing in Ubuntu:
+### Testing:
 
 ```
-$ swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
+$ make test
 ```
+
+### Generating Xcode project
+Since the Xcode project is explicitly `gitignore`d, you might want to generate it in order to make development comfortable for you. This can be accomplished by running the following command:
+
+```
+make generate-xcodeproj
+```
+

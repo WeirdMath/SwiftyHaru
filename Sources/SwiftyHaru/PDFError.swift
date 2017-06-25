@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 public struct PDFError: Error {
     
@@ -43,7 +45,8 @@ public struct PDFError: Error {
     /// Internal error. Data consistency was lost.
     public static let dictionaryStreamLengthNotFound = PDFError(code: HPDF_DICT_STREAM_LENGTH_NOT_FOUND)
     
-    /// HPDF_SetEncryptMode() or HPDF_SetPermission() called before password set.
+    /// `PDFDocument.setEncryptionMode(to:)` or `PDFDocument.setPermissions(to:)` called
+    /// before password set.
     public static let documentEncryptionDictionaryNotFound = PDFError(code: HPDF_DOC_ENCRYPTDICT_NOT_FOUND)
     
     /// Internal error. Data consistency was lost.
@@ -332,7 +335,7 @@ public struct PDFError: Error {
     
     public static let invalidICCComponentNumber = PDFError(code: HPDF_INVALID_ICC_COMPONENT_NUM)
     
-    private var _descriptions = [
+    private static var _descriptions = [
         HPDF_ARRAY_COUNT_ERR : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_NOT_FOUND : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_UNEXPECTED_TYPE : "Internal error. Data consistency was lost.",
@@ -445,7 +448,7 @@ public struct PDFError: Error {
             return "No error."
         }
         
-        return _descriptions[code] ?? "Unknown error."
+        return PDFError._descriptions[code] ?? "Unknown error."
     }
 }
 

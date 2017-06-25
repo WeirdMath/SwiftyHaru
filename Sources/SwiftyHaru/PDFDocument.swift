@@ -7,15 +7,25 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 /// A handle to operate on a document object.
 public final class PDFDocument {
     
     internal var _documentHandle: HPDF_Doc
     
+    /// An array of pages in the document. Initially is empty. Use the `addPage()`, `addPage(width:height:)`,
+    /// `addPage(size:direction:)` or `insertPage(atIndex:)`, `insertPage(width:height:atIndex:)`,
+    /// `insertPage(size:direction:atIndex:)` methods to add pages to your document and populate this array.
     public private(set) var pages: [PDFPage] = []
     
+    /// The fonts loaded in the document. Initially is empty. Use the `loadTrueTypeFont(from:embeddingGlyphData:)`
+    /// or `loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)` methods to load fonts.
+    ///
+    /// This set does not include the base 14 fonts (see predefined values of `Font`)
+    /// that can be used in the document without loading any external fonts.
     public private(set) var fonts: Set<Font> = []
     
     internal var _error: PDFError
@@ -34,7 +44,9 @@ public final class PDFDocument {
             let error = userData!.assumingMemoryBound(to: PDFError.self)
             error.pointee = PDFError(code: Int32(errorCode))
             
-            print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            #if DEBUG
+                print("An error in Haru. Code: \(error.pointee.code). \(error.pointee.description)")
+            #endif
         }
         
         _documentHandle = HPDF_New(errorHandler, &_error)
@@ -154,10 +166,12 @@ public final class PDFDocument {
     
     // MARK: - Getting data
     
-    /// Returns the document's contents.
+    /// Renders the document and returns its contents.
     ///
-    /// - returns: The dodument's contents
+    /// - returns: The document's contents
     public func getData() -> Data {
+        
+        _renderMetadata()
         
         HPDF_SaveToStream(_documentHandle)
         
@@ -222,6 +236,8 @@ public final class PDFDocument {
                           HPDF_UINT(firstPageNumber),
                           prefix)
     }
+
+    // MARK: - Including fonts
     
     /// Loads a TrueType font from `data` and registers it to a document.
     ///
@@ -243,6 +259,49 @@ public final class PDFDocument {
                                                    pointer,
                                                    HPDF_UINT(data.count),
                                                    embedding)
+            if let cString = cString {
+                return String(cString: cString)
+            } else {
+                return nil
+            }
+        }
+        
+        if let name = name {
+            let font = Font(name: name)
+            fonts.insert(font)
+            return font
+        } else {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+    
+    /// Loads a TrueType font from a TrueType Collection and registers it to a document.
+    ///
+    /// - parameter data:               Contents of a `.ttc` file.
+    /// - parameter index:              The index of the font to be loaded.
+    /// - parameter embeddingGlyphData: If this parameter is set to `true`, the glyph data of the font is embedded,
+    ///                                 otherwise only the matrix data is included in PDF file.
+    ///
+    /// - throws: `PDFError.invalidTTCIndex`, `PDFError.invalidTTCFile`,
+    ///           `PDFError.ttfInvalidCMap`, `PDFError.ttfInvalidFormat`, `PDFError.ttfMissingTable`,
+    ///           `PDFError.ttfCannotEmbedFont`.
+    ///
+    /// - returns: The loaded font.
+    public func loadTrueTypeFontFromCollection(from data: Data,
+                                               index: Int,
+                                               embeddingGlyphData: Bool) throws -> Font {
+        
+        let embedding = embeddingGlyphData ? HPDF_TRUE : HPDF_FALSE
+        
+        let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
+            
+            let cString = HPDF_LoadTTFontFromMemory2(self._documentHandle,
+                                                     pointer,
+                                                     HPDF_UINT(data.count),
+                                                     HPDF_UINT(index),
+                                                     embedding)
+            
             if let cString = cString {
                 return String(cString: cString)
             } else {
@@ -300,4 +359,140 @@ public final class PDFDocument {
             _utfEncodingsEnabled = true
         }
     }
+
+    // MARK: - Compression
+
+    /// Set the mode of compression.
+    ///
+    /// - Parameter mode: The mode of compression (may be combined).
+    /// - Throws: `PDFError.invalidCompressionMode` if the provided compression mode was invalid.
+    public func setCompressionMode(to mode: CompressionMode) throws {
+        if HPDF_SetCompressionMode(_documentHandle, HPDF_UINT(mode.rawValue)) != UInt(HPDF_OK) {
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    // MARK: - Security
+
+    /// Sets the encryption mode. As a side effect, ups the version of PDF to 1.4
+    /// when the mode is set to `.r3`.
+    ///
+    /// - Important: Prior to calling this method you must set the password using
+    ///              the `setPassword(owner:user:)` method.
+    ///
+    /// - Parameter mode: The encryption mode to set.
+    /// - Throws: `PDFError.invalidEncryptionKeyLength` if an invalid key length was specified;
+    ///           `PDFError.documentEncryptionDictionaryNotFound` if you haven't set a password.
+    public func setEncryptionMode(to mode: EncryptionMode) throws {
+
+        let haruMode: HPDF_EncryptMode
+        let keyLength: HPDF_UINT
+
+        switch mode {
+        case .r2:
+            haruMode = HPDF_ENCRYPT_R2
+            keyLength = 5
+        case .r3(keyLength: let length):
+            haruMode = HPDF_ENCRYPT_R3
+
+            if length < 0 { throw PDFError.invalidEncryptionKeyLength }
+
+            keyLength = HPDF_UINT(length)
+        }
+
+        if HPDF_SetEncryptionMode(_documentHandle, haruMode, keyLength) != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    /// Sets the permission flags for the document.
+    ///
+    /// - Important: Prior to calling this method you must set the password using
+    ///              the `setPassword(owner:user:)` method.
+    ///
+    /// - Parameter permissions: The permission flags for the document.
+    /// - Throws: `PDFError.documentEncryptionDictionaryNotFound` if you haven't set a password.
+    public func setPermissions(to permissions: Permissions) throws {
+
+        if HPDF_SetPermission(_documentHandle, HPDF_UINT(permissions.rawValue)) != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    /// Sets a password for the document. If the password is set, the document contents are encrypted.
+    ///
+    /// - Parameters:
+    ///   - owner: The password for the owner of the document. The owner can change the permission of the document.
+    ///            Zero length string and the same value as user password are not allowed.
+    ///   - user:  The password for the user of the document. May be set to `nil` or zero length string.
+    /// - Throws:  `PDFError.encryptionInvalidPassword` if the owner password is zero length string or
+    ///            same value as the user password.
+    public func setPassword(owner: String, user: String? = nil) throws {
+
+        guard !owner.isEmpty, owner != user else {
+            throw PDFError.encryptionInvalidPassword
+        }
+
+        let status: HPDF_STATUS
+
+        // Workaround for https://bugs.swift.org/browse/SR-2814
+        if let user = user {
+            status = HPDF_SetPassword(_documentHandle, owner, user)
+        } else {
+            status = HPDF_SetPassword(_documentHandle, owner, nil)
+        }
+
+        if status != UInt(HPDF_OK) {
+
+            HPDF_ResetError(_documentHandle)
+            throw _error
+        }
+    }
+
+    // MARK: - Document Info
+
+    private lazy var _dateFormatter = PDFDateFormatter()
+
+    private func _setAttribute(_ attr: HPDF_InfoType, to value: String?) {
+
+        // Workaround for https://bugs.swift.org/browse/SR-2814
+        if let value = value {
+            HPDF_SetInfoAttr(_documentHandle, attr, value)
+        } else {
+            HPDF_SetInfoAttr(_documentHandle, attr, nil)
+        }
+    }
+    
+    private func _renderMetadata() {
+        
+        _setAttribute(HPDF_INFO_AUTHOR, to: metadata.author)
+        
+        _setAttribute(HPDF_INFO_CREATOR, to: metadata.creator)
+        
+        _setAttribute(HPDF_INFO_TITLE, to: metadata.title)
+        
+        _setAttribute(HPDF_INFO_SUBJECT, to: metadata.subject)
+        
+        _setAttribute(HPDF_INFO_KEYWORDS, to: metadata.keywords?.joined(separator: ", "))
+        
+        let creationDateString = metadata.creationDate.flatMap {
+            _dateFormatter.string(from: $0, timeZone: metadata.timeZone)
+        }
+        
+        _setAttribute(HPDF_INFO_CREATION_DATE, to: creationDateString)
+        
+        let modificationDateString = metadata.modificationDate.flatMap {
+            _dateFormatter.string(from: $0, timeZone: metadata.timeZone)
+        }
+        
+        _setAttribute(HPDF_INFO_MOD_DATE, to: modificationDateString)
+    }
+    
+    /// The metadata of the document: an author, keywords, creation date etc.
+    public var metadata: Metadata = Metadata()
 }

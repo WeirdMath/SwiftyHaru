@@ -38,8 +38,8 @@ endobj
 >>
 stream
 1 w
-0 0 0 RG
-0 0 0 rg
+0 G
+0 g
 [] 0 d
 0 J
 0 j
@@ -54,8 +54,8 @@ BT
 (And so are you.) '
 ET
 1 w
-0 0 0 RG
-0 0 0 rg
+0 G
+0 g
 [] 0 d
 0 J
 0 j
@@ -66,7 +66,7 @@ ET
 endstream
 endobj
 6 0 obj
-215
+195
 endobj
 7 0 obj
 <<
@@ -84,8 +84,8 @@ xref
 0000000123 00000 n
 0000000187 00000 n
 0000000363 00000 n
-0000000632 00000 n
-0000000651 00000 n
+0000000612 00000 n
+0000000631 00000 n
 trailer
 <<
 /Root 1 0 R
@@ -93,5 +93,5 @@ trailer
 /Size 8
 >>
 startxref
-749
+729
 %%EOF

@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Grid Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/Grid" class="dashAnchor"></a>
+    <a title="Grid Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SwiftyHaru Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Grid Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/DrawingContext.html">DrawingContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDateFormatter.html">PDFDateFormatter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/CompressionMode.html">– CompressionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/EncryptionMode.html">– EncryptionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/Metadata.html">– Metadata</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/Permissions.html">– Permissions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage.html">PDFPage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage/Direction.html">– Direction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFPage/Size.html">– Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/LineCap.html">LineCap</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/LineJoin.html">LineJoin</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/PDFColorSpace.html">PDFColorSpace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TextAlignment.html">TextAlignment</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Drawable.html">Drawable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Color.html">Color</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DashStyle.html">DashStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Encoding.html">Encoding</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Font.html">Font</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid.html">Grid</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/LabelParameters.html">– LabelParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/Labels.html">– Labels</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/PDFError.html">PDFError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Path/FillRule.html">– FillRule</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Point.html">Point</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Rectangle.html">Rectangle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Grid</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Grid</span></code></pre>
+
+                </div>
+              </div>
+            <p>Represents a grid that can be drawn on a PDF page.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru4GridcFT4sizeVS_4Size5linesVS0_5Lines6labelsGSqVS0_6Labels_6serifsGSqVS0_6Serifs__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(size:lines:labels:serifs:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru4GridcFT4sizeVS_4Size5linesVS0_5Lines6labelsGSqVS0_6Labels_6serifsGSqVS0_6Serifs__S0_">init(size:lines:labels:serifs:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Lines.html">Lines</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span> <span class="nv">labels</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Labels.html">Labels</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">serifs</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Serifs.html">Serifs</a></span><span class="p">?</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The size of the grid.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the vertical and horizontal major and minor lines of the grid.
+                Default value is <code>Lines.default</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labels</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for vertocal and horizontal lines of the grid. If
+                specified <code>nil</code>, no labels will be drawn. Default value is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serifs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the serifs for vertocal and horizontal lines of the grid. If
+                specified <code>nil</code>, no serifs will be drawn. Default value is <code>Serifs.defalut</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru4GridcFT5widthSf6heightSf5linesVS0_5Lines6labelsGSqVS0_6Labels_6serifsGSqVS0_6Serifs__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(width:height:lines:labels:serifs:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru4GridcFT5widthSf6heightSf5linesVS0_5Lines6labelsGSqVS0_6Labels_6serifsGSqVS0_6Serifs__S0_">init(width:height:lines:labels:serifs:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                <span class="nv">lines</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Lines.html">Lines</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
+                <span class="nv">labels</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Labels.html">Labels</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">serifs</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Serifs.html">Serifs</a></span><span class="p">?</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width of the grid.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The height of the grid.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lines</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the vertical and horizontal major and minor lines of the grid.
+                Default value is <code>Lines.default</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>labels</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the labels for vertocal and horizontal lines of the grid. If
+                specified <code>nil</code>, no labels will be drawn. Default value is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serifs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The parameters of the serifs for vertocal and horizontal lines of the grid. If
+                specified <code>nil</code>, no serifs will be drawn. Default value is <code>Serifs.defalut</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Grid%20parameters"></a>
+                <a name="//apple_ref/swift/Section/Grid parameters" class="dashAnchor"></a>
+                <a href="#/Grid%20parameters">
+                  <h3 class="section-name">Grid parameters</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru4Grid4sizeVS_4Size"></a>
+                    <a name="//apple_ref/swift/Property/size" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru4Grid4sizeVS_4Size">size</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The size of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Structs/Size.html">Size</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru4Grid5linesVS0_5Lines"></a>
+                    <a name="//apple_ref/swift/Property/lines" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru4Grid5linesVS0_5Lines">lines</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The parameters of the lines of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lines</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Lines.html">Lines</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru4Grid6labelsVS0_6Labels"></a>
+                    <a name="//apple_ref/swift/Property/labels" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru4Grid6labelsVS0_6Labels">labels</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The parameters of the labels of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">labels</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Labels.html">Labels</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV10SwiftyHaru4Grid6serifsVS0_6Serifs"></a>
+                    <a name="//apple_ref/swift/Property/serifs" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV10SwiftyHaru4Grid6serifsVS0_6Serifs">serifs</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The parameters of the serifs of the grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">serifs</span><span class="p">:</span> <span class="kt"><a href="../Structs/Grid/Serifs.html">Serifs</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV10SwiftyHaru4Grid4drawFT2inCS_14DrawingContext8positionVS_5Point_T_"></a>
+                    <a name="//apple_ref/swift/Method/draw(in:position:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV10SwiftyHaru4Grid4drawFT2inCS_14DrawingContext8positionVS_5Point_T_">draw(in:position:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Draws the grid in the provided context.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="k">in</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">,</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The context to draw the grid in.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The lower-left corner of the grid.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid15LabelParameters"></a>
+                    <a name="//apple_ref/swift/Struct/LabelParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid15LabelParameters">LabelParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents the properties of a grid&rsquo;s line labels. Labels can only be placed near serifs.</p>
+
+                        <a href="../Structs/Grid/LabelParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">LabelParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid15LabelParametersoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid15LabelParametersoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+<div class="aside aside-complexity">
+    <p class="aside-title">Complexity</p>
+    <p>O(N), where N is the number of elements of a shorter label sequence.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/LabelParameters.html">LabelParameters</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid6Labels"></a>
+                    <a name="//apple_ref/swift/Struct/Labels" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid6Labels">Labels</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encapsulates the parameters of the labels for vertical and horizontal lines.</p>
+
+                        <a href="../Structs/Grid/Labels.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Labels</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid6Labelsoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid6Labelsoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Labels.html">Labels</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Labels.html">Labels</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid5Lines"></a>
+                    <a name="//apple_ref/swift/Struct/Lines" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid5Lines">Lines</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encapsulates the parameters of the vertical and horizontal major and minor lines.</p>
+
+                        <a href="../Structs/Grid/Lines.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Lines</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid5Linesoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid5Linesoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Lines.html">Lines</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Lines.html">Lines</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid19MajorLineParameters"></a>
+                    <a name="//apple_ref/swift/Struct/MajorLineParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid19MajorLineParameters">MajorLineParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents the properties of a grid&rsquo;s major lines.</p>
+
+                        <a href="../Structs/Grid/MajorLineParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MajorLineParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid19MajorLineParametersoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid19MajorLineParametersoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid19MinorLineParameters"></a>
+                    <a name="//apple_ref/swift/Struct/MinorLineParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid19MinorLineParameters">MinorLineParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents the properties of a grid&rsquo;s minor lines.</p>
+
+                        <a href="../Structs/Grid/MinorLineParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">MinorLineParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid19MinorLineParametersoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid19MinorLineParametersoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid15SerifParameters"></a>
+                    <a name="//apple_ref/swift/Struct/SerifParameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid15SerifParameters">SerifParameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents the properties of a grid&rsquo;s serifs. Serifs are short lines that can be placed on the edges of
+a grid and serve to put labels near them.</p>
+
+                        <a href="../Structs/Grid/SerifParameters.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">SerifParameters</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid15SerifParametersoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid15SerifParametersoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/SerifParameters.html">SerifParameters</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/SerifParameters.html">SerifParameters</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:VV10SwiftyHaru4Grid6Serifs"></a>
+                    <a name="//apple_ref/swift/Struct/Serifs" class="dashAnchor"></a>
+                    <a class="token" href="#/s:VV10SwiftyHaru4Grid6Serifs">Serifs</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Encapsulates the parameters of the top, bottom, left and right serifs of the grid.</p>
+
+                        <a href="../Structs/Grid/Serifs.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Serifs</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFVV10SwiftyHaru4Grid6Serifsoi2eeFTS1_S1__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFVV10SwiftyHaru4Grid6Serifsoi2eeFTS1_S1__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Serifs.html">Serifs</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="o">.</span><span class="kt"><a href="../Structs/Grid/Serifs.html">Serifs</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFV10SwiftyHaru4Gridoi2eeFTS0_S0__Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFV10SwiftyHaru4Gridoi2eeFTS0_S0__Sb">==(_:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Boolean value indicating whether two values are equal.</p>
+
+<p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
+<code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">Grid</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rhs</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Another value to compare.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

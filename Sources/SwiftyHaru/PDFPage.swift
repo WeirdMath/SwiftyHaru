@@ -6,7 +6,9 @@
 //
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 /// A handle that is used to manipulate an individual page.
 ///
@@ -15,46 +17,37 @@ import CLibHaru
 ///            the document that owns the page.
 public final class PDFPage {
     
-    public private(set) weak var document: PDFDocument?
+    /// The document this page belongs to.
+    public private(set) unowned var document: PDFDocument
     
-    private var __pageHandle: HPDF_Page
-    
-    internal var _pageHandle: HPDF_Page {
-        if document == nil {
-            fatalError("The document that owns the page has been deallocated")
-        }
-        
-        return __pageHandle
-    }
+    internal private(set) var _pageHandle: HPDF_Page
     
     internal init(document: PDFDocument, haruObject: HPDF_Page) {
         self.document = document
-        __pageHandle = haruObject
+        _pageHandle = haruObject
     }
     
     // MARK: - Page layout
     
-    /// The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
+    /// The width of the page. Valid values are between 3 and 14400.
     public var width: Float {
         get {
             return HPDF_Page_GetWidth(_pageHandle)
         }
         set {
-            if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetWidth(_pageHandle, newValue)
-            }
+            precondition(newValue >= 3 && newValue <= 14400, "The valid values for width are between 3 and 14400.")
+            HPDF_Page_SetWidth(_pageHandle, newValue)
         }
     }
     
-    /// The height of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
+    /// The height of the page. Valid values are between 3 and 14400.
     public var height: Float {
         get {
             return HPDF_Page_GetHeight(_pageHandle)
         }
         set {
-            if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetHeight(_pageHandle, newValue)
-            }
+            precondition(newValue >= 3 && newValue <= 14400, "The valid values for height are between 3 and 14400.")
+            HPDF_Page_SetHeight(_pageHandle, newValue)
         }
     }
     
@@ -75,8 +68,8 @@ public final class PDFPage {
     ///                    also be negative.
     public func rotate(byAngle angle: Int) {
         
-        guard angle % 90 == 0 else { return }
-        
+        precondition(angle % 90 == 0, "The rotation angle must be a multiple of 90 degrees.")
+                
         HPDF_Page_SetRotate(_pageHandle, HPDF_UINT16((angle % 360 + 360) % 360))
     }
     
@@ -118,7 +111,7 @@ public final class PDFPage {
     //     +=============================+
     //
     // In SwiftyHaru we don't want the make the user maintain this state machine manually,
-    // so there are context objects like PDFPathContext which maintain it automatically.
+    // so there are context objects of type DrawingContext which maintain it automatically.
     // So each graphics mode except HPDF_GMODE_PAGE_DESCRIPTION is entered only within a closure.
     //
     // We invoke `draw(_:)` method with a closure that takes a context object and performs path construction
@@ -135,16 +128,16 @@ public final class PDFPage {
     ///   following code:
     ///
     /// ```swift
-    /// page.drawPath { context in
+    /// page.draw { context in
     ///
-    ///     self.page.drawPath { innerContext in
+    ///     page.draw { innerContext in
     ///         // do things
     ///     }
     /// }
     /// ```
     ///
     /// - parameter body: The closure that takes a context object. Perform drawing operations on that object.
-    public func draw(_ body: ((DrawingContext) -> Void)) {
+    public func draw(_ body: ((DrawingContext) throws -> Void)) rethrows {
         
         precondition(!_contextIsPresent,
                      "Cannot begin a new drawing context while the previous one is not revoked.")
@@ -155,7 +148,7 @@ public final class PDFPage {
         
         context._cleanup()
         
-        body(context)
+        try body(context)
         
         context._cleanup()
         
@@ -165,4 +158,24 @@ public final class PDFPage {
     }
     
     private var _contextIsPresent = false
+    
+    /// Puts the `object` visualization onto the page at the specified position.
+    ///
+    /// - parameter object:   The entity to draw.
+    /// - parameter position: The position to put the `object` at. The meaning of this property depends
+    ///                       on the `object`'s implementation.
+    public func draw(object: Drawable, position: Point) {
+        draw { context in
+            object.draw(in: context, position: position)
+        }
+    }
+    
+    /// Puts the `object` visualization onto the page at the specified position.
+    ///
+    /// - parameter object: The entity to draw.
+    /// - parameter x:      The x coordinate of the position to put the `object` at.
+    /// - parameter y:      The y coordinate of the position.
+    public func draw(object: Drawable, x: Float, y: Float) {
+        draw(object: object, position: Point(x: x, y: y))
+    }
 }
