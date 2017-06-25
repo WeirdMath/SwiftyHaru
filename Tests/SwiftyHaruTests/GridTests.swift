@@ -8,7 +8,7 @@
 
 import XCTest
 import Foundation
-import SwiftyHaru
+@testable import SwiftyHaru
 
 class GridTests: XCTestCase {
     
