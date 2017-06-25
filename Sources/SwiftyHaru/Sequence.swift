@@ -6,7 +6,7 @@
 //
 //
 
-public extension Sequence {
+extension Sequence {
     
     /// Concatenates the sequences.
     ///
@@ -14,7 +14,7 @@ public extension Sequence {
     /// - parameter rhs: The sequence to concatenate to the base sequence.
     ///
     /// - returns: A new sequence constructed by concatenating the two sequences.
-    public static func + (lhs: Self, rhs: Self) -> AnySequence<Iterator.Element> {
+    internal static func + (lhs: Self, rhs: Self) -> AnySequence<Iterator.Element> {
         
         var lhsIterator = lhs.makeIterator()
         var rhsIterator = rhs.makeIterator()
@@ -32,7 +32,7 @@ public extension Sequence {
     /// - parameter rhs: The base sequence.
     ///
     /// - returns: A new sequence constructed by appending the new element to the beginning of the base sequence.
-    public static func + (lhs: Iterator.Element, rhs: Self) -> AnySequence<Iterator.Element> {
+    internal static func + (lhs: Iterator.Element, rhs: Self) -> AnySequence<Iterator.Element> {
         
         let oneElementSequence = AnySequence([lhs])
         
@@ -47,7 +47,7 @@ public extension Sequence {
     /// - parameter rhs: The element to append.
     ///
     /// - returns: A new sequence constructed by appending the new element to the end of the base sequence.
-    public static func + (lhs: Self, rhs: Iterator.Element) -> AnySequence<Iterator.Element> {
+    internal static func + (lhs: Self, rhs: Iterator.Element) -> AnySequence<Iterator.Element> {
         
         let oneElementSequence = AnySequence([rhs])
         
