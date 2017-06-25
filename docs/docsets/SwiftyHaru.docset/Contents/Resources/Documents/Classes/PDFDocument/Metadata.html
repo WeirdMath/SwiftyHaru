@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Lines Struct Reference</title>
+    <title>Metadata Struct Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Struct/Lines" class="dashAnchor"></a>
-    <a title="Lines Struct Reference"></a>
+    <a name="//apple_ref/swift/Struct/Metadata" class="dashAnchor"></a>
+    <a title="Metadata Struct Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../../index.html">SwiftyHaru Docs</a> (90% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html">SwiftyHaru Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        Lines Struct Reference
+        Metadata Struct Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -166,14 +166,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>Lines</h1>
+            <h1>Metadata</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Lines</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Metadata</span></code></pre>
 
                 </div>
               </div>
-            <p>Encapsulates the parameters of the vertical and horizontal major and minor lines.</p>
+            <p>This structure encapsulates the metadata of a document.</p>
 
           </section>
           <section class="section task-group-section">
@@ -182,9 +182,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvVV10SwiftyHaru4Grid5Lines7defaultS1_"></a>
-                    <a name="//apple_ref/swift/Variable/default" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvVV10SwiftyHaru4Grid5Lines7defaultS1_">default</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata6authorGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/author" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata6authorGSqSS_">author</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -192,14 +192,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Default set, where all the major and minor line parameters are set to their <code>.default</code>.</p>
+                        <p>The author of the document.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">let</span> <span class="err">`</span><span class="k">default</span><span class="err">`</span> <span class="o">=</span> <span class="kt">Lines</span><span class="p">()</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">author</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -209,9 +209,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines13verticalMajorVS0_19MajorLineParameters"></a>
-                    <a name="//apple_ref/swift/Property/verticalMajor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines13verticalMajorVS0_19MajorLineParameters">verticalMajor</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata7creatorGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/creator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata7creatorGSqSS_">creator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -219,14 +219,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The parameters of the vertical major lines of the grid.</p>
+                        <p>The creator of the document.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">verticalMajor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">creator</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -236,9 +236,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines15horizontalMajorVS0_19MajorLineParameters"></a>
-                    <a name="//apple_ref/swift/Property/horizontalMajor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines15horizontalMajorVS0_19MajorLineParameters">horizontalMajor</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata5titleGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/title" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata5titleGSqSS_">title</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,14 +246,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The parameters of the horizontal major lines of the grid.</p>
+                        <p>The title of the document.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">horizontalMajor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -263,9 +263,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines13verticalMinorGSqVS0_19MinorLineParameters_"></a>
-                    <a name="//apple_ref/swift/Property/verticalMinor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines13verticalMinorGSqVS0_19MinorLineParameters_">verticalMinor</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata7subjectGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/subject" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata7subjectGSqSS_">subject</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,14 +273,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The parameters of the vertical minor lines of the grid.</p>
+                        <p>The subject of the document.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">verticalMinor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -290,9 +290,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines15horizontalMinorGSqVS0_19MinorLineParameters_"></a>
-                    <a name="//apple_ref/swift/Property/horizontalMinor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines15horizontalMinorGSqVS0_19MinorLineParameters_">horizontalMinor</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata8keywordsGSqGSaSS__"></a>
+                    <a name="//apple_ref/swift/Property/keywords" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata8keywordsGSqGSaSS__">keywords</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -300,14 +300,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The parameters of the horizontal minor lines of the grid.</p>
+                        <p>The keywords of the document.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">horizontalMinor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">keywords</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -317,9 +317,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines27drawVerticalMajorLinesFirstSb"></a>
-                    <a name="//apple_ref/swift/Property/drawVerticalMajorLinesFirst" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines27drawVerticalMajorLinesFirstSb">drawVerticalMajorLinesFirst</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata8timeZoneV10Foundation8TimeZone"></a>
+                    <a name="//apple_ref/swift/Property/timeZone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata8timeZoneV10Foundation8TimeZone">timeZone</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -327,20 +327,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If <code>true</code>, draws the horizontal major lines only after the vertical major lines are drawn.
-Otherwise draws the horizontal major lines and only then draws vertical major lines.</p>
-<div class="aside aside-important">
-    <p class="aside-title">Important</p>
-    Major lines are always drawn <strong>after</strong> minor lines.
-
-</div>
+                        <p>The timezone to use for encoding the creation date and the modification date of the document.
+Default value is <code>TimeZone.current</code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">drawVerticalMajorLinesFirst</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">timeZone</span><span class="p">:</span> <span class="kt">TimeZone</span> <span class="o">=</span> <span class="o">.</span><span class="n">current</span></code></pre>
 
                         </div>
                       </div>
@@ -350,9 +345,9 @@ Otherwise draws the horizontal major lines and only then draws vertical major li
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vVV10SwiftyHaru4Grid5Lines27drawVerticalMinorLinesFirstSb"></a>
-                    <a name="//apple_ref/swift/Property/drawVerticalMinorLinesFirst" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vVV10SwiftyHaru4Grid5Lines27drawVerticalMinorLinesFirstSb">drawVerticalMinorLinesFirst</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata12creationDateGSqV10Foundation4Date_"></a>
+                    <a name="//apple_ref/swift/Property/creationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata12creationDateGSqV10Foundation4Date_">creationDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -360,20 +355,14 @@ Otherwise draws the horizontal major lines and only then draws vertical major li
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>If <code>true</code>, draws the horizontal minor lines only after the vertical minor lines are drawn.
-Otherwise draws the horizontal minor lines and only then draws vertical minor lines.</p>
-<div class="aside aside-important">
-    <p class="aside-title">Important</p>
-    Major lines are always drawn <strong>after</strong> minor lines.
-
-</div>
+                        <p>The document’s creation date.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">drawVerticalMinorLinesFirst</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">creationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -383,9 +372,9 @@ Otherwise draws the horizontal minor lines and only then draws vertical minor li
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FVV10SwiftyHaru4Grid5LinescFT13verticalMajorVS0_19MajorLineParameters15horizontalMajorS2_13verticalMinorGSqVS0_19MinorLineParameters_15horizontalMinorGSqS3__27drawVerticalMajorLinesFirstSb27drawVerticalMinorLinesFirstSb_S1_"></a>
-                    <a name="//apple_ref/swift/Method/init(verticalMajor:horizontalMajor:verticalMinor:horizontalMinor:drawVerticalMajorLinesFirst:drawVerticalMinorLinesFirst:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FVV10SwiftyHaru4Grid5LinescFT13verticalMajorVS0_19MajorLineParameters15horizontalMajorS2_13verticalMinorGSqVS0_19MinorLineParameters_15horizontalMinorGSqS3__27drawVerticalMajorLinesFirstSb27drawVerticalMinorLinesFirstSb_S1_">init(verticalMajor:horizontalMajor:verticalMinor:horizontalMinor:drawVerticalMajorLinesFirst:drawVerticalMinorLinesFirst:)</a>
+                    <a name="/s:vVC10SwiftyHaru11PDFDocument8Metadata16modificationDateGSqV10Foundation4Date_"></a>
+                    <a name="//apple_ref/swift/Property/modificationDate" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vVC10SwiftyHaru11PDFDocument8Metadata16modificationDateGSqV10Foundation4Date_">modificationDate</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -393,19 +382,50 @@ Otherwise draws the horizontal minor lines and only then draws vertical minor li
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates a new set of the line parameters for each type of the line.</p>
+                        <p>The document’s last-modified date.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">verticalMajor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                    <span class="nv">horizontalMajor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MajorLineParameters.html">MajorLineParameters</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                    <span class="nv">verticalMinor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                    <span class="nv">horizontalMinor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Grid/MinorLineParameters.html">MinorLineParameters</a></span><span class="p">?</span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span>
-                    <span class="nv">drawVerticalMajorLinesFirst</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
-                    <span class="nv">drawVerticalMinorLinesFirst</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FVC10SwiftyHaru11PDFDocument8MetadatacFT6authorGSqSS_7creatorGSqSS_5titleGSqSS_7subjectGSqSS_8keywordsGSqGSaSS__12creationDateGSqV10Foundation4Date_16modificationDateGSqS3___S1_"></a>
+                    <a name="//apple_ref/swift/Method/init(author:creator:title:subject:keywords:creationDate:modificationDate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FVC10SwiftyHaru11PDFDocument8MetadatacFT6authorGSqSS_7creatorGSqSS_5titleGSqSS_7subjectGSqSS_8keywordsGSqGSaSS__12creationDateGSqV10Foundation4Date_16modificationDateGSqS3___S1_">init(author:creator:title:subject:keywords:creationDate:modificationDate:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates new metadata.</p>
+
+<p>The default value of each argument is <code>nil</code>. <code>nil</code> value means that the associated key
+will not be added to the document&rsquo;s metadata dictionary.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">author</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">creator</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">subject</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">keywords</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">creationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                    <span class="nv">modificationDate</span><span class="p">:</span> <span class="kt">Date</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -416,90 +436,84 @@ Otherwise draws the horizontal minor lines and only then draws vertical minor li
                             <tr>
                               <td>
                                 <code>
-                                <em>verticalMajor</em>
+                                <em>author</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The parameters of the vertical major lines of the grid.
-                                     Default line width is 0.5, line spacing is 10,
-                                     line color is 80% gray.</p>
+                                  <p>The author of the document.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>horizontalMajor</em>
+                                <em>creator</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The parameters of the horizontal major lines of the grid.
-                                     Default line width is 0.5, line spacing is 10,
-                                     line color is 80% gray.</p>
+                                  <p>The creator of the document.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>verticalMinor</em>
+                                <em>title</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The parameters of the vertical minor lines of the grid.
-                                     If specified <code>nil</code>, no vertical minor lines will be drawn.
-                                     Default line width is 0.25, line color is 80% gray and
-                                     the default number of minor segments per one major
-                                     segment is 2.</p>
+                                  <p>The title of the document.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>horizontalMinor</em>
+                                <em>subject</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>The parameters of the horizontal minor lines of the grid.
-                                     If specified <code>nil</code>, no horizontal minor lines will be drawn.
-                                     Default line width is 0.25, line color is 80% gray and
-                                     the default number of minor segments per one major
-                                     segment is 2.</p>
+                                  <p>The subject of the document.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>drawVerticalMajorLinesFirst</em>
+                                <em>keywords</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>If <code>true</code>, draws the horizontal major lines only after
-                                     the vertical major lines are drawn. Otherwise draws
-                                     the horizontal major lines and only then draws vertical
-                                     major lines. Default is <code>false</code>.</p>
+                                  <p>The keywords of the document.</p>
                                 </div>
                               </td>
                             </tr>
                             <tr>
                               <td>
                                 <code>
-                                <em>drawVerticalMinorLinesFirst</em>
+                                <em>creationDate</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>If <code>true</code>, draws the horizontal minor lines only after
-                                     the vertical minor lines are drawn. Otherwise draws
-                                     the horizontal minor lines and only then draws vertical
-                                     minor lines. Default is <code>false</code>.</p>
+                                  <p>The document’s creation date.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modificationDate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The document’s last-modified date.</p>
                                 </div>
                               </td>
                             </tr>

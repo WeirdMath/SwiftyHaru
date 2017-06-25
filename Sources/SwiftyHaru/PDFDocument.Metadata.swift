@@ -10,6 +10,7 @@ import Foundation
 
 extension PDFDocument {
     
+    /// This structure encapsulates the metadata of a document.
     public struct Metadata {
         
         /// The author of the document.
@@ -37,6 +38,19 @@ extension PDFDocument {
         /// The document’s last-modified date.
         public var modificationDate: Date?
         
+        /// Creates new metadata.
+        ///
+        /// The default value of each argument is `nil`. `nil` value means that the associated key
+        /// will not be added to the document's metadata dictionary.
+        ///
+        /// - Parameters:
+        ///   - author:           The author of the document.
+        ///   - creator:          The creator of the document.
+        ///   - title:            The title of the document.
+        ///   - subject:          The subject of the document.
+        ///   - keywords:         The keywords of the document.
+        ///   - creationDate:     The document’s creation date.
+        ///   - modificationDate: The document’s last-modified date.
         public init(author: String? = nil,
                     creator: String? = nil,
                     title: String? = nil,

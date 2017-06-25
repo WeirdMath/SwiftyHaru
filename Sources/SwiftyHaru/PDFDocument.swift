@@ -493,5 +493,6 @@ public final class PDFDocument {
         _setAttribute(HPDF_INFO_MOD_DATE, to: modificationDateString)
     }
     
+    /// The metadata of the document: an author, keywords, creation date etc.
     public var metadata: Metadata = Metadata()
 }
