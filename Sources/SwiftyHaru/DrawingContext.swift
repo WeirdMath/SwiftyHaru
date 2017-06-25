@@ -11,9 +11,17 @@ import CLibHaru
 #endif
 import Foundation
 
+/// The `DrawingContext` class represents a PDF drawing destination.
+///
+/// You cannot initialize the context directly. You need to call the `PDFPage.draw(_:)` method; an instance
+/// of `DrawingContext` will be passed to the provided closure. That instance is only valid during the lifetime
+/// of that closure.
+///
+/// Each instance of `DrawingContext` is bound to some `PDFPage`, hence you can use it to perform
+/// drawing operations on only one page.
 public final class DrawingContext {
     
-    private weak var _document: PDFDocument?
+    private unowned var _document: PDFDocument
     private var __page: HPDF_Page
     private var _documentHandle: HPDF_Doc
     private var _isInvalidated = false
@@ -32,7 +40,7 @@ public final class DrawingContext {
         
         _document = page.document
         
-        _documentHandle = _document!._documentHandle
+        _documentHandle = _document._documentHandle
     }
     
     internal func _cleanup() {
@@ -418,15 +426,13 @@ public final class DrawingContext {
         set {
             guard let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name) else {
                 
-                switch _document?._error {
-                case .some(PDFError.invalidFontName):
+                switch _document._error {
+                case PDFError.invalidFontName:
                     preconditionFailure("Font \(newValue) must be loaded in the document using " +
                         "loadTrueTypeFont(from:embeddingGlyphData:) or " +
                         "loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:) methods.")
-                case .some(let error):
-                    preconditionFailure(error.description)
                 default:
-                    return
+                    preconditionFailure(_document._error.description)
                 }
             }
             
@@ -483,24 +489,34 @@ public final class DrawingContext {
              Encoding.gbEucCnVertical,
              Encoding.gbkEucHorisontal,
              Encoding.gbkEucVertical:
-            _document?._useCNSEncodings()
+            
+            _document._useCNSEncodings()
+            
         case Encoding.eTenB5Vertical,
              Encoding.eTenB5Horisontal:
-            _document?._useCNTEncodings()
+            
+            _document._useCNTEncodings()
+            
         case Encoding.rksjHorisontal,
              Encoding.rksjVertical,
              Encoding.rksjHorisontalProportional,
              Encoding.eucHorisontal,
              Encoding.eucVertical:
-            _document?._useJPEncodings()
+            
+            _document._useJPEncodings()
+            
         case Encoding.kscEucHorisontal,
              Encoding.kscEucVertical,
              Encoding.kscMsUhcProportional,
              Encoding.kscMsUhsVerticalFixedWidth,
              Encoding.kscMsUhsHorisontalFixedWidth:
-            _document?._useKREncodings()
+            
+            _document._useKREncodings()
+            
         case Encoding.utf8:
-            _document?._useUTFEncodings()
+            
+            _document._useUTFEncodings()
+            
         default:
             return
         }
