@@ -84,9 +84,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_LoadPngImageFromMem()` | Unimplemented | None | N/A |
     | `HPDF_LoadJpegImageFromMem()` | Unimplemented | None | N/A |
     | `HPDF_LoadJpegImageFromFile()` | Unimplemented | None | N/A |
-    | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.author`, `PDFDocument.creator`, `PDFDocument.title`, `PDFDocument.subject`, `PDFDocument.keywords`|
-    | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.author`, `PDFDocument.creator`, `PDFDocument.title`, `PDFDocument.subject`, `PDFDocument.keywords`, `PDFDocument.creationDate`, `PDFDocument.modificationDate` |
-    | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.creationDate`, `PDFDocument.modificationDate` |
+    | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`|
+    | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`, `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
+    | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
     | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user)` |
     | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPermissions(to:)` |
     | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setEncryptionMode(to:)` |
