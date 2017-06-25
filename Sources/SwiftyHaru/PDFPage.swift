@@ -163,7 +163,7 @@ public final class PDFPage {
     /// - parameter object:   The entity to draw.
     /// - parameter position: The position to put the `object` at. The meaning of this property depends
     ///                       on the `object`'s implementation.
-    public func draw<DrawableObject: Drawable>(object: DrawableObject, position: Point) {
+    public func draw(object: Drawable, position: Point) {
         draw { context in
             object.draw(in: context, position: position)
         }
@@ -174,7 +174,7 @@ public final class PDFPage {
     /// - parameter object: The entity to draw.
     /// - parameter x:      The x coordinate of the position to put the `object` at.
     /// - parameter y:      The y coordinate of the position.
-    public func draw<DrawableObject: Drawable>(object: DrawableObject, x: Float, y: Float) {
+    public func draw(object: Drawable, x: Float, y: Float) {
         draw(object: object, position: Point(x: x, y: y))
     }
 }
