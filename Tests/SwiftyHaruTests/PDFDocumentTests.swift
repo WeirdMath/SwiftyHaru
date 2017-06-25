@@ -296,23 +296,14 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let author = "John Appleseed"
-        XCTAssertNil(sut.author)
         sut.addPage()
         
         // When
-        sut.author = author
-        let returnedAuthor = sut.author
+        sut.metadata.author = author
         let returnedDocumentData = sut.getData()
         
         // Then
-        XCTAssertEqual(author, returnedAuthor)
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        // When
-        sut.author = nil
-        
-        // Then
-        XCTAssertNil(sut.author)
     }
     
     func testSetCreator() {
@@ -322,23 +313,14 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let creator = "Takeshi Kanno"
-        XCTAssertNil(sut.creator)
         sut.addPage()
         
         // When
-        sut.creator = creator
-        let returnedCreator = sut.creator
+        sut.metadata.creator = creator
         let returnedDocumentData = sut.getData()
         
         // Then
-        XCTAssertEqual(creator, returnedCreator)
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        // When
-        sut.creator = nil
-        
-        // Then
-        XCTAssertNil(sut.author)
     }
     
     func testSetTitle() {
@@ -348,23 +330,14 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let title = "Hello World"
-        XCTAssertNil(sut.title)
         sut.addPage()
         
         // When
-        sut.title = title
-        let returnedTitle = sut.title
+        sut.metadata.title = title
         let returnedDocumentData = sut.getData()
         
         // Then
-        XCTAssertEqual(title, returnedTitle)
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        // When
-        sut.title = nil
-        
-        // Then
-        XCTAssertNil(sut.title)
     }
     
     func testSetSubject() {
@@ -374,23 +347,14 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let subject = "LibHaru"
-        XCTAssertNil(sut.subject)
         sut.addPage()
         
         // When
-        sut.subject = subject
-        let returnedSubject = sut.subject
+        sut.metadata.subject = subject
         let returnedDocumentData = sut.getData()
         
         // Then
-        XCTAssertEqual(subject, returnedSubject)
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        // When
-        sut.subject = nil
-        
-        // Then
-        XCTAssertNil(sut.subject)
     }
     
     func testSetKeywords() {
@@ -405,38 +369,14 @@ class PDFDocumentTests: XCTestCase {
             "Yes",
             "Pink Floyd"
         ]
-        XCTAssertNil(sut.subject)
         sut.addPage()
         
         // When
-        sut.keywords = keywords
-        let returnedKeywords = sut.keywords
+        sut.metadata.keywords = keywords
         let returnedDocumentData = sut.getData()
         
         // Then
-        if let returnedKeywords = returnedKeywords {
-            XCTAssertEqual(keywords, returnedKeywords)
-        } else {
-            XCTFail()
-        }
-        
         XCTAssertEqual(expectedDocumentData, returnedDocumentData)
-        
-        // When
-        sut.keywords = nil
-        
-        // Then
-        XCTAssertNil(sut.keywords)
-        
-        // When
-        sut.keywords = []
-        
-        // Then
-        if let keywords = sut.keywords {
-            XCTAssertEqual(keywords, [])
-        } else {
-            XCTFail()
-        }
     }
     
     func testSetCreationDate() {
@@ -446,33 +386,22 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let date = Date(timeIntervalSince1970: 1_497_055_314)
-        XCTAssertNil(sut.creationDate)
         sut.addPage()
         
         // When
-        sut.timeZone = TimeZone(identifier: "America/Los_Angeles")!
-        sut.creationDate = date
-        let returnedDateWithLosAngelesTimeZone = sut.creationDate
+        sut.metadata.timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        sut.metadata.creationDate = date
         let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
         
         // Then
-        XCTAssertEqual(date, returnedDateWithLosAngelesTimeZone)
         XCTAssertEqual(expectedDocumentData, returnedDocumentDataWithLosAngelesTimeZone)
         
         // When
-        sut.timeZone = TimeZone(secondsFromGMT: 0)!
-        let returnedDateWithGMTTimeZone = sut.creationDate
+        sut.metadata.timeZone = TimeZone(secondsFromGMT: 0)!
         let returnedDocumentDataWithGMTTimeZone = sut.getData()
         
         // Then
-        XCTAssertEqual(date, returnedDateWithGMTTimeZone)
         XCTAssertNotEqual(expectedDocumentData, returnedDocumentDataWithGMTTimeZone)
-        
-        // When
-        sut.creationDate = nil
-        
-        // Then
-        XCTAssertNil(sut.creationDate)
     }
     
     func testSetModificationDate() {
@@ -482,32 +411,21 @@ class PDFDocumentTests: XCTestCase {
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let date = Date(timeIntervalSince1970: 1_497_055_314)
-        XCTAssertNil(sut.modificationDate)
         sut.addPage()
         
         // When
-        sut.timeZone = TimeZone(identifier: "America/Los_Angeles")!
-        sut.modificationDate = date
-        let returnedDateWithLosAngelesTimeZone = sut.modificationDate
+        sut.metadata.timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        sut.metadata.modificationDate = date
         let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
         
         // Then
-        XCTAssertEqual(date, returnedDateWithLosAngelesTimeZone)
         XCTAssertEqual(expectedDocumentData, returnedDocumentDataWithLosAngelesTimeZone)
         
         // When
-        sut.timeZone = TimeZone(secondsFromGMT: 0)!
-        let returnedDateWithGMTTimeZone = sut.modificationDate
+        sut.metadata.timeZone = TimeZone(secondsFromGMT: 0)!
         let returnedDocumentDataWithGMTTimeZone = sut.getData()
         
         // Then
-        XCTAssertEqual(date, returnedDateWithGMTTimeZone)
         XCTAssertNotEqual(expectedDocumentData, returnedDocumentDataWithGMTTimeZone)
-        
-        // When
-        sut.modificationDate = nil
-        
-        // Then
-        XCTAssertNil(sut.modificationDate)
     }
 }

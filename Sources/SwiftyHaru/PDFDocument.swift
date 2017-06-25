@@ -171,6 +171,8 @@ public final class PDFDocument {
     /// - returns: The document's contents
     public func getData() -> Data {
         
+        _renderMetadata()
+        
         HPDF_SaveToStream(_documentHandle)
         
         let sizeOfStream = HPDF_GetStreamSize(_documentHandle)
@@ -456,11 +458,6 @@ public final class PDFDocument {
 
     private lazy var _dateFormatter = PDFDateFormatter()
 
-    private func _getAttribute(_ attr: HPDF_InfoType) -> String? {
-        let pointer = HPDF_GetInfoAttr(_documentHandle, attr)
-        return pointer.map(String.init(cString:))
-    }
-
     private func _setAttribute(_ attr: HPDF_InfoType, to value: String?) {
 
         // Workaround for https://bugs.swift.org/browse/SR-2814
@@ -470,99 +467,31 @@ public final class PDFDocument {
             HPDF_SetInfoAttr(_documentHandle, attr, nil)
         }
     }
-
-    /// The author of the document.
-    public var author: String? {
-        get {
-            return _getAttribute(HPDF_INFO_AUTHOR)
+    
+    private func _renderMetadata() {
+        
+        _setAttribute(HPDF_INFO_AUTHOR, to: metadata.author)
+        
+        _setAttribute(HPDF_INFO_CREATOR, to: metadata.creator)
+        
+        _setAttribute(HPDF_INFO_TITLE, to: metadata.title)
+        
+        _setAttribute(HPDF_INFO_SUBJECT, to: metadata.subject)
+        
+        _setAttribute(HPDF_INFO_KEYWORDS, to: metadata.keywords?.joined(separator: ", "))
+        
+        let creationDateString = metadata.creationDate.flatMap {
+            _dateFormatter.string(from: $0, timeZone: metadata.timeZone)
         }
-        set {
-            _setAttribute(HPDF_INFO_AUTHOR, to: newValue)
+        
+        _setAttribute(HPDF_INFO_CREATION_DATE, to: creationDateString)
+        
+        let modificationDateString = metadata.modificationDate.flatMap {
+            _dateFormatter.string(from: $0, timeZone: metadata.timeZone)
         }
+        
+        _setAttribute(HPDF_INFO_MOD_DATE, to: modificationDateString)
     }
-
-    /// The creator of the document.
-    public var creator: String? {
-        get {
-            return _getAttribute(HPDF_INFO_CREATOR)
-        }
-        set {
-            _setAttribute(HPDF_INFO_CREATOR, to: newValue)
-        }
-    }
-
-    /// The title of the document.
-    public var title: String? {
-        get {
-            return _getAttribute(HPDF_INFO_TITLE)
-        }
-        set {
-            _setAttribute(HPDF_INFO_TITLE, to: newValue)
-        }
-    }
-
-    /// The subject of the document.
-    public var subject: String? {
-        get {
-            return _getAttribute(HPDF_INFO_SUBJECT)
-        }
-        set {
-            _setAttribute(HPDF_INFO_SUBJECT, to: newValue)
-        }
-    }
-
-    /// The keywords of the document.
-    public var keywords: [String]? {
-        get {
-            
-            return _getAttribute(HPDF_INFO_KEYWORDS)
-                .map { keywordsString in
-                
-                    keywordsString.isEmpty ? [] : keywordsString.components(separatedBy: ", ")
-                    
-                }?.map { keyword in
-                    keyword.trimmingCharacters(in: .whitespacesAndNewlines)
-                }
-        }
-        set {
-            _setAttribute(HPDF_INFO_KEYWORDS, to: newValue?.joined(separator: ", "))
-        }
-    }
-
-    /// The timezone to use for encoding the creation date and the modification date of the document.
-    /// Default value is `TimeZone.current`
-    public var timeZone: TimeZone = .current {
-        didSet {
-            // Update the values with the new time zone
-            let _creationDate = creationDate
-            creationDate = _creationDate
-            
-            let _modificationDate = modificationDate
-            modificationDate = _modificationDate
-        }
-    }
-
-    /// The document’s creation date.
-    public var creationDate: Date? {
-        get {
-            let dateString = _getAttribute(HPDF_INFO_CREATION_DATE)
-            return dateString.flatMap(_dateFormatter.date(from:))
-        }
-        set {
-            let dateString = newValue.flatMap { _dateFormatter.string(from: $0, timeZone: timeZone) }
-            _setAttribute(HPDF_INFO_CREATION_DATE, to: dateString)
-        }
-    }
-
-    /// The document’s last-modified date.
-    public var modificationDate: Date? {
-        get {
-            let dateString = _getAttribute(HPDF_INFO_MOD_DATE)
-            return dateString.flatMap(_dateFormatter.date(from:))
-        }
-        set {
-            let dateString = newValue.flatMap { _dateFormatter.string(from: $0, timeZone: timeZone) }
-            _setAttribute(HPDF_INFO_MOD_DATE, to: dateString)
-        }
-    }
+    
+    public var metadata: Metadata = Metadata()
 }
