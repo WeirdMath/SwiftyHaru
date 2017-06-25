@@ -597,7 +597,7 @@ class DrawingContextTests: XCTestCase {
             let curve = constructExampleCurve(startingWith: Point(x: 100, y: 300))
             
             context.fillColor = .green
-            context.fill(curve, evenOddRule: true, stroke: true)
+            context.fill(curve, rule: .evenOdd, stroke: true)
         }
         
         // Filling using nonzero winding number rule with stroking
@@ -607,7 +607,7 @@ class DrawingContextTests: XCTestCase {
             let curve = constructExampleCurve(startingWith: Point(x: 225, y: 300))
             
             context.fillColor = .green
-            context.fill(curve, evenOddRule: false, stroke: true)
+            context.fill(curve, rule: .winding, stroke: true)
         }
         
         // Filling using even-odd number rule without stroking
@@ -617,7 +617,7 @@ class DrawingContextTests: XCTestCase {
             let curve = constructExampleCurve(startingWith: Point(x: 100, y: 500))
             
             context.fillColor = .green
-            context.fill(curve, evenOddRule: true, stroke: false)
+            context.fill(curve, rule: .evenOdd, stroke: false)
         }
         
         // Filling using nonzero winding number rule without stroking
@@ -627,7 +627,7 @@ class DrawingContextTests: XCTestCase {
             let curve = constructExampleCurve(startingWith: Point(x: 225, y: 500))
             
             context.fillColor = .green
-            context.fill(curve, evenOddRule: false, stroke: false)
+            context.fill(curve, rule: .winding, stroke: false)
         }
         
         let returnedDocumentData = document.getData()
@@ -660,7 +660,7 @@ class DrawingContextTests: XCTestCase {
                 
                 context.stroke(path)
                 
-                try context.clip(to: path, evenOddRule: false) {
+                try context.clip(to: path, rule: .winding) {
                     context.fill(rectangle)
                 }
             }
@@ -698,7 +698,7 @@ class DrawingContextTests: XCTestCase {
                 
                 context.stroke(path)
                 
-                try context.clip(to: path, evenOddRule: true) {
+                try context.clip(to: path, rule: .evenOdd) {
                     context.fill(rectangle)
                 }
             }

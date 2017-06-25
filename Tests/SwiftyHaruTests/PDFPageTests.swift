@@ -62,22 +62,6 @@ class PDFPageTests: XCTestCase {
         XCTAssertEqual(expectedWidth, returnedWidth)
         
         // When
-        sut.width = 2
-        let returnedWidthTooSmall = sut.width
-        
-        // Then
-        XCTAssertEqual(expectedWidth, returnedWidthTooSmall,
-                       "Setting too small width should make no change")
-        
-        // When
-        sut.width = 14401
-        let returnedWidthTooBig = sut.width
-        
-        // Then
-        XCTAssertEqual(expectedWidth, returnedWidthTooBig,
-                       "Setting too big width should make no change")
-        
-        // When
         let returnedDocumentData = document.getData()
         
         // Then
@@ -98,22 +82,6 @@ class PDFPageTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedHeight, returnedHeight)
-        
-        // When
-        sut.height = 2
-        let returnedHeightTooSmall = sut.height
-        
-        // Then
-        XCTAssertEqual(expectedHeight, returnedHeightTooSmall,
-                       "Setting too small width should make no change")
-        
-        // When
-        sut.height = 14401
-        let returnedHeightTooBig = sut.height
-        
-        // Then
-        XCTAssertEqual(expectedHeight, returnedHeightTooBig,
-                       "Setting too big width should make no change")
         
         // When
         let returnedDocumentData = document.getData()

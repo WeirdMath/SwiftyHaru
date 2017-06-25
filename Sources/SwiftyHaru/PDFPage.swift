@@ -17,46 +17,36 @@ import CLibHaru
 ///            the document that owns the page.
 public final class PDFPage {
     
-    public private(set) weak var document: PDFDocument?
+    public private(set) unowned var document: PDFDocument
     
-    private var __pageHandle: HPDF_Page
-    
-    internal var _pageHandle: HPDF_Page {
-        if document == nil {
-            fatalError("The document that owns the page has been deallocated")
-        }
-        
-        return __pageHandle
-    }
+    internal private(set) var _pageHandle: HPDF_Page
     
     internal init(document: PDFDocument, haruObject: HPDF_Page) {
         self.document = document
-        __pageHandle = haruObject
+        _pageHandle = haruObject
     }
     
     // MARK: - Page layout
     
-    /// The width of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
+    /// The width of the page. Valid values are between 3 and 14400.
     public var width: Float {
         get {
             return HPDF_Page_GetWidth(_pageHandle)
         }
         set {
-            if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetWidth(_pageHandle, newValue)
-            }
+            precondition(newValue >= 3 && newValue <= 14400, "The valid values for width are between 3 and 14400.")
+            HPDF_Page_SetWidth(_pageHandle, newValue)
         }
     }
     
-    /// The height of the page. Valid values are between 3 and 14400. Setting an invalid value makes no change.
+    /// The height of the page. Valid values are between 3 and 14400.
     public var height: Float {
         get {
             return HPDF_Page_GetHeight(_pageHandle)
         }
         set {
-            if newValue >= 3 && newValue <= 14400 {
-                HPDF_Page_SetHeight(_pageHandle, newValue)
-            }
+            precondition(newValue >= 3 && newValue <= 14400, "The valid values for height are between 3 and 14400.")
+            HPDF_Page_SetHeight(_pageHandle, newValue)
         }
     }
     
@@ -77,8 +67,8 @@ public final class PDFPage {
     ///                    also be negative.
     public func rotate(byAngle angle: Int) {
         
-        guard angle % 90 == 0 else { return }
-        
+        precondition(angle % 90 == 0, "The rotation angle must be a multiple of 90 degrees.")
+                
         HPDF_Page_SetRotate(_pageHandle, HPDF_UINT16((angle % 360 + 360) % 360))
     }
     
@@ -173,7 +163,7 @@ public final class PDFPage {
     /// - parameter object:   The entity to draw.
     /// - parameter position: The position to put the `object` at. The meaning of this property depends
     ///                       on the `object`'s implementation.
-    public func draw<DrawableObject: Drawable>(object: DrawableObject, position: Point) {
+    public func draw(object: Drawable, position: Point) {
         draw { context in
             object.draw(in: context, position: position)
         }
@@ -184,7 +174,7 @@ public final class PDFPage {
     /// - parameter object: The entity to draw.
     /// - parameter x:      The x coordinate of the position to put the `object` at.
     /// - parameter y:      The y coordinate of the position.
-    public func draw<DrawableObject: Drawable>(object: DrawableObject, x: Float, y: Float) {
+    public func draw(object: Drawable, x: Float, y: Float) {
         draw(object: object, position: Point(x: x, y: y))
     }
 }

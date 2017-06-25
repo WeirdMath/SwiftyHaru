@@ -68,3 +68,10 @@ extension Font: Equatable {
         return lhs.name == rhs.name
     }
 }
+
+extension Font: CustomStringConvertible {
+    
+    public var description: String {
+        return name
+    }
+}

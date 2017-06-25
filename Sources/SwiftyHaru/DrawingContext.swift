@@ -11,9 +11,17 @@ import CLibHaru
 #endif
 import Foundation
 
+/// The `DrawingContext` class represents a PDF drawing destination.
+///
+/// You cannot initialize the context directly. You need to call the `PDFPage.draw(_:)` method; an instance
+/// of `DrawingContext` will be passed to the provided closure. That instance is only valid during the lifetime
+/// of that closure.
+///
+/// Each instance of `DrawingContext` is bound to some `PDFPage`, hence you can use it to perform
+/// drawing operations on only one page.
 public final class DrawingContext {
     
-    private weak var _document: PDFDocument?
+    private unowned var _document: PDFDocument
     private var __page: HPDF_Page
     private var _documentHandle: HPDF_Doc
     private var _isInvalidated = false
@@ -32,7 +40,7 @@ public final class DrawingContext {
         
         _document = page.document
         
-        _documentHandle = _document!._documentHandle
+        _documentHandle = _document._documentHandle
     }
     
     internal func _cleanup() {
@@ -110,7 +118,8 @@ public final class DrawingContext {
             return HPDF_Page_GetMiterLimit(_page)
         }
         set {
-            guard newValue >= 1 else { return }
+            precondition(newValue >= 1, "The minimum value of miterLimit is 1.0.")
+
             HPDF_Page_SetMiterLimit(_page, newValue)
         }
     }
@@ -118,7 +127,7 @@ public final class DrawingContext {
     /// The number of the page's graphics state stack.
     ///
     /// This number is increased whenever you call `withNewGState(_:)` or
-    /// `clip(to:evenOddRule:_:)` and decreased as soon as such a function returns.
+    /// `clip(to:rule:_:)` and decreased as soon as such a function returns.
     ///
     /// The maximum value of this property is `DrawingContext.maxGraphicsStateDepth`.
     public var graphicsStateDepth: Int {
@@ -328,14 +337,14 @@ public final class DrawingContext {
     ///              returns it is black again.
     ///
     /// - parameter path:                   The path that constraints the clipping area. Must be closed.
-    /// - parameter evenOddRule:            If `true`, uses even-odd rule for specifying a clipping area.
-    ///                                     Otherwise uses nonzero winding number rule.
+    /// - parameter rule:                   The rule for determining which areas to treat as the interior
+    ///                                     of the path. Default value is `.winding`.
     /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
     ///                                     provided `path`.
     /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
     ///                   `DrawingContext.maxGraphicsStateDepth`;
     ///                   rethrows errors thrown by the`drawInsideClippingArea` block.
-    public func clip(to path: Path, evenOddRule: Bool = false,
+    public func clip(to path: Path, rule: Path.FillRule = .winding,
                      _ drawInsideClippingArea: () throws -> Void) throws {
         
         try withNewGState {
@@ -344,9 +353,10 @@ public final class DrawingContext {
             
             HPDF_Page_ClosePath(_page)
             
-            if evenOddRule {
+            switch rule {
+            case .evenOdd:
                 HPDF_Page_Eoclip(_page)
-            } else {
+            case .winding:
                 HPDF_Page_Clip(_page)
             }
             
@@ -359,11 +369,10 @@ public final class DrawingContext {
     /// Fills the `path`.
     ///
     /// - parameter path:        The path to fill.
-    /// - parameter evenOddRule: If specified `true`, fills the path using the even-odd rule.
-    ///                          Otherwise fills it using the nonzero winding number rule.
-    ///                          Default value is `false`.
+    /// - parameter rule:        The rule for determining which areas to treat as the interior
+    ///                          of the path. Default value is `.winding`.
     /// - parameter stroke:      If specified `true`, also paints the path itself. Default value is `false`.
-    public func fill(_ path: Path, evenOddRule: Bool = false, stroke: Bool = false) {
+    public func fill(_ path: Path, rule: Path.FillRule = .winding, stroke: Bool = false) {
         
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
         
@@ -371,14 +380,14 @@ public final class DrawingContext {
         
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT)
         
-        switch (evenOddRule, stroke) {
-        case (true, true):
+        switch (rule, stroke) {
+        case (.evenOdd, true):
             HPDF_Page_EofillStroke(_page)
-        case (true, false):
+        case (.evenOdd, false):
             HPDF_Page_Eofill(_page)
-        case (false, true):
+        case (.winding, true):
             HPDF_Page_FillStroke(_page)
-        case (false, false):
+        case (.winding, false):
             HPDF_Page_Fill(_page)
         }
         
@@ -403,14 +412,29 @@ public final class DrawingContext {
     
     // MARK: - Text state
     
-    /// Tha current font of the context.
+    /// The current font of the context.
+    ///
+    /// You can only set fonts that has previously been loaded in the document using
+    /// `loadTrueTypeFont(from:embeddingGlyphData:)` or
+    /// `loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)` methods, or
+    /// ones predefined in the `Font` struct.
     public var font: Font {
         get {
             let fontHandle = HPDF_Page_GetCurrentFont(_page)
             return Font(name: String(cString: HPDF_Font_GetFontName(fontHandle)))
         }
         set {
-            let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name)
+            guard let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name) else {
+                
+                switch _document._error {
+                case PDFError.invalidFontName:
+                    preconditionFailure("Font \(newValue) must be loaded in the document using " +
+                        "loadTrueTypeFont(from:embeddingGlyphData:) or " +
+                        "loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:) methods.")
+                default:
+                    preconditionFailure(_document._error.description)
+                }
+            }
             
             HPDF_Page_SetFontAndSize(_page, font, fontSize)
         }
@@ -422,13 +446,15 @@ public final class DrawingContext {
     }
     
     /// The size of the current font of the context. Valid values are between 0 and `maximumFontSize`.
-    /// Setting an invalid value makes mo change. Default value is 11.
+    /// Default value is 11.
     public var fontSize: Float {
         get {
             return HPDF_Page_GetCurrentFontSize(_page)
         }
         set {
-            guard newValue > 0 && newValue < maximumFontSize else { return }
+            
+            precondition(newValue > 0 && newValue < maximumFontSize, "Valid values for fontSize are " +
+                "between 0 and \(maximumFontSize).")
             
             let font = HPDF_GetFont(_documentHandle, self.font.name, encoding.name)
             
@@ -463,24 +489,34 @@ public final class DrawingContext {
              Encoding.gbEucCnVertical,
              Encoding.gbkEucHorisontal,
              Encoding.gbkEucVertical:
-            _document?._useCNSEncodings()
+            
+            _document._useCNSEncodings()
+            
         case Encoding.eTenB5Vertical,
              Encoding.eTenB5Horisontal:
-            _document?._useCNTEncodings()
+            
+            _document._useCNTEncodings()
+            
         case Encoding.rksjHorisontal,
              Encoding.rksjVertical,
              Encoding.rksjHorisontalProportional,
              Encoding.eucHorisontal,
              Encoding.eucVertical:
-            _document?._useJPEncodings()
+            
+            _document._useJPEncodings()
+            
         case Encoding.kscEucHorisontal,
              Encoding.kscEucVertical,
              Encoding.kscMsUhcProportional,
              Encoding.kscMsUhsVerticalFixedWidth,
              Encoding.kscMsUhsHorisontalFixedWidth:
-            _document?._useKREncodings()
+            
+            _document._useKREncodings()
+            
         case Encoding.utf8:
-            _document?._useUTFEncodings()
+            
+            _document._useUTFEncodings()
+            
         default:
             return
         }
