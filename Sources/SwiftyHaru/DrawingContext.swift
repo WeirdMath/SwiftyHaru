@@ -343,7 +343,7 @@ public final class DrawingContext {
     ///                                     provided `path`.
     /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
     ///                   `DrawingContext.maxGraphicsStateDepth`;
-    ///                   rethrows errors thrown by the`drawInsideClippingArea` block.
+    ///                   rethrows errors thrown by the `drawInsideClippingArea` block.
     public func clip(to path: Path, rule: Path.FillRule = .winding,
                      _ drawInsideClippingArea: () throws -> Void) throws {
         

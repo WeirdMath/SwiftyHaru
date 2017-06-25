@@ -17,6 +17,7 @@ import CLibHaru
 ///            the document that owns the page.
 public final class PDFPage {
     
+    /// The document this page belongs to.
     public private(set) unowned var document: PDFDocument
     
     internal private(set) var _pageHandle: HPDF_Page
@@ -127,9 +128,9 @@ public final class PDFPage {
     ///   following code:
     ///
     /// ```swift
-    /// page.drawPath { context in
+    /// page.draw { context in
     ///
-    ///     self.page.drawPath { innerContext in
+    ///     page.draw { innerContext in
     ///         // do things
     ///     }
     /// }

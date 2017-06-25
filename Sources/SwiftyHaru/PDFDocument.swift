@@ -16,8 +16,16 @@ public final class PDFDocument {
     
     internal var _documentHandle: HPDF_Doc
     
+    /// An array of pages in the document. Initially is empty. Use the `addPage()`, `addPage(width:height:)`,
+    /// `addPage(size:direction:)` or `insertPage(atIndex:)`, `insertPage(width:height:atIndex:)`,
+    /// `insertPage(size:direction:atIndex:)` methods to add pages to your document and populate this array.
     public private(set) var pages: [PDFPage] = []
     
+    /// The fonts loaded in the document. Initially is empty. Use the `loadTrueTypeFont(from:embeddingGlyphData:)`
+    /// or `loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)` methods to load fonts.
+    ///
+    /// This set does not include the base 14 fonts (see predefined values of `Font`)
+    /// that can be used in the document without loading any external fonts.
     public private(set) var fonts: Set<Font> = []
     
     internal var _error: PDFError
@@ -158,9 +166,9 @@ public final class PDFDocument {
     
     // MARK: - Getting data
     
-    /// Returns the document's contents.
+    /// Renders the document and returns its contents.
     ///
-    /// - returns: The dodument's contents
+    /// - returns: The document's contents
     public func getData() -> Data {
         
         HPDF_SaveToStream(_documentHandle)

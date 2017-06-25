@@ -14,7 +14,7 @@
     <a title="LabelParameters Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">SwiftyHaru Docs</a> (75% documented)</p>
+        <p><a href="../../index.html">SwiftyHaru Docs</a> (90% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,13 +35,25 @@
                 <a href="../../Classes/DrawingContext.html">DrawingContext</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Classes/PDFDateFormatter.html">PDFDateFormatter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/CompressionMode.html">– CompressionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/EncryptionMode.html">– EncryptionMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Classes/PDFDocument/Permissions.html">– Permissions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Classes/PDFPage.html">PDFPage</a>
@@ -66,13 +78,8 @@
               <li class="nav-group-task">
                 <a href="../../Enums/PDFColorSpace.html">PDFColorSpace</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Extensions/Sequence.html">Sequence</a>
+                <a href="../../Enums/TextAlignment.html">TextAlignment</a>
               </li>
             </ul>
           </li>
@@ -103,31 +110,34 @@
                 <a href="../../Structs/Grid.html">Grid</a>
               </li>
               <li class="nav-group-task">
-                <a href="../../Structs/Grid/Lines.html">– Lines</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Structs/Grid/SerifParameters.html">– SerifParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../../Structs/Grid/Serifs.html">– Serifs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../../Structs/Grid/LabelParameters.html">– LabelParameters</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Grid/Labels.html">– Labels</a>
               </li>
               <li class="nav-group-task">
+                <a href="../../Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../../Structs/PDFError.html">PDFError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../../Structs/Path/FillRule.html">– FillRule</a>
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Point.html">Point</a>
@@ -137,6 +147,14 @@
               </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
               </li>
             </ul>
           </li>
@@ -314,7 +332,7 @@ and the bounding box of a label touches the bound of the grid, but you can speci
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt">Vector</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a></span></code></pre>
 
                         </div>
                       </div>
@@ -352,9 +370,9 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FVV10SwiftyHaru4Grid15LabelParameterscFT8sequenceGVs11AnySequenceSS_4fontVS_4Font8fontSizeSf9fontColorVS_5Color9frequencySi6offsetVS_5Point8reversedSb_S1_"></a>
+                    <a name="/s:FVV10SwiftyHaru4Grid15LabelParameterscuRxs8Sequencewx11SubSequenceS2_Wx8Iterator7Element_zSSWxS3_S3__zwxS3_WxS3_S4_S5__zSSrFT8sequencex4fontVS_4Font8fontSizeSf9fontColorVS_5Color9frequencySi6offsetVS_5Point8reversedSb_S1_"></a>
                     <a name="//apple_ref/swift/Method/init(sequence:font:fontSize:fontColor:frequency:offset:reversed:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FVV10SwiftyHaru4Grid15LabelParameterscFT8sequenceGVs11AnySequenceSS_4fontVS_4Font8fontSizeSf9fontColorVS_5Color9frequencySi6offsetVS_5Point8reversedSb_S1_">init(sequence:font:fontSize:fontColor:frequency:offset:reversed:)</a>
+                    <a class="token" href="#/s:FVV10SwiftyHaru4Grid15LabelParameterscuRxs8Sequencewx11SubSequenceS2_Wx8Iterator7Element_zSSWxS3_S3__zwxS3_WxS3_S4_S5__zSSrFT8sequencex4fontVS_4Font8fontSizeSf9fontColorVS_5Color9frequencySi6offsetVS_5Point8reversedSb_S1_">init(sequence:font:fontSize:fontColor:frequency:offset:reversed:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -369,13 +387,16 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">sequence</span><span class="p">:</span> <span class="kt">AnySequence</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">,</span>
-                    <span class="nv">font</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Font.html">Font</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">helvetica</span><span class="p">,</span>
-                    <span class="nv">fontSize</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-                    <span class="nv">fontColor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Color.html">Color</a></span> <span class="o">=</span> <span class="kt"><a href="../../Structs/Color.html">Color</a></span><span class="p">(</span><span class="nv">gray</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
-                    <span class="nv">frequency</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-                    <span class="nv">offset</span><span class="p">:</span> <span class="kt">Vector</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
-                    <span class="nv">reversed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span> <span class="p">:</span> <span class="kt">Sequence</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">sequence</span><span class="p">:</span> <span class="kt">S</span><span class="p">,</span>
+                                  <span class="nv">font</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Font.html">Font</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">helvetica</span><span class="p">,</span>
+                                  <span class="nv">fontSize</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                                  <span class="nv">fontColor</span><span class="p">:</span> <span class="kt"><a href="../../Structs/Color.html">Color</a></span> <span class="o">=</span> <span class="kt"><a href="../../Structs/Color.html">Color</a></span><span class="p">(</span><span class="nv">gray</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">!</span><span class="p">,</span>
+                                  <span class="nv">frequency</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                                  <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
+                                  <span class="nv">reversed</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+            <span class="k">where</span> <span class="kt">S</span><span class="o">.</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">S</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span>
+                  <span class="kt">S</span><span class="o">.</span><span class="kt">SubSequence</span><span class="o">.</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span> <span class="o">==</span> <span class="kt">String</span><span class="p">,</span>
+                  <span class="kt">S</span><span class="o">.</span><span class="kt">SubSequence</span><span class="o">.</span><span class="kt">SubSequence</span> <span class="o">==</span> <span class="kt">S</span><span class="o">.</span><span class="kt">SubSequence</span></code></pre>
 
                         </div>
                       </div>
@@ -392,7 +413,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The sequnce of the text labels to draw.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -405,7 +425,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The font of labels. Default is Helvetica.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -418,7 +437,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The font size of labels. Default value is 5.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -431,7 +449,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The color of labels. Default is 50% gray.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -444,7 +461,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The nubmber of major lines per one label. Default value is 5. Must be positive.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -457,7 +473,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The offset of the label. Default value is <code>.zero</code>.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -470,7 +485,6 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
                               <td>
                                 <div>
                                   <p>The order in which to draw the labels. Default is <code>false</code>.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -485,8 +499,8 @@ Setting this property to <code>true</code> causes the sequence to be drawn from 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2016-11-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

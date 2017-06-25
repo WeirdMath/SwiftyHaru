@@ -8,6 +8,14 @@
 
 import Foundation
 
+/// The `PDFDateFormatter` class generates and parses string representations of dates
+/// that are used as the PDF metadata. For example, when setting a creation date of a document, the `Date`
+/// value is converted to `String` using this formatter.
+///
+/// **Example**:
+///
+/// Assume we have 2017, March 27, 18:32:30 in the YEKT time zone (UTC/GMT +5 hours).
+/// `PDFDateFormatter` will transform this date as "D:20170327183230+05'00'" and vice versa.
 public final class PDFDateFormatter : Formatter {
 
     private lazy var _dateFormatter: DateFormatter = {
@@ -20,18 +28,32 @@ public final class PDFDateFormatter : Formatter {
 
     // MARK: Formatter
 
+    /// Creates an instance of the formatter.
     public override init() {
         super.init()
     }
     
+    /// Creates an instance of the formatter using the provided unarchiver.
+    /// This is not required for `PDFDateFormatter` and is kept only for satisfying the `Formatter`
+    /// abstract class requirements.
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
+    /// Converts the given value of type `Date` to a string representation using the `TimeZone.current` time zone.
+    ///
+    /// - Parameter obj: The date to convert to a string.
+    /// - Returns: The string representation of the given date, or `nil` if `obj` is not a date.
     public override func string(for obj: Any?) -> String? {
         return (obj as? Date).flatMap { string(from: $0) }
     }
 
+    /// Converts the given `date` to a string with respect to the provided `timeZone`.
+    ///
+    /// - Parameters:
+    ///   - date: The date to convert to a string.
+    ///   - timeZone: The time zone to encode in the resulting string. Default value is `TimeZone.current`.
+    /// - Returns: The string representation of the given date.
     public func string(from date: Date, timeZone: TimeZone = .current) -> String {
 
         let timeZoneOffset = timeZone.secondsFromGMT()
@@ -41,6 +63,11 @@ public final class PDFDateFormatter : Formatter {
         return dateString + _string(fromTimezoneOffset: timeZoneOffset)
     }
 
+    /// Decodes the given `string` into the date it represents.
+    ///
+    /// - Parameter string: The string representation of a date in the standard PDF date format
+    ///                     (e. g. "D:20170327183230+05'00'")
+    /// - Returns: The `Date` value that `string` represents, or `nil` if `string` is invalid.
     public func date(from string: String) -> Date? {
 
         let components = string.components(separatedBy: CharacterSet(charactersIn: "Z+- "))

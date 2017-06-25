@@ -12,6 +12,7 @@ import CLibHaru
 
 extension PDFDocument {
 
+    /// The encryption mode to use for a document.
     public enum EncryptionMode {
 
         /// Use "Revision 2" algorithm. The key length is set to 5 (40 bits).

@@ -12,6 +12,7 @@ import CLibHaru
 
 extension PDFDocument {
 
+    /// Permission flags to use in a document.
     public struct Permissions : OptionSet {
 
         public var rawValue: Int32

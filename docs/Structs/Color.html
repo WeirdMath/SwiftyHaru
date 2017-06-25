@@ -14,7 +14,7 @@
     <a title="Color Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftyHaru Docs</a> (75% documented)</p>
+        <p><a href="../index.html">SwiftyHaru Docs</a> (90% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -35,13 +35,25 @@
                 <a href="../Classes/DrawingContext.html">DrawingContext</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PDFDateFormatter.html">PDFDateFormatter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/CompressionMode.html">– CompressionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/EncryptionMode.html">– EncryptionMode</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/PDFDocument/PageLayout.html">– PageLayout</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PDFDocument/Permissions.html">– Permissions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/PDFPage.html">PDFPage</a>
@@ -66,13 +78,8 @@
               <li class="nav-group-task">
                 <a href="../Enums/PDFColorSpace.html">PDFColorSpace</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Sequence.html">Sequence</a>
+                <a href="../Enums/TextAlignment.html">TextAlignment</a>
               </li>
             </ul>
           </li>
@@ -103,31 +110,34 @@
                 <a href="../Structs/Grid.html">Grid</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/Grid/Lines.html">– Lines</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Grid/SerifParameters.html">– SerifParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Structs/Grid/Serifs.html">– Serifs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Structs/Grid/LabelParameters.html">– LabelParameters</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Grid/Labels.html">– Labels</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Structs/PDFError.html">PDFError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Path/FillRule.html">– FillRule</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Point.html">Point</a>
@@ -137,6 +147,14 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Size.html">Size</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
               </li>
             </ul>
           </li>
@@ -154,10 +172,13 @@
               </div>
             <p>This structure represents a color. Property values must be between 0 and 1.</p>
 
-<p>Supported color spaces:
-* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code>
-* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceCMYKFMS0_S0_">PDFColorSpace.deviceCMYK</a></code>
-* <code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceGrayFMS0_S0_">PDFColorSpace.deviceGray</a></code></p>
+<p>Supported color spaces:</p>
+
+<ul>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code></li>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceCMYKFMS0_S0_">PDFColorSpace.deviceCMYK</a></code></li>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceGrayFMS0_S0_">PDFColorSpace.deviceGray</a></code></li>
+</ul>
 
           </section>
           <section class="section task-group-section">
@@ -338,14 +359,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The color space associated with the color.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">colorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span></code></pre>
 
                         </div>
                       </div>
@@ -365,14 +386,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The value of the alpha component associated with the color.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">1</span></code></pre>
 
                         </div>
                       </div>
@@ -392,14 +413,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the red component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceRGB</code>, or
+the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">red</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -419,14 +441,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the green component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceRGB</code>, or
+the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">green</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -446,14 +469,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the blue component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceRGB</code>, or
+the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">blue</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -473,14 +497,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the cyan component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceCMYK</code>, or
+the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cyan</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -500,14 +525,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the magenta component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceCMYK</code>,
+or the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">magenta</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -527,14 +553,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the yellow component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceCMYK</code>, or
+the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">yellow</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -554,14 +581,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The direct value of the black component associated with the color if the <code><a href="../Structs/Color.html#/s:vV10SwiftyHaru5Color10colorSpaceOS_13PDFColorSpace">colorSpace</a></code> is <code>.deviceCMYK</code>
+or <code>.deviceGray</code>, or the computed value otherwise.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">black</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -581,16 +609,77 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a color with the RGB color model.</p>
+
+<p>For each parameter valid values are between 0 and 1.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">red</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>red</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The red component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>green</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The green component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>blue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The blue component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alpha component of the color. Default value is 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The color with the specified components, or <code>nil</code> if the values specified were invalid.</p>
                       </div>
                     </section>
                   </div>
@@ -608,16 +697,89 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a color with the CMYK color model.</p>
+
+<p>For each parameter valid values are between 0 and 1.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">cyan</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">magenta</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">yellow</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">black</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cyan</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The cyan component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>magenta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The magenta component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>yellow</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The yellow component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>black</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The black component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alpha component of the color. Default value is 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The color with the specified components, or <code>nil</code> if the values specified were invalid.</p>
                       </div>
                     </section>
                   </div>
@@ -635,16 +797,53 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a color with the gray shades color model.</p>
+
+<p>For each parameter valid values are between 0 and 1.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">gray</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>gray</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The gray component of the color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alpha component of the color. Default value is 1.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The color with the specified components, or <code>nil</code> if the values specified were invalid.</p>
                       </div>
                     </section>
                   </div>
@@ -662,16 +861,43 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Converts the color to the specified color space.</p>
+
+<p>Supported color spaces:</p>
+
+<ul>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code></li>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceCMYKFMS0_S0_">PDFColorSpace.deviceCMYK</a></code></li>
+<li><p><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceGrayFMS0_S0_">PDFColorSpace.deviceGray</a></code></p></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">mutating</span> <span class="kd">func</span> <span class="nf">convert</span><span class="p">(</span><span class="n">to</span> <span class="nv">colorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorSpace</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color space to convert the color to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -689,16 +915,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a new color by converting the current color to the specified color space.</p>
+
+<p>Supported color spaces:</p>
+
+<ul>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace9deviceRGBFMS0_S0_">PDFColorSpace.deviceRGB</a></code></li>
+<li><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceCMYKFMS0_S0_">PDFColorSpace.deviceCMYK</a></code></li>
+<li><p><code><a href="../Enums/PDFColorSpace.html#/s:FO10SwiftyHaru13PDFColorSpace10deviceGrayFMS0_S0_">PDFColorSpace.deviceGray</a></code></p></li>
+</ul>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">converting</span><span class="p">(</span><span class="n">to</span> <span class="nv">colorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Color</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>colorSpace</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color space of the new color.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The new color with the specified color space.</p>
                       </div>
                     </section>
                   </div>
@@ -710,9 +967,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FV10SwiftyHaru5ColorcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_S0_"></a>
+                    <a name="/s:FPs26_ExpressibleByColorLiteralcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_x"></a>
                     <a name="//apple_ref/swift/Method/init(colorLiteralRed:green:blue:alpha:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FV10SwiftyHaru5ColorcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_S0_">init(colorLiteralRed:green:blue:alpha:)</a>
+                    <a class="token" href="#/s:FPs26_ExpressibleByColorLiteralcFT15colorLiteralRedSf5greenSf4blueSf5alphaSf_x">init(colorLiteralRed:green:blue:alpha:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -720,14 +977,13 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
-
+                        
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Color</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">colorLiteralRed</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">green</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">blue</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -756,15 +1012,6 @@
 <p>Equality is the inverse of inequality. For any values <code>a</code> and <code>b</code>,
 <code>a == b</code> implies that <code>a != b</code> is <code>false</code>.</p>
 
-<ul>
-<li>Parameters:
-
-<ul>
-<li>lhs: A value to compare.</li>
-<li>rhs: Another value to compare.</li>
-</ul></li>
-</ul>
-
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -787,7 +1034,6 @@
                               <td>
                                 <div>
                                   <p>A value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -800,7 +1046,6 @@
                               <td>
                                 <div>
                                   <p>Another value to compare.</p>
-
                                 </div>
                               </td>
                             </tr>
@@ -815,8 +1060,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2016-11-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

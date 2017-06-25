@@ -43,6 +43,7 @@ public struct Color {
     
     internal var _wrapped: _ColorSpaceWrapper
     
+    /// The color space associated with the color.
     public var colorSpace: PDFColorSpace {
         switch _wrapped {
         case .rgb:
@@ -54,8 +55,11 @@ public struct Color {
         }
     }
     
+    /// The value of the alpha component associated with the color.
     public var alpha: Float = 1
     
+    /// The direct value of the red component associated with the color if the `colorSpace` is `.deviceRGB`, or
+    /// the computed value otherwise.
     public var red: Float {
         get {
             switch _wrapped {
@@ -83,6 +87,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the green component associated with the color if the `colorSpace` is `.deviceRGB`, or
+    /// the computed value otherwise.
     public var green: Float {
         get {
             switch _wrapped {
@@ -110,6 +116,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the blue component associated with the color if the `colorSpace` is `.deviceRGB`, or
+    /// the computed value otherwise.
     public var blue: Float {
         get {
             switch _wrapped {
@@ -137,6 +145,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the cyan component associated with the color if the `colorSpace` is `.deviceCMYK`, or
+    /// the computed value otherwise.
     public var cyan: Float {
         get {
             switch _wrapped {
@@ -165,6 +175,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the magenta component associated with the color if the `colorSpace` is `.deviceCMYK`,
+    /// or the computed value otherwise.
     public var magenta: Float {
         get {
             switch _wrapped {
@@ -193,6 +205,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the yellow component associated with the color if the `colorSpace` is `.deviceCMYK`, or
+    /// the computed value otherwise.
     public var yellow: Float {
         get {
             switch _wrapped {
@@ -222,6 +236,8 @@ public struct Color {
         }
     }
     
+    /// The direct value of the black component associated with the color if the `colorSpace` is `.deviceCMYK`
+    /// or `.deviceGray`, or the computed value otherwise.
     public var black: Float {
         get {
             switch _wrapped {
@@ -250,6 +266,17 @@ public struct Color {
         }
     }
     
+    /// Creates a color with the RGB color model.
+    ///
+    /// For each parameter valid values are between 0 and 1.
+    ///
+    /// - Parameters:
+    ///   - red:   The red component of the color.
+    ///   - green: The green component of the color.
+    ///   - blue:  The blue component of the color.
+    ///   - alpha: The alpha component of the color. Default value is 1.
+    ///
+    /// - Returns: The color with the specified components, or `nil` if the values specified were invalid.
     public init?(red: Float, green: Float, blue: Float, alpha: Float = 1) {
         
         guard (red >= 0 && red <= 1) &&
@@ -261,6 +288,18 @@ public struct Color {
         self.alpha = alpha
     }
     
+    /// Creates a color with the CMYK color model.
+    ///
+    /// For each parameter valid values are between 0 and 1.
+    ///
+    /// - Parameters:
+    ///   - cyan:    The cyan component of the color.
+    ///   - magenta: The magenta component of the color.
+    ///   - yellow:  The yellow component of the color.
+    ///   - black:   The black component of the color.
+    ///   - alpha:   The alpha component of the color. Default value is 1.
+    ///
+    /// - Returns: The color with the specified components, or `nil` if the values specified were invalid.
     public init?(cyan: Float, magenta: Float, yellow: Float, black: Float, alpha: Float = 1) {
         
         guard (cyan >= 0 && cyan <= 1) &&
@@ -273,6 +312,15 @@ public struct Color {
         self.alpha = alpha
     }
     
+    /// Creates a color with the gray shades color model.
+    ///
+    /// For each parameter valid values are between 0 and 1.
+    ///
+    /// - Parameters:
+    ///   - gray:   The gray component of the color.
+    ///   - alpha: The alpha component of the color. Default value is 1.
+    ///
+    /// - Returns: The color with the specified components, or `nil` if the values specified were invalid.
     public init?(gray: Float, alpha: Float = 1) {
         
         guard gray >= 0 && gray <= 1 else { return nil }
@@ -281,6 +329,14 @@ public struct Color {
         self.alpha = alpha
     }
     
+    /// Converts the color to the specified color space.
+    ///
+    /// Supported color spaces:
+    /// * `PDFColorSpace.deviceRGB`
+    /// * `PDFColorSpace.deviceCMYK`
+    /// * `PDFColorSpace.deviceGray`
+    ///
+    /// - Parameter colorSpace: The color space to convert the color to.
     public mutating func convert(to colorSpace: PDFColorSpace) {
         switch colorSpace {
         case .deviceRGB:
@@ -290,10 +346,19 @@ public struct Color {
         case .deviceGray:
             _wrapped = .gray(black)
         default:
-            fatalError("The color space \(String(describing: colorSpace)) is not supported yet")
+            assertionFailure("The color space \(colorSpace) is not supported yet")
         }
     }
     
+    /// Creates a new color by converting the current color to the specified color space.
+    ///
+    /// Supported color spaces:
+    /// * `PDFColorSpace.deviceRGB`
+    /// * `PDFColorSpace.deviceCMYK`
+    /// * `PDFColorSpace.deviceGray`
+    ///
+    /// - Parameter colorSpace: The color space of the new color.
+    /// - Returns: The new color with the specified color space.
     public func converting(to colorSpace: PDFColorSpace) -> Color {
         var newColor = self
         newColor.convert(to: colorSpace)

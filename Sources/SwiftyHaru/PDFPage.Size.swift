@@ -12,30 +12,43 @@ import CLibHaru
 
 public extension PDFPage {
     
+    /// A predefined size for a page.
     public enum Size: UInt32 {
         
+        /// 8.5 x 11 inches
         case letter
         
+        /// 8.5 x 14 inches
         case legal
         
+        /// 297 x 420 mm
         case a3
         
+        /// 210 x 297 mm
         case a4
         
+        /// 148 x 210 mm
         case a5
         
+        /// 250 x 353 mm
         case b4
         
+        /// 176 x 250 mm
         case b5
         
+        /// 7.25 x 10.5 inches
         case executive
         
+        /// 4 x 6 inches
         case us4x6
         
+        /// 4 x 8 inches
         case us4x8
         
+        /// 5 x 7 inches
         case us5x7
         
+        /// 4.125 x 9.5 inches
         case envelope10
     }
 }
@@ -46,6 +59,7 @@ public extension PDFPage.Size {
         self.init(rawValue: haruEnum.rawValue)!
     }
 
+    /// The numeric value of the predefined size represented in pixels.
     public var sizeInPixels: Size {
         
         switch self {
@@ -64,6 +78,7 @@ public extension PDFPage.Size {
         }
     }
     
+    /// The numeric value of the predefined size represented in inches.
     public var sizeInInches: Size {
         
         switch self {
@@ -82,6 +97,7 @@ public extension PDFPage.Size {
         }
     }
     
+    /// The numeric value of the predefined size represented in millimeters.
     public var sizeInMillimeters: Size {
         return (sizeInInches.width * 25.4) × (sizeInInches.height * 25.4)
     }

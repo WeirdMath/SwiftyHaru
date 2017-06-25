@@ -12,6 +12,7 @@ import CLibHaru
 
 extension PDFDocument {
 
+    /// The mode of compression for a document.
     public struct CompressionMode : OptionSet {
 
         public let rawValue: Int32
