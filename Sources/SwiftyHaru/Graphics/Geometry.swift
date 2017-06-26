@@ -37,6 +37,15 @@ public struct Size {
     public init(width: Int, height: Int) {
         self.init(width: Float(width), height: Float(height))
     }
+    
+    /// Returns the height and width resulting from a transformation of an existing height and width.
+    ///
+    /// - Parameter transform: The affine transform to apply.
+    /// - Returns: A new size resulting from applying the specified affine transform to the existing size.
+    public func applying(_ transform: AffineTransform) -> Size {
+        return Size(width: transform.a * width + transform.c * height,
+                    height: transform.b * width + transform.d * height)
+    }
 }
 
 extension Size: Equatable {
@@ -105,6 +114,15 @@ public struct Point {
     public static func -(lhs: Point, rhs: Vector) -> Point {
         
         return Point(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+    
+    /// Returns the point resulting from an affine transformation of an existing point.
+    ///
+    /// - Parameter transform: The affine transform to apply.
+    /// - Returns: A new point resulting from applying the specified affine transform to the existing point.
+    public func applying(_ transform: AffineTransform) -> Point {
+        return Point(x: transform.a * x + transform.c * y + transform.tx,
+                     y: transform.b * x + transform.d * y + transform.ty)
     }
 }
 

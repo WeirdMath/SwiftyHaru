@@ -1,5 +1,11 @@
 # Change Log
 
+## Unreleased
+
+**Implemented features:**
+
+- `AffineTransform` struct that helps you easily apply transforms like rotation, scaling and translation to a document's coordinate system.
+
 ## [0.2.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.2.0) (2017-06-25)
 
 Please note that this version requires Swift 3.1.
