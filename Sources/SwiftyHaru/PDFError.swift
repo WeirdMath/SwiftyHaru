@@ -65,9 +65,6 @@ public struct PDFError: Error {
     /// Internal error. Data consistency was lost.
     public static let unknownClass = PDFError(code: HPDF_ERR_UNKNOWN_CLASS)
     
-    /// Stack depth > HPDF_LIMIT_MAX_GSTATE.
-    public static let exceedGStateLimit = PDFError(code: HPDF_EXCEED_GSTATE_LIMIT)
-    
     /// Memory allocation failed.
     public static let failedToAllocateMemory = PDFError(code: HPDF_FAILD_TO_ALLOC_MEM)
     
@@ -354,7 +351,6 @@ public struct PDFError: Error {
         HPDF_ENCRYPT_INVALID_PASSWORD : "1. Tried to set the owner password to NULL. " +
         "2. Owner and user password are the same.",
         HPDF_ERR_UNKNOWN_CLASS : "Internal error. Data consistency was lost.",
-        HPDF_EXCEED_GSTATE_LIMIT : "Stack depth > HPDF_LIMIT_MAX_GSTATE.",
         HPDF_FAILD_TO_ALLOC_MEM : "Memory allocation failed.",
         HPDF_FILE_IO_ERROR : "File processing failed.",
         HPDF_FILE_OPEN_ERROR : "Cannot open a file.",

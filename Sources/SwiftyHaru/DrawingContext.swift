@@ -128,15 +128,8 @@ public final class DrawingContext {
     ///
     /// This number is increased whenever you call `withNewGState(_:)` or
     /// `clip(to:rule:_:)` and decreased as soon as such a function returns.
-    ///
-    /// The maximum value of this property is `DrawingContext.maxGraphicsStateDepth`.
     public var graphicsStateDepth: Int {
         return Int(HPDF_Page_GetGStateDepth(_page))
-    }
-    
-    /// The maximum depth of the graphics state stack.
-    public static var maxGraphicsStateDepth: Int {
-        return Int(HPDF_LIMIT_MAX_GSTATE)
     }
 
     /// Saves the page's current graphics state to the stack, then executes `body`,
@@ -181,16 +174,11 @@ public final class DrawingContext {
     /// ```
     ///
     /// - Parameter body: The code to execute using a new graphics state.
-    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
-    ///                   `DrawingContext.maxGraphicsStateDepth`;
     ///                   rethrows errors thrown by `body`.
-    public func withNewGState(_ body: () throws -> Void) throws {
-
-        if HPDF_Page_GSave(_page) != UInt(HPDF_OK) {
-            HPDF_ResetError(_documentHandle)
-            throw PDFError.exceedGStateLimit
-        }
-
+    public func withNewGState(_ body: () throws -> Void) rethrows {
+        
+        HPDF_Page_GSave(_page)
+        
         try body()
 
         HPDF_Page_GRestore(_page)
@@ -402,11 +390,8 @@ public final class DrawingContext {
     ///                                     of the path. Default value is `.winding`.
     /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
     ///                                     provided `path`.
-    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
-    ///                   `DrawingContext.maxGraphicsStateDepth`;
-    ///                   rethrows errors thrown by the `drawInsideClippingArea` block.
     public func clip(to path: Path, rule: Path.FillRule = .winding,
-                     _ drawInsideClippingArea: () throws -> Void) throws {
+                     _ drawInsideClippingArea: () throws -> Void) rethrows {
         
         try withNewGState {
             

@@ -90,7 +90,7 @@ class DrawingContextTests: XCTestCase {
         let path = Path()
             .appendingEllipse(center: p, horizontalRadius: size.width, verticalRadius: size.height)
         
-        try! context.withNewGState {
+        context.withNewGState {
             context.fillColor = .red
             context.fill(path)
         }
@@ -309,59 +309,38 @@ class DrawingContextTests: XCTestCase {
         page.draw { context in
 
             context.fillColor = expectedOuterColor
-
-            do {
-
-                try context.withNewGState {
-                    context.fillColor = .blue
-                }
-            } catch {
-                XCTFail()
+            
+            context.withNewGState {
+                context.fillColor = .blue
             }
 
             returnedOuterColor = context.fillColor
 
         }
-
-        // Doesn't compile without `try`.
-        try! page.draw { context in
-
-            // Compose a function that nests context.withNewGState calls
-            let function = Array(repeating: context.withNewGState, count: 35)
-                .reduce({}, { (result, next) -> () throws -> Void in { try next(result) } })
-
-            XCTAssertThrowsError(try function()) { error in
-                XCTAssertEqual(PDFError.exceedGStateLimit, error as? PDFError)
-            }
-        }
-
+        
         // Then
         XCTAssertEqual(expectedOuterColor, returnedOuterColor)
     }
     
     func testGetGraphicsStateDepth() {
         
-        do {
-            try page.draw { context in
+        page.draw { context in
+            
+            XCTAssertEqual(context.graphicsStateDepth, 1)
+            
+            context.withNewGState {
                 
-                XCTAssertEqual(context.graphicsStateDepth, 1)
+                XCTAssertEqual(context.graphicsStateDepth, 2)
                 
-                try context.withNewGState {
+                context.clip(to: Path()) {
                     
-                    XCTAssertEqual(context.graphicsStateDepth, 2)
-                    
-                    try context.clip(to: Path()) {
-                        
-                        XCTAssertEqual(context.graphicsStateDepth, 3)
-                    }
-                    
-                    XCTAssertEqual(context.graphicsStateDepth, 2)
+                    XCTAssertEqual(context.graphicsStateDepth, 3)
                 }
                 
-                XCTAssertEqual(context.graphicsStateDepth, 1)
+                XCTAssertEqual(context.graphicsStateDepth, 2)
             }
-        } catch {
-            XCTFail(String(describing: error))
+            
+            XCTAssertEqual(context.graphicsStateDepth, 1)
         }
     }
     
@@ -808,17 +787,13 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        do {
-            try page.draw { context in
-                
-                context.stroke(path)
-                
-                try context.clip(to: path, rule: .winding) {
-                    context.fill(rectangle)
-                }
+        page.draw { context in
+            
+            context.stroke(path)
+            
+            context.clip(to: path, rule: .winding) {
+                context.fill(rectangle)
             }
-        } catch {
-            XCTFail(String(describing: error))
         }
         
         let returnedDocumentData = document.getData()
@@ -846,17 +821,13 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        do {
-            try page.draw { context in
-                
-                context.stroke(path)
-                
-                try context.clip(to: path, rule: .evenOdd) {
-                    context.fill(rectangle)
-                }
+        page.draw { context in
+            
+            context.stroke(path)
+            
+            context.clip(to: path, rule: .evenOdd) {
+                context.fill(rectangle)
             }
-        } catch {
-            XCTFail(String(describing: error))
         }
         
         let returnedDocumentData = document.getData()
