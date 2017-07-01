@@ -196,6 +196,67 @@ public final class DrawingContext {
         HPDF_Page_GRestore(_page)
     }
     
+    // MARK: Transforms
+    
+    /// The transformation matrix for the current graphics state
+    public var currentTransform: AffineTransform {
+        return AffineTransform(HPDF_Page_GetTransMatrix(_page))
+    }
+    
+    /// Rotates the coordinate system of the page.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameter angle: The angle, in radians, by which to rotate the coordinate space.
+    ///                    Positive values rotate counterclockwise and negative values rotate clockwise.
+    public func rotate(byAngle angle: Float) {
+        concatenate(AffineTransform(rotationAngle: angle))
+    }
+    
+    /// Changes the scale of the coordinate system of the page.
+    ///
+    /// For example, to change the coordinate system of the page to 300 dpi:
+    /// ```swift
+    /// context.scale(byX: 72.0 / 300.0, y: 72.0 / 300)
+    /// ```
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameters:
+    ///   - sx: The factor by which to scale the x-axis of the coordinate space.
+    ///   - sy: The factor by which to scale the y-axis of the coordinate space.
+    public func scale(byX sx: Float, y sy: Float) {
+        concatenate(AffineTransform(scaleX: sx, y: sy))
+    }
+    
+    /// Changes the origin of the coordinate system of the page.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameters:
+    ///   - tx: The amount to displace the x-axis of the coordinate space.
+    ///   - ty: The amount to displace the y-axis of the coordinate space.
+    public func translate(byX tx: Float, y ty: Float) {
+        concatenate(AffineTransform(translationX: tx, y: ty))
+    }
+    
+    /// Concatenates the page's current transformation matrix and the specified matrix.
+    ///
+    /// When you call this function, it concatenates (that is, it combines) two matrices,
+    /// by multiplying them together. The order in which matrices are concatenated is important,
+    /// as the operations are not commutative.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameter transform: The transformation to apply to the page's current transformation.
+    public func concatenate(_ transform: AffineTransform) {
+        HPDF_Page_Concat(_page, transform.a, transform.b, transform.c, transform.d, transform.tx, transform.ty)
+    }
+    
     // MARK: - Color
     
     /// The current value of the page's stroking color space.

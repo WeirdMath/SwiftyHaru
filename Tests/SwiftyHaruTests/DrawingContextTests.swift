@@ -13,6 +13,7 @@ class DrawingContextTests: XCTestCase {
     
     static var allTests : [(String, (DrawingContextTests) -> () throws -> Void)] {
         return [
+            // Graphics state
             ("testPathLineWidth", testPathLineWidth),
             ("testPathDashStyle", testPathDashStyle),
             ("testPathLineCap", testPathLineCap),
@@ -20,16 +21,23 @@ class DrawingContextTests: XCTestCase {
             ("testPathMiterLimit", testPathMiterLimit),
             ("testSaveRestoreGState", testSaveRestoreGState),
             ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
+            ("testRotateContext", testRotateContext),
+            ("testScaleContext", testScaleContext),
+            ("testTranslateContext", testTranslateContext),
+            // Color
             ("testStrokeColorRGB", testStrokeColorRGB),
             ("testStrokeColorCMYK", testStrokeColorCMYK),
             ("testStrokeColorGray", testStrokeColorGray),
             ("testFillColorRGB", testFillColorRGB),
             ("testFillColorCMYK", testFillColorCMYK),
             ("testFillColorGray", testFillColorGray),
+            // Path construction
             ("testConstructPath", testConstructPath),
+            // Path painting
             ("testPaintPath", testPaintPath),
             ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
             ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
+            // Text state
             ("testTextFont", testTextFont),
             ("testTextFontSize", testTextFontSize),
             ("testTextEncoding", testTextEncoding),
@@ -41,6 +49,7 @@ class DrawingContextTests: XCTestCase {
             ("testFontXHeight", testFontXHeight),
             ("testFontCapHeight", testFontCapHeight),
             ("testTextLeading", testTextLeading),
+            // Text showing
             ("testShowOnelineText", testShowOnelineText),
             ("testShowMultilineText", testShowMultilineText),
             ("testShowUnicodeText", testShowUnicodeText),
@@ -72,6 +81,29 @@ class DrawingContextTests: XCTestCase {
         document = nil
         
         super.tearDown()
+    }
+    
+    // MARK: - Helpers
+    
+    private func drawPoint(_ p: Point, in context: DrawingContext) {
+        let size = Size(width: 2, height: 2).applying(context.currentTransform.inverted())
+        let path = Path()
+            .appendingEllipse(center: p, horizontalRadius: size.width, verticalRadius: size.height)
+        
+        try! context.withNewGState {
+            context.fillColor = .red
+            context.fill(path)
+        }
+    }
+    
+    private func drawSampleGrid(in context: DrawingContext) {
+        
+        let grid = Grid(width: page.width / 2, height: page.height / 2)
+        let gridCenter = Point(x: page.width / 2, y: page.height / 2)
+        let gridOrigin = gridCenter - Point(x: page.width / 4, y: page.height / 4)
+        
+        grid.draw(in: context, position: gridOrigin)
+        drawPoint(gridCenter, in: context)
     }
     
     // MARK: - Graphics state
@@ -331,6 +363,127 @@ class DrawingContextTests: XCTestCase {
         } catch {
             XCTFail(String(describing: error))
         }
+    }
+    
+    // MARK: Transforms
+    
+    func testRotateContext() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let angle: Float = .pi / 180 * 10
+        let expectedTransform = AffineTransform(rotationAngle: angle)
+        
+        // When
+        var returnedTransform: SwiftyHaru.AffineTransform?
+        page.draw { context in
+            
+            drawSampleGrid(in: context)
+            
+            context.rotate(byAngle: angle)
+            
+            drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testScaleContext() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let sx: Float = 0.7
+        let sy: Float = 1.3
+        let expectedTransform = SwiftyHaru.AffineTransform(scaleX: sx, y: sy)
+        
+        // When
+        var returnedTransform: SwiftyHaru.AffineTransform?
+        page.draw { context in
+            
+            drawSampleGrid(in: context)
+            
+            context.scale(byX: sx, y: sy)
+            
+            drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testTranslateContext() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let tx: Float = -page.width / 3
+        let ty: Float = page.height / 5
+        let expectedTransform = SwiftyHaru.AffineTransform(translationX: tx, y: ty)
+        
+        // When
+        var returnedTransform: SwiftyHaru.AffineTransform?
+        page.draw { context in
+            
+            drawSampleGrid(in: context)
+            
+            context.translate(byX: tx, y: ty)
+            
+            drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+    }
+    
+    func testConcatContext() {
+        
+//        recordMode = true
+        
+        // Given
+        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let expectedTransform = SwiftyHaru.AffineTransform(translationX: 100, y: 200)
+            .scaled(byX: 1.5, y: 0.5)
+            .rotated(byAngle: .pi / 6)
+        
+        // When
+        var returnedTransform: SwiftyHaru.AffineTransform?
+        page.draw { context in
+            
+            drawSampleGrid(in: context)
+            
+            context.concatenate(expectedTransform)
+            
+            drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+        
+        let returnedDocumentData = document.getData()
+        
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
     }
     
     // MARK: - Color

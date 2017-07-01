@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if SWIFT_PACKAGE
+import struct CLibHaru.HPDF_TransMatrix
+#endif
 
 /// An affine transformation matrix is used to rotate, scale, translate, or skew the objects you draw
 /// in a graphics context. The `AffineTransform` type provides functions for creating, concatenating,
@@ -275,6 +278,13 @@ public struct AffineTransform {
     /// - Returns: A new affine transformation matrix.
     public static func * (lhs: AffineTransform, rhs: AffineTransform) -> AffineTransform {
         return lhs.concatenating(rhs)
+    }
+}
+
+extension AffineTransform {
+    
+    internal init(_ t: HPDF_TransMatrix) {
+        self.init(a: t.a, b: t.b, c: t.c, d: t.d, tx: t.x, ty: t.y)
     }
 }
 
