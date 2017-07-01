@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/WeirdMath/SwiftyHaru.svg?branch=dev)](https://travis-ci.org/WeirdMath/SwiftyHaru)
 [![codecov](https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg)](https://codecov.io/gh/WeirdMath/SwiftyHaru)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/66cfcbcec9884191a0f8aa1bef26deb8)](https://www.codacy.com/app/broadway_lamb/SwiftyHaru?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WeirdMath/SwiftyHaru&amp;utm_campaign=Badge_Grade)
-[![codebeat badge](https://codebeat.co/badges/4ce84f1a-1ab5-4533-a609-afb168128538)](https://codebeat.co/projects/github-com-weirdmath-swiftyharu)
 ![Language](https://img.shields.io/badge/Swift-3.1-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)
 ![Cocoapods](https://img.shields.io/cocoapods/v/SwiftyHaru.svg?style=flat)
