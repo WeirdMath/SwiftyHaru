@@ -4,8 +4,7 @@
 
 **Breaking changes:**
 
-- The property `static DrawingContext.maxGraphicsStateDepth` is removed.
-- `DrawingContext.withNewGState(_:)` doesn't throw if its argument doesn't. Same for `DrawingContext.clip(to:rule:_:)`.
+- `DrawingContext.withNewGState(_:)` doesn't throw if its argument doesn't. Same for `DrawingContext.clip(to:rule:_:)`. If the graphics state stack depth exceeds `static DrawingContext.maxGraphicsStateDepth`, a precondition failure occures.
 - `static PDFError.exceedGStateLimit` is removed.
 
 **Implemented features:**
@@ -13,10 +12,6 @@
 - `AffineTransform` struct that helps you easily apply transforms like rotation, scaling and translation to a document's coordinate system.
 - Concatenating the transformation matrix of a page + convenience methods for translation, scaling and rotation.
 - Getting the current transformation matrix of a page.
-
-**Enhancements**
-
-- Removed the limitation of the graphics state stack depth.
 
 ## [0.2.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.2.0) (2017-06-25)
 

@@ -128,15 +128,25 @@ public final class DrawingContext {
     ///
     /// This number is increased whenever you call `withNewGState(_:)` or
     /// `clip(to:rule:_:)` and decreased as soon as such a function returns.
+    ///
+    /// Thevalue of this property must not be greater than `static DrawingContext.maxGraphicsStateDepth`.
     public var graphicsStateDepth: Int {
         return Int(HPDF_Page_GetGStateDepth(_page))
+    }
+    
+    /// The maximum depth of the graphics state stack.
+    public static var maxGraphicsStateDepth: Int {
+        return Int(HPDF_LIMIT_MAX_GSTATE)
     }
 
     /// Saves the page's current graphics state to the stack, then executes `body`,
     /// then restores the saved graphics state.
     ///
+    /// - Precondition: The value of `graphicsStateDepth` must be less than
+    ///                 `static DrawingContext.maxGraphicsStateDepth`.
+    ///
     /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
-    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///              Check it to prevent the precondition failure.
     ///
     /// The parameters that are saved at the beginning of the call and restored at the end are:
     ///
@@ -177,8 +187,13 @@ public final class DrawingContext {
     ///                   rethrows errors thrown by `body`.
     public func withNewGState(_ body: () throws -> Void) rethrows {
         
-        HPDF_Page_GSave(_page)
+        let status = HPDF_Page_GSave(_page)
         
+        precondition(
+            status == UInt(HPDF_OK),
+            "The graphics state stack depth must not be greater than \(DrawingContext.maxGraphicsStateDepth)."
+        )
+
         try body()
 
         HPDF_Page_GRestore(_page)
@@ -376,8 +391,11 @@ public final class DrawingContext {
     
     /// Sets the clipping area for drawing.
     ///
+    /// - Precondition: The value of `graphicsStateDepth` must be less than
+    ///                 `static DrawingContext.maxGraphicsStateDepth`.
+    ///
     /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
-    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///              Check it to prevent the precondition failure.
     ///
     /// - Important: Graphics parameters that are set inside the `drawInsideClippingArea` closure do not
     ///              persist outside the call of that closure. I. e. if, for example, the context's fill color
