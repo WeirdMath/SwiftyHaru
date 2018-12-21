@@ -11,6 +11,10 @@ import XCTest
 
 extension XCTestCase {
 
+    var currentTestCaseName: String {
+        return String(describing: type(of: self))
+    }
+
     var currentTestName: String {
         
         // Since on Apple platforms `self.name` is optional
@@ -19,13 +23,10 @@ extension XCTestCase {
         // and of format `XCTestCaseSubclassName.testMethodName`
         // we have this workaround in order to unify the names
         
-        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            print(name!)
-            return "\(type(of: self))." +
-                name!.replacingOccurrences(of: "^-\\[.*\\s|]", with: "", options: .regularExpression)
-        #else
-            return name
-        #endif
+        return name
+            .components(separatedBy: currentTestCaseName)
+            .last!
+            .trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     }
     
     func saveReferenceFile(_ data: Data, ofType type: String) {

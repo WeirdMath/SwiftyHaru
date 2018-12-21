@@ -7,13 +7,11 @@
 //
 
 #if SWIFT_PACKAGE
-import typealias CLibHaru.HPDF_DashMode
-import typealias CLibHaru.HPDF_UINT16
-import var CLibHaru.HPDF_MAX_DASH_PATTERN
+import CLibHaru
 #endif
 
 /// Dash pattern for lines in a page.
-public struct DashStyle {
+public struct DashStyle: Hashable {
     
     /// Straight line without dash.
     ///
@@ -51,22 +49,7 @@ public struct DashStyle {
     }
 }
 
-extension DashStyle: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: DashStyle, rhs: DashStyle) -> Bool {
-        return lhs.pattern == rhs.pattern && lhs.phase == rhs.phase
-    }
-}
-
-internal extension DashStyle {
+extension DashStyle {
     
     internal init(_ haruStruct: HPDF_DashMode) {
     

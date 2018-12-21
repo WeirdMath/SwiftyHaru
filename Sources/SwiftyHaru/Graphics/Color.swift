@@ -16,7 +16,7 @@ import CLibHaru
 /// * `PDFColorSpace.deviceRGB`
 /// * `PDFColorSpace.deviceCMYK`
 /// * `PDFColorSpace.deviceGray`
-public struct Color {
+public struct Color: Hashable {
     
     /// Returns the red color in `PDFColorSpace.deviceRGB` space
     public static let red = Color(red: 1, green: 0, blue: 0)!
@@ -35,7 +35,7 @@ public struct Color {
     /// Returns the transparent white color in `PDFColorSpace.deviceGray` space
     public static let clear = Color(gray: 1, alpha: 0)!
     
-    internal enum _ColorSpaceWrapper {
+    internal enum _ColorSpaceWrapper: Hashable {
         case rgb(red: Float, green: Float, blue: Float)
         case cmyk(cyan: Float, magenta: Float, yellow: Float, black: Float)
         case gray(Float)
@@ -368,40 +368,8 @@ public struct Color {
 
 extension Color: _ExpressibleByColorLiteral {
     
-    public init(colorLiteralRed: Float, green: Float, blue: Float, alpha: Float) {
-        self.init(red: colorLiteralRed, green: green, blue: blue, alpha: alpha)!
-    }
-}
-
-extension Color: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Color, rhs: Color) -> Bool {
-        
-        guard lhs.alpha == rhs.alpha else { return false }
-        
-        switch (lhs._wrapped, rhs._wrapped) {
-        case (.rgb(let color1), .rgb(let color2)):
-            return color1.red == color2.red &&
-                color1.green == color2.green &&
-                color1.blue == color2.blue
-        case (.cmyk(let color1), .cmyk(let color2)):
-            return color1.black == color2.black &&
-                color1.cyan == color2.cyan &&
-                color1.magenta == color2.magenta &&
-                color1.yellow == color2.yellow
-        case (.gray(let color1), .gray(let color2)):
-            return color1 == color2
-        default:
-            return false
-        }
+    public init(_colorLiteralRed: Float, green: Float, blue: Float, alpha: Float) {
+        self.init(red: _colorLiteralRed, green: green, blue: blue, alpha: alpha)!
     }
 }
 

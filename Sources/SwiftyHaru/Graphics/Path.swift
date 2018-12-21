@@ -9,12 +9,12 @@
 import Foundation
 
 /// A type for graphics paths: mathematical descriptions of shapes or lines to be drawn in a `DrawingContext`.
-public struct Path {
+public struct Path: Hashable {
     
     /// Creates an empty path.
     public init() {}
     
-    internal enum _PathConstructionOperation {
+    internal enum _PathConstructionOperation: Hashable {
         case moveTo(Point)
         case lineTo(Point)
         case closePath
@@ -508,42 +508,6 @@ public struct Path {
     }
 }
 
-extension Path._PathConstructionOperation: Equatable {
-    
-    internal static func ==(lhs: Path._PathConstructionOperation, rhs: Path._PathConstructionOperation) -> Bool {
-        
-        switch (lhs, rhs) {
-        case (.moveTo(let point1), .moveTo(let point2)):
-            return point1 == point2
-        case (.lineTo(let point1), .lineTo(let point2)):
-            return point1 == point2
-        case (.closePath, .closePath):
-            return true
-        case (.arc(let center1, let radius1, let beginningAngle1, let endAngle1),
-              .arc(let center2, let radius2, let beginningAngle2, let endAngle2)):
-            return center1 == center2 &&
-                radius1 == radius2 &&
-                beginningAngle1 == beginningAngle2 &&
-                endAngle1 == endAngle2
-        case (.circle(let center1, let radius1), .circle(let center2, let radius2)):
-            return center1 == center2 && radius1 == radius2
-        case (.rectangle(let rect1), .rectangle(let rect2)):
-            return rect1 == rect2
-        case (.curve(let controlPoint11, let controlPoint21, let endPoint1),
-              .curve(let controlPoint12, let controlPoint22, let endPoint2)):
-            return controlPoint11 == controlPoint12 && controlPoint21 == controlPoint22 && endPoint1 == endPoint2
-        case (.curve2(let controlPoint21, let endPoint1), .curve2(let controlPoint22, let endPoint2)):
-            return controlPoint21 == controlPoint22 && endPoint1 == endPoint2
-        case (.curve3(let controlPoint11, let endPoint1), curve3(let controlPoint12, let endPoint2)):
-            return controlPoint11 == controlPoint12 && endPoint1 == endPoint2
-        case (.ellipse(let center1, let xRadius1, let yRadius1), ellipse(let center2, let xRadius2, let yRadius2)):
-            return center1 == center2 && xRadius1 == xRadius2 && yRadius1 == yRadius2
-        default:
-            return false
-        }
-    }
-}
-
 extension Path {
     
     /// Rules for determining which regions are interior to a path, used by the `DrawingContext.clip(to:rule:_:)`
@@ -558,20 +522,4 @@ extension Path {
         /// if the winding number for that region is nonzero.
         case winding
     }
-}
-
-extension Path: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Path, rhs: Path) -> Bool {
-        return lhs._pathConstructionSequence == rhs._pathConstructionSequence
-    }
-
 }

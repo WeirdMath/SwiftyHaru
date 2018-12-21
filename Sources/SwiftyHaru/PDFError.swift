@@ -10,7 +10,7 @@
 import CLibHaru
 #endif
 
-public struct PDFError: Error {
+public struct PDFError: Error, Hashable {
     
     public var code: Int32
     
@@ -445,20 +445,5 @@ public struct PDFError: Error {
         }
         
         return PDFError._descriptions[code] ?? "Unknown error."
-    }
-}
-
-extension PDFError: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: PDFError, rhs: PDFError) -> Bool {
-        return lhs.code == rhs.code
     }
 }

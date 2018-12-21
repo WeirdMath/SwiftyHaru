@@ -186,8 +186,7 @@ public final class PDFDocument {
         
         let data = Data(bytes: buffer, count: Int(sizeOfBuffer))
         
-        buffer.deinitialize(count: Int(sizeOfBuffer))
-        buffer.deallocate(capacity: Int(sizeOfBuffer))
+        buffer.deallocate()
         
         return data
     }

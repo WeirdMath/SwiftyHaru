@@ -1293,7 +1293,7 @@ class DrawingContextTests: XCTestCase {
         XCTAssertEqual(result1.charactersPrinted, 284)
         XCTAssertFalse(result1.isSufficientSpace)
 
-        XCTAssertEqual(result2.charactersPrinted, text.characters.count)
+        XCTAssertEqual(result2.charactersPrinted, text.count)
         XCTAssertTrue(result2.isSufficientSpace)
     }
 }

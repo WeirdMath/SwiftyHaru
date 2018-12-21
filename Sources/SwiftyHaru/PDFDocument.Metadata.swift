@@ -11,7 +11,7 @@ import Foundation
 extension PDFDocument {
     
     /// This structure encapsulates the metadata of a document.
-    public struct Metadata {
+    public struct Metadata: Equatable {
         
         /// The author of the document.
         public var author: String?
@@ -67,21 +67,5 @@ extension PDFDocument {
             self.creationDate = creationDate
             self.modificationDate = modificationDate
         }
-    }
-}
-
-extension PDFDocument.Metadata: Equatable {
-    
-    public static func == (lhs: PDFDocument.Metadata, rhs: PDFDocument.Metadata) -> Bool {
-        
-        return
-            lhs.author           == rhs.author           &&
-            lhs.creator          == rhs.creator          &&
-            lhs.title            == rhs.title            &&
-            lhs.subject          == rhs.subject          &&
-            lhs.keywords         == rhs.keywords         &&
-            lhs.timeZone         == rhs.timeZone         &&
-            lhs.creationDate     == rhs.creationDate     &&
-            lhs.modificationDate == rhs.modificationDate
     }
 }

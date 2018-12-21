@@ -11,7 +11,7 @@ import typealias CLibHaru.HPDF_Point
 #endif
 
 /// A structure that contains width and height values.
-public struct Size {
+public struct Size: Hashable {
     
     /// A width value.
     public var width: Float
@@ -48,23 +48,8 @@ public struct Size {
     }
 }
 
-extension Size: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Size, rhs: Size) -> Bool {
-        return lhs.width == rhs.width && lhs.height == rhs.height
-    }
-}
-
 /// A structure that contains a point in a two-dimensional coordinate system.
-public struct Point {
+public struct Point: Hashable {
     
     /// The point with location (0, 0).
     public static let zero = Point(x: 0, y: 0)
@@ -126,22 +111,7 @@ public struct Point {
     }
 }
 
-extension Point: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Point, rhs: Point) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
-    }
-}
-
-internal extension Point {
+extension Point {
     
     internal init(_ hpdfPoint: HPDF_Point) {
         x = hpdfPoint.x
@@ -150,10 +120,10 @@ internal extension Point {
 }
 
 /// The two-dimentional vector is inherently a two-dimentional point.
-public typealias Vector = Point
+public typealias Vector = Point // TODO: This must be a different type
 
 /// A structure that contains the location and dimensions of a rectangle.
-public struct Rectangle {
+public struct Rectangle: Hashable {
     
     /// A point that specifies the coordinates of the rectangle’s origin.
     public var origin: Point
@@ -236,21 +206,6 @@ public struct Rectangle {
     ///   - height: The height of a rectangle.
     public init(x: Int, y: Int, width: Int, height: Int) {
         self.init(x: Float(x), y: Float(y), width: Float(width), height: Float(height))
-    }
-}
-
-extension Rectangle: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Rectangle, rhs: Rectangle) -> Bool {
-        return lhs.origin == rhs.origin && lhs.size == rhs.size
     }
 }
 

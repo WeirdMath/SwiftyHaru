@@ -49,7 +49,7 @@ import struct CLibHaru.HPDF_TransMatrix
 /// to construct an affine transform to do so. The most direct way to manipulate your drawing —
 /// whether by movement, scaling, or rotation — is to call the functions `translateBy(x:y:)`, `scaleBy(x:y:)`,
 /// or `rotate(by:)`, respectively.
-public struct AffineTransform {
+public struct AffineTransform: Hashable {
     
     /// The entry at position [1,1] in the matrix.
     public var a: Float
@@ -294,14 +294,14 @@ extension AffineTransform: CustomDebugStringConvertible {
         
         let maxWidth = [a, b, c, d, tx, ty]
             .map(String.init(_:))
-            .map { $0.characters.count }
+            .map { $0.count }
             .max()!
         
         func numberToAlignedString(_ number: Float) -> String {
             
             let stringRepresentation = String(number)
             
-            let numberOfSpacesToAppend = maxWidth - stringRepresentation.characters.count
+            let numberOfSpacesToAppend = maxWidth - stringRepresentation.count
             
             return stringRepresentation + String(repeating: " ", count: numberOfSpacesToAppend)
         }
@@ -315,17 +315,4 @@ extension AffineTransform: CustomDebugStringConvertible {
 extension AffineTransform: CustomStringConvertible {
     
     public var description: String { return debugDescription }
-}
-
-extension AffineTransform: Equatable {
-    
-    public static func == (lhs: AffineTransform, rhs: AffineTransform) -> Bool {
-        return
-            lhs.a  == rhs.a  &&
-            lhs.b  == rhs.b  &&
-            lhs.c  == rhs.c  &&
-            lhs.d  == rhs.d  &&
-            lhs.tx == rhs.tx &&
-            lhs.ty == rhs.ty
-    }
 }
