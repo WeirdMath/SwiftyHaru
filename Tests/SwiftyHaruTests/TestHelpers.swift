@@ -8,8 +8,50 @@
 
 import Foundation
 import XCTest
+import SwiftyHaru
+import SnapshotTesting
 
-extension XCTestCase {
+#if os(Linux)
+typealias SnapshotTestCase = SnapshotTesting.SnapshotTestCase
+#else
+typealias SnapshotTestCase = XCTestCase
+#endif
+
+extension Diffing where Value == Data {
+
+    static let pdf = Diffing(toData: { $0 }, fromData: { $0 }) { old, new in
+        Diffing<String>.lines.diff(String(decoding: old, as: UTF8.self), String(decoding: new, as: UTF8.self))
+    }
+
+    static let byteCount = Diffing(toData: { $0 }, fromData: { $0 }) { old, new in
+        guard old.count != new.count else { return nil }
+        return ("Expected \(new) to match \(old)", [XCTAttachment(data: old), XCTAttachment(data: new)])
+    }
+}
+
+extension Snapshotting where Value == PDFDocument, Format == Data {
+
+    static let pdf = Snapshotting(pathExtension: "pdf", diffing: .pdf, snapshot: { $0.getData() })
+
+    static let byteCount = Snapshotting(pathExtension: "pdf", diffing: .byteCount, snapshot: { $0.getData() })
+}
+
+class TestCase: SnapshotTestCase {
+
+    var document: PDFDocument!
+
+    override func setUp() {
+        super.setUp()
+
+        document = PDFDocument()
+    }
+
+    override func tearDown() {
+
+        document = nil
+
+        super.tearDown()
+    }
 
     var testCaseName: String {
         return String(describing: type(of: self))
@@ -31,37 +73,34 @@ extension XCTestCase {
     var currentTestName: String {
         return "\(testCaseName).\(testMethodName)"
     }
-    
-    func saveReferenceFile(_ data: Data, ofType type: String) {
-        
-        let destinationURL = URL(fileURLWithPath: #file)
-            .deletingLastPathComponent()
-            .appendingPathComponent("Resources/")
-            .appendingPathComponent(currentTestName + (type.isEmpty ? "" : "." + type))
-        
-        do {
-            try data.write(to: destinationURL)
-        } catch {
-            XCTFail(String(describing: error))
-            return
-        }
-        
-        XCTFail("""
-        Test ran in record mode. Reference image is now saved. \
-        Disable record mode to perform an actual resource comparison!
-        """)
+
+    func assertPDFSnapshot(named name: String? = nil,
+                           record recording: Bool = false,
+                           timeout: TimeInterval = 5,
+                           file: StaticString = #file,
+                           testName: String = #function,
+                           line: UInt = #line) {
+
+        assertSnapshot(matching: document!,
+                       as: .pdf,
+                       named: name,
+                       record: recording,
+                       timeout: timeout,
+                       file: file,
+                       testName: testName,
+                       line: line)
     }
-    
-    func getURLForTestingResource(forFile file: String, ofType type: String?) -> URL? {
+        
+    private func _getURLForTestingResource(forFile file: String, ofType type: String?) -> URL? {
         return URL(fileURLWithPath: #file)
             .deletingLastPathComponent()
             .appendingPathComponent("Resources/")
             .appendingPathComponent(file + (type == nil ? "" : "." + type!))
     }
     
-    func getTestingResource(fromFile file: String, ofType type: String?) -> Data? {
+    final func getTestingResource(fromFile file: String, ofType type: String?) -> Data? {
         
-        guard let url = getURLForTestingResource(forFile: file, ofType: type) else { return nil }
+        guard let url = _getURLForTestingResource(forFile: file, ofType: type) else { return nil }
         
         return try? Data(contentsOf: url)
     }

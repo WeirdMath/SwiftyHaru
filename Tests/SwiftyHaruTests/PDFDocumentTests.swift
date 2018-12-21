@@ -8,148 +8,98 @@
 
 import XCTest
 import Foundation
+import SnapshotTesting
 @testable import SwiftyHaru
 #if SWIFT_PACKAGE
 import CLibHaru
 #endif
 
-class PDFDocumentTests: XCTestCase {
+final class PDFDocumentTests: TestCase {
     
-    static var allTests : [(String, (PDFDocumentTests) -> () throws -> Void)] {
-        return [
-            ("testCreateEmptyDocument", testCreateEmptyDocument),
-            ("testAddingPages", testAddingPages),
-            ("testPageLayout", testPageLayout),
-            ("testAddPageLabel", testAddPageLabel),
-            ("testLoadTrueTypeFont", testLoadTrueTypeFont),
-            ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection),
-            ("testSetCompressionMode", testSetCompressionMode),
-            ("testSetPassword", testSetPassword),
-            ("testSetPermissions", testSetPermissions),
-            ("testSetAuthor", testSetAuthor),
-            ("testSetCreator", testSetCreator),
-            ("testSetTitle", testSetTitle),
-            ("testSetSubject", testSetSubject),
-            ("testSetKeywords", testSetKeywords),
-            ("testSetCreationDate", testSetCreationDate),
-            ("testSetModificationDate", testSetModificationDate)
-        ]
-    }
-    
-    var recordMode = false
-    
-    var sut: PDFDocument!
-    
-    override func setUp() {
-        super.setUp()
-        
-        recordMode = false
-        
-        sut = PDFDocument()
-    }
-    
-    override func tearDown() {
-        
-        if recordMode {
-            saveReferenceFile(sut.getData(), ofType: "pdf")
-        }
-        
-        sut = nil
-        
-        super.tearDown()
-    }
-    
+    static let allTests = [
+        ("testCreateEmptyDocument", testCreateEmptyDocument),
+        ("testAddingPages", testAddingPages),
+        ("testPageLayout", testPageLayout),
+        ("testAddPageLabel", testAddPageLabel),
+        ("testLoadTrueTypeFont", testLoadTrueTypeFont),
+        ("testLoadTrueTypeFontFromCollection", testLoadTrueTypeFontFromCollection),
+        ("testSetCompressionMode", testSetCompressionMode),
+        ("testSetPassword", testSetPassword),
+        ("testSetPermissions", testSetPermissions),
+        ("testSetAuthor", testSetAuthor),
+        ("testSetCreator", testSetCreator),
+        ("testSetTitle", testSetTitle),
+        ("testSetSubject", testSetSubject),
+        ("testSetKeywords", testSetKeywords),
+        ("testSetCreationDate", testSetCreationDate),
+        ("testSetModificationDate", testSetModificationDate)
+    ]
+
     func testCreateEmptyDocument() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
-        // When
-        let returnedDocumentData = sut.getData()
-        
-        // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testAddingPages() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
-        sut.addPage()
-        sut.addPage(width: 100, height: 100)
-        sut.addPage(size: .a4, direction: .landscape)
-        sut.insertPage(atIndex: 3)
-        sut.insertPage(size: .a3, direction: .portrait, atIndex: 0)
-        sut.insertPage(width: 30, height: 30, atIndex: 2)
-        
-        let returnedDocumentData = sut.getData()
-        
+        document.addPage()
+        document.addPage(width: 100, height: 100)
+        document.addPage(size: .a4, direction: .landscape)
+        document.insertPage(atIndex: 3)
+        document.insertPage(size: .a3, direction: .portrait, atIndex: 0)
+        document.insertPage(width: 30, height: 30, atIndex: 2)
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testPageLayout() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let expectedPageLayout = PDFDocument.PageLayout.twoColumnRight
         
         // When
-        sut.addPage()
-        sut.addPage()
-        sut.addPage()
-        sut.addPage()
+        document.addPage()
+        document.addPage()
+        document.addPage()
+        document.addPage()
         
         // Then
-        XCTAssertEqual(.default, sut.pageLayout)
+        XCTAssertEqual(.default, document.pageLayout)
         
         // When
-        sut.pageLayout = .twoColumnRight
-        let returnedPageLayout = sut.pageLayout
-        let returnedDocumentData = sut.getData()
-        
+        document.pageLayout = .twoColumnRight
+        let returnedPageLayout = document.pageLayout
+
         // Then
         XCTAssertEqual(expectedPageLayout, returnedPageLayout)
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testAddPageLabel() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
-        // When
         for _ in 0...8 {
-            sut.addPage()
+            document.addPage()
         }
-        
-        sut.addPageLabel(.lowerRoman, fromPage: 0, startingWith: 1)
-        sut.addPageLabel(.decimal, fromPage: 4, startingWith: 1)
-        sut.addPageLabel(.decimal, fromPage: 7, startingWith: 8, withPrefix: "A-")
-        let returnedDocumentData = sut.getData()
-        
+
+        // When
+        document.addPageLabel(.lowerRoman, fromPage: 0, startingWith: 1)
+        document.addPageLabel(.decimal, fromPage: 4, startingWith: 1)
+        document.addPageLabel(.decimal, fromPage: 7, startingWith: 8, withPrefix: "A-")
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
-    func testLoadTrueTypeFont() {
+    func testLoadTrueTypeFont() throws {
         
         // Given
         let expectedFont = Font(name: "AndaleMono")
         
         // When
         let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
-        let loadedFont = try! sut.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
+        let loadedFont = try document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
         
         // Then
         XCTAssertEqual(expectedFont, loadedFont)
@@ -158,19 +108,19 @@ class PDFDocumentTests: XCTestCase {
         let incorrectFontData = Data()
         
         // Then
-        XCTAssertThrowsError(try sut.loadTrueTypeFont(from: incorrectFontData, embeddingGlyphData: true))
+        XCTAssertThrowsError(try document.loadTrueTypeFont(from: incorrectFontData, embeddingGlyphData: true))
     }
     
-    func testLoadTrueTypeFontFromCollection() {
+    func testLoadTrueTypeFontFromCollection() throws {
         
         // Given
         let expectedFont = Font(name: "AvenirNext-Regular")
         
         // When
         let collectionData = getTestingResource(fromFile: "Avenir Next", ofType: "ttc")!
-        let loadedFont = try! sut.loadTrueTypeFontFromCollection(from: collectionData,
-                                                                 index: 7,
-                                                                 embeddingGlyphData: true)
+        let loadedFont = try document.loadTrueTypeFontFromCollection(from: collectionData,
+                                                                     index: 7,
+                                                                     embeddingGlyphData: true)
         
         // Then
         XCTAssertEqual(expectedFont, loadedFont)
@@ -179,16 +129,16 @@ class PDFDocumentTests: XCTestCase {
         let incorrectData = Data()
         
         // Then
-        XCTAssertThrowsError(try sut.loadTrueTypeFontFromCollection(from: incorrectData,
-                                                                    index: 0,
-                                                                    embeddingGlyphData: true))
+        XCTAssertThrowsError(try document.loadTrueTypeFontFromCollection(from: incorrectData,
+                                                                         index: 0,
+                                                                         embeddingGlyphData: true))
         
-        XCTAssertThrowsError(try sut.loadTrueTypeFontFromCollection(from: collectionData,
-                                                                    index: 100,
-                                                                    embeddingGlyphData: true))
+        XCTAssertThrowsError(try document.loadTrueTypeFontFromCollection(from: collectionData,
+                                                                         index: 100,
+                                                                         embeddingGlyphData: true))
     }
 
-    func testSetCompressionMode() {
+    func testSetCompressionMode() throws {
 
         // Given
         let expectedBitmask: HPDF_BOOL = 0b00000011
@@ -196,13 +146,9 @@ class PDFDocumentTests: XCTestCase {
         // When
         let validCompressionMode: PDFDocument.CompressionMode = [.image, .text]
 
-        do {
-            try sut.setCompressionMode(to: validCompressionMode)
-        } catch {
-            XCTFail(String(describing: error))
-        }
+        try document.setCompressionMode(to: validCompressionMode)
 
-        let compressionModeSet = sut._documentHandle.pointee.compression_mode
+        let compressionModeSet = document._documentHandle.pointee.compression_mode
 
         // Then
         XCTAssertEqual(expectedBitmask, compressionModeSet)
@@ -211,172 +157,133 @@ class PDFDocumentTests: XCTestCase {
         let invalidCompressionMode = PDFDocument.CompressionMode(rawValue: 1024)
 
         // Then
-        XCTAssertThrowsError(try sut.setCompressionMode(to: invalidCompressionMode)) { error in
+        XCTAssertThrowsError(try document.setCompressionMode(to: invalidCompressionMode)) { error in
             XCTAssertEqual(PDFError.invalidCompressionMode, error as? PDFError)
         }
     }
 
-    func testSetPassword() {
-
-//        recordMode = true
+    func testSetPassword() throws {
 
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let ownerPassword = "12345678"
         let userPassword = "abcdefgh"
-        let page = sut.addPage()
+        let page = document.addPage()
 
         page.draw { context in
             context.show(text: "Encrypted PDF.", atX: 200, y: 200)
         }
 
-        XCTAssertThrowsError(try sut.setEncryptionMode(to: .r2)) { error in
+        XCTAssertThrowsError(try document.setEncryptionMode(to: .r2)) { error in
             XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
         }
 
-        XCTAssertThrowsError(try sut.setPassword(owner: "")) { error in
+        XCTAssertThrowsError(try document.setPassword(owner: "")) { error in
             XCTAssertEqual(PDFError.encryptionInvalidPassword, error as? PDFError)
         }
 
         // When
-        do {
-            try sut.setPassword(owner: ownerPassword, user: userPassword)
-            try sut.setEncryptionMode(to: .r2)
-        } catch {
-            XCTFail(String(describing: error))
-        }
-
-        let returnedDocumentData = sut.getData()
+        try document.setPassword(owner: ownerPassword, user: userPassword)
+        try document.setEncryptionMode(to: .r2)
 
         // Then
 
-        // We can't compare the bytes because encryption is used PRGs, so we just count them.
-        XCTAssertEqual(expectedDocumentData?.count, returnedDocumentData.count)
+        // We can't compare the bytes because encryption uses PRGs, so we just count them.
+        assertSnapshot(matching: document, as: .byteCount)
     }
 
-    func testSetPermissions() {
-
-//        recordMode = true
+    func testSetPermissions() throws {
 
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let ownerPassword = "12345678"
         let userPassword = "abcdefgh"
-        let page = sut.addPage()
+        let page = document.addPage()
 
         page.draw { context in
             context.show(text: "Encrypted PDF with permissions.", atX: 200, y: 200)
         }
 
-        XCTAssertThrowsError(try sut.setPermissions(to: .read)) { error in
+        XCTAssertThrowsError(try document.setPermissions(to: .read)) { error in
             XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
         }
 
         // When
-        do {
-            try sut.setPassword(owner: ownerPassword, user: userPassword)
-            try sut.setPermissions(to: [])
-            try sut.setEncryptionMode(to: .r3(keyLength: 8))
-        } catch {
-            XCTFail(String(describing: error))
-        }
-
-        let returnedDocumentData = sut.getData()
+        try document.setPassword(owner: ownerPassword, user: userPassword)
+        try document.setPermissions(to: [])
+        try document.setEncryptionMode(to: .r3(keyLength: 8))
 
         // Then
-
-        // We can't compare the bytes because encryption is used PRGs, so we just count them.
-        XCTAssertEqual(expectedDocumentData?.count, returnedDocumentData.count)
+        // We can't compare the bytes because encryption uses PRGs, so we just count them.
+        assertSnapshot(matching: document, as: .byteCount)
     }
     
     func testSetAuthor() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let author = "John Appleseed"
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.author = author
-        let returnedDocumentData = sut.getData()
-        
+        document.metadata.author = author
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testSetCreator() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let creator = "Takeshi Kanno"
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.creator = creator
-        let returnedDocumentData = sut.getData()
-        
+        document.metadata.creator = creator
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testSetTitle() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let title = "Hello World"
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.title = title
-        let returnedDocumentData = sut.getData()
-        
+        document.metadata.title = title
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testSetSubject() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let subject = "LibHaru"
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.subject = subject
-        let returnedDocumentData = sut.getData()
-        
+        document.metadata.subject = subject
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testSetKeywords() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let keywords = [
-            "The Alan ParsonsProject",
+            "The Alan Parsons Project",
             "Genesis",
             "Yes",
             "Pink Floyd"
         ]
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.keywords = keywords
-        let returnedDocumentData = sut.getData()
-        
+        document.metadata.keywords = keywords
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testSetCreationDate() {
@@ -384,48 +291,28 @@ class PDFDocumentTests: XCTestCase {
 //        recordMode = true
 
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let date = Date(timeIntervalSince1970: 1_497_055_314)
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
-        sut.metadata.creationDate = date
-        let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
-        
+        document.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
+        document.metadata.creationDate = date
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentDataWithLosAngelesTimeZone)
-        
-        // When
-        sut.metadata.timeZone = TimeZone(secondsFromGMT: 0)!
-        let returnedDocumentDataWithGMTTimeZone = sut.getData()
-        
-        // Then
-        XCTAssertNotEqual(expectedDocumentData, returnedDocumentDataWithGMTTimeZone)
+        assertPDFSnapshot()
     }
     
     func testSetModificationDate() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let date = Date(timeIntervalSince1970: 1_497_055_314)
-        sut.addPage()
+        document.addPage()
         
         // When
-        sut.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
-        sut.metadata.modificationDate = date
-        let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
-        
+        document.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
+        document.metadata.modificationDate = date
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentDataWithLosAngelesTimeZone)
-        
-        // When
-        sut.metadata.timeZone = TimeZone(secondsFromGMT: 0)!
-        let returnedDocumentDataWithGMTTimeZone = sut.getData()
-        
-        // Then
-        XCTAssertNotEqual(expectedDocumentData, returnedDocumentDataWithGMTTimeZone)
+        assertPDFSnapshot()
     }
 }

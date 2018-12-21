@@ -10,16 +10,14 @@ import Foundation
 import XCTest
 import SwiftyHaru
 
-class PDFDateFormatterTests: XCTestCase {
+final class PDFDateFormatterTests: XCTestCase {
 
     var sut: PDFDateFormatter!
 
-    static var allTests: [(String, (PDFDateFormatterTests) -> () throws -> Void)] {
-        return [
-            ("testConvertDateToString", testConvertDateToString),
-            ("testConvertStringToDate", testConvertStringToDate)
-        ]
-    }
+    static let allTests = [
+        ("testConvertDateToString", testConvertDateToString),
+        ("testConvertStringToDate", testConvertStringToDate)
+    ]
 
     override func setUp() {
         super.setUp()

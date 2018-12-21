@@ -9,78 +9,57 @@
 import XCTest
 import SwiftyHaru
 
-class DrawingContextTests: XCTestCase {
+final class DrawingContextTests: TestCase {
     
-    static var allTests : [(String, (DrawingContextTests) -> () throws -> Void)] {
-        return [
-            // Graphics state
-            ("testPathLineWidth", testPathLineWidth),
-            ("testPathDashStyle", testPathDashStyle),
-            ("testPathLineCap", testPathLineCap),
-            ("testPathLineJoin", testPathLineJoin),
-            ("testPathMiterLimit", testPathMiterLimit),
-            ("testSaveRestoreGState", testSaveRestoreGState),
-            ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
-            ("testRotateContext", testRotateContext),
-            ("testScaleContext", testScaleContext),
-            ("testTranslateContext", testTranslateContext),
-            // Color
-            ("testStrokeColorRGB", testStrokeColorRGB),
-            ("testStrokeColorCMYK", testStrokeColorCMYK),
-            ("testStrokeColorGray", testStrokeColorGray),
-            ("testFillColorRGB", testFillColorRGB),
-            ("testFillColorCMYK", testFillColorCMYK),
-            ("testFillColorGray", testFillColorGray),
-            // Path construction
-            ("testConstructPath", testConstructPath),
-            // Path painting
-            ("testPaintPath", testPaintPath),
-            ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
-            ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
-            // Text state
-            ("testTextFont", testTextFont),
-            ("testTextFontSize", testTextFontSize),
-            ("testTextEncoding", testTextEncoding),
-            ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
-            ("testTextWidthForString", testTextWidthForString),
-            ("testTextBoundingBox", testTextBoundingBox),
-            ("testFontAscent", testFontAscent),
-            ("testFontDescent", testFontDescent),
-            ("testFontXHeight", testFontXHeight),
-            ("testFontCapHeight", testFontCapHeight),
-            ("testTextLeading", testTextLeading),
-            // Text showing
-            ("testShowOnelineText", testShowOnelineText),
-            ("testShowMultilineText", testShowMultilineText),
-            ("testShowUnicodeText", testShowUnicodeText),
-            ("testShowTextInRect", testShowTextInRect)
-        ]
-    }
-    
-    var recordMode = false
+    static let allTests = [
+        // Graphics state
+        ("testPathLineWidth", testPathLineWidth),
+        ("testPathDashStyle", testPathDashStyle),
+        ("testPathLineCap", testPathLineCap),
+        ("testPathLineJoin", testPathLineJoin),
+        ("testPathMiterLimit", testPathMiterLimit),
+        ("testSaveRestoreGState", testSaveRestoreGState),
+        ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
+        ("testRotateContext", testRotateContext),
+        ("testScaleContext", testScaleContext),
+        ("testTranslateContext", testTranslateContext),
+        // Color
+        ("testStrokeColorRGB", testStrokeColorRGB),
+        ("testStrokeColorCMYK", testStrokeColorCMYK),
+        ("testStrokeColorGray", testStrokeColorGray),
+        ("testFillColorRGB", testFillColorRGB),
+        ("testFillColorCMYK", testFillColorCMYK),
+        ("testFillColorGray", testFillColorGray),
+        // Path construction
+        ("testConstructPath", testConstructPath),
+        // Path painting
+        ("testPaintPath", testPaintPath),
+        ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
+        ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
+        // Text state
+        ("testTextFont", testTextFont),
+        ("testTextFontSize", testTextFontSize),
+        ("testTextEncoding", testTextEncoding),
+        ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
+        ("testTextWidthForString", testTextWidthForString),
+        ("testTextBoundingBox", testTextBoundingBox),
+        ("testFontAscent", testFontAscent),
+        ("testFontDescent", testFontDescent),
+        ("testFontXHeight", testFontXHeight),
+        ("testFontCapHeight", testFontCapHeight),
+        ("testTextLeading", testTextLeading),
+        // Text showing
+        ("testShowOnelineText", testShowOnelineText),
+        ("testShowMultilineText", testShowMultilineText),
+        ("testShowUnicodeText", testShowUnicodeText),
+        ("testShowTextInRect", testShowTextInRect)
+    ]
     
     var page: PDFPage!
-    
-    var document: PDFDocument!
-    
+
     override func setUp() {
         super.setUp()
-        
-        recordMode = false
-        
-        document = PDFDocument()
         page = document.addPage()
-    }
-    
-    override func tearDown() {
-        
-        if recordMode {
-            saveReferenceFile(document.getData(), ofType: "pdf")
-        }
-        
-        document = nil
-        
-        super.tearDown()
     }
     
     // MARK: - Helpers
@@ -347,11 +326,8 @@ class DrawingContextTests: XCTestCase {
     // MARK: Transforms
     
     func testRotateContext() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let angle: Float = .pi / 180 * 10
         let expectedTransform = AffineTransform(rotationAngle: angle)
         
@@ -367,20 +343,15 @@ class DrawingContextTests: XCTestCase {
             
             returnedTransform = context.currentTransform
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
         XCTAssertEqual(expectedTransform, returnedTransform)
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testScaleContext() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let sx: Float = 0.7
         let sy: Float = 1.3
         let expectedTransform = SwiftyHaru.AffineTransform(scaleX: sx, y: sy)
@@ -397,20 +368,15 @@ class DrawingContextTests: XCTestCase {
             
             returnedTransform = context.currentTransform
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
         XCTAssertEqual(expectedTransform, returnedTransform)
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testTranslateContext() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let tx: Float = -page.width / 3
         let ty: Float = page.height / 5
         let expectedTransform = SwiftyHaru.AffineTransform(translationX: tx, y: ty)
@@ -428,19 +394,14 @@ class DrawingContextTests: XCTestCase {
             returnedTransform = context.currentTransform
         }
         
-        let returnedDocumentData = document.getData()
-        
         // Then
         XCTAssertEqual(expectedTransform, returnedTransform)
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testConcatContext() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let expectedTransform = SwiftyHaru.AffineTransform(translationX: 100, y: 200)
             .scaled(byX: 1.5, y: 0.5)
             .rotated(byAngle: .pi / 6)
@@ -457,12 +418,10 @@ class DrawingContextTests: XCTestCase {
             
             returnedTransform = context.currentTransform
         }
-        
-        let returnedDocumentData = document.getData()
-        
+                
         // Then
         XCTAssertEqual(expectedTransform, returnedTransform)
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     // MARK: - Color
@@ -590,12 +549,7 @@ class DrawingContextTests: XCTestCase {
     // MARK: - Path construction
     
     func testConstructPath() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
         page.draw { context in
             
@@ -650,11 +604,9 @@ class DrawingContextTests: XCTestCase {
             context.stroke(pathWithEllipse)
             context.stroke(pathWithRectangle)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     // MARK: - Path paiting
@@ -688,12 +640,7 @@ class DrawingContextTests: XCTestCase {
     }
     
     func testPaintPath() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
         
         // Draw some simple paths
@@ -761,19 +708,12 @@ class DrawingContextTests: XCTestCase {
             context.fillColor = .green
             context.fill(curve, rule: .winding, stroke: false)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testClipToPathNonzeroWindingNumberRule() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
         // When
         
@@ -796,21 +736,13 @@ class DrawingContextTests: XCTestCase {
             }
         }
         
-        let returnedDocumentData = document.getData()
-        
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testClipToPathEvenOddRule() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
-        
         let path = Path()
             .moving(toX: 100, y: 100)
             .appendingLine(toX: 200, y: 400)
@@ -829,11 +761,9 @@ class DrawingContextTests: XCTestCase {
                 context.fill(rectangle)
             }
         }
-        
-        let returnedDocumentData = document.getData()
-        
+                
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     // MARK: - Text State
@@ -1174,49 +1104,32 @@ class DrawingContextTests: XCTestCase {
     // MARK: - Text Showing
     
     func testShowOnelineText() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
         page.draw { context in
             context.show(text: "Hello World!", atX: 100, y: 100)
             context.show(text: "", atX: 100, y: 200)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testShowMultilineText() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         
         // When
         page.draw { context in
             context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
                          atX: 100, y: 200)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testShowUnicodeText() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
         let loadedFont = try! document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
         
@@ -1238,19 +1151,14 @@ class DrawingContextTests: XCTestCase {
             // Test that setting a multibyte encoding twice doesn't cause an error in LibHaru
             context.encoding = .utf8
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
 
     func testShowTextInRect() {
 
-//        recordMode = true
-
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let text = """
         Lorem ipsum
         dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
@@ -1288,10 +1196,8 @@ class DrawingContextTests: XCTestCase {
             result2 = context.show(text: text, in: rectangle, alignment: .justify)
         }
 
-        let returnedDocumentData = document.getData()
-
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
 
         XCTAssertEqual(result1.charactersPrinted, 284)
         XCTAssertFalse(result1.isSufficientSpace)

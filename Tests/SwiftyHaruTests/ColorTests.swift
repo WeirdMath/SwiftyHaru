@@ -9,24 +9,22 @@
 import XCTest
 @testable import SwiftyHaru
 
-class ColorTests: XCTestCase {
+final class ColorTests: XCTestCase {
 
-    static var allTests : [(String, (ColorTests) -> () throws -> Void)] {
-        return [
-            ("testInitializeRGBColor", testInitializeRGBColor),
-            ("testInitializeCMYKColor", testInitializeCMYKColor),
-            ("testInitializeFromColorLiteral", testInitializeFromColorLiteral),
-            ("testInitializeGrayColor", testInitializeGrayColor),
-            ("testGetComponentsForRGBColor", testGetComponentsForRGBColor),
-            ("testGetComponentsForCMYKColor", testGetComponentsForCMYKColor),
-            ("testGetComponentsForGrayColor", testGetComponentsForGrayColor),
-            ("testSetComponentsForRGBColor", testSetComponentsForRGBColor),
-            ("testSetComponentsForCMYKColor", testSetComponentsForCMYKColor),
-            ("testSetComponentsForGrayColor", testSetComponentsForGrayColor),
-            ("testConvertingFromRGBToCMYK", testConvertingFromRGBToCMYK),
-            ("testConvertingFromCMYKToRGB", testConvertingFromCMYKToRGB)
-        ]
-    }
+    static let allTests = [
+        ("testInitializeRGBColor", testInitializeRGBColor),
+        ("testInitializeCMYKColor", testInitializeCMYKColor),
+        ("testInitializeFromColorLiteral", testInitializeFromColorLiteral),
+        ("testInitializeGrayColor", testInitializeGrayColor),
+        ("testGetComponentsForRGBColor", testGetComponentsForRGBColor),
+        ("testGetComponentsForCMYKColor", testGetComponentsForCMYKColor),
+        ("testGetComponentsForGrayColor", testGetComponentsForGrayColor),
+        ("testSetComponentsForRGBColor", testSetComponentsForRGBColor),
+        ("testSetComponentsForCMYKColor", testSetComponentsForCMYKColor),
+        ("testSetComponentsForGrayColor", testSetComponentsForGrayColor),
+        ("testConvertingFromRGBToCMYK", testConvertingFromRGBToCMYK),
+        ("testConvertingFromCMYKToRGB", testConvertingFromCMYKToRGB)
+    ]
     
     static let colorComparisonAccuracy: Float = 0.00390625 // 1/256 — enough accuracy
     

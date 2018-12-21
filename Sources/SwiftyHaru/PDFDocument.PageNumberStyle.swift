@@ -16,7 +16,7 @@ public extension PDFDocument {
     public enum PageNumberStyle: UInt32 {
         
         /// Arabic numerals (1 2 3 4).
-        case decimal
+        case decimal = 0
         
         /// Uppercase roman numerals (I II III IV).
         case upperRoman

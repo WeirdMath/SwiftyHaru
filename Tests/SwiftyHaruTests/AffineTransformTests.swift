@@ -9,23 +9,21 @@
 import XCTest
 import SwiftyHaru
 
-class AffineTransformTests: XCTestCase {
+final class AffineTransformTests: TestCase {
     
-    static var allTests : [(String, (AffineTransformTests) -> () throws -> Void)] {
-        return [
-            ("testAffineTransformDescription", testAffineTransformDescription),
-            ("testMakeRotation", testMakeRotation),
-            ("testMakeScale", testMakeScale),
-            ("testMakeTranslation", testMakeTranslation),
-            ("testConcatenate", testConcatenate),
-            ("testInvert", testInvert),
-            ("testConcatenateWithRotation", testConcatenateWithRotation),
-            ("testConcatenateWithScaling", testConcatenateWithScaling),
-            ("testConcatenateWithTranslation", testConcatenateWithTranslation),
-            ("testApplyTransformToSize", testApplyTransformToSize),
-            ("testApplyTransformToPoint", testApplyTransformToPoint)
-        ]
-    }
+    static let allTests = [
+        ("testAffineTransformDescription", testAffineTransformDescription),
+        ("testMakeRotation", testMakeRotation),
+        ("testMakeScale", testMakeScale),
+        ("testMakeTranslation", testMakeTranslation),
+        ("testConcatenate", testConcatenate),
+        ("testInvert", testInvert),
+        ("testConcatenateWithRotation", testConcatenateWithRotation),
+        ("testConcatenateWithScaling", testConcatenateWithScaling),
+        ("testConcatenateWithTranslation", testConcatenateWithTranslation),
+        ("testApplyTransformToSize", testApplyTransformToSize),
+        ("testApplyTransformToPoint", testApplyTransformToPoint)
+    ]
 
     func testAffineTransformDescription() {
         

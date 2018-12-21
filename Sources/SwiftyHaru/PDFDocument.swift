@@ -225,15 +225,15 @@ public final class PDFDocument {
     public func addPageLabel(_ style: PageNumberStyle,
                              fromPage startingPage: Int,
                              startingWith firstPageNumber: Int,
-                             withPrefix prefix: String? = nil) {
-        
-        let prefix = prefix?.cString(using: .ascii)
-        
-        HPDF_AddPageLabel(_documentHandle,
-                          HPDF_UINT(startingPage),
-                          HPDF_PageNumStyle(rawValue: style.rawValue),
-                          HPDF_UINT(firstPageNumber),
-                          prefix)
+                             withPrefix prefix: String = String()) {
+
+        prefix.withCString { cString in
+            _ = HPDF_AddPageLabel(_documentHandle,
+                                  HPDF_UINT(startingPage),
+                                  HPDF_PageNumStyle(rawValue: style.rawValue),
+                                  HPDF_UINT(firstPageNumber),
+                                  cString)
+        }
     }
 
     // MARK: - Including fonts
