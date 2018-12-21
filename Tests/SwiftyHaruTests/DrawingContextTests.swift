@@ -1228,11 +1228,12 @@ class DrawingContextTests: XCTestCase {
             
             context.show(text: "Math poetry!", atX: 100, y: 220)
             
-            context.show(text: "Гомоморфный образ группы,\n" +
-                "(Будь во имя коммунизма)\n" +
-                "Изоморфен фактор-группе\n" +
-                "По ядру гомоморфизма.",
-                         atX: 100, y: 200)
+            context.show(text: """
+            Гомоморфный образ группы,
+            (Будь во имя коммунизма)
+            Изоморфен фактор-группе
+            По ядру гомоморфизма.
+            """, atX: 100, y: 200)
             
             // Test that setting a multibyte encoding twice doesn't cause an error in LibHaru
             context.encoding = .utf8
@@ -1250,13 +1251,15 @@ class DrawingContextTests: XCTestCase {
 
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        let text =
-            "Lorem ipsum\ndolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-            " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
-            " exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure" +
-            " dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-            " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit" +
-            " anim id est laborum."
+        let text = """
+        Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud \
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure \
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit \
+        anim id est laborum.
+        """
 
         // When
         var result1: (isSufficientSpace: Bool, charactersPrinted: Int)!

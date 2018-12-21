@@ -33,9 +33,12 @@ class AffineTransformTests: XCTestCase {
         let transform = AffineTransform(a:  200,    b:  1,
                                         c:  12.333, d:  -3,
                                         tx: 0,      ty: 1223)
-        let expectedRepresentation = "\n/ 200.0  1.0    0 \\\n" +
-                                       "| 12.333 -3.0   0 |\n" +
-                                      "\\ 0.0    1223.0 1 /\n"
+        let expectedRepresentation = """
+        / 200.0  1.0    0 \\
+        | 12.333 -3.0   0 |
+        \\ 0.0    1223.0 1 /
+        
+        """
         
         // When
         let returnedRepresentation = transform.description

@@ -11,22 +11,25 @@ import XCTest
 
 extension XCTestCase {
 
-    var currentTestCaseName: String {
+    var testCaseName: String {
         return String(describing: type(of: self))
     }
 
-    var currentTestName: String {
-        
+    var testMethodName: String {
         // Since on Apple platforms `self.name` is optional
         // and of format `-[XCTestCaseSubclassName testMethodName]`,
         // and on other platforms it is non-optional
         // and of format `XCTestCaseSubclassName.testMethodName`
         // we have this workaround in order to unify the names
-        
+
         return name
-            .components(separatedBy: currentTestCaseName)
+            .components(separatedBy: testCaseName)
             .last!
             .trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+    }
+
+    var currentTestName: String {
+        return "\(testCaseName).\(testMethodName)"
     }
     
     func saveReferenceFile(_ data: Data, ofType type: String) {
@@ -43,8 +46,10 @@ extension XCTestCase {
             return
         }
         
-        XCTFail("Test ran in record mode. Reference image is now saved. " +
-            "Disable record mode to perform an actual resource comparison!")
+        XCTFail("""
+        Test ran in record mode. Reference image is now saved. \
+        Disable record mode to perform an actual resource comparison!
+        """)
     }
     
     func getURLForTestingResource(forFile file: String, ofType type: String?) -> URL? {

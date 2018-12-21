@@ -306,9 +306,12 @@ extension AffineTransform: CustomDebugStringConvertible {
             return stringRepresentation + String(repeating: " ", count: numberOfSpacesToAppend)
         }
         
-        return "\n/ \(numberToAlignedString(a)) \(numberToAlignedString(b)) 0 \\\n" +
-               "| \(numberToAlignedString(c)) \(numberToAlignedString(d)) 0 |\n" +
-               "\\ \(numberToAlignedString(tx)) \(numberToAlignedString(ty)) 1 /\n"
+        return """
+        / \(numberToAlignedString(a)) \(numberToAlignedString(b)) 0 \\
+        | \(numberToAlignedString(c)) \(numberToAlignedString(d)) 0 |
+        \\ \(numberToAlignedString(tx)) \(numberToAlignedString(ty)) 1 /
+
+        """
     }
 }
 

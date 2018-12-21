@@ -332,7 +332,7 @@ public struct PDFError: Error, Hashable {
     
     public static let invalidICCComponentNumber = PDFError(code: HPDF_INVALID_ICC_COMPONENT_NUM)
     
-    private static var _descriptions = [
+    private static let _descriptions = [
         HPDF_ARRAY_COUNT_ERR : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_NOT_FOUND : "Internal error. Data consistency was lost.",
         HPDF_ARRAY_ITEM_UNEXPECTED_TYPE : "Internal error. Data consistency was lost.",
@@ -342,29 +342,41 @@ public struct PDFError: Error, Hashable {
         HPDF_DICT_ITEM_NOT_FOUND : "Internal error. Data consistency was lost.",
         HPDF_DICT_ITEM_UNEXPECTED_TYPE : "Internal error. Data consistency was lost.",
         HPDF_DICT_STREAM_LENGTH_NOT_FOUND : "Internal error. Data consistency was lost.",
-        HPDF_DOC_ENCRYPTDICT_NOT_FOUND : "HPDF_SetEncryptMode() or HPDF_SetPermission() called" +
-        " before password set.",
+        HPDF_DOC_ENCRYPTDICT_NOT_FOUND : """
+        HPDF_SetEncryptMode() or HPDF_SetPermission() called \
+        before password set.
+        """,
         HPDF_DOC_INVALID_OBJECT : "Internal error. Data consistency was lost.",
         HPDF_DUPLICATE_REGISTRATION : "Tried to re-register a registered font.",
-        HPDF_EXCEED_JWW_CODE_NUM_LIMIT : "Cannot register a character to the Japanese word wrap" +
-        " characters list.",
-        HPDF_ENCRYPT_INVALID_PASSWORD : "1. Tried to set the owner password to NULL. " +
-        "2. Owner and user password are the same.",
+        HPDF_EXCEED_JWW_CODE_NUM_LIMIT : """
+        Cannot register a character to the Japanese word wrap \
+        characters list.
+        """,
+        HPDF_ENCRYPT_INVALID_PASSWORD : """
+        1. Tried to set the owner password to NULL. \
+        2. Owner and user password are the same.
+        """,
         HPDF_ERR_UNKNOWN_CLASS : "Internal error. Data consistency was lost.",
         HPDF_FAILD_TO_ALLOC_MEM : "Memory allocation failed.",
         HPDF_FILE_IO_ERROR : "File processing failed.",
         HPDF_FILE_OPEN_ERROR : "Cannot open a file.",
         HPDF_FONT_EXISTS : "Tried to load a font that has been registered.",
-        HPDF_FONT_INVALID_WIDTHS_TABLE : "1. Font-file format is invalid. " +
-        "2. Internal error. Data consistency was lost.",
+        HPDF_FONT_INVALID_WIDTHS_TABLE : """
+        1. Font-file format is invalid. \
+        2. Internal error. Data consistency was lost.
+        """,
         HPDF_INVALID_AFM_HEADER : "Cannot recognize header of afm file.",
         HPDF_INVALID_ANNOTATION : "Specified annotation handle is invalid.",
-        HPDF_INVALID_BIT_PER_COMPONENT : "Bit-per-component of an image which was set as " +
-        "mask-image is invalid.",
+        HPDF_INVALID_BIT_PER_COMPONENT : """
+        Bit-per-component of an image which was set as \
+        mask-image is invalid.
+        """,
         HPDF_INVALID_CHAR_MATRICS_DATA : "Cannot recognize char-matrics-data of afm file.",
-        HPDF_INVALID_COLOR_SPACE : "1. Invalid color_space parameter of HPDF_LoadRawImage. " +
-            "2. Color-space of a image which was set as mask-image is invalid. " +
-        "3. Invoked function invalid in present color-space.",
+        HPDF_INVALID_COLOR_SPACE : """
+        1. Invalid color_space parameter of HPDF_LoadRawImage. \
+        2. Color-space of a image which was set as mask-image is invalid. \
+        3. Invoked function invalid in present color-space.
+        """,
         HPDF_INVALID_COMPRESSION_MODE : "Invalid value set when invoking HPDF_SetCommpressionMode().",
         HPDF_INVALID_DATE_TIME : "An invalid date-time value was set.",
         HPDF_INVALID_DESTINATION : "An invalid destination handle was set.",
@@ -382,8 +394,10 @@ public struct PDFError: Error, Hashable {
         HPDF_INVALID_N_DATA : "Cannot read a postscript-name from an afm file.",
         HPDF_INVALID_OBJECT : "1. An invalid object is set. 2. Internal error. Data consistency was lost.",
         HPDF_INVALID_OBJ_ID : "Internal error. Data consistency was lost.",
-        HPDF_INVALID_OPERATION : "Invoked HPDF_Image_SetColorMask() against the image-object which was" +
-        " set a mask-image.",
+        HPDF_INVALID_OPERATION : """
+        Invoked HPDF_Image_SetColorMask() against the image-object which was \
+        set a mask-image.
+        """,
         HPDF_INVALID_OUTLINE : "An invalid outline-handle was specified.",
         HPDF_INVALID_PAGE : "An invalid page-handle was specified.",
         HPDF_INVALID_PAGES : "An invalid pages-handle was specified. (internal error)",
@@ -421,8 +435,10 @@ public struct PDFError: Error, Hashable {
         HPDF_TTF_INVALID_FOMAT : "Unsupported ttf format.",
         HPDF_TTF_MISSING_TABLE : "Unsupported ttf format. (cannot find a necessary table)",
         HPDF_UNSUPPORTED_FONT_TYPE : "Internal error. Data consistency was lost.",
-        HPDF_UNSUPPORTED_FUNC : "1. Library not configured to use PNGLIB. " +
-        "2. Internal error. Data consistency was lost.",
+        HPDF_UNSUPPORTED_FUNC : """
+        1. Library not configured to use PNGLIB. \
+        2. Internal error. Data consistency was lost.
+        """,
         HPDF_UNSUPPORTED_JPEG_FORMAT : "Unsupported JPEG format.",
         HPDF_UNSUPPORTED_TYPE1_FONT : "Failed to parse .PFB file.",
         HPDF_XREF_COUNT_ERR : "Internal error. Data consistency was lost.",

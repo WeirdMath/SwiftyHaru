@@ -6,25 +6,26 @@
 //
 //
 
-extension Sequence {
-    
-    /// Concatenates the sequences.
-    ///
-    /// - parameter lhs: The base sequence.
-    /// - parameter rhs: The sequence to concatenate to the base sequence.
-    ///
-    /// - returns: A new sequence constructed by concatenating the two sequences.
-    internal static func + (lhs: Self, rhs: Self) -> AnySequence<Iterator.Element> {
-        
+/// Concatenates the sequences.
+///
+/// - parameter lhs: The base sequence.
+/// - parameter rhs: The sequence to concatenate to the base sequence.
+///
+/// - returns: A new sequence constructed by concatenating the two sequences.
+internal func +<LHS: Sequence, RHS: Sequence>(lhs: LHS, rhs: RHS) -> AnySequence<LHS.Element>
+    where LHS.Element == RHS.Element {
+
         var lhsIterator = lhs.makeIterator()
         var rhsIterator = rhs.makeIterator()
-        
+
         return AnySequence {
             return AnyIterator {
                 lhsIterator.next() ?? rhsIterator.next()
             }
         }
-    }
+}
+
+extension Sequence {
     
     /// Appends the new element to the beginning of the sequence.
     ///
@@ -32,13 +33,8 @@ extension Sequence {
     /// - parameter rhs: The base sequence.
     ///
     /// - returns: A new sequence constructed by appending the new element to the beginning of the base sequence.
-    internal static func + (lhs: Iterator.Element, rhs: Self) -> AnySequence<Iterator.Element> {
-        
-        let oneElementSequence = AnySequence([lhs])
-        
-        let baseSequence = AnySequence<Iterator.Element> { AnyIterator(rhs.makeIterator()) }
-        
-        return oneElementSequence + baseSequence
+    internal static func + (lhs: Element, rhs: Self) -> AnySequence<Element> {
+        return CollectionOfOne(lhs) + rhs
     }
     
     /// Appends the new element to the end of the sequence.
@@ -47,12 +43,7 @@ extension Sequence {
     /// - parameter rhs: The element to append.
     ///
     /// - returns: A new sequence constructed by appending the new element to the end of the base sequence.
-    internal static func + (lhs: Self, rhs: Iterator.Element) -> AnySequence<Iterator.Element> {
-        
-        let oneElementSequence = AnySequence([rhs])
-        
-        let baseSequence = AnySequence<Iterator.Element> { AnyIterator(lhs.makeIterator()) }
-        
-        return baseSequence + oneElementSequence
+    internal static func + (lhs: Self, rhs: Element) -> AnySequence<Element> {
+        return lhs + CollectionOfOne(rhs)
     }
 }

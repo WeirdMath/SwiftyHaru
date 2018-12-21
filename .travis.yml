@@ -3,15 +3,15 @@ language: generic
 matrix:
   include:
     - os: osx
-      osx_image: xcode8.3
-      env: SWIFT_VERSION="3.1" RUN_TESTS="NO" POD_LINT="YES"
+      osx_image: xcode10.1
+      env: SWIFT_VERSION="4.2" RUN_TESTS="NO" POD_LINT="YES"
     - os: osx
-      osx_image: xcode8.3
-      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
+      osx_image: xcode10.1
+      env: SWIFT_VERSION="4.2" RUN_TESTS="YES" POD_LINT="NO"
     - os: linux
       sudo: required
-      dist: trusty
-      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
+      dist: xenial
+      env: SWIFT_VERSION="4.2" RUN_TESTS="YES" POD_LINT="NO"
 
 script:
   - if [[ $POD_LINT == "YES" ]]; then

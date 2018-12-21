@@ -183,7 +183,7 @@ public final class PDFDocument {
         var sizeOfBuffer = sizeOfStream
         
         HPDF_ReadFromStream(_documentHandle, buffer, &sizeOfBuffer)
-        
+
         let data = Data(bytes: buffer, count: Int(sizeOfBuffer))
         
         buffer.deallocate()

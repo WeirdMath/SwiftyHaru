@@ -380,9 +380,11 @@ public final class DrawingContext {
         
         assert(path.currentPosition.x - HPDF_Page_GetCurrentPos(_page).x < 0.001 &&
                path.currentPosition.y - HPDF_Page_GetCurrentPos(_page).y < 0.001,
-               "The value of property `currentPosition` (\(path.currentPosition)) is not equal to " +
-               "the value returned from the function " +
-               "`HPDF_Page_GetCurrentPos` (\(HPDF_Page_GetCurrentPos(_page)))")
+               """
+               The value of property `currentPosition` (\(path.currentPosition)) is not equal to \
+               the value returned from the function \
+               `HPDF_Page_GetCurrentPos` (\(HPDF_Page_GetCurrentPos(_page)))
+               """)
         
         HPDF_Page_MoveTo(_page, 0, 0)
     }
@@ -492,9 +494,11 @@ public final class DrawingContext {
                 
                 switch _document._error {
                 case PDFError.invalidFontName:
-                    preconditionFailure("Font \(newValue) must be loaded in the document using " +
-                        "loadTrueTypeFont(from:embeddingGlyphData:) or " +
-                        "loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:) methods.")
+                    preconditionFailure("""
+                    Font \(newValue) must be loaded in the document using \
+                    loadTrueTypeFont(from:embeddingGlyphData:) or \
+                    loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:) methods.
+                    """)
                 default:
                     preconditionFailure(_document._error.description)
                 }
@@ -517,8 +521,8 @@ public final class DrawingContext {
         }
         set {
             
-            precondition(newValue > 0 && newValue < maximumFontSize, "Valid values for fontSize are " +
-                "between 0 and \(maximumFontSize).")
+            precondition(newValue > 0 && newValue < maximumFontSize,
+                         "Valid values for fontSize are between 0 and \(maximumFontSize).")
             
             let font = HPDF_GetFont(_documentHandle, self.font.name, encoding.name)
             

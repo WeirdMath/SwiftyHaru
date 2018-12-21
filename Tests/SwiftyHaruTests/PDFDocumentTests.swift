@@ -382,14 +382,14 @@ class PDFDocumentTests: XCTestCase {
     func testSetCreationDate() {
         
 //        recordMode = true
-        
+
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let date = Date(timeIntervalSince1970: 1_497_055_314)
         sut.addPage()
         
         // When
-        sut.metadata.timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        sut.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
         sut.metadata.creationDate = date
         let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
         
@@ -414,7 +414,7 @@ class PDFDocumentTests: XCTestCase {
         sut.addPage()
         
         // When
-        sut.metadata.timeZone = TimeZone(identifier: "America/Los_Angeles")!
+        sut.metadata.timeZone = TimeZone(secondsFromGMT: -25200)!
         sut.metadata.modificationDate = date
         let returnedDocumentDataWithLosAngelesTimeZone = sut.getData()
         

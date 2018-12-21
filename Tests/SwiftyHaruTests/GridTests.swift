@@ -315,8 +315,8 @@ class GridTests: XCTestCase {
         
         // Given
         let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        let sequence1 = sequence(first: 0.1, next: { $0 + 0.1 }).lazy.map(String.init)
-        let sequence2 = sequence(first: 0.1, next: { $0 + 0.1 }).lazy.map(String.init)
+        let sequence1 = sequence(first: 0.1, next: { $0 + 0.1 }).lazy.map { String(format: "%.1f", $0) }
+        let sequence2 = sequence(first: 0.1, next: { $0 + 0.1 }).lazy.map { String(format: "%.1f", $0) }
         let parametersNonReversed = Grid.LabelParameters(sequence: "" + sequence1,
                                                          font: .timesBold,
                                                          fontSize: 5,
