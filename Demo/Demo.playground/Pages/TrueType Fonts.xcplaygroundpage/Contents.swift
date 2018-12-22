@@ -33,8 +33,8 @@
 /*:
  Let's load our cool font.
  */
-    let detailFont = try! document
-        .loadTrueTypeFont(from: try! Data(contentsOf: #fileLiteral(resourceName: "Megrim.ttf")),
+    let detailFont = try document
+        .loadTrueTypeFont(from: Data(contentsOf: #fileLiteral(resourceName: "Megrim.ttf")),
                           embeddingGlyphData: embedding)
 /*:
  Draw the title:
