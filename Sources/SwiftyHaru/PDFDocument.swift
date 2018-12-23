@@ -255,9 +255,9 @@ public final class PDFDocument {
         
         let name = data.withUnsafeBytes { (pointer: UnsafePointer<UInt8>) -> String? in
             let cString = HPDF_LoadTTFontFromMemory(self._documentHandle,
-                                                   pointer,
-                                                   HPDF_UINT(data.count),
-                                                   embedding)
+                                                    pointer,
+                                                    HPDF_UINT(data.count),
+                                                    embedding)
             if let cString = cString {
                 return String(cString: cString)
             } else {

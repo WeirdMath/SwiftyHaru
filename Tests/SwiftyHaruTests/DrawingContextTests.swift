@@ -1127,11 +1127,11 @@ final class DrawingContextTests: TestCase {
         assertPDFSnapshot()
     }
     
-    func testShowUnicodeText() {
+    func testShowUnicodeText() throws {
 
         // Given
         let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
-        let loadedFont = try! document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
+        let loadedFont = try document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
         
         // When
         page.draw { context in
