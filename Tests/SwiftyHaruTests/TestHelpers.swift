@@ -25,7 +25,17 @@ extension Diffing where Value == Data {
 
     static let byteCount = Diffing(toData: { $0 }, fromData: { $0 }) { old, new in
         guard old.count != new.count else { return nil }
-        return ("Expected \(new) to match \(old)", [XCTAttachment(data: old), XCTAttachment(data: new)])
+
+        let attachments: [XCTAttachment]
+
+        // FIXME: Remove this when https://github.com/pointfreeco/swift-snapshot-testing/pull/159 is merged
+        #if !os(Linux)
+        attachments = [XCTAttachment(data: old), XCTAttachment(data: new)]
+        #else
+        attachments = []
+        #endif
+
+        return ("Expected \(new) to match \(old)", attachments)
     }
 }
 
