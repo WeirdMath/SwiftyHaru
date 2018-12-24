@@ -1,5 +1,12 @@
 # Change Log
 
+## Unreleased
+
+**Implemented features:**
+
+- Setting text rendering mode
+- All the enums now conform to `CaseIterable`
+
 ## [0.3.0](https://github.com/WeirdMath/SwiftyHaru/tree/0.3.0) (2018-12-24)
 
 Please note that this version requires Swift 4.2.

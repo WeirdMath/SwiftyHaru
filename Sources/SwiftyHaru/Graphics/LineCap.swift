@@ -15,7 +15,7 @@ import typealias CLibHaru.HPDF_LineCap
 /// - butt:             Line is squared off at path endpoint.
 /// - round:            End of line becomes a semicircle whose center is at path endpoint.
 /// - projectingSquare: Line continues beyond endpoint, goes on half the endpoint stroke width.
-public enum LineCap: UInt32 {
+public enum LineCap: UInt32, CaseIterable {
 
     /// Line is squared off at path endpoint.
     ///

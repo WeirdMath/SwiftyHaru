@@ -538,7 +538,7 @@ extension Path {
     
     /// Rules for determining which regions are interior to a path, used by the `DrawingContext.clip(to:rule:_:)`
     /// and `DrawingContext.fill(_:rule:stroke:)` methods.
-    public enum FillRule {
+    public enum FillRule: CaseIterable {
         
         /// A rule that considers a region to be interior to a path
         /// based on the number of times it is enclosed by path elements.

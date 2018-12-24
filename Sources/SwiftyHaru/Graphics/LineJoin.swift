@@ -15,7 +15,7 @@ import typealias CLibHaru.HPDF_LineJoin
 /// - miter: A join with a sharp (angled) corner.
 /// - round: A join with a rounded end.
 /// - bevel: A join with a squared-off end.
-public enum LineJoin: UInt32 {
+public enum LineJoin: UInt32, CaseIterable {
     
     /// A join with a sharp (angled) corner.
     ///

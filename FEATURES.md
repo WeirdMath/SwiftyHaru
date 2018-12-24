@@ -124,7 +124,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetWordSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetHorizontalScalling()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTextLeading()` | **Implemented** | Complete | `DrawingContext.textLeading` |
-| `HPDF_Page_GetTextRenderingMode()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetTextRenderingMode()` | **Implemented** | Complete | `DrawingContext.textRenderingMode` |
 | `HPDF_Page_GetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetRGBFill()` | **Implemented** | Complete | `DrawingContext.fillColor` |
 | `HPDF_Page_GetRGBStroke()` | **Implemented** | Complete | `DrawingContext.strokeColor` |
@@ -191,7 +191,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetRGBStroke()` | **Implemented** | Complete | `DrawingContext.strokeColor` |
 | `HPDF_Page_SetTextLeading()` | **Implemented** | Complete | `DrawingContext.textLeading`|
 | `HPDF_Page_SetTextMatrix()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetTextRenderingMode()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetTextRenderingMode()` | **Implemented** | Complete | `DrawingContext.textRenderingMode` |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
 | `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
 | `HPDF_Page_ShowText()` | **N/A** | N/A | N/A |

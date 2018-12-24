@@ -13,7 +13,7 @@ import CLibHaru
 extension PDFPage {
     
     /// A predefined size for a page.
-    public enum Size: UInt32 {
+    public enum Size: UInt32, CaseIterable {
         
         /// 8.5 x 11 inches
         case letter

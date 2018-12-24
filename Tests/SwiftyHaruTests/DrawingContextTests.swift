@@ -48,6 +48,7 @@ final class DrawingContextTests: TestCase {
         ("testFontXHeight", testFontXHeight),
         ("testFontCapHeight", testFontCapHeight),
         ("testTextLeading", testTextLeading),
+        ("testTextRenderingMode", testTextRenderingMode),
         // Text showing
         ("testShowOnelineText", testShowOnelineText),
         ("testShowMultilineText", testShowMultilineText),
@@ -76,6 +77,26 @@ final class DrawingContextTests: TestCase {
         
         try grid.draw(in: context, position: .zero + gridOrigin)
         drawPoint(gridCenter, in: context)
+    }
+
+    private func drawStripePattern(in context: DrawingContext, rect: Rectangle) {
+        let savedLineWidth = context.lineWidth
+        let savedStrokeColor = context.strokeColor
+        defer {
+            context.lineWidth = savedLineWidth
+            context.strokeColor = savedStrokeColor
+        }
+
+        context.lineWidth = 1
+        context.strokeColor = #colorLiteral(red: 0.2196078449, green: 0.007843137719, blue: 0.8549019694, alpha: 1)
+
+        for dy in stride(from: 0 as Float, to: rect.maxY, by: 3) {
+            context.stroke(
+                Path()
+                    .moving(toX: rect.x, y: rect.y + dy)
+                    .appendingLine(toX: rect.maxX, y: rect.y + dy)
+            )
+        }
     }
     
     // MARK: - Graphics state
@@ -938,6 +959,48 @@ final class DrawingContextTests: TestCase {
         // Then
         XCTAssertEqual(expectedInitialTextLeading, returnedInitialTextLeading)
         XCTAssertEqual(expectedTextLeading, returnedTextLeading)
+    }
+
+    func testTextRenderingMode() throws {
+
+        // Given
+        let expectedInitialMode = TextRenderingMode.fill
+
+        // When
+        var returnedInitialMode: TextRenderingMode?
+
+        try document.addPage { context in
+
+            returnedInitialMode = context.textRenderingMode
+
+            context.fillColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            context.fontSize = 24
+
+            let stride = sequence(first: 100, next: { $0 + 2 * context.fontSize })
+            for (mode, offset) in zip(TextRenderingMode.allCases, stride) {
+
+                try context.withNewGState {
+                    context.textRenderingMode = mode
+                    let text = String(describing: mode)
+                    try context.show(text: text, atX: 100, y: offset)
+
+                    switch mode {
+                    case .fillClipping, .strokeClipping, .fillStrokeClipping, .clipping:
+                        drawStripePattern(in: context, rect: Rectangle(x: 100,
+                                                                       y: offset,
+                                                                       width: context.textWidth(for: text),
+                                                                       height: context.fontCapHeight))
+                    default:
+                        break
+                    }
+                }
+            }
+        }
+
+        // Then
+        XCTAssertEqual(expectedInitialMode, returnedInitialMode)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     // MARK: - Text Showing

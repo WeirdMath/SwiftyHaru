@@ -13,7 +13,7 @@ import CLibHaru
 public extension PDFDocument {
     
     /// Determines a page labeling style of the document.
-    public enum PageNumberStyle: UInt32 {
+    public enum PageNumberStyle: UInt32, CaseIterable {
         
         /// Arabic numerals (1 2 3 4).
         case decimal = 0

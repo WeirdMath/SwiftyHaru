@@ -680,6 +680,16 @@ public final class DrawingContext {
             HPDF_Page_SetTextLeading(_page, newValue)
         }
     }
+
+    /// The text rendering mode. The initial value of text rendering mode is `TextRenderingMode.fill`.
+    public var textRenderingMode: TextRenderingMode {
+        get {
+            return TextRenderingMode(HPDF_Page_GetTextRenderingMode(_page))
+        }
+        set {
+            HPDF_Page_SetTextRenderingMode(_page, HPDF_TextRenderingMode(newValue.rawValue))
+        }
+    }
     
     // MARK: - Text showing
     

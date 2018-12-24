@@ -11,7 +11,7 @@ import CLibHaru
 #endif
 
 /// The alignment of text to use in the `DrawingContext.show(text:in:alignment:)` method.
-public enum TextAlignment: UInt32 {
+public enum TextAlignment: UInt32, CaseIterable {
 
     /// The text is aligned to left.
     case left
