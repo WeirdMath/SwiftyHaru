@@ -141,6 +141,20 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/Geometry.swift",
+      "line": null,
+      "symbol": "Vector",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/Geometry.swift",
+      "line": 150,
+      "symbol": "Vector",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 15,
       "symbol": "PDFColorSpace.deviceGray",

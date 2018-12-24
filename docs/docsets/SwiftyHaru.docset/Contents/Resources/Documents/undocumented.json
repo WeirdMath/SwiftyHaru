@@ -2,14 +2,7 @@
   "warnings": [
     {
       "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/DrawingContext.swift",
-      "line": 24,
-      "symbol": "DrawingContext.page",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/DrawingContext.swift",
-      "line": 522,
+      "line": 524,
       "symbol": "DrawingContext.defaultFontSize",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
