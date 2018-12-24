@@ -26,17 +26,17 @@
     let topLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 50),
                              frequency: 5,
-                             offset: Vector(x: 0, y: -6))
+                             offset: Vector(dx: 0, dy: -6))
 
     let bottomLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 50),
                              frequency: 5,
-                             offset: Vector(x: 0, y: 6))
+                             offset: Vector(dx: 0, dy: 6))
 
     let leftLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 10),
                              frequency: 1,
-                             offset: Vector(x: 6, y: 0))
+                             offset: Vector(dx: 6, dy: 0))
 
     let labels = Grid.Labels(top: topLabelParameters,
                              bottom: bottomLabelParameters,

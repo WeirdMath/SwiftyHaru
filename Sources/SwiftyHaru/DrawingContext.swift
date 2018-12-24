@@ -688,8 +688,8 @@ public final class DrawingContext {
         let currentTextPosition = Point(HPDF_Page_GetCurrentTextPos(_page))
         let offsetFromCurrentToSpecifiedPosition = point - currentTextPosition
         HPDF_Page_MoveTextPos(_page,
-                              offsetFromCurrentToSpecifiedPosition.x,
-                              offsetFromCurrentToSpecifiedPosition.y)
+                              offsetFromCurrentToSpecifiedPosition.dx,
+                              offsetFromCurrentToSpecifiedPosition.dy)
     }
 
     private func _setFontIfNeeded() {

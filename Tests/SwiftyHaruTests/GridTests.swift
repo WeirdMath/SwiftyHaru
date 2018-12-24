@@ -208,7 +208,7 @@ final class GridTests: TestCase {
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
                                                          frequency: 2,
-                                                         offset: Vector(x: 2, y: -10),
+                                                         offset: Vector(dx: 2, dy: -10),
                                                          reversed: false)
         var parametersReversed = parametersNonReversed
         parametersReversed.reversed = true
@@ -238,7 +238,7 @@ final class GridTests: TestCase {
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
                                                          frequency: 2,
-                                                         offset: Vector(x: -2, y: -7),
+                                                         offset: Vector(dx: -2, dy: -7),
                                                          reversed: false)
         var parametersReversed = parametersNonReversed
         parametersReversed.reversed = true
@@ -270,7 +270,7 @@ final class GridTests: TestCase {
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
                                                          frequency: 1,
-                                                         offset: Vector(x: 5, y: 0),
+                                                         offset: Vector(dx: 5, dy: 0),
                                                          reversed: false)
         var parametersReversed = parametersNonReversed
         parametersReversed.sequence = "" + sequence2
@@ -301,7 +301,7 @@ final class GridTests: TestCase {
                                                          fontSize: 5,
                                                          fontColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
                                                          frequency: 2,
-                                                         offset: Vector(x: 5, y: 0),
+                                                         offset: Vector(dx: 5, dy: 0),
                                                          reversed: false)
         var parametersReversed = parametersNonReversed
         parametersReversed.reversed = true

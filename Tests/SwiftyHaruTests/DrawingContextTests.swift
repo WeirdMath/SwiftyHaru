@@ -74,7 +74,7 @@ final class DrawingContextTests: TestCase {
         let gridCenter = Point(x: context.page.width / 2, y: context.page.height / 2)
         let gridOrigin = gridCenter - Point(x: context.page.width / 4, y: context.page.height / 4)
         
-        try grid.draw(in: context, position: gridOrigin)
+        try grid.draw(in: context, position: .zero + gridOrigin)
         drawPoint(gridCenter, in: context)
     }
     
@@ -561,25 +561,25 @@ final class DrawingContextTests: TestCase {
         
         let path = Path()
             .moving(to: point)
-            .appendingLine(to: point + Vector(x: 37.5, y: -25))
-            .appendingCurve(controlPoint1: point + Vector(x: 75, y: 0),
-                            controlPoint2: point + Vector(x: 75, y: 137.5),
-                            endPoint: point + Vector(x: 50, y: 125))
-            .appendingCurve(controlPoint1: point + Vector(x: 25, y: 112.5),
-                            controlPoint2: point + Vector(x: 12.5, y: 12.5),
-                            endPoint: point + Vector(x: 62.5, y: 12.5))
-            .appendingCurve(controlPoint1: point + Vector(x: 87.5, y: 12.5),
-                            controlPoint2: point + Vector(x: 100, y: 25),
-                            endPoint: point + Vector(x: 100, y: 0))
-            .appendingCurve(controlPoint1: point + Vector(x: 100, y: -25),
-                            controlPoint2: point + Vector(x: 50, y: -25),
-                            endPoint: point + Vector(x: 25, y: 0))
-            .appendingCurve(controlPoint1: point + Vector(x: 0, y: 25),
-                            controlPoint2: point + Vector(x: -25, y: 75),
-                            endPoint: point + Vector(x: 37.5, y: 87.5))
-            .appendingCurve(controlPoint1: point + Vector(x: 100, y: 100),
-                            controlPoint2: point + Vector(x: 100, y: -12.5),
-                            endPoint: point + Vector(x: 25, y: -50))
+            .appendingLine(to: point + Vector(dx: 37.5, dy: -25))
+            .appendingCurve(controlPoint1: point + Vector(dx: 75, dy: 0),
+                            controlPoint2: point + Vector(dx: 75, dy: 137.5),
+                            endPoint: point + Vector(dx: 50, dy: 125))
+            .appendingCurve(controlPoint1: point + Vector(dx: 25, dy: 112.5),
+                            controlPoint2: point + Vector(dx: 12.5, dy: 12.5),
+                            endPoint: point + Vector(dx: 62.5, dy: 12.5))
+            .appendingCurve(controlPoint1: point + Vector(dx: 87.5, dy: 12.5),
+                            controlPoint2: point + Vector(dx: 100, dy: 25),
+                            endPoint: point + Vector(dx: 100, dy: 0))
+            .appendingCurve(controlPoint1: point + Vector(dx: 100, dy: -25),
+                            controlPoint2: point + Vector(dx: 50, dy: -25),
+                            endPoint: point + Vector(dx: 25, dy: 0))
+            .appendingCurve(controlPoint1: point + Vector(dx: 0, dy: 25),
+                            controlPoint2: point + Vector(dx: -25, dy: 75),
+                            endPoint: point + Vector(dx: 37.5, dy: 87.5))
+            .appendingCurve(controlPoint1: point + Vector(dx: 100, dy: 100),
+                            controlPoint2: point + Vector(dx: 100, dy: -12.5),
+                            endPoint: point + Vector(dx: 25, dy: -50))
             .closingSubpath()
         
         return path

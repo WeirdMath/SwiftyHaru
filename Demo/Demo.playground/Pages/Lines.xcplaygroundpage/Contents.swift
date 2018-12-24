@@ -241,9 +241,9 @@
         )
 
         // Curve example (appendingCurve(controlPoint1:endPoint))
-        point  = point  + Vector(x: 0, y: -150)
-        point1 = point1 + Vector(x: 0, y: -150)
-        point2 = point2 + Vector(x: 0, y: -150)
+        point  = point  + Vector(dx: 0, dy: -150)
+        point1 = point1 + Vector(dx: 0, dy: -150)
+        point2 = point2 + Vector(dx: 0, dy: -150)
 
         try context.show(text: "appendCurve(controlPoint1:endPoint)",
                          atX: 300, y: 400)
@@ -270,9 +270,9 @@
         )
 
         // Curve example (appendCurve(controlPoint1:controlPoint2:endPoint))
-        point = point + Vector(x: 0, y: -150)
-        point1 = point1 + Vector(x: 0, y: -160)
-        point2 = point2 + Vector(x: 10, y: -130)
+        point = point + Vector(dx: 0, dy: -150)
+        point1 = point1 + Vector(dx: 0, dy: -160)
+        point2 = point2 + Vector(dx: 10, dy: -130)
 
         try context.show(text: "appendCurve(controlPoint1:controlPoint2:endPoint)",
                          atX: 300, y: 250)

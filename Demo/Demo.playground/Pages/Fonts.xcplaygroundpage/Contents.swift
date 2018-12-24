@@ -68,12 +68,12 @@
             context.fontSize = 9
             context.font = .helvetica
             try context.show(text: font.name, atPosition: textPosition)
-            textPosition = textPosition + Vector(x: 0, y: -18)
+            textPosition = textPosition + Vector(dx: 0, dy: -18)
 
             context.fontSize = 20
             context.font = font
             try context.show(text: sampleText, atPosition: textPosition)
-            textPosition = textPosition + Vector(x: 0, y: -20)
+            textPosition = textPosition + Vector(dx: 0, dy: -20)
         }
     }
 /*:

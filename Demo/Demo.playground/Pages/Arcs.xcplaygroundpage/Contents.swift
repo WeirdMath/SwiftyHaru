@@ -16,12 +16,12 @@
         let verticalLabels = stride(from: 10, through: 210, by: 10).map(String.init)
 
         let labels = Grid.Labels(top: Grid.LabelParameters(sequence: "" + horizontalLabels,
-                                                           offset: Vector(x: 0, y: -6)),
+                                                           offset: Vector(dx: 0, dy: -6)),
                                  bottom: Grid.LabelParameters(sequence: "" + horizontalLabels,
-                                                              offset: Vector(x: 0, y: 6)),
+                                                              offset: Vector(dx: 0, dy: 6)),
                                  left: Grid.LabelParameters(sequence: "" + verticalLabels,
                                                             frequency: 1,
-                                                            offset: Vector(x: 6, y: 0)))
+                                                            offset: Vector(dx: 6, dy: 0)))
 
         let serifs = Grid.Serifs(top: .default,
                                  bottom: .default,
