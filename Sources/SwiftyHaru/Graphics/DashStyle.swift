@@ -39,11 +39,11 @@ public struct DashStyle: Hashable {
         guard pattern.count <= 8,
             pattern.count == 1 || pattern.count % 2 == 0,
             phase >= 0 else { return nil }
-        
-        for i in pattern where i <= 0 || i > DashStyle.maxDashPattern {
+
+        guard !pattern.contains(where: { $0 <= 0 || $0 > DashStyle.maxDashPattern }) else {
             return nil
         }
-        
+
         self.phase = phase
         self.pattern = pattern
     }

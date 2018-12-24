@@ -59,17 +59,10 @@ public final class PDFDocument {
     
     // MARK: - Creating pages
 
-    private func _drawOnPage(_ page: PDFPage, _ draw: ((DrawingContext) throws -> Void)?) rethrows -> PDFPage {
+    private func _drawOnPage(_ page: PDFPage, _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
         let context = DrawingContext(page: page, document: self)
         defer { context._isInvalidated = true }
-        try draw?(context)
-        return page
-    }
-
-    private func _addPage() -> PDFPage {
-        let haruPage = HPDF_AddPage(_documentHandle)!
-        let page = PDFPage(document: self, haruObject: haruPage)
-        pages.append(page)
+        try draw(context)
         return page
     }
 
@@ -117,13 +110,38 @@ public final class PDFDocument {
 
     /// Creates a new page and adds it after the last page of the document.
     ///
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func addPage() -> PDFPage {
+        let haruPage = HPDF_AddPage(_documentHandle)!
+        let page = PDFPage(document: self, haruObject: haruPage)
+        pages.append(page)
+        return page
+    }
+
+    /// Creates a new page and adds it after the last page of the document.
+    ///
     /// - Parameter draw: The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
-    /// - Warning: The `PDFContext` object should not be stored and used outside of the lifetime
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
     ///            of the call to the closure.
     @discardableResult
-    public func addPage(_ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        return try _drawOnPage(_addPage(), draw)
+    public func addPage(_ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(addPage(), draw)
+    }
+
+    /// Creates a new page of the specified width and height and adds it after the last page of the document.
+    ///
+    /// - Parameters:
+    ///   - width: The width of the page.
+    ///   - height: The height of the page.
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func addPage(width: Float,  height: Float) -> PDFPage {
+        let page = addPage()
+        page.width = width
+        page.height = height
+        return page
     }
     
     /// Creates a new page of the specified width and height and adds it after the last page of the document.
@@ -133,14 +151,27 @@ public final class PDFDocument {
     ///   - height: The height of the page.
     ///   - draw:   The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
     @discardableResult
     public func addPage(width: Float,
                         height: Float,
-                        _ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        let page = _addPage()
-        page.width = width
-        page.height = height
-        return try _drawOnPage(page, draw)
+                        _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(addPage(width: width, height: height), draw)
+    }
+
+    /// Creates a new page of the specified size and direction and adds it after the last page of the document.
+    ///
+    /// - Parameters:
+    ///   - size:      A predefined page-size value.
+    ///   - direction: The direction of the page (portrait or landscape).
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func addPage(size: PDFPage.Size,
+                        direction: PDFPage.Direction) -> PDFPage {
+        let page = addPage()
+        page.set(size: size, direction: direction)
+        return page
     }
     
     /// Creates a new page of the specified size and direction and adds it after the last page of the document.
@@ -150,18 +181,24 @@ public final class PDFDocument {
     ///   - direction: The direction of the page (portrait or landscape).
     ///   - draw:      The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
     @discardableResult
     public func addPage(size: PDFPage.Size,
                         direction: PDFPage.Direction,
-                        _ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        let page = _addPage()
-        page.set(size: size, direction: direction)
-        return try _drawOnPage(page, draw)
+                        _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(addPage(size: size, direction: direction), draw)
     }
 
-    private func _insertPage(atIndex index: Int) -> PDFPage {
+    /// Creates a new page and inserts it just before the page with the specified index.
+    ///
+    /// - Parameter index: The index at which the new page will appear. `index` must be a valid index
+    ///                    of the array `pages` or equal to its `endIndex` property.
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func insertPage(atIndex index: Int) -> PDFPage {
         if index == pages.endIndex {
-            return _addPage()
+            return addPage()
         }
         let haruTargetPage = pages[index]._pageHandle
         let haruInsertedPage = HPDF_InsertPage(_documentHandle, haruTargetPage)!
@@ -177,9 +214,28 @@ public final class PDFDocument {
     ///            of the array `pages` or equal to its `endIndex` property.
     ///   - draw:  The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
     @discardableResult
-    public func insertPage(atIndex index: Int, _ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        return try _drawOnPage(_insertPage(atIndex: index), draw)
+    public func insertPage(atIndex index: Int, _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(insertPage(atIndex: index), draw)
+    }
+
+    /// Creates a new page of the specified width and height and inserts it just before the page
+    /// with the specified index.
+    ///
+    /// - Parameters:
+    ///   - width:  The width of the page.
+    ///   - height: The height of the page.
+    ///   - index:  The index at which the new page will appear. `index` must be a valid index
+    ///             of the array `pages` or equal to its `endIndex` property.
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func insertPage(width: Float, height: Float, atIndex index: Int) -> PDFPage {
+        let page = insertPage(atIndex: index)
+        page.width = width
+        page.height = height
+        return page
     }
     
     /// Creates a new page of the specified width and height and inserts it just before the page
@@ -192,15 +248,32 @@ public final class PDFDocument {
     ///             of the array `pages` or equal to its `endIndex` property.
     ///   - draw:   The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
     @discardableResult
     public func insertPage(width: Float,
                            height: Float,
                            atIndex index: Int,
-                           _ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        let page = _insertPage(atIndex: index)
-        page.width = width
-        page.height = height
-        return try _drawOnPage(page, draw)
+                           _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(insertPage(width: width, height: height, atIndex: index), draw)
+    }
+
+    /// Creates a new page of the specified size and direction and inserts it just before the page
+    /// with the specified index.
+    ///
+    /// - Parameters:
+    ///   - size:      A predefined page-size value.
+    ///   - direction: The direction of the page (portrait or landscape).
+    ///   - index:     The index at which the new page will appear. `index` must be a valid index
+    ///                of the array `pages` or equal to its `endIndex` property.
+    /// - Returns: A `PDFPage` object.
+    @discardableResult
+    public func insertPage(size: PDFPage.Size,
+                           direction: PDFPage.Direction,
+                           atIndex index: Int) -> PDFPage {
+        let page = insertPage(atIndex: index)
+        page.set(size: size, direction: direction)
+        return page
     }
     
     /// Creates a new page of the specified size and direction and inserts it just before the page
@@ -213,14 +286,14 @@ public final class PDFDocument {
     ///                of the array `pages` or equal to its `endIndex` property.
     ///   - draw:      The drawing operations to perform, or `nil` if no drawing should be performed.
     /// - Returns: A `PDFPage` object.
+    /// - Warning: The `DrawingContext` object should not be stored and used outside of the lifetime
+    ///            of the call to the closure.
     @discardableResult
     public func insertPage(size: PDFPage.Size,
                            direction: PDFPage.Direction,
                            atIndex index: Int,
-                           _ draw: ((DrawingContext) throws -> Void)? = nil) rethrows -> PDFPage {
-        let page = _insertPage(atIndex: index)
-        page.set(size: size, direction: direction)
-        return try _drawOnPage(page, draw)
+                           _ draw: (DrawingContext) throws -> Void) rethrows -> PDFPage {
+        return try _drawOnPage(insertPage(size: size, direction: direction, atIndex: index), draw)
     }
     
     // MARK: - Getting data
