@@ -147,6 +147,7 @@ extension Point {
     }
 }
 
+/// A structure that contains a two-dimensional vector.
 public struct Vector: Hashable {
 
     /// The vector whose components are both zero.
