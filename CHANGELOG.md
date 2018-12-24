@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+Please note that this version requires Swift 4.2.
+
 **Breaking changes:**
 
 - `DrawingContext.withNewGState(_:)` doesn't throw if its argument doesn't. Same for `DrawingContext.clip(to:rule:_:)`. If the graphics state stack depth exceeds `static DrawingContext.maxGraphicsStateDepth`, a precondition failure occures.

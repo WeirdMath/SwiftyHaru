@@ -14,7 +14,7 @@
     <a title="DrawingContext Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p><a href="../index.html">SwiftyHaru Docs</a> (91% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/LineCap.html">LineCap</a>
@@ -95,8 +95,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AffineTransform.html">AffineTransform</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Color.html">Color</a>
               </li>
@@ -154,10 +157,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+                <a href="../Typealiases.html#/s:10SwiftyHaru6Vectora">Vector</a>
               </li>
             </ul>
           </li>
@@ -169,13 +172,13 @@
             <h1>DrawingContext</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">DrawingContext</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">DrawingContext</span></code></pre>
 
                 </div>
               </div>
             <p>The <code>DrawingContext</code> class represents a PDF drawing destination.</p>
 
-<p>You cannot initialize the context directly. You need to call the <code><a href="../Classes/PDFPage.html#/s:FC10SwiftyHaru7PDFPage4drawFzFzCS_14DrawingContextT_T_">PDFPage.draw(_:)</a></code> method; an instance
+<p>You cannot initialize the context directly. You need to call the <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC7addPageyAA7PDFPageCyAA14DrawingContextCKXEKF">PDFDocument.addPage(_:)</a></code> method; an instance
 of <code>DrawingContext</code> will be passed to the provided closure. That instance is only valid during the lifetime
 of that closure.</p>
 
@@ -184,6 +187,168 @@ drawing operations on only one page.</p>
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4pageAA7PDFPageCvp"></a>
+                    <a name="//apple_ref/swift/Property/page" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4pageAA7PDFPageCvp">page</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The page this context is bound to.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">page</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4draw_8positionyAA8Drawable_p_AA5PointVtKF"></a>
+                    <a name="//apple_ref/swift/Method/draw(_:position:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4draw_8positionyAA8Drawable_p_AA5PointVtKF">draw(_:position:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Puts the <code>drawable</code> visualization onto the page at the specified position.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">drawable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Drawable.html">Drawable</a></span><span class="p">,</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>drawable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity to draw.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position to put the <code>drawable</code> at. The meaning of this property depends
+                  on the <code>drawable</code>&lsquo;s implementation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4draw_1x1yyAA8Drawable_p_S2ftKF"></a>
+                    <a name="//apple_ref/swift/Method/draw(_:x:y:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4draw_1x1yyAA8Drawable_p_S2ftKF">draw(_:x:y:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Puts the <code>drawable</code> visualization onto the page at the specified position.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">drawable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Drawable.html">Drawable</a></span><span class="p">,</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>drawable</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The entity to draw.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>x</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The x coordinate of the position to put the <code>drawable</code> at.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>y</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The y coordinate of the position.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <div class="task-name-container">
                 <a name="/Graphics%20state"></a>
@@ -196,9 +361,36 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext9lineWidthSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC16defaultLineWidthSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultLineWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC16defaultLineWidthSfvpZ">defaultLineWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default line width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultLineWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC9lineWidthSfvp"></a>
                     <a name="//apple_ref/swift/Property/lineWidth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext9lineWidthSf">lineWidth</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC9lineWidthSfvp">lineWidth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -206,14 +398,15 @@ drawing operations on only one page.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current line width for path painting of the page. Must be nonegative. Default value is 1.</p>
+                        <p>The current line width for path painting of the page. Must be nonegative.
+Default value is <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC16defaultLineWidthSfvpZ">DrawingContext.defaultLineWidth</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -223,9 +416,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext9dashStyleVS_9DashStyle"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC9dashStyleAA04DashF0Vvp"></a>
                     <a name="//apple_ref/swift/Property/dashStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext9dashStyleVS_9DashStyle">dashStyle</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC9dashStyleAA04DashF0Vvp">dashStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -233,14 +426,14 @@ drawing operations on only one page.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The dash pattern for lines in the page.</p>
+                        <p>The dash pattern for lines in the page. Default value is <code><a href="../Structs/DashStyle.html#/s:10SwiftyHaru9DashStyleV12straightLineACvpZ">DashStyle.straightLine</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dashStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/DashStyle.html">DashStyle</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dashStyle</span><span class="p">:</span> <span class="kt"><a href="../Structs/DashStyle.html">DashStyle</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -250,9 +443,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext7lineCapOS_7LineCap"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC7lineCapAA04LineF0Ovp"></a>
                     <a name="//apple_ref/swift/Property/lineCap" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext7lineCapOS_7LineCap">lineCap</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC7lineCapAA04LineF0Ovp">lineCap</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -260,14 +453,14 @@ drawing operations on only one page.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The shape to be used at the ends of lines. Default value is <code>LineCap.buttEnd</code>.</p>
+                        <p>The shape to be used at the ends of lines. Default value is <code><a href="../Enums/LineCap.html#/s:10SwiftyHaru7LineCapO4buttyA2CmF">LineCap.butt</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineCap</span><span class="p">:</span> <span class="kt"><a href="../Enums/LineCap.html">LineCap</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineCap</span><span class="p">:</span> <span class="kt"><a href="../Enums/LineCap.html">LineCap</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -277,9 +470,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext8lineJoinOS_8LineJoin"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC8lineJoinAA04LineF0Ovp"></a>
                     <a name="//apple_ref/swift/Property/lineJoin" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext8lineJoinOS_8LineJoin">lineJoin</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC8lineJoinAA04LineF0Ovp">lineJoin</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -287,14 +480,14 @@ drawing operations on only one page.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The line join style in the page. Default value is <code><a href="../Enums/LineJoin.html#/s:FO10SwiftyHaru8LineJoin5miterFMS0_S0_">LineJoin.miter</a></code>.</p>
+                        <p>The line join style in the page. Default value is <code><a href="../Enums/LineJoin.html#/s:10SwiftyHaru8LineJoinO5miteryA2CmF">LineJoin.miter</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineJoin</span><span class="p">:</span> <span class="kt"><a href="../Enums/LineJoin.html">LineJoin</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lineJoin</span><span class="p">:</span> <span class="kt"><a href="../Enums/LineJoin.html">LineJoin</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -304,9 +497,36 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext10miterLimitSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC17defaultMiterLimitSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultMiterLimit" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC17defaultMiterLimitSfvpZ">defaultMiterLimit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default miter limit for the joins of connected lines.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultMiterLimit</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC10miterLimitSfvp"></a>
                     <a name="//apple_ref/swift/Property/miterLimit" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext10miterLimitSf">miterLimit</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC10miterLimitSfvp">miterLimit</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -314,14 +534,15 @@ drawing operations on only one page.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The miter limit for the joins of connected lines. Minimum value is 1. Default value is 10.</p>
+                        <p>The miter limit for the joins of connected lines. Minimum value is 1.
+Default value is <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC17defaultMiterLimitSfvpZ">DrawingContext.defaultMiterLimit</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">miterLimit</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">miterLimit</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -331,9 +552,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp"></a>
                     <a name="//apple_ref/swift/Property/graphicsStateDepth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi">graphicsStateDepth</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp">graphicsStateDepth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -343,17 +564,17 @@ drawing operations on only one page.</p>
                       <div class="abstract">
                         <p>The number of the page&rsquo;s graphics state stack.</p>
 
-<p>This number is increased whenever you call <code><a href="../Classes/DrawingContext.html#/s:FC10SwiftyHaru14DrawingContext13withNewGStateFzFzT_T_T_">withNewGState(_:)</a></code> or
-<code><a href="../Classes/DrawingContext.html#/s:FC10SwiftyHaru14DrawingContext4clipFzT2toVS_4Path4ruleOS1_8FillRuleFzT_T__T_">clip(to:rule:_:)</a></code> and decreased as soon as such a function returns.</p>
+<p>This number is increased whenever you call <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> or
+<code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC4clip2to4rule_yAA4PathV_AH8FillRuleOyyKXEtKF">clip(to:rule:_:)</a></code> and decreased as soon as such a function returns.</p>
 
-<p>The maximum value of this property is <code><a href="../Classes/DrawingContext.html#/s:ZvC10SwiftyHaru14DrawingContext21maxGraphicsStateDepthSi">DrawingContext.maxGraphicsStateDepth</a></code>.</p>
+<p>The value of this property must not be greater than <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC21maxGraphicsStateDepthSivpZ">DrawingContext.maxGraphicsStateDepth</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">graphicsStateDepth</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">graphicsStateDepth</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -363,9 +584,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC10SwiftyHaru14DrawingContext21maxGraphicsStateDepthSi"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC21maxGraphicsStateDepthSivpZ"></a>
                     <a name="//apple_ref/swift/Variable/maxGraphicsStateDepth" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC10SwiftyHaru14DrawingContext21maxGraphicsStateDepthSi">maxGraphicsStateDepth</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC21maxGraphicsStateDepthSivpZ">maxGraphicsStateDepth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -380,7 +601,7 @@ drawing operations on only one page.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">var</span> <span class="nv">maxGraphicsStateDepth</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">maxGraphicsStateDepth</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
@@ -390,9 +611,9 @@ drawing operations on only one page.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext13withNewGStateFzFzT_T_T_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF"></a>
                     <a name="//apple_ref/swift/Method/withNewGState(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext13withNewGStateFzFzT_T_T_">withNewGState(_:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -402,10 +623,16 @@ drawing operations on only one page.</p>
                       <div class="abstract">
                         <p>Saves the page&rsquo;s current graphics state to the stack, then executes <code>body</code>,
 then restores the saved graphics state.</p>
+<div class="aside aside-precondition">
+    <p class="aside-title">Precondition</p>
+    <p>The value of <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp">graphicsStateDepth</a></code> must be less than
+            <code>static DrawingContext.maxGraphicsStateDepth</code>.</p>
+
+</div>
 <div class="aside aside-important">
     <p class="aside-title">Important</p>
-    Inside the provided block the value of <code><a href="../Classes/DrawingContext.html#/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi">graphicsStateDepth</a></code> is incremented.
-         Check it to prevent throwing the <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError17exceedGStateLimitS0_">PDFError.exceedGStateLimit</a></code> error.
+    <p>Inside the provided block the value of <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp">graphicsStateDepth</a></code> is incremented.
+         Check it to prevent the precondition failure.</p>
 
 </div>
 
@@ -443,20 +670,13 @@ then restores the saved graphics state.</p>
 
 <span class="nf">assert</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">fillColor</span> <span class="o">==</span> <span class="o">.</span><span class="n">red</span><span class="p">)</span>
 </code></pre>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError17exceedGStateLimitS0_">PDFError.exceedGStateLimit</a></code> if <code><a href="../Classes/DrawingContext.html#/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi">graphicsStateDepth</a></code> is greater than
-              <code><a href="../Classes/DrawingContext.html#/s:ZvC10SwiftyHaru14DrawingContext21maxGraphicsStateDepthSi">DrawingContext.maxGraphicsStateDepth</a></code>;
-              rethrows errors thrown by <code>body</code>.
-
-</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withNewGState</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withNewGState</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
 
                         </div>
                       </div>
@@ -472,7 +692,278 @@ then restores the saved graphics state.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The code to execute using a new graphics state.</p>
+                                  <p>The code to execute using a new graphics state.
+              rethrows errors thrown by <code>body</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Transforms"></a>
+                <a name="//apple_ref/swift/Section/Transforms" class="dashAnchor"></a>
+                <a href="#/Transforms">
+                  <h3 class="section-name">Transforms</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC16currentTransformAA06AffineF0Vvp"></a>
+                    <a name="//apple_ref/swift/Property/currentTransform" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC16currentTransformAA06AffineF0Vvp">currentTransform</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The transformation matrix for the current graphics state</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">currentTransform</span><span class="p">:</span> <span class="kt"><a href="../Structs/AffineTransform.html">AffineTransform</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC6rotate7byAngleySf_tF"></a>
+                    <a name="//apple_ref/swift/Method/rotate(byAngle:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC6rotate7byAngleySf_tF">rotate(byAngle:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Rotates the coordinate system of the page.</p>
+
+<p>You can call this method inside the <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> block, thereby being able to use the
+old coordinate system after <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> returns.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">byAngle</span> <span class="nv">angle</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>angle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The angle, in radians, by which to rotate the coordinate space.
+               Positive values rotate counterclockwise and negative values rotate clockwise.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC5scale3byX1yySf_SftF"></a>
+                    <a name="//apple_ref/swift/Method/scale(byX:y:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC5scale3byX1yySf_SftF">scale(byX:y:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the scale of the coordinate system of the page.</p>
+
+<p>For example, to change the coordinate system of the page to 300 dpi:</p>
+<pre class="highlight swift"><code><span class="n">context</span><span class="o">.</span><span class="nf">scale</span><span class="p">(</span><span class="nv">byX</span><span class="p">:</span> <span class="mf">72.0</span> <span class="o">/</span> <span class="mf">300.0</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mf">72.0</span> <span class="o">/</span> <span class="mi">300</span><span class="p">)</span>
+</code></pre>
+
+<p>You can call this method inside the <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> block, thereby being able to use the
+old coordinate system after <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> returns.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">scale</span><span class="p">(</span><span class="n">byX</span> <span class="nv">sx</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="n">y</span> <span class="nv">sy</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sx</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The factor by which to scale the x-axis of the coordinate space.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sy</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The factor by which to scale the y-axis of the coordinate space.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC9translate3byX1yySf_SftF"></a>
+                    <a name="//apple_ref/swift/Method/translate(byX:y:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC9translate3byX1yySf_SftF">translate(byX:y:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Changes the origin of the coordinate system of the page.</p>
+
+<p>You can call this method inside the <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> block, thereby being able to use the
+old coordinate system after <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> returns.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">translate</span><span class="p">(</span><span class="n">byX</span> <span class="nv">tx</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="n">y</span> <span class="nv">ty</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tx</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to displace the x-axis of the coordinate space.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>ty</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The amount to displace the y-axis of the coordinate space.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11concatenateyyAA15AffineTransformVF"></a>
+                    <a name="//apple_ref/swift/Method/concatenate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11concatenateyyAA15AffineTransformVF">concatenate(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Concatenates the page&rsquo;s current transformation matrix and the specified matrix.</p>
+
+<p>When you call this function, it concatenates (that is, it combines) two matrices,
+by multiplying them together. The order in which matrices are concatenated is important,
+as the operations are not commutative.</p>
+
+<p>You can call this method inside the <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> block, thereby being able to use the
+old coordinate system after <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC13withNewGStateyyyyKXEKF">withNewGState(_:)</a></code> returns.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">concatenate</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kt"><a href="../Structs/AffineTransform.html">AffineTransform</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transform</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The transformation to apply to the page&rsquo;s current transformation.</p>
                                 </div>
                               </td>
                             </tr>
@@ -496,9 +987,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext18strokingColorSpaceOS_13PDFColorSpace"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC18strokingColorSpaceAA08PDFColorG0Ovp"></a>
                     <a name="//apple_ref/swift/Property/strokingColorSpace" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext18strokingColorSpaceOS_13PDFColorSpace">strokingColorSpace</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC18strokingColorSpaceAA08PDFColorG0Ovp">strokingColorSpace</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -506,14 +997,14 @@ then restores the saved graphics state.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current value of the page&rsquo;s stroking color space.</p>
+                        <p>The current value of the page&rsquo;s stroking color space. Default value is <code><a href="../Enums/PDFColorSpace.html#/s:10SwiftyHaru13PDFColorSpaceO10deviceGrayyA2CmF">PDFColorSpace.deviceGray</a></code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -523,9 +1014,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext17fillingColorSpaceOS_13PDFColorSpace"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC17fillingColorSpaceAA08PDFColorG0Ovp"></a>
                     <a name="//apple_ref/swift/Property/fillingColorSpace" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext17fillingColorSpaceOS_13PDFColorSpace">fillingColorSpace</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC17fillingColorSpaceAA08PDFColorG0Ovp">fillingColorSpace</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -533,14 +1024,14 @@ then restores the saved graphics state.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current value of the page&rsquo;s filling color space.</p>
+                        <p>The current value of the page&rsquo;s filling color space. Default value is <code><a href="../Enums/PDFColorSpace.html#/s:10SwiftyHaru13PDFColorSpaceO10deviceGrayyA2CmF">PDFColorSpace.deviceGray</a></code></p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillingColorSpace</span><span class="p">:</span> <span class="kt"><a href="../Enums/PDFColorSpace.html">PDFColorSpace</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -550,9 +1041,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext11strokeColorVS_5Color"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11strokeColorAA0F0Vvp"></a>
                     <a name="//apple_ref/swift/Property/strokeColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext11strokeColorVS_5Color">strokeColor</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11strokeColorAA0F0Vvp">strokeColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -560,14 +1051,14 @@ then restores the saved graphics state.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current value of the page&rsquo;s stroking color. Default is RGB black.</p>
+                        <p>The current value of the page&rsquo;s stroking color. Default is black in the <code>deviceGray</code> color space.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokeColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">strokeColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -577,9 +1068,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext9fillColorVS_5Color"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC9fillColorAA0F0Vvp"></a>
                     <a name="//apple_ref/swift/Property/fillColor" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext9fillColorVS_5Color">fillColor</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC9fillColorAA0F0Vvp">fillColor</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -587,14 +1078,14 @@ then restores the saved graphics state.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current value of the page&rsquo;s filling color. Default is RGB black.</p>
+                        <p>The current value of the page&rsquo;s filling color. Default is black in the <code>deviceGray</code> color space.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fillColor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Color.html">Color</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -615,9 +1106,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext4clipFzT2toVS_4Path4ruleOS1_8FillRuleFzT_T__T_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4clip2to4rule_yAA4PathV_AH8FillRuleOyyKXEtKF"></a>
                     <a name="//apple_ref/swift/Method/clip(to:rule:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext4clipFzT2toVS_4Path4ruleOS1_8FillRuleFzT_T__T_">clip(to:rule:_:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4clip2to4rule_yAA4PathV_AH8FillRuleOyyKXEtKF">clip(to:rule:_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -626,10 +1117,16 @@ then restores the saved graphics state.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Sets the clipping area for drawing.</p>
+<div class="aside aside-precondition">
+    <p class="aside-title">Precondition</p>
+    <p>The value of <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp">graphicsStateDepth</a></code> must be less than
+            <code>static DrawingContext.maxGraphicsStateDepth</code>.</p>
+
+</div>
 <div class="aside aside-important">
     <p class="aside-title">Important</p>
-    <p>Inside the provided block the value of <code><a href="../Classes/DrawingContext.html#/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi">graphicsStateDepth</a></code> is incremented.
-         Check it to prevent throwing the <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError17exceedGStateLimitS0_">PDFError.exceedGStateLimit</a></code> error.</p>
+    <p>Inside the provided block the value of <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC18graphicsStateDepthSivp">graphicsStateDepth</a></code> is incremented.
+         Check it to prevent the precondition failure.</p>
 
 </div>
 <div class="aside aside-important">
@@ -641,21 +1138,14 @@ then restores the saved graphics state.</p>
          returns it is black again.</p>
 
 </div>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError17exceedGStateLimitS0_">PDFError.exceedGStateLimit</a></code> if <code><a href="../Classes/DrawingContext.html#/s:vC10SwiftyHaru14DrawingContext18graphicsStateDepthSi">graphicsStateDepth</a></code> is greater than
-              <code><a href="../Classes/DrawingContext.html#/s:ZvC10SwiftyHaru14DrawingContext21maxGraphicsStateDepthSi">DrawingContext.maxGraphicsStateDepth</a></code>;
-              rethrows errors thrown by the <code>drawInsideClippingArea</code> block.</p>
-
-</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clip</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">,</span> <span class="nv">rule</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="o">.</span><span class="kt">FillRule</span> <span class="o">=</span> <span class="o">.</span><span class="n">winding</span><span class="p">,</span>
-                     <span class="n">_</span> <span class="nv">drawInsideClippingArea</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clip</span><span class="p">(</span><span class="n">to</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">,</span> <span class="nv">rule</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="o">.</span><span class="kt">FillRule</span> <span class="o">=</span> <span class="o">.</span><span class="n">winding</span><span class="p">,</span>
+                 <span class="n">_</span> <span class="nv">drawInsideClippingArea</span><span class="p">:</span> <span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span></code></pre>
 
                         </div>
                       </div>
@@ -710,9 +1200,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext4fillFTVS_4Path4ruleOS1_8FillRule6strokeSb_T_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4fill_4rule6strokeyAA4PathV_AH8FillRuleOSbtF"></a>
                     <a name="//apple_ref/swift/Method/fill(_:rule:stroke:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext4fillFTVS_4Path4ruleOS1_8FillRule6strokeSb_T_">fill(_:rule:stroke:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4fill_4rule6strokeyAA4PathV_AH8FillRuleOSbtF">fill(_:rule:stroke:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -727,7 +1217,7 @@ then restores the saved graphics state.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">,</span> <span class="nv">rule</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="o">.</span><span class="kt">FillRule</span> <span class="o">=</span> <span class="o">.</span><span class="n">winding</span><span class="p">,</span> <span class="nv">stroke</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">,</span> <span class="nv">rule</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="o">.</span><span class="kt">FillRule</span> <span class="o">=</span> <span class="o">.</span><span class="n">winding</span><span class="p">,</span> <span class="nv">stroke</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -781,9 +1271,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext6strokeFVS_4PathT_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC6strokeyyAA4PathVF"></a>
                     <a name="//apple_ref/swift/Method/stroke(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext6strokeFVS_4PathT_">stroke(_:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC6strokeyyAA4PathVF">stroke(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -798,7 +1288,7 @@ then restores the saved graphics state.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stroke</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stroke</span><span class="p">(</span><span class="n">_</span> <span class="nv">path</span><span class="p">:</span> <span class="kt"><a href="../Structs/Path.html">Path</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -838,9 +1328,9 @@ then restores the saved graphics state.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext4fontVS_4Font"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4fontAA4FontVvp"></a>
                     <a name="//apple_ref/swift/Property/font" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext4fontVS_4Font">font</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4fontAA4FontVvp">font</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -848,7 +1338,7 @@ then restores the saved graphics state.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The current font of the context.</p>
+                        <p>The current font of the context. Default value is <code><a href="../Structs/Font.html#/s:10SwiftyHaru4FontV9helveticaACvpZ">Font.helvetica</a></code></p>
 
 <p>You can only set fonts that has previously been loaded in the document using
 <code>loadTrueTypeFont(from:embeddingGlyphData:)</code> or
@@ -860,7 +1350,7 @@ ones predefined in the <code><a href="../Structs/Font.html">Font</a></code> stru
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">font</span><span class="p">:</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">font</span><span class="p">:</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -870,9 +1360,9 @@ ones predefined in the <code><a href="../Structs/Font.html">Font</a></code> stru
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext15maximumFontSizeSf"></a>
-                    <a name="//apple_ref/swift/Property/maximumFontSize" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext15maximumFontSizeSf">maximumFontSize</a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC15maximumFontSizeSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maximumFontSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC15maximumFontSizeSfvpZ">maximumFontSize</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -887,7 +1377,7 @@ ones predefined in the <code><a href="../Structs/Font.html">Font</a></code> stru
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">maximumFontSize</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">maximumFontSize</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -897,9 +1387,9 @@ ones predefined in the <code><a href="../Structs/Font.html">Font</a></code> stru
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext8fontSizeSf"></a>
-                    <a name="//apple_ref/swift/Property/fontSize" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext8fontSizeSf">fontSize</a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC15defaultFontSizeSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultFontSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC15defaultFontSizeSfvpZ">defaultFontSize</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -907,15 +1397,14 @@ ones predefined in the <code><a href="../Structs/Font.html">Font</a></code> stru
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The size of the current font of the context. Valid values are between 0 and <code><a href="../Classes/DrawingContext.html#/s:vC10SwiftyHaru14DrawingContext15maximumFontSizeSf">maximumFontSize</a></code>.
-Default value is 11.</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontSize</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultFontSize</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -925,9 +1414,38 @@ Default value is 11.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext8encodingVS_8Encoding"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC8fontSizeSfvp"></a>
+                    <a name="//apple_ref/swift/Property/fontSize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC8fontSizeSfvp">fontSize</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The size of the current font of the context. Valid values are positive numbers up to
+<code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC15maximumFontSizeSfvpZ">DrawingContext.maximumFontSize</a></code>.
+Default value is <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC15defaultFontSizeSfvpZ">DrawingContext.defaultFontSize</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontSize</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC8encodingAA8EncodingVvp"></a>
                     <a name="//apple_ref/swift/Property/encoding" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext8encodingVS_8Encoding">encoding</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC8encodingAA8EncodingVvp">encoding</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -942,7 +1460,7 @@ Default value is 11.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt"><a href="../Structs/Encoding.html">Encoding</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt"><a href="../Structs/Encoding.html">Encoding</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -952,9 +1470,9 @@ Default value is 11.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext9textWidthFT3forSS_Sf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC9textWidth3forSfSS_tF"></a>
                     <a name="//apple_ref/swift/Method/textWidth(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext9textWidthFT3forSS_Sf">textWidth(for:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC9textWidth3forSfSS_tF">textWidth(for:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -970,7 +1488,7 @@ is multiline, returns the width of the longest line.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">textWidth</span><span class="p">(</span><span class="k">for</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">textWidth</span><span class="p">(</span><span class="k">for</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Float</span></code></pre>
 
                         </div>
                       </div>
@@ -1003,9 +1521,9 @@ is multiline, returns the width of the longest line.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext11boundingBoxFT3forSS10atPositionVS_5Point_VS_9Rectangle"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11boundingBox3for10atPositionAA9RectangleVSS_AA5PointVtF"></a>
                     <a name="//apple_ref/swift/Method/boundingBox(for:atPosition:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext11boundingBoxFT3forSS10atPositionVS_5Point_VS_9Rectangle">boundingBox(for:atPosition:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11boundingBox3for10atPositionAA9RectangleVSS_AA5PointVtF">boundingBox(for:atPosition:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1020,7 +1538,7 @@ is multiline, returns the width of the longest line.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">boundingBox</span><span class="p">(</span><span class="k">for</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Rectangle.html">Rectangle</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">boundingBox</span><span class="p">(</span><span class="k">for</span> <span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Rectangle.html">Rectangle</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1065,9 +1583,9 @@ is multiline, returns the width of the longest line.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext10fontAscentSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC10fontAscentSfvp"></a>
                     <a name="//apple_ref/swift/Property/fontAscent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext10fontAscentSf">fontAscent</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC10fontAscentSfvp">fontAscent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1082,7 +1600,7 @@ is multiline, returns the width of the longest line.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontAscent</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontAscent</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1092,9 +1610,9 @@ is multiline, returns the width of the longest line.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext11fontDescentSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11fontDescentSfvp"></a>
                     <a name="//apple_ref/swift/Property/fontDescent" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext11fontDescentSf">fontDescent</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11fontDescentSfvp">fontDescent</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1109,7 +1627,7 @@ is multiline, returns the width of the longest line.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontDescent</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontDescent</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1119,9 +1637,9 @@ is multiline, returns the width of the longest line.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext11fontXHeightSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11fontXHeightSfvp"></a>
                     <a name="//apple_ref/swift/Property/fontXHeight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext11fontXHeightSf">fontXHeight</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11fontXHeightSfvp">fontXHeight</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1137,7 +1655,7 @@ does not include ascenders or descenders.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontXHeight</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontXHeight</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1147,9 +1665,9 @@ does not include ascenders or descenders.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext13fontCapHeightSf"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC13fontCapHeightSfvp"></a>
                     <a name="//apple_ref/swift/Property/fontCapHeight" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext13fontCapHeightSf">fontCapHeight</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC13fontCapHeightSfvp">fontCapHeight</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1164,7 +1682,7 @@ does not include ascenders or descenders.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontCapHeight</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">fontCapHeight</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1174,9 +1692,9 @@ does not include ascenders or descenders.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru14DrawingContext11textLeadingSf"></a>
-                    <a name="//apple_ref/swift/Property/textLeading" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru14DrawingContext11textLeadingSf">textLeading</a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC18defaultTextLeadingSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultTextLeading" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC18defaultTextLeadingSfvpZ">defaultTextLeading</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1184,14 +1702,41 @@ does not include ascenders or descenders.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Text leading (line spacing) for text showing. Default value is 11.</p>
+                        <p>The default text leading.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textLeading</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultTextLeading</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru14DrawingContextC11textLeadingSfvp"></a>
+                    <a name="//apple_ref/swift/Property/textLeading" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC11textLeadingSfvp">textLeading</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Text leading (line spacing) for text showing. Default value is <code><a href="../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC18defaultTextLeadingSfvpZ">DrawingContext.defaultTextLeading</a></code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">textLeading</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1212,9 +1757,9 @@ does not include ascenders or descenders.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext4showFT4textSS10atPositionVS_5Point_T_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4show4text10atPositionySS_AA5PointVtKF"></a>
                     <a name="//apple_ref/swift/Method/show(text:atPosition:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext4showFT4textSS10atPositionVS_5Point_T_">show(text:atPosition:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4show4text10atPositionySS_AA5PointVtKF">show(text:atPosition:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1229,7 +1774,7 @@ does not include ascenders or descenders.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atPosition</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -1270,9 +1815,9 @@ does not include ascenders or descenders.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext4showFT4textSS3atXSf1ySf_T_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4show4text3atX1yySS_S2ftKF"></a>
                     <a name="//apple_ref/swift/Method/show(text:atX:y:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext4showFT4textSS3atXSf1ySf_T_">show(text:atX:y:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4show4text3atX1yySS_S2ftKF">show(text:atX:y:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1287,7 +1832,8 @@ does not include ascenders or descenders.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atX</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atX</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -1340,9 +1886,9 @@ does not include ascenders or descenders.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru14DrawingContext4showFT4textSS2inVS_9Rectangle9alignmentOS_13TextAlignment_T17isSufficientSpaceSb17charactersPrintedSi_"></a>
+                    <a name="/s:10SwiftyHaru14DrawingContextC4show4text2in9alignmentSb17isSufficientSpace_Si17charactersPrintedtSS_AA9RectangleVAA13TextAlignmentOtKF"></a>
                     <a name="//apple_ref/swift/Method/show(text:in:alignment:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru14DrawingContext4showFT4textSS2inVS_9Rectangle9alignmentOS_13TextAlignment_T17isSufficientSpaceSb17charactersPrintedSi_">show(text:in:alignment:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru14DrawingContextC4show4text2in9alignmentSb17isSufficientSpace_Si17charactersPrintedtSS_AA9RectangleVAA13TextAlignmentOtKF">show(text:in:alignment:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1357,9 +1903,10 @@ does not include ascenders or descenders.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
-                     <span class="k">in</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt"><a href="../Structs/Rectangle.html">Rectangle</a></span><span class="p">,</span>
-                     <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Enums/TextAlignment.html">TextAlignment</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">isSufficientSpace</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">charactersPrinted</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                 <span class="k">in</span> <span class="nv">rect</span><span class="p">:</span> <span class="kt"><a href="../Structs/Rectangle.html">Rectangle</a></span><span class="p">,</span>
+                 <span class="nv">alignment</span><span class="p">:</span> <span class="kt"><a href="../Enums/TextAlignment.html">TextAlignment</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nv">isSufficientSpace</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">charactersPrinted</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1423,8 +1970,8 @@ does not include ascenders or descenders.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2018-12-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftyHaru'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Object-oriented and safe Swift wrapper for LibHaru — a library for creating PDF documents'
 
   s.description      = <<-DESC

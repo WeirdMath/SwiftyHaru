@@ -14,7 +14,7 @@
     <a title="PDFPage Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p><a href="../index.html">SwiftyHaru Docs</a> (91% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/LineCap.html">LineCap</a>
@@ -95,8 +95,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AffineTransform.html">AffineTransform</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Color.html">Color</a>
               </li>
@@ -154,10 +157,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+                <a href="../Typealiases.html#/s:10SwiftyHaru6Vectora">Vector</a>
               </li>
             </ul>
           </li>
@@ -169,18 +172,11 @@
             <h1>PDFPage</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFPage</span></code></pre>
 
                 </div>
               </div>
-            <p>A handle that is used to manipulate an individual page.</p>
-<div class="aside aside-warning">
-    <p class="aside-title">Warning</p>
-    If the <code><a href="../Classes/PDFDocument.html">PDFDocument</a></code> object that owns the page is deallocated, accessing the page&rsquo;s properties
-       will cause a crash. The lifetime of a page should always be shorter than the lifetime of
-       the document that owns the page.
-
-</div>
+            <p>A class that is used to manipulate an individual page.</p>
 
           </section>
           <section class="section task-group-section">
@@ -189,9 +185,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru7PDFPage8documentXoCS_11PDFDocument"></a>
-                    <a name="//apple_ref/swift/Property/document" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage8documentXoCS_11PDFDocument">document</a>
+                    <a name="/s:10SwiftyHaru7PDFPageC12defaultWidthSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC12defaultWidthSfvpZ">defaultWidth</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -199,14 +195,176 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The document this page belongs to.</p>
+                        <p>The default width of a page when you don&rsquo;t specify its size.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">unowned</span> <span class="k">var</span> <span class="nv">document</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument.html">PDFDocument</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC13defaultHeightSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/defaultHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC13defaultHeightSfvpZ">defaultHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The default height of a page when you don&rsquo;t specify its size.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultHeight</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC9minHeightSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/minHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC9minHeightSfvpZ">minHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum allowed page height.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">minHeight</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC9maxHeightSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maxHeight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC9maxHeightSfvpZ">maxHeight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum allowed page height.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">maxHeight</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC8minWidthSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/minWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC8minWidthSfvpZ">minWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The minimum allowed page width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">minWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC8maxWidthSfvpZ"></a>
+                    <a name="//apple_ref/swift/Variable/maxWidth" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC8maxWidthSfvpZ">maxWidth</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The maximum allowed page width.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">maxWidth</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru7PDFPageC8documentAA11PDFDocumentCSgXwvp"></a>
+                    <a name="//apple_ref/swift/Property/document" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC8documentAA11PDFDocumentCSgXwvp">document</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">weak</span> <span class="k">var</span> <span class="nv">document</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument.html">PDFDocument</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -227,9 +385,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru7PDFPage5widthSf"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC5widthSfvp"></a>
                     <a name="//apple_ref/swift/Property/width" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage5widthSf">width</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC5widthSfvp">width</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,14 +395,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The width of the page. Valid values are between 3 and 14400.</p>
+                        <p>The width of the page. The valid values are between <code><a href="../Classes/PDFPage.html#/s:10SwiftyHaru7PDFPageC8minWidthSfvpZ">PDFPage.minWidth</a></code> and <code><a href="../Classes/PDFPage.html#/s:10SwiftyHaru7PDFPageC8maxWidthSfvpZ">PDFPage.maxWidth</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -254,9 +412,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru7PDFPage6heightSf"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC6heightSfvp"></a>
                     <a name="//apple_ref/swift/Property/height" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru7PDFPage6heightSf">height</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC6heightSfvp">height</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -264,14 +422,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The height of the page. Valid values are between 3 and 14400.</p>
+                        <p>The height of the page. The valid values are between <code><a href="../Classes/PDFPage.html#/s:10SwiftyHaru7PDFPageC9minHeightSfvpZ">PDFPage.minHeight</a></code> and <code><a href="../Classes/PDFPage.html#/s:10SwiftyHaru7PDFPageC9maxHeightSfvpZ">PDFPage.maxHeight</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -281,9 +439,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru7PDFPage3setFT4sizeOS0_4Size9directionOS0_9Direction_T_"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC3set4size9directionyAC4SizeO_AC9DirectionOtF"></a>
                     <a name="//apple_ref/swift/Method/set(size:direction:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage3setFT4sizeOS0_4Size9directionOS0_9Direction_T_">set(size:direction:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC3set4size9directionyAC4SizeO_AC9DirectionOtF">set(size:direction:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -298,7 +456,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span><span class="p">,</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Direction.html">Direction</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span><span class="p">,</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt">PDFPage</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFPage/Direction.html">Direction</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -339,9 +497,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru7PDFPage6rotateFT7byAngleSi_T_"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC6rotate7byAngleySi_tF"></a>
                     <a name="//apple_ref/swift/Method/rotate(byAngle:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage6rotateFT7byAngleSi_T_">rotate(byAngle:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC6rotate7byAngleySi_tF">rotate(byAngle:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -356,7 +514,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">byAngle</span> <span class="nv">angle</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">byAngle</span> <span class="nv">angle</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -386,218 +544,13 @@
               </ul>
             </div>
             <div class="task-group">
-              <div class="task-name-container">
-                <a name="/Graphics"></a>
-                <a name="//apple_ref/swift/Section/Graphics" class="dashAnchor"></a>
-                <a href="#/Graphics">
-                  <h3 class="section-name">Graphics</h3>
-                </a>
-              </div>
               <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru7PDFPage4drawFzFzCS_14DrawingContextT_T_"></a>
-                    <a name="//apple_ref/swift/Method/draw(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage4drawFzFzCS_14DrawingContextT_T_">draw(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Perform path drawing operations on the page.</p>
-<div class="aside aside-warning">
-    <p class="aside-title">Warning</p>
-    <p>The <code>PDFPathContext</code> argument should not be stored and used outside of the lifetime
-       of the call to the closure.</p>
-
-</div>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    <p>No drawing context must be present for this current page, i. e. you cannot run the
-following code:</p>
-
-</div>
-<pre class="highlight swift"><code><span class="n">page</span><span class="o">.</span><span class="n">draw</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
-
-    <span class="n">page</span><span class="o">.</span><span class="n">draw</span> <span class="p">{</span> <span class="n">innerContext</span> <span class="k">in</span>
-        <span class="c1">// do things</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="n">_</span> <span class="nv">body</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">))</span> <span class="k">rethrows</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>body</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The closure that takes a context object. Perform drawing operations on that object.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru7PDFPage4drawFT6objectPS_8Drawable_8positionVS_5Point_T_"></a>
-                    <a name="//apple_ref/swift/Method/draw(object:position:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage4drawFT6objectPS_8Drawable_8positionVS_5Point_T_">draw(object:position:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Puts the <code>object</code> visualization onto the page at the specified position.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Drawable.html">Drawable</a></span><span class="p">,</span> <span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Structs/Point.html">Point</a></span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>object</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity to draw.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>position</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The position to put the <code>object</code> at. The meaning of this property depends
-                  on the <code>object</code>&rsquo;s implementation.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru7PDFPage4drawFT6objectPS_8Drawable_1xSf1ySf_T_"></a>
-                    <a name="//apple_ref/swift/Method/draw(object:x:y:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru7PDFPage4drawFT6objectPS_8Drawable_1xSf1ySf_T_">draw(object:x:y:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Puts the <code>object</code> visualization onto the page at the specified position.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">draw</span><span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Drawable.html">Drawable</a></span><span class="p">,</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>object</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The entity to draw.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>x</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The x coordinate of the position to put the <code>object</code> at.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>y</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The y coordinate of the position.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:OC10SwiftyHaru7PDFPage9Direction"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC9DirectionO"></a>
                     <a name="//apple_ref/swift/Enum/Direction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC10SwiftyHaru7PDFPage9Direction">Direction</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC9DirectionO">Direction</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -613,7 +566,7 @@ following code:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Direction</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Direction</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -627,9 +580,9 @@ following code:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:OC10SwiftyHaru7PDFPage4Size"></a>
+                    <a name="/s:10SwiftyHaru7PDFPageC4SizeO"></a>
                     <a name="//apple_ref/swift/Enum/Size" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC10SwiftyHaru7PDFPage4Size">Size</a>
+                    <a class="token" href="#/s:10SwiftyHaru7PDFPageC4SizeO">Size</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -645,92 +598,7 @@ following code:</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Size</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsVS_4Size"></a>
-                    <a name="//apple_ref/swift/Property/sizeInPixels" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInPixelsVS_4Size">sizeInPixels</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The numeric value of the predefined size represented in pixels.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInPixels</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesVS_4Size"></a>
-                    <a name="//apple_ref/swift/Property/sizeInInches" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size12sizeInInchesVS_4Size">sizeInInches</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The numeric value of the predefined size represented in inches.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInInches</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersVS_4Size"></a>
-                    <a name="//apple_ref/swift/Property/sizeInMillimeters" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vOC10SwiftyHaru7PDFPage4Size17sizeInMillimetersVS_4Size">sizeInMillimeters</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The numeric value of the predefined size represented in millimeters.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sizeInMillimeters</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage/Size.html">Size</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">Size</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -742,8 +610,8 @@ following code:</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2018-12-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

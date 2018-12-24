@@ -26,8 +26,7 @@ docs: generate-xcodeproj
       -u 'https://twitter.com/broadway_lamb' \
       -m 'SwiftyHaru' \
       -g 'https://github.com/WeirdMath/SwiftyHaru' \
-      -x '-scheme,SwiftyHaru' \
-      --no-download-badge \
+      -x '-scheme,SwiftyHaru-Package' \
 
 clean:
 	swift package clean

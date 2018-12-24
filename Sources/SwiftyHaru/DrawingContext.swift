@@ -13,15 +13,17 @@ import Foundation
 
 /// The `DrawingContext` class represents a PDF drawing destination.
 ///
-/// You cannot initialize the context directly. You need to call the `PDFPage.draw(_:)` method; an instance
+/// You cannot initialize the context directly. You need to call the `PDFDocument.addPage(_:)` method; an instance
 /// of `DrawingContext` will be passed to the provided closure. That instance is only valid during the lifetime
 /// of that closure.
 ///
 /// Each instance of `DrawingContext` is bound to some `PDFPage`, hence you can use it to perform
 /// drawing operations on only one page.
 public final class DrawingContext {
-    
+
+    /// The page this context is bound to.
     public let page: PDFPage
+
     private let _document: PDFDocument
     internal var _isInvalidated = false
 
@@ -45,11 +47,11 @@ public final class DrawingContext {
         _document = document
     }
 
-    /// Puts the `object` visualization onto the page at the specified position.
+    /// Puts the `drawable` visualization onto the page at the specified position.
     ///
     /// - parameter drawable: The entity to draw.
-    /// - parameter position: The position to put the `object` at. The meaning of this property depends
-    ///                       on the `object`'s implementation.
+    /// - parameter position: The position to put the `drawable` at. The meaning of this property depends
+    ///                       on the `drawable`'s implementation.
     @inlinable
     public func draw(_ drawable: Drawable, position: Point) throws {
         try drawable.draw(in: self, position: position)
@@ -58,7 +60,7 @@ public final class DrawingContext {
     /// Puts the `drawable` visualization onto the page at the specified position.
     ///
     /// - parameter drawable: The entity to draw.
-    /// - parameter x:        The x coordinate of the position to put the `object` at.
+    /// - parameter x:        The x coordinate of the position to put the `drawable` at.
     /// - parameter y:        The y coordinate of the position.
     @inlinable
     public func draw(_ drawable: Drawable, x: Float, y: Float) throws {

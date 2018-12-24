@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/WeirdMath/SwiftyHaru.svg?branch=dev)](https://travis-ci.org/WeirdMath/SwiftyHaru)
 [![codecov](https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg)](https://codecov.io/gh/WeirdMath/SwiftyHaru)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/66cfcbcec9884191a0f8aa1bef26deb8)](https://www.codacy.com/app/broadway_lamb/SwiftyHaru?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=WeirdMath/SwiftyHaru&amp;utm_campaign=Badge_Grade)
+[![documentation](docs/badge.svg)](https://weirdmath.github.io/SwiftyHaru/)
 ![Language](https://img.shields.io/badge/Swift-4.2-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg)
 ![Cocoapods](https://img.shields.io/cocoapods/v/SwiftyHaru.svg?style=flat)
 
-SwiftyHaru is an object-oriented Swift wrapper for [LibHaru](https://github.com/libharu/libharu), a C library for creating PDF documents. It brings the safety of Swift itself to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.
+SwiftyHaru is an object-oriented Swift wrapper for [LibHaru](https://github.com/libharu/libharu), a C library for creating PDF documents. It brings the safety of Swift to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.
 
 Check out which [features of LibHaru](https://github.com/libharu/libharu/wiki) has already been implemented in [FEATURES.md](FEATURES.md)
 
@@ -71,7 +71,8 @@ import SwiftyHaru
 
 // Initialize stuff
 let document = PDFDocument()
-let page = document.addPage(width: 600, height: 400) { context in
+
+try document.addPage(width: 600, height: 400) { context in
 
     // Construct a path
     let path = Path()
@@ -92,8 +93,8 @@ let page = document.addPage(width: 600, height: 400) { context in
 
     // Put some text
     context.textLeading = 11
-    context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
-                 atX: 300, y: 200)
+    try context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
+                     atX: 300, y: 200)
 }
 ```
 

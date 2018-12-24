@@ -14,7 +14,7 @@
     <a title="PDFDocument Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p><a href="../index.html">SwiftyHaru Docs</a> (91% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enums</a>
+            <a href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/LineCap.html">LineCap</a>
@@ -95,8 +95,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/AffineTransform.html">AffineTransform</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Structs/Color.html">Color</a>
               </li>
@@ -154,10 +157,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+                <a href="../Typealiases.html#/s:10SwiftyHaru6Vectora">Vector</a>
               </li>
             </ul>
           </li>
@@ -169,7 +172,7 @@
             <h1>PDFDocument</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFDocument</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">PDFDocument</span></code></pre>
 
                 </div>
               </div>
@@ -182,9 +185,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru11PDFDocument5pagesGSaCS_7PDFPage_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp"></a>
                     <a name="//apple_ref/swift/Property/pages" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru11PDFDocument5pagesGSaCS_7PDFPage_">pages</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -192,16 +195,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An array of pages in the document. Initially is empty. Use the <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument7addPageFT_CS_7PDFPage">addPage()</a></code>, <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument7addPageFT5widthSf6heightSf_CS_7PDFPage">addPage(width:height:)</a></code>,
-<code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument7addPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction_S1_">addPage(size:direction:)</a></code> or <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument10insertPageFT7atIndexSi_CS_7PDFPage">insertPage(atIndex:)</a></code>, <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument10insertPageFT5widthSf6heightSf7atIndexSi_CS_7PDFPage">insertPage(width:height:atIndex:)</a></code>,
-<code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument10insertPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction7atIndexSi_S1_">insertPage(size:direction:atIndex:)</a></code> methods to add pages to your document and populate this array.</p>
+                        <p>An array of pages in the document. Initially is empty. Use the <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC7addPageAA7PDFPageCyF">addPage()</a></code>, <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC7addPage5width6heightAA7PDFPageCSf_SftF">addPage(width:height:)</a></code>,
+<code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC7addPage4size9directionAA7PDFPageCAH4SizeO_AH9DirectionOtF">addPage(size:direction:)</a></code> or <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC10insertPage7atIndexAA7PDFPageCSi_tF">insertPage(atIndex:)</a></code>, <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC10insertPage5width6height7atIndexAA7PDFPageCSf_SfSitF">insertPage(width:height:atIndex:)</a></code>,
+<code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC10insertPage4size9direction7atIndexAA7PDFPageCAI4SizeO_AI9DirectionOSitF">insertPage(size:direction:atIndex:)</a></code> methods to add pages to your document and populate this array.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">pages</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">pages</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -211,9 +214,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru11PDFDocument5fontsGVs3SetVS_4Font_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC5fontsShyAA4FontVGvp"></a>
                     <a name="//apple_ref/swift/Property/fonts" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru11PDFDocument5fontsGVs3SetVS_4Font_">fonts</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC5fontsShyAA4FontVGvp">fonts</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -221,8 +224,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The fonts loaded in the document. Initially is empty. Use the <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument16loadTrueTypeFontFzT4fromV10Foundation4Data18embeddingGlyphDataSb_VS_4Font">loadTrueTypeFont(from:embeddingGlyphData:)</a></code>
-or <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument30loadTrueTypeFontFromCollectionFzT4fromV10Foundation4Data5indexSi18embeddingGlyphDataSb_VS_4Font">loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)</a></code> methods to load fonts.</p>
+                        <p>The fonts loaded in the document. Initially is empty. Use the <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC16loadTrueTypeFont4from18embeddingGlyphDataAA0G0V10Foundation0K0V_SbtKF">loadTrueTypeFont(from:embeddingGlyphData:)</a></code>
+or <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC30loadTrueTypeFontFromCollection4from5index18embeddingGlyphDataAA0G0V10Foundation0N0V_SiSbtKF">loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)</a></code> methods to load fonts.</p>
 
 <p>This set does not include the base 14 fonts (see predefined values of <code><a href="../Structs/Font.html">Font</a></code>)
 that can be used in the document without loading any external fonts.</p>
@@ -232,7 +235,7 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">fonts</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Font.html">Font</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">[]</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">fonts</span><span class="p">:</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt"><a href="../Structs/Font.html">Font</a></span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -242,9 +245,9 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocumentcFT_S0_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentCACycfc"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocumentcFT_S0_">init()</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentCACycfc">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -259,7 +262,7 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -284,9 +287,9 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument7addPageFT_CS_7PDFPage"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPageAA7PDFPageCyF"></a>
                     <a name="//apple_ref/swift/Method/addPage()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument7addPageFT_CS_7PDFPage">addPage()</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPageAA7PDFPageCyF">addPage()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,7 +304,8 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -315,9 +319,66 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument7addPageFT5widthSf6heightSf_CS_7PDFPage"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPageyAA7PDFPageCyAA14DrawingContextCKXEKF"></a>
+                    <a name="//apple_ref/swift/Method/addPage(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPageyAA7PDFPageCyAA14DrawingContextCKXEKF">addPage(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page and adds it after the last page of the document.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPage5width6heightAA7PDFPageCSf_SftF"></a>
                     <a name="//apple_ref/swift/Method/addPage(width:height:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument7addPageFT5widthSf6heightSf_CS_7PDFPage">addPage(width:height:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPage5width6heightAA7PDFPageCSf_SftF">addPage(width:height:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -332,7 +393,8 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -377,9 +439,92 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument7addPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction_S1_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPage5width6height_AA7PDFPageCSf_SfyAA14DrawingContextCKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/addPage(width:height:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPage5width6height_AA7PDFPageCSf_SfyAA14DrawingContextCKXEtKF">addPage(width:height:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page of the specified width and height and adds it after the last page of the document.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                    <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                    <span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width of the page.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The height of the page.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPage4size9directionAA7PDFPageCAH4SizeO_AH9DirectionOtF"></a>
                     <a name="//apple_ref/swift/Method/addPage(size:direction:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument7addPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction_S1_">addPage(size:direction:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPage4size9directionAA7PDFPageCAH4SizeO_AH9DirectionOtF">addPage(size:direction:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -394,7 +539,9 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span> <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
+                    <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -422,7 +569,7 @@ that can be used in the document without loading any external fonts.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The direction of the page.</p>
+                                  <p>The direction of the page (portrait or landscape).</p>
                                 </div>
                               </td>
                             </tr>
@@ -439,9 +586,92 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument10insertPageFT7atIndexSi_CS_7PDFPage"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7addPage4size9direction_AA7PDFPageCAH4SizeO_AH9DirectionOyAA14DrawingContextCKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/addPage(size:direction:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7addPage4size9direction_AA7PDFPageCAH4SizeO_AH9DirectionOyAA14DrawingContextCKXEtKF">addPage(size:direction:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page of the specified size and direction and adds it after the last page of the document.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
+                    <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">,</span>
+                    <span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A predefined page-size value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>direction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The direction of the page (portrait or landscape).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage7atIndexAA7PDFPageCSi_tF"></a>
                     <a name="//apple_ref/swift/Method/insertPage(atIndex:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument10insertPageFT7atIndexSi_CS_7PDFPage">insertPage(atIndex:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage7atIndexAA7PDFPageCSi_tF">insertPage(atIndex:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,7 +686,8 @@ that can be used in the document without loading any external fonts.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -473,7 +704,7 @@ that can be used in the document without loading any external fonts.</p>
                               <td>
                                 <div>
                                   <p>The index at which the new page will appear. <code>index</code> must be a valid index
-               of the array <code>pages</code> or equal to its <code>endIndex</code> property.</p>
+               of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
                                 </div>
                               </td>
                             </tr>
@@ -490,9 +721,79 @@ that can be used in the document without loading any external fonts.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument10insertPageFT5widthSf6heightSf7atIndexSi_CS_7PDFPage"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage7atIndex_AA7PDFPageCSi_yAA14DrawingContextCKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/insertPage(atIndex:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage7atIndex_AA7PDFPageCSi_yAA14DrawingContextCKXEtKF">insertPage(atIndex:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page and inserts it just before the page with the specified index.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which the new page will appear. <code>index</code> must be a valid index
+   of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage5width6height7atIndexAA7PDFPageCSf_SfSitF"></a>
                     <a name="//apple_ref/swift/Method/insertPage(width:height:atIndex:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument10insertPageFT5widthSf6heightSf7atIndexSi_CS_7PDFPage">insertPage(width:height:atIndex:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage5width6height7atIndexAA7PDFPageCSf_SfSitF">insertPage(width:height:atIndex:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -508,7 +809,8 @@ with the specified index.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span> <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -549,7 +851,7 @@ with the specified index.</p>
                               <td>
                                 <div>
                                   <p>The index at which the new page will appear. <code>index</code> must be a valid index
-                of the array <code>pages</code> or equal to its <code>endIndex</code> property.</p>
+    of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
                                 </div>
                               </td>
                             </tr>
@@ -566,9 +868,107 @@ with the specified index.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument10insertPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction7atIndexSi_S1_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage5width6height7atIndex_AA7PDFPageCSf_SfSiyAA14DrawingContextCKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/insertPage(width:height:atIndex:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage5width6height7atIndex_AA7PDFPageCSf_SfSiyAA14DrawingContextCKXEtKF">insertPage(width:height:atIndex:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page of the specified width and height and inserts it just before the page
+with the specified index.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                       <span class="nv">height</span><span class="p">:</span> <span class="kt">Float</span><span class="p">,</span>
+                       <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                       <span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>width</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width of the page.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>height</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The height of the page.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which the new page will appear. <code>index</code> must be a valid index
+    of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage4size9direction7atIndexAA7PDFPageCAI4SizeO_AI9DirectionOSitF"></a>
                     <a name="//apple_ref/swift/Method/insertPage(size:direction:atIndex:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument10insertPageFT4sizeOCS_7PDFPage4Size9directionOS1_9Direction7atIndexSi_S1_">insertPage(size:direction:atIndex:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage4size9direction7atIndexAA7PDFPageCAI4SizeO_AI9DirectionOSitF">insertPage(size:direction:atIndex:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -584,9 +984,10 @@ with the specified index.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
-                                              <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">,</span>
-                                              <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
+                       <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">,</span>
+                       <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
 
                         </div>
                       </div>
@@ -614,7 +1015,7 @@ with the specified index.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>The direction of the page.</p>
+                                  <p>The direction of the page (portrait or landscape).</p>
                                 </div>
                               </td>
                             </tr>
@@ -627,7 +1028,105 @@ with the specified index.</p>
                               <td>
                                 <div>
                                   <p>The index at which the new page will appear. <code>index</code> must be a valid index
-                   of the array <code>pages</code> or equal to its <code>endIndex</code> property.</p>
+       of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code><a href="../Classes/PDFPage.html">PDFPage</a></code> object.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10insertPage4size9direction7atIndex_AA7PDFPageCAI4SizeO_AI9DirectionOSiyAA14DrawingContextCKXEtKF"></a>
+                    <a name="//apple_ref/swift/Method/insertPage(size:direction:atIndex:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10insertPage4size9direction7atIndex_AA7PDFPageCAI4SizeO_AI9DirectionOSiyAA14DrawingContextCKXEtKF">insertPage(size:direction:atIndex:_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new page of the specified size and direction and inserts it just before the page
+with the specified index.</p>
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    The <code><a href="../Classes/DrawingContext.html">DrawingContext</a></code> object should not be stored and used outside of the lifetime
+       of the call to the closure.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">insertPage</span><span class="p">(</span><span class="nv">size</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt"><a href="../Structs/Size.html">Size</a></span><span class="p">,</span>
+                       <span class="nv">direction</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span><span class="o">.</span><span class="kt">Direction</span><span class="p">,</span>
+                       <span class="n">atIndex</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                       <span class="n">_</span> <span class="nv">draw</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/DrawingContext.html">DrawingContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">rethrows</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/PDFPage.html">PDFPage</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>size</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A predefined page-size value.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>direction</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The direction of the page (portrait or landscape).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The index at which the new page will appear. <code>index</code> must be a valid index
+       of the array <code><a href="../Classes/PDFDocument.html#/s:10SwiftyHaru11PDFDocumentC5pagesSayAA7PDFPageCGvp">pages</a></code> or equal to its <code>endIndex</code> property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>draw</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The drawing operations to perform, or <code>nil</code> if no drawing should be performed.</p>
                                 </div>
                               </td>
                             </tr>
@@ -655,9 +1154,9 @@ with the specified index.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument7getDataFT_V10Foundation4Data"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC7getData10Foundation0E0VyF"></a>
                     <a name="//apple_ref/swift/Method/getData()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument7getDataFT_V10Foundation4Data">getData()</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC7getData10Foundation0E0VyF">getData()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -672,7 +1171,7 @@ with the specified index.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getData</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getData</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Data</span></code></pre>
 
                         </div>
                       </div>
@@ -697,9 +1196,9 @@ with the specified index.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru11PDFDocument10pageLayoutOS0_10PageLayout"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10pageLayoutAC04PageE0Ovp"></a>
                     <a name="//apple_ref/swift/Property/pageLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru11PDFDocument10pageLayoutOS0_10PageLayout">pageLayout</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10pageLayoutAC04PageE0Ovp">pageLayout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -715,7 +1214,7 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pageLayout</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/PageLayout.html">PageLayout</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">pageLayout</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/PageLayout.html">PageLayout</a></span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -725,9 +1224,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument12addPageLabelFTOS0_15PageNumberStyle8fromPageSi12startingWithSi10withPrefixGSqSS__T_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC12addPageLabel_04fromE012startingWith10withPrefixyAC0E11NumberStyleO_S2iSStF"></a>
                     <a name="//apple_ref/swift/Method/addPageLabel(_:fromPage:startingWith:withPrefix:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument12addPageLabelFTOS0_15PageNumberStyle8fromPageSi12startingWithSi10withPrefixGSqSS__T_">addPageLabel(_:fromPage:startingWith:withPrefix:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC12addPageLabel_04fromE012startingWith10withPrefixyAC0E11NumberStyleO_S2iSStF">addPageLabel(_:fromPage:startingWith:withPrefix:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -752,10 +1251,10 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPageLabel</span><span class="p">(</span><span class="n">_</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/PageNumberStyle.html">PageNumberStyle</a></span><span class="p">,</span>
-                             <span class="n">fromPage</span> <span class="nv">startingPage</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-                             <span class="n">startingWith</span> <span class="nv">firstPageNumber</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-                             <span class="n">withPrefix</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addPageLabel</span><span class="p">(</span><span class="n">_</span> <span class="nv">style</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/PageNumberStyle.html">PageNumberStyle</a></span><span class="p">,</span>
+                         <span class="n">fromPage</span> <span class="nv">startingPage</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                         <span class="n">startingWith</span> <span class="nv">firstPageNumber</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                         <span class="n">withPrefix</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="kt">String</span><span class="p">())</span></code></pre>
 
                         </div>
                       </div>
@@ -771,7 +1270,7 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p><code>PDFDocument.PageNumberStyle</code> enum case</p>
+                                  <p><code><a href="../Classes/PDFDocument/PageNumberStyle.html">PDFDocument.PageNumberStyle</a></code> enum case</p>
                                 </div>
                               </td>
                             </tr>
@@ -831,9 +1330,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument16loadTrueTypeFontFzT4fromV10Foundation4Data18embeddingGlyphDataSb_VS_4Font"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC16loadTrueTypeFont4from18embeddingGlyphDataAA0G0V10Foundation0K0V_SbtKF"></a>
                     <a name="//apple_ref/swift/Method/loadTrueTypeFont(from:embeddingGlyphData:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument16loadTrueTypeFontFzT4fromV10Foundation4Data18embeddingGlyphDataSb_VS_4Font">loadTrueTypeFont(from:embeddingGlyphData:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC16loadTrueTypeFont4from18embeddingGlyphDataAA0G0V10Foundation0K0V_SbtKF">loadTrueTypeFont(from:embeddingGlyphData:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -844,9 +1343,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <p>Loads a TrueType font from <code>data</code> and registers it to a document.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError15invalidTTCIndexS0_">PDFError.invalidTTCIndex</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError14invalidTTCFileS0_">PDFError.invalidTTCFile</a></code>,
-      <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError14ttfInvalidCMapS0_">PDFError.ttfInvalidCMap</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError16ttfInvalidFormatS0_">PDFError.ttfInvalidFormat</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError15ttfMissingTableS0_">PDFError.ttfMissingTable</a></code>,
-      <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError18ttfCannotEmbedFontS0_">PDFError.ttfCannotEmbedFont</a></code>.</p>
+    <p><code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV15invalidTTCIndexACvpZ">PDFError.invalidTTCIndex</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV14invalidTTCFileACvpZ">PDFError.invalidTTCFile</a></code>,
+      <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV14ttfInvalidCMapACvpZ">PDFError.ttfInvalidCMap</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV16ttfInvalidFormatACvpZ">PDFError.ttfInvalidFormat</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV15ttfMissingTableACvpZ">PDFError.ttfMissingTable</a></code>,
+      <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV18ttfCannotEmbedFontACvpZ">PDFError.ttfCannotEmbedFont</a></code>.</p>
 
 </div>
 
@@ -855,7 +1354,7 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadTrueTypeFont</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">embeddingGlyphData</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadTrueTypeFont</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">embeddingGlyphData</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span></code></pre>
 
                         </div>
                       </div>
@@ -901,9 +1400,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument30loadTrueTypeFontFromCollectionFzT4fromV10Foundation4Data5indexSi18embeddingGlyphDataSb_VS_4Font"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC30loadTrueTypeFontFromCollection4from5index18embeddingGlyphDataAA0G0V10Foundation0N0V_SiSbtKF"></a>
                     <a name="//apple_ref/swift/Method/loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument30loadTrueTypeFontFromCollectionFzT4fromV10Foundation4Data5indexSi18embeddingGlyphDataSb_VS_4Font">loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC30loadTrueTypeFontFromCollection4from5index18embeddingGlyphDataAA0G0V10Foundation0N0V_SiSbtKF">loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -914,9 +1413,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <p>Loads a TrueType font from a TrueType Collection and registers it to a document.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError15invalidTTCIndexS0_">PDFError.invalidTTCIndex</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError14invalidTTCFileS0_">PDFError.invalidTTCFile</a></code>,
-      <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError14ttfInvalidCMapS0_">PDFError.ttfInvalidCMap</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError16ttfInvalidFormatS0_">PDFError.ttfInvalidFormat</a></code>, <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError15ttfMissingTableS0_">PDFError.ttfMissingTable</a></code>,
-      <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError18ttfCannotEmbedFontS0_">PDFError.ttfCannotEmbedFont</a></code>.</p>
+    <p><code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV15invalidTTCIndexACvpZ">PDFError.invalidTTCIndex</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV14invalidTTCFileACvpZ">PDFError.invalidTTCFile</a></code>,
+      <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV14ttfInvalidCMapACvpZ">PDFError.ttfInvalidCMap</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV16ttfInvalidFormatACvpZ">PDFError.ttfInvalidFormat</a></code>, <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV15ttfMissingTableACvpZ">PDFError.ttfMissingTable</a></code>,
+      <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV18ttfCannotEmbedFontACvpZ">PDFError.ttfCannotEmbedFont</a></code>.</p>
 
 </div>
 
@@ -925,9 +1424,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadTrueTypeFontFromCollection</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
-                                               <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
-                                               <span class="nv">embeddingGlyphData</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadTrueTypeFontFromCollection</span><span class="p">(</span><span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
+                                           <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span>
+                                           <span class="nv">embeddingGlyphData</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Structs/Font.html">Font</a></span></code></pre>
 
                         </div>
                       </div>
@@ -996,9 +1495,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument18setCompressionModeFzT2toVS0_15CompressionMode_T_"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC18setCompressionMode2toyAC0eF0V_tKF"></a>
                     <a name="//apple_ref/swift/Method/setCompressionMode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument18setCompressionModeFzT2toVS0_15CompressionMode_T_">setCompressionMode(to:)</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC18setCompressionMode2toyAC0eF0V_tKF">setCompressionMode(to:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1009,7 +1508,7 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <p>Set the mode of compression.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError22invalidCompressionModeS0_">PDFError.invalidCompressionMode</a></code> if the provided compression mode was invalid.
+    <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV22invalidCompressionModeACvpZ">PDFError.invalidCompressionMode</a></code> if the provided compression mode was invalid.
 
 </div>
 
@@ -1018,7 +1517,7 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setCompressionMode</span><span class="p">(</span><span class="n">to</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/CompressionMode.html">CompressionMode</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setCompressionMode</span><span class="p">(</span><span class="n">to</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/CompressionMode.html">CompressionMode</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -1058,125 +1557,9 @@ If this attribute is not set, the setting of the viewer application is used.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument17setEncryptionModeFzT2toOS0_14EncryptionMode_T_"></a>
-                    <a name="//apple_ref/swift/Method/setEncryptionMode(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument17setEncryptionModeFzT2toOS0_14EncryptionMode_T_">setEncryptionMode(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the encryption mode. As a side effect, ups the version of PDF to 1.4
-when the mode is set to <code>.r3</code>.</p>
-<div class="aside aside-important">
-    <p class="aside-title">Important</p>
-    <p>Prior to calling this method you must set the password using
-         the <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument11setPasswordFzT5ownerSS4userGSqSS__T_">setPassword(owner:user:)</a></code> method.</p>
-
-</div>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError26invalidEncryptionKeyLengthS0_">PDFError.invalidEncryptionKeyLength</a></code> if an invalid key length was specified;
-      <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError36documentEncryptionDictionaryNotFoundS0_">PDFError.documentEncryptionDictionaryNotFound</a></code> if you haven&rsquo;t set a password.</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setEncryptionMode</span><span class="p">(</span><span class="n">to</span> <span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/EncryptionMode.html">EncryptionMode</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>mode</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The encryption mode to set.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument14setPermissionsFzT2toVS0_11Permissions_T_"></a>
-                    <a name="//apple_ref/swift/Method/setPermissions(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument14setPermissionsFzT2toVS0_11Permissions_T_">setPermissions(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the permission flags for the document.</p>
-<div class="aside aside-important">
-    <p class="aside-title">Important</p>
-    <p>Prior to calling this method you must set the password using
-         the <code><a href="../Classes/PDFDocument.html#/s:FC10SwiftyHaru11PDFDocument11setPasswordFzT5ownerSS4userGSqSS__T_">setPassword(owner:user:)</a></code> method.</p>
-
-</div>
-<div class="aside aside-throws">
-    <p class="aside-title">Throws</p>
-    <p><code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError36documentEncryptionDictionaryNotFoundS0_">PDFError.documentEncryptionDictionaryNotFound</a></code> if you haven&rsquo;t set a password.</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setPermissions</span><span class="p">(</span><span class="n">to</span> <span class="nv">permissions</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/Permissions.html">Permissions</a></span><span class="p">)</span> <span class="k">throws</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>permissions</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The permission flags for the document.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC10SwiftyHaru11PDFDocument11setPasswordFzT5ownerSS4userGSqSS__T_"></a>
-                    <a name="//apple_ref/swift/Method/setPassword(owner:user:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC10SwiftyHaru11PDFDocument11setPasswordFzT5ownerSS4userGSqSS__T_">setPassword(owner:user:)</a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC11setPassword5owner4user11permissions14encryptionModeySS_SSSgAC11PermissionsVSgAC010EncryptionJ0OSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/setPassword(owner:user:permissions:encryptionMode:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC11setPassword5owner4user11permissions14encryptionModeySS_SSSgAC11PermissionsVSgAC010EncryptionJ0OSgtKF">setPassword(owner:user:permissions:encryptionMode:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1187,8 +1570,9 @@ when the mode is set to <code>.r3</code>.</p>
                         <p>Sets a password for the document. If the password is set, the document contents are encrypted.</p>
 <div class="aside aside-throws">
     <p class="aside-title">Throws</p>
-    <code><a href="../Structs/PDFError.html#/s:ZvV10SwiftyHaru8PDFError25encryptionInvalidPasswordS0_">PDFError.encryptionInvalidPassword</a></code> if the owner password is zero length string or
-       same value as the user password.
+    <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV25encryptionInvalidPasswordACvpZ">PDFError.encryptionInvalidPassword</a></code> if the owner password is zero length string or
+       same value as the user password; <code><a href="../Structs/PDFError.html#/s:10SwiftyHaru8PDFErrorV26invalidEncryptionKeyLengthACvpZ">PDFError.invalidEncryptionKeyLength</a></code> if an invalid key length
+       was specified.
 
 </div>
 
@@ -1197,7 +1581,10 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setPassword</span><span class="p">(</span><span class="nv">owner</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">user</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setPassword</span><span class="p">(</span><span class="nv">owner</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                        <span class="nv">user</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                        <span class="nv">permissions</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/Permissions.html">Permissions</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                        <span class="nv">encryptionMode</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/EncryptionMode.html">EncryptionMode</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span></code></pre>
 
                         </div>
                       </div>
@@ -1230,6 +1617,31 @@ when the mode is set to <code>.r3</code>.</p>
                                 </div>
                               </td>
                             </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>permissions</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The permission flags for the document. Default is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>encryptionMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The encryption mode. Ups the version of PDF to 1.4 when the mode is set to <code>.r3</code>.
+            Default is <code>nil</code>.</p>
+                                </div>
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -1250,9 +1662,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC10SwiftyHaru11PDFDocument8metadataVS0_8Metadata"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC8metadataAC8MetadataVvp"></a>
                     <a name="//apple_ref/swift/Property/metadata" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC10SwiftyHaru11PDFDocument8metadataVS0_8Metadata">metadata</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC8metadataAC8MetadataVvp">metadata</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1267,7 +1679,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">metadata</span><span class="p">:</span> <span class="kt"><a href="../Classes/PDFDocument/Metadata.html">Metadata</a></span> <span class="o">=</span> <span class="kt"><a href="../Classes/PDFDocument/Metadata.html">Metadata</a></span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">metadata</span><span class="p">:</span> <span class="kt">PDFDocument</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFDocument/Metadata.html">Metadata</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1281,9 +1693,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:VC10SwiftyHaru11PDFDocument15CompressionMode"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC15CompressionModeV"></a>
                     <a name="//apple_ref/swift/Struct/CompressionMode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:VC10SwiftyHaru11PDFDocument15CompressionMode">CompressionMode</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC15CompressionModeV">CompressionMode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1299,7 +1711,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CompressionMode</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">CompressionMode</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
 
                         </div>
                       </div>
@@ -1313,9 +1725,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:OC10SwiftyHaru11PDFDocument14EncryptionMode"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC14EncryptionModeO"></a>
                     <a name="//apple_ref/swift/Enum/EncryptionMode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC10SwiftyHaru11PDFDocument14EncryptionMode">EncryptionMode</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC14EncryptionModeO">EncryptionMode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1331,7 +1743,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EncryptionMode</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">EncryptionMode</span></code></pre>
 
                         </div>
                       </div>
@@ -1345,9 +1757,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:VC10SwiftyHaru11PDFDocument8Metadata"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC8MetadataV"></a>
                     <a name="//apple_ref/swift/Struct/Metadata" class="dashAnchor"></a>
-                    <a class="token" href="#/s:VC10SwiftyHaru11PDFDocument8Metadata">Metadata</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC8MetadataV">Metadata</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1363,7 +1775,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Metadata</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Metadata</span> <span class="p">:</span> <span class="kt">Equatable</span></code></pre>
 
                         </div>
                       </div>
@@ -1377,70 +1789,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFPs9Equatableoi2eeFTxx_Sb"></a>
-                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFPs9Equatableoi2eeFTxx_Sb">==(_:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">PDFDocument</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFDocument/Metadata.html">Metadata</a></span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">PDFDocument</span><span class="o">.</span><span class="kt"><a href="../Classes/PDFDocument/Metadata.html">Metadata</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>lhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>rhs</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:OC10SwiftyHaru11PDFDocument10PageLayout"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC10PageLayoutO"></a>
                     <a name="//apple_ref/swift/Enum/PageLayout" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC10SwiftyHaru11PDFDocument10PageLayout">PageLayout</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC10PageLayoutO">PageLayout</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1456,7 +1807,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PageLayout</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PageLayout</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -1470,9 +1821,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:OC10SwiftyHaru11PDFDocument15PageNumberStyle"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC15PageNumberStyleO"></a>
                     <a name="//apple_ref/swift/Enum/PageNumberStyle" class="dashAnchor"></a>
-                    <a class="token" href="#/s:OC10SwiftyHaru11PDFDocument15PageNumberStyle">PageNumberStyle</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC15PageNumberStyleO">PageNumberStyle</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1488,7 +1839,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PageNumberStyle</span><span class="p">:</span> <span class="kt">UInt32</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">PageNumberStyle</span> <span class="p">:</span> <span class="kt">UInt32</span></code></pre>
 
                         </div>
                       </div>
@@ -1502,9 +1853,9 @@ when the mode is set to <code>.r3</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:VC10SwiftyHaru11PDFDocument11Permissions"></a>
+                    <a name="/s:10SwiftyHaru11PDFDocumentC11PermissionsV"></a>
                     <a name="//apple_ref/swift/Struct/Permissions" class="dashAnchor"></a>
-                    <a class="token" href="#/s:VC10SwiftyHaru11PDFDocument11Permissions">Permissions</a>
+                    <a class="token" href="#/s:10SwiftyHaru11PDFDocumentC11PermissionsV">Permissions</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1520,7 +1871,7 @@ when the mode is set to <code>.r3</code>.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Permissions</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Permissions</span> <span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
 
                         </div>
                       </div>
@@ -1532,8 +1883,8 @@ when the mode is set to <code>.r3</code>.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2018-12-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
