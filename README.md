@@ -71,30 +71,27 @@ import SwiftyHaru
 
 // Initialize stuff
 let document = PDFDocument()
-let page = document.addPage(width: 600, height: 400)
+let page = document.addPage(width: 600, height: 400) { context in
 
-// Construct a path
-let path = Path()
-    .moving(toX: 100, y: 100)
-    .appendingLine(toX: 400, y: 100)
-    .moving(toX: 500, y: 200)
-    .appendingArc(x: 400, y: 200, radius: 100, beginningAngle: 90, endAngle: 180)
-    .appendingCircle(x: 200, y: 200, radius: 50)
-    .moving(toX: 500, y: 200)
-    .appendingCurve(controlPoint1: Point(x: 400, y: 200),
-                    controlPoint2: Point(x: 400, y: 300),
-                    endPoint: Point(x: 500, y: 300))
-    .closingSubpath()
+    // Construct a path
+    let path = Path()
+        .moving(toX: 100, y: 100)
+        .appendingLine(toX: 400, y: 100)
+        .moving(toX: 500, y: 200)
+        .appendingArc(x: 400, y: 200, radius: 100, beginningAngle: 90, endAngle: 180)
+        .appendingCircle(x: 200, y: 200, radius: 50)
+        .moving(toX: 500, y: 200)
+        .appendingCurve(controlPoint1: Point(x: 400, y: 200),
+                        controlPoint2: Point(x: 400, y: 300),
+                        endPoint: Point(x: 500, y: 300))
+        .closingSubpath()
 
-// Paint the path
-page.draw { context in
-    
+    // Paint the path
     context.strokeColor = .blue
     context.stroke(path)
-}
 
-// Put some text
-page.draw { context in
+    // Put some text
+    context.textLeading = 11
     context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
                  atX: 300, y: 200)
 }

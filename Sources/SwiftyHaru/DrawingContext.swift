@@ -21,8 +21,8 @@ import Foundation
 /// drawing operations on only one page.
 public final class DrawingContext {
     
+    public let page: PDFPage
     private let _document: PDFDocument
-    private var __page: HPDF_Page
     internal var _isInvalidated = false
 
     private var _documentHandle: HPDF_Doc {
@@ -37,21 +37,11 @@ public final class DrawingContext {
             passed to.
             """
         )
-        return __page
+        return page._pageHandle
     }
 
-     /// The width of the page.
-    public var width: Float {
-        return HPDF_Page_GetWidth(_page)
-    }
-
-    /// The height of the page.
-    public var height: Float {
-        return HPDF_Page_GetHeight(_page)
-    }
-
-    internal init(page: HPDF_Page, document: PDFDocument) {
-        __page = page
+    internal init(page: PDFPage, document: PDFDocument) {
+        self.page = page
         _document = document
     }
 
@@ -703,7 +693,7 @@ public final class DrawingContext {
     private func _setFontIfNeeded() {
         if HPDF_Page_GetCurrentFont(_page) == nil {
             let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
-            HPDF_Page_SetFontAndSize(__page, font, DrawingContext.defaultFontSize)
+            HPDF_Page_SetFontAndSize(_page, font, DrawingContext.defaultFontSize)
         }
     }
 

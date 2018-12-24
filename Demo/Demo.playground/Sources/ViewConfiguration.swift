@@ -8,7 +8,7 @@ public extension SwiftyHaru.PDFDocument {
 
         let view = PDFView(frame: NSRect(x: 0, y: 0, width: 480, height: 640))
 
-        view.document = PDFDocument(data: getData())
+        view.document = Quartz.PDFDocument(data: getData())
 
         view.scaleFactor = 0.75
 

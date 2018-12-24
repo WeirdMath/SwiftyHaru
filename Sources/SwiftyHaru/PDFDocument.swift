@@ -60,7 +60,7 @@ public final class PDFDocument {
     // MARK: - Creating pages
 
     private func _drawOnPage(_ page: PDFPage, _ draw: ((DrawingContext) throws -> Void)?) rethrows -> PDFPage {
-        let context = DrawingContext(page: page._pageHandle, document: self)
+        let context = DrawingContext(page: page, document: self)
         defer { context._isInvalidated = true }
         try draw?(context)
         return page

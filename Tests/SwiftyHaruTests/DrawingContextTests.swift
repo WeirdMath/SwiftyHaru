@@ -70,9 +70,9 @@ final class DrawingContextTests: TestCase {
     
     private func drawSampleGrid(in context: DrawingContext) throws {
         
-        let grid = Grid(width: context.width / 2, height: context.height / 2)
-        let gridCenter = Point(x: context.width / 2, y: context.height / 2)
-        let gridOrigin = gridCenter - Point(x: context.width / 4, y: context.height / 4)
+        let grid = Grid(width: context.page.width / 2, height: context.page.height / 2)
+        let gridCenter = Point(x: context.page.width / 2, y: context.page.height / 2)
+        let gridOrigin = gridCenter - Point(x: context.page.width / 4, y: context.page.height / 4)
         
         try grid.draw(in: context, position: gridOrigin)
         drawPoint(gridCenter, in: context)

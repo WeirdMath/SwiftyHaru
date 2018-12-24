@@ -20,7 +20,6 @@
  Let's setup our document.
  */
     let document = PDFDocument()
-    let page = document.addPage(width: 400, height: 600)
 /*:
  And set some parameters
  */
@@ -54,12 +53,13 @@
 /*:
  Finally, assemble everything:
  */
-    let grid = Grid(width: page.width,
-                    height: page.height,
-                    labels: labels,
-                    serifs: serifs)
-
-    page.draw(object: grid, position: .zero)
+    try document.addPage(width: 400, height: 600) { context in
+        let grid = Grid(width: context.page.width,
+                        height: context.page.height,
+                        labels: labels,
+                        serifs: serifs)
+        try context.draw(grid, position: .zero)
+    }
 /*:
  Yep, it's that simple.
  
