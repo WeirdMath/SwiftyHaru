@@ -167,26 +167,14 @@ final class PDFDocumentTests: TestCase {
         // Given
         let ownerPassword = "12345678"
         let userPassword = "abcdefgh"
-        let page = document.addPage()
-
-        page.draw { context in
-            context.show(text: "Encrypted PDF.", atX: 200, y: 200)
-        }
-
-        XCTAssertThrowsError(try document.setEncryptionMode(to: .r2)) { error in
-            XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
-        }
-
-        XCTAssertThrowsError(try document.setPassword(owner: "")) { error in
-            XCTAssertEqual(PDFError.encryptionInvalidPassword, error as? PDFError)
+        try document.addPage { context in
+            try context.show(text: "Encrypted PDF.", atX: 200, y: 200)
         }
 
         // When
-        try document.setPassword(owner: ownerPassword, user: userPassword)
-        try document.setEncryptionMode(to: .r2)
+        try document.setPassword(owner: ownerPassword, user: userPassword, encryptionMode: .r2)
 
         // Then
-
         // We can't compare the bytes because encryption uses PRGs, so we just count them.
         assertSnapshot(matching: document, as: .byteCount)
     }
@@ -196,20 +184,15 @@ final class PDFDocumentTests: TestCase {
         // Given
         let ownerPassword = "12345678"
         let userPassword = "abcdefgh"
-        let page = document.addPage()
-
-        page.draw { context in
-            context.show(text: "Encrypted PDF with permissions.", atX: 200, y: 200)
-        }
-
-        XCTAssertThrowsError(try document.setPermissions(to: .read)) { error in
-            XCTAssertEqual(PDFError.documentEncryptionDictionaryNotFound, error as? PDFError)
+        try document.addPage { context in
+            try context.show(text: "Encrypted PDF with permissions.", atX: 200, y: 200)
         }
 
         // When
-        try document.setPassword(owner: ownerPassword, user: userPassword)
-        try document.setPermissions(to: [])
-        try document.setEncryptionMode(to: .r3(keyLength: 8))
+        try document.setPassword(owner: ownerPassword,
+                                 user: userPassword,
+                                 permissions: [],
+                                 encryptionMode: .r3(keyLength: 8))
 
         // Then
         // We can't compare the bytes because encryption uses PRGs, so we just count them.

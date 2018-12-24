@@ -42,8 +42,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_GetPageMode()` | Unimplemented | None | N/A |
     | `HPDF_SetOpenAction()` | Unimplemented | None | N/A |
     | `HPDF_GetCurrentPage()` | **N/A** | N/A | N/A |
-    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage()`, `PDFDocument.addPage(width:height:)`, `PDFDocument.addPage(size:direction:)` |
-    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:)`, `PDFDocument.insertPage(width:height:atIndex:)`, `PDFDocument.insertPage(size:direction:atIndex:)` |
+    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage(_:)`, `PDFDocument.addPage(width:height:_:)`, `PDFDocument.addPage(size:direction:_:)` |
+    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:_:)`, `PDFDocument.insertPage(width:height:atIndex:_:)`, `PDFDocument.insertPage(size:direction:atIndex:_:)` |
     
 * **[Font Handling](https://github.com/libharu/libharu/wiki/API%3A-Document#Font_Handling)**
 
@@ -87,9 +87,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`|
     | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`, `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
     | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
-    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user)` |
-    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPermissions(to:)` |
-    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setEncryptionMode(to:)` |
+    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
     | `HPDF_SetCompressionMode()` | **Implemented** | Incomplete | `PDFDocument.setCompressionMode(to:)` |
 `
 ## Page Handling

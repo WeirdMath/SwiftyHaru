@@ -16,7 +16,7 @@ public extension PDFDocument {
     public enum PageLayout: UInt32 {
         
         /// Only one page is displayed.
-        case single
+        case single = 0
         
         /// Display the pages in one column.
         case oneColumn

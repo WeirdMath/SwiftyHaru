@@ -37,36 +37,20 @@ endobj
 /Length 6 0 R
 >>
 stream
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
 11 TL
 BT
 100 200 Td
+/F1 11 Tf
 (Roses are red,) Tj
 (Violets are blue,) '
 (Sugar is sweet,) '
 (And so are you.) '
 ET
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
 
 endstream
 endobj
 6 0 obj
-195
+115
 endobj
 7 0 obj
 <<
@@ -84,8 +68,8 @@ xref
 0000000123 00000 n
 0000000187 00000 n
 0000000363 00000 n
-0000000612 00000 n
-0000000631 00000 n
+0000000532 00000 n
+0000000551 00000 n
 trailer
 <<
 /Root 1 0 R
@@ -93,5 +77,5 @@ trailer
 /Size 8
 >>
 startxref
-729
+649
 %%EOF

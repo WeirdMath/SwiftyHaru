@@ -48,6 +48,12 @@ public struct Size: Hashable {
     }
 }
 
+extension Size: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "(\(width), \(height))"
+    }
+}
+
 /// A structure that contains a point in a two-dimensional coordinate system.
 public struct Point: Hashable {
     
@@ -108,6 +114,12 @@ public struct Point: Hashable {
     public func applying(_ transform: AffineTransform) -> Point {
         return Point(x: transform.a * x + transform.c * y + transform.tx,
                      y: transform.b * x + transform.d * y + transform.ty)
+    }
+}
+
+extension Point: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "(\(x), \(y))"
     }
 }
 
@@ -206,6 +218,12 @@ public struct Rectangle: Hashable {
     ///   - height: The height of a rectangle.
     public init(x: Int, y: Int, width: Int, height: Int) {
         self.init(x: Float(x), y: Float(y), width: Float(width), height: Float(height))
+    }
+}
+
+extension Rectangle: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return "(\(x), \(y), \(width), \(height))"
     }
 }
 

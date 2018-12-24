@@ -38,15 +38,6 @@ endobj
 /Length 6 0 R
 >>
 stream
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
 0.8 G
 0.25 w
 0 0 m
@@ -360,8 +351,8 @@ S
 0 0 m
 S
 0.10196 0.27843 0.4 rg
-/F2 11 Tf
-/F2 5 Tf
+/F1 11 Tf
+/F1 5 Tf
 BT
 102 286.58499 Td
 ET
@@ -385,26 +376,8 @@ ET
 0 G
 0 g
 0 J
-/F1 5 Tf
-/F1 11 Tf
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
+/F2 5 Tf
+/F2 11 Tf
 0.8 G
 0.25 w
 0 0 m
@@ -718,8 +691,8 @@ S
 0 0 m
 S
 0.10196 0.27843 0.4 rg
-/F2 11 Tf
-/F2 5 Tf
+/F1 11 Tf
+/F1 5 Tf
 BT
 552 286.58499 Td
 ET
@@ -743,27 +716,18 @@ ET
 0 G
 0 g
 0 J
-/F1 5 Tf
-/F1 11 Tf
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
+/F2 5 Tf
+/F2 11 Tf
 
 endstream
 endobj
 6 0 obj
-7885
+7693
 endobj
 7 0 obj
 <<
 /Type /Font
-/BaseFont /Helvetica
+/BaseFont /Times-Bold
 /Subtype /Type1
 /Encoding /StandardEncoding
 >>
@@ -771,7 +735,7 @@ endobj
 8 0 obj
 <<
 /Type /Font
-/BaseFont /Times-Bold
+/BaseFont /Helvetica
 /Subtype /Type1
 /Encoding /StandardEncoding
 >>
@@ -784,9 +748,9 @@ xref
 0000000123 00000 n
 0000000187 00000 n
 0000000373 00000 n
-0000008312 00000 n
-0000008332 00000 n
-0000008430 00000 n
+0000008120 00000 n
+0000008140 00000 n
+0000008239 00000 n
 trailer
 <<
 /Root 1 0 R
@@ -794,5 +758,5 @@ trailer
 /Size 9
 >>
 startxref
-8529
+8337
 %%EOF

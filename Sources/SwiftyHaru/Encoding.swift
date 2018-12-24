@@ -6,7 +6,7 @@
 //
 //
 
-public struct Encoding: Equatable {
+public struct Encoding: Hashable {
     
     // MARK: - Singlebyte encodings
     

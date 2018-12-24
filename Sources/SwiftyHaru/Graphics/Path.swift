@@ -51,6 +51,7 @@ public struct Path: Hashable {
     /// - parameter point: The start point for drawing path.
     ///
     /// - returns: The new path.
+    @inlinable
     public func moving(to point: Point) -> Path {
         var path = self
         path.move(to: point)
@@ -62,6 +63,7 @@ public struct Path: Hashable {
     ///
     /// - parameter x: The x coordinate of the start point for drawing path.
     /// - parameter y: The y coordinate of the start point for drawing path.
+    @inlinable
     public mutating func move(toX x: Float, y: Float) {
         move(to: Point(x: x, y: y))
     }
@@ -73,6 +75,7 @@ public struct Path: Hashable {
     /// - parameter y: The y coordinate of the start point for drawing path.
     ///
     /// - returns: The new path.
+    @inlinable
     public func moving(toX x: Float, y: Float) -> Path {
         var path = self
         path.move(toX: x, y: y)
@@ -95,6 +98,7 @@ public struct Path: Hashable {
     /// - parameter point: The end point of the new path.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingLine(to point: Point) -> Path {
         var path = self
         path.appendLine(to: point)
@@ -107,6 +111,7 @@ public struct Path: Hashable {
     ///
     /// - parameter x: The x coordinate of end point of the path.
     /// - parameter y: The y coordinate of end point of the path.
+    @inlinable
     public mutating func appendLine(toX x: Float, y: Float) {
         appendLine(to: Point(x: x, y: y))
     }
@@ -119,6 +124,7 @@ public struct Path: Hashable {
     /// - parameter y: The y coordinate of end point of the path.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingLine(toX x: Float, y: Float) -> Path {
         var path = self
         path.appendLine(toX: x, y: y)
@@ -145,6 +151,7 @@ public struct Path: Hashable {
     /// The current point is moved to the start point of the subpath.
     ///
     /// - returns: The new path.
+    @inlinable
     public func closingSubpath() -> Path {
         var path = self
         path.closeSubpath()
@@ -164,8 +171,8 @@ public struct Path: Hashable {
         
         guard endAngle > beginningAngle else { return }
         
-        let deltaAngle = (90 - (beginningAngle + endAngle) / 2) / 180 * Float.pi
-        let newAngle = (endAngle - beginningAngle) / 2 / 180 * Float.pi
+        let deltaAngle = (90 - (beginningAngle + endAngle) / 2) / 180 * .pi
+        let newAngle = (endAngle - beginningAngle) / 2 / 180 * .pi
         
         let rx3 = radius * cos(newAngle)
         let ry3 = -radius * sin(newAngle)
@@ -189,6 +196,7 @@ public struct Path: Hashable {
     /// - parameter endAngle:       The angle of the end of the arc. It must be greater than `beginningAngle`.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingArc(center: Point, radius: Float, beginningAngle: Float, endAngle: Float) -> Path {
         var path = self
         path.appendArc(center: center, radius: radius, beginningAngle: beginningAngle, endAngle: endAngle)
@@ -203,6 +211,7 @@ public struct Path: Hashable {
     /// - parameter radius:         The radius of the arc.
     /// - parameter beginningAngle: The angle of the begining of the arc.
     /// - parameter endAngle:       The angle of the end of the arc. It must be greater than `beginningAngle`.
+    @inlinable
     public mutating func appendArc(x: Float, y: Float, radius: Float, beginningAngle: Float, endAngle: Float) {
         appendArc(center: Point(x: x, y: y), radius: radius, beginningAngle: beginningAngle, endAngle: endAngle)
     }
@@ -218,6 +227,7 @@ public struct Path: Hashable {
     /// - parameter endAngle:       The angle of the end of the arc. It must be greater than `beginningAngle`.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingArc(x: Float, y: Float, radius: Float, beginningAngle: Float, endAngle: Float) -> Path {
         var path = self
         path.appendArc(x: x, y: y, radius: radius, beginningAngle: beginningAngle, endAngle: endAngle)
@@ -242,6 +252,7 @@ public struct Path: Hashable {
     /// - parameter radius: The radius of the circle.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingCircle(center: Point, radius: Float) -> Path {
         var path = self
         path.appendCircle(center: center, radius: radius)
@@ -254,6 +265,7 @@ public struct Path: Hashable {
     /// - parameter x:      The x coordinate of the center point of the circle.
     /// - parameter y:      The y coordinate of the center point of the circle.
     /// - parameter radius: The radius of the circle.
+    @inlinable
     public mutating func appendCircle(x: Float, y: Float, radius: Float) {
         appendCircle(center: Point(x: x, y: y), radius: radius)
     }
@@ -267,6 +279,7 @@ public struct Path: Hashable {
     /// - parameter radius: The radius of the circle.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingCircle(x: Float, y: Float, radius: Float) -> Path {
         var path = self
         path.appendCircle(x: x, y: y, radius: radius)
@@ -288,6 +301,7 @@ public struct Path: Hashable {
     /// - parameter rect: The rectangle to append.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingRectangle(_ rect: Rectangle) -> Path {
         var path = self
         path.appendRectangle(rect)
@@ -299,6 +313,7 @@ public struct Path: Hashable {
     ///
     /// - parameter origin: The lower-left point of the rectangle.
     /// - parameter size:   The size of the rectangle.
+    @inlinable
     public mutating func appendRectangle(origin: Point, size: Size) {
         appendRectangle(Rectangle(origin: origin, size: size))
     }
@@ -310,6 +325,7 @@ public struct Path: Hashable {
     /// - parameter size:   The size of the rectangle.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingRectangle(origin: Point, size: Size) -> Path {
         var path = self
         path.appendRectangle(origin: origin, size: size)
@@ -323,6 +339,7 @@ public struct Path: Hashable {
     /// - parameter y:      The y coordinate of the lower-left point of the rectangle.
     /// - parameter width:  The width of the rectangle.
     /// - parameter height: The height of the rectangle.
+    @inlinable
     public mutating func appendRectangle(x: Float, y: Float, width: Float, height: Float) {
         appendRectangle(origin: Point(x: x, y:y), size: Size(width: width, height: height))
     }
@@ -336,6 +353,7 @@ public struct Path: Hashable {
     /// - parameter height: The height of the rectangle.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingRectangle(x: Float, y: Float, width: Float, height: Float) -> Path {
         var path = self
         path.appendRectangle(x: x, y: y, width: width, height: height)
@@ -367,6 +385,7 @@ public struct Path: Hashable {
     /// - parameter endPoint:      The end point of the curve.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingCurve(controlPoint1: Point, controlPoint2: Point, endPoint: Point) -> Path {
         var path = self
         path.appendCurve(controlPoint1: controlPoint1, controlPoint2: controlPoint2, endPoint: endPoint)
@@ -396,6 +415,7 @@ public struct Path: Hashable {
     /// - parameter endPoint:      The end point of the curve.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingCurve(controlPoint1: Point, endPoint: Point) -> Path {
         var path = self
         path.appendCurve(controlPoint1: controlPoint1, endPoint: endPoint)
@@ -423,6 +443,7 @@ public struct Path: Hashable {
     /// - parameter endPoint:      The end point of the curve.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingCurve(controlPoint2: Point, endPoint: Point) -> Path {
         var path = self
         path.appendCurve(controlPoint2: controlPoint2, endPoint: endPoint)
@@ -451,6 +472,7 @@ public struct Path: Hashable {
     /// - parameter verticalRadius:   The vertical radius of the ellipse.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingEllipse(center: Point, horizontalRadius: Float, verticalRadius: Float) -> Path {
         var path = self
         path.appendEllipse(center: center, horizontalRadius: horizontalRadius, verticalRadius: verticalRadius)
@@ -464,6 +486,7 @@ public struct Path: Hashable {
     /// - parameter y:                The y coordinate of the center point of the ellipse.
     /// - parameter horizontalRadius: The horizontal radius of the ellipse.
     /// - parameter verticalRadius:   The vertical radius of the ellipse.
+    @inlinable
     public mutating func appendEllipse(x: Float, y: Float, horizontalRadius: Float, verticalRadius: Float) {
         appendEllipse(center: Point(x: x, y: y), horizontalRadius: horizontalRadius, verticalRadius: verticalRadius)
     }
@@ -478,6 +501,7 @@ public struct Path: Hashable {
     /// - parameter verticalRadius:   The vertical radius of the ellipse.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingEllipse(x: Float, y: Float, horizontalRadius: Float, verticalRadius: Float) -> Path {
         var path = self
         path.appendEllipse(x: x, y: y, horizontalRadius: horizontalRadius, verticalRadius: verticalRadius)
@@ -488,10 +512,11 @@ public struct Path: Hashable {
     /// i. e. `Point(x: rectangle.midX - rectangle.width / 2, y: rectangle.y + rectangle.height / 2)`.
     ///
     /// - parameter rectangle: The rectangle the ellipse should be inscribed in.
+    @inlinable
     public mutating func appendEllipse(inscribedIn rectangle: Rectangle) {
         appendEllipse(center: rectangle.center,
-                horizontalRadius: rectangle.width / 2,
-                verticalRadius: rectangle.height / 2)
+                      horizontalRadius: rectangle.width / 2,
+                      verticalRadius: rectangle.height / 2)
     }
 
     /// Creates a new path by appending an ellipse to the old path, then sets the current point
@@ -501,6 +526,7 @@ public struct Path: Hashable {
     /// - parameter rectangle: The rectangle the ellipse should be inscribed in.
     ///
     /// - returns: The new path.
+    @inlinable
     public func appendingEllipse(inscribedIn rectangle: Rectangle) -> Path {
         var path = self
         path.appendEllipse(inscribedIn: rectangle)

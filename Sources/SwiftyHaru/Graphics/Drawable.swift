@@ -12,5 +12,5 @@ public protocol Drawable {
     /// This method must perform drawing operations in the provided `context`. Use it to visualize your entity.
     ///
     /// - parameter context: The context to perform drawing in.
-    func draw(in context: DrawingContext, position: Point)
+    func draw(in context: DrawingContext, position: Point) throws
 }

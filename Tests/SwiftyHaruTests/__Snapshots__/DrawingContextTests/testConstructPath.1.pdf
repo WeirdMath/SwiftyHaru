@@ -25,9 +25,6 @@ endobj
 /Contents 5 0 R
 /Resources <<
 /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
-/Font <<
-/F1 7 0 R
->>
 >>
 /Parent 2 0 R
 >>
@@ -37,15 +34,6 @@ endobj
 /Length 6 0 R
 >>
 stream
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
 0 0 m
 100 100 m
 400 100 l
@@ -97,24 +85,6 @@ h
 177.92 180 160 188.96001 160 200 c
 0 0 m
 S
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
 0 0 m
 70 400 m
 70 400 m
@@ -147,45 +117,27 @@ S
 h
 0 0 m
 S
-1 w
-0 G
-0 g
-[] 0 d
-0 J
-0 j
-10 M
-/F1 11 Tf
-11 TL
 
 endstream
 endobj
 6 0 obj
-1734
-endobj
-7 0 obj
-<<
-/Type /Font
-/BaseFont /Helvetica
-/Subtype /Type1
-/Encoding /StandardEncoding
->>
+1542
 endobj
 xref
-0 8
+0 7
 0000000000 65535 f
 0000000015 00000 n
 0000000064 00000 n
 0000000123 00000 n
 0000000187 00000 n
-0000000363 00000 n
-0000002151 00000 n
-0000002171 00000 n
+0000000341 00000 n
+0000001937 00000 n
 trailer
 <<
 /Root 1 0 R
 /Info 3 0 R
-/Size 8
+/Size 7
 >>
 startxref
-2269
+1957
 %%EOF

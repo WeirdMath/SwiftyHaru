@@ -28,26 +28,22 @@ final class GridTests: TestCase {
         ("testCustomRightLabels", testCustomRightLabels)
     ]
 
-    var page: PDFPage!
-
-    override func setUp() {
-        super.setUp()
-        page = document.addPage()
-    }
-
-    func testDrawDefaultGrid() {
+    func testDrawDefaultGrid() throws {
 
         // Given
         let grid = Grid(width: 400, height: 600)
         
         // When
-        page.draw(object: grid, x: 100, y: 100)
+        try document.addPage { context in
+            try context.draw(grid, x: 100, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomVerticalMajorLines() {
+    func testCustomVerticalMajorLines() throws {
 
         // Given
         let parameters = Grid.MajorLineParameters(lineWidth: 3, lineSpacing: 20, lineColor: #colorLiteral(red: 0.1215686277, green: 0.01176470611, blue: 0.4235294163, alpha: 1))
@@ -59,14 +55,17 @@ final class GridTests: TestCase {
         let gridWithVerticalMajorLinesDrawnLater = Grid(width: 200, height: 200, lines: lines2)
         
         // When
-        page.draw(object: gridWithVerticalMajorLinesDrawnFirst, x: 100, y: 100)
-        page.draw(object: gridWithVerticalMajorLinesDrawnLater, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithVerticalMajorLinesDrawnFirst, x: 100, y: 100)
+            try context.draw(gridWithVerticalMajorLinesDrawnLater, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomHorizontalMajorLines() {
+    func testCustomHorizontalMajorLines() throws {
 
         // Given
         let parameters = Grid.MajorLineParameters(lineWidth: 3, lineSpacing: 30, lineColor: #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1))
@@ -78,14 +77,17 @@ final class GridTests: TestCase {
         let gridWithHorizontalMajorLinesDrawnLater = Grid(width: 200, height: 200, lines: lines2)
         
         // When
-        page.draw(object: gridWithHorizontalMajorLinesDrawnFirst, x: 100, y: 100)
-        page.draw(object: gridWithHorizontalMajorLinesDrawnLater, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithHorizontalMajorLinesDrawnFirst, x: 100, y: 100)
+            try context.draw(gridWithHorizontalMajorLinesDrawnLater, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomVerticalMinorLines() {
+    func testCustomVerticalMinorLines() throws {
 
         // Given
         let parameters = Grid.MinorLineParameters(lineWidth: 1, minorSegmentsPerMajorSegment: 3, lineColor: #colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1))
@@ -97,14 +99,17 @@ final class GridTests: TestCase {
         let gridWithVerticalMinorLinesDrawnLater = Grid(width: 200, height: 200, lines: lines2)
         
         // When
-        page.draw(object: gridWithVerticalMinorLinesDrawnFirst, x: 100, y: 100)
-        page.draw(object: gridWithVerticalMinorLinesDrawnLater, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithVerticalMinorLinesDrawnFirst, x: 100, y: 100)
+            try context.draw(gridWithVerticalMinorLinesDrawnLater, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomHorizontalMinorLines() {
+    func testCustomHorizontalMinorLines() throws {
 
         // Given
         let parameters = Grid.MinorLineParameters(lineWidth: 0.7, minorSegmentsPerMajorSegment: 4, lineColor: #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1))
@@ -116,14 +121,17 @@ final class GridTests: TestCase {
         let gridWithHorizontalMinorLinesDrawnLater = Grid(width: 200, height: 200, lines: lines2)
         
         // When
-        page.draw(object: gridWithHorizontalMinorLinesDrawnFirst, x: 100, y: 100)
-        page.draw(object: gridWithHorizontalMinorLinesDrawnLater, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithHorizontalMinorLinesDrawnFirst, x: 100, y: 100)
+            try context.draw(gridWithHorizontalMinorLinesDrawnLater, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomTopSerifs() {
+    func testCustomTopSerifs() throws {
 
         // Given
         let parameters = Grid.SerifParameters(frequency: 2, width: 2, length: 10, color: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
@@ -131,13 +139,16 @@ final class GridTests: TestCase {
         let grid = Grid(width: 200, height: 200, serifs: serifs)
         
         // When
-        page.draw(object: grid, x: 100, y: 100)
+        try document.addPage { context in
+            try context.draw(grid, x: 100, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomBottomSerifs() {
+    func testCustomBottomSerifs() throws {
 
         // Given
         let parameters = Grid.SerifParameters(frequency: 2, width: 2, length: 10, color: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
@@ -145,13 +156,16 @@ final class GridTests: TestCase {
         let grid = Grid(width: 200, height: 200, serifs: serifs)
         
         // When
-        page.draw(object: grid, x: 100, y: 100)
+        try document.addPage { context in
+            try context.draw(grid, x: 100, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomLeftSerifs() {
+    func testCustomLeftSerifs() throws {
 
         // Given
 
@@ -160,13 +174,16 @@ final class GridTests: TestCase {
         let grid = Grid(width: 200, height: 200, serifs: serifs)
         
         // When
-        page.draw(object: grid, x: 100, y: 100)
+        try document.addPage { context in
+            try context.draw(grid, x: 100, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomRightSerifs() {
+    func testCustomRightSerifs() throws {
 
         // Given
         let parameters = Grid.SerifParameters(frequency: 2, width: 2, length: 10, color: #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1))
@@ -174,13 +191,16 @@ final class GridTests: TestCase {
         let grid = Grid(width: 200, height: 200, serifs: serifs)
         
         // When
-        page.draw(object: grid, x: 100, y: 100)
+        try document.addPage { context in
+            try context.draw(grid, x: 100, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomTopLabels() {
+    func testCustomTopLabels() throws {
 
         // Given
         let parametersNonReversed = Grid.LabelParameters(sequence: ["", "1", "10", "100", "1000"],
@@ -200,14 +220,17 @@ final class GridTests: TestCase {
         let gridWithReversedLabels = Grid(width: 200, height: 200, labels: labelsReversed)
         
         // When
-        page.draw(object: gridWithNonReversedLabels, x: 100, y: 100)
-        page.draw(object: gridWithReversedLabels, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithNonReversedLabels, x: 100, y: 100)
+            try context.draw(gridWithReversedLabels, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomBottomLabels() {
+    func testCustomBottomLabels() throws {
 
         // Given
         let parametersNonReversed = Grid.LabelParameters(sequence: ["A", "B", "C", "D", "E"],
@@ -227,14 +250,17 @@ final class GridTests: TestCase {
         let gridWithReversedLabels = Grid(width: 200, height: 200, labels: labelsReversed)
         
         // When
-        page.draw(object: gridWithNonReversedLabels, x: 100, y: 100)
-        page.draw(object: gridWithReversedLabels, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithNonReversedLabels, x: 100, y: 100)
+            try context.draw(gridWithReversedLabels, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomLeftLabels() {
+    func testCustomLeftLabels() throws {
 
         // Given
         let sequence1 = sequence(first: 0.1, next: { $0 + 0.1 }).lazy.map { String(format: "%.1f", $0) }
@@ -257,14 +283,17 @@ final class GridTests: TestCase {
         let gridWithReversedLabels = Grid(width: 200, height: 200, labels: labelsReversed)
         
         // When
-        page.draw(object: gridWithNonReversedLabels, x: 100, y: 100)
-        page.draw(object: gridWithReversedLabels, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithNonReversedLabels, x: 100, y: 100)
+            try context.draw(gridWithReversedLabels, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testCustomRightLabels() {
+    func testCustomRightLabels() throws {
 
         // Given
         let parametersNonReversed = Grid.LabelParameters(sequence: ["0", "1", "2"],
@@ -284,10 +313,13 @@ final class GridTests: TestCase {
         let gridWithReversedLabels = Grid(width: 200, height: 200, labels: labelsReversed)
         
         // When
-        page.draw(object: gridWithNonReversedLabels, x: 100, y: 100)
-        page.draw(object: gridWithReversedLabels, x: 350, y: 100)
+        try document.addPage { context in
+            try context.draw(gridWithNonReversedLabels, x: 100, y: 100)
+            try context.draw(gridWithReversedLabels, x: 350, y: 100)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
 }

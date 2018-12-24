@@ -105,6 +105,7 @@ public struct AffineTransform: Hashable {
     /// y’ = x * sin(angle) + y * sin(angle)
     /// ```
     /// - Parameter angle: The angle, in radians, by which this matrix rotates the coordinate system axes.
+    @inlinable
     public init(rotationAngle angle: Float) {
         
         let cosine = cos(angle)
@@ -134,6 +135,7 @@ public struct AffineTransform: Hashable {
     /// - Parameters:
     ///   - sx: The factor by which to scale the x-axis of the coordinate system.
     ///   - sy: The factor by which to scale the y-axis of the coordinate system.
+    @inlinable
     public init(scaleX sx: Float, y sy: Float) {
         self.init(a:  sx, b:  0,
                   c:  0,  d:  sy,
@@ -159,6 +161,7 @@ public struct AffineTransform: Hashable {
     /// - Parameters:
     ///   - tx: The value by which to move the x-axis of the coordinate system.
     ///   - ty: The value by which to move the y-axis of the coordinate system.
+    @inlinable
     public init(translationX tx: Float, y ty: Float) {
         self.init(a:  1,  b:  0,
                   c:  0,  d:  1,
@@ -166,6 +169,7 @@ public struct AffineTransform: Hashable {
     }
     
     /// Checks whether an affine transform is the identity transform.
+    @inlinable
     public var isIdentity: Bool {
         return self == .identity
     }
@@ -193,6 +197,7 @@ public struct AffineTransform: Hashable {
     ///
     /// - Parameter other: The affine transform to concatenate to this affine transform.
     /// - Returns: A new affine transformation matrix. That is, `t’ = self * other`.
+    @inlinable
     public func concatenating(_ other: AffineTransform) -> AffineTransform {
         return AffineTransform(a:  a * other.a + b * other.c,
                                b:  a * other.b + b * other.d,
@@ -210,6 +215,7 @@ public struct AffineTransform: Hashable {
     ///
     /// - Returns: A new affine transformation matrix.
     ///            If the affine transform cannot be inverted, it is returned unchanged.
+    @inlinable
     public func inverted() -> AffineTransform {
         
         let det = a * d - c * b
@@ -232,6 +238,7 @@ public struct AffineTransform: Hashable {
     ///
     /// - Parameter angle: The angle, in radians, by which to rotate the affine transform.
     /// - Returns: A new affine transformation matrix.
+    @inlinable
     public func rotated(byAngle angle: Float) -> AffineTransform {
         return AffineTransform(rotationAngle: angle).concatenating(self)
     }
@@ -246,6 +253,7 @@ public struct AffineTransform: Hashable {
     ///   - x: The value by which to scale x values of the affine transform.
     ///   - y: The value by which to scale y values of the affine transform.
     /// - Returns: A new affine transformation matrix.
+    @inlinable
     public func scaled(byX x: Float, y: Float) -> AffineTransform {
         return AffineTransform(scaleX: x, y: y).concatenating(self)
     }
@@ -260,6 +268,7 @@ public struct AffineTransform: Hashable {
     ///   - tx: The value by which to move x values with the affine transform.
     ///   - ty: The value by which to move y values with the affine transform.
     /// - Returns: A new affine transformation matrix.
+    @inlinable
     public func translated(byX tx: Float, y ty: Float) -> AffineTransform {
         return AffineTransform(translationX: tx, y: ty).concatenating(self)
     }
@@ -276,6 +285,7 @@ public struct AffineTransform: Hashable {
     ///   - lhs: The left operand.
     ///   - rhs: The right operand.
     /// - Returns: A new affine transformation matrix.
+    @inlinable
     public static func * (lhs: AffineTransform, rhs: AffineTransform) -> AffineTransform {
         return lhs.concatenating(rhs)
     }

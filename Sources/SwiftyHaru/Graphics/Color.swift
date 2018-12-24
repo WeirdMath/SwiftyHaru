@@ -359,6 +359,7 @@ public struct Color: Hashable {
     ///
     /// - Parameter colorSpace: The color space of the new color.
     /// - Returns: The new color with the specified color space.
+    @inlinable
     public func converting(to colorSpace: PDFColorSpace) -> Color {
         var newColor = self
         newColor.convert(to: colorSpace)
@@ -366,10 +367,26 @@ public struct Color: Hashable {
     }
 }
 
+extension Color: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        var result = "\(String(describing: Color.self))("
+        switch _wrapped {
+        case let .rgb(red, green, blue):
+            result += "red: \(red), green: \(green), blue: \(blue)"
+        case let .cmyk(cyan, magenta, yellow, black):
+            result += "cyan: \(cyan), magenta: \(magenta), yellow: \(yellow), black: \(black)"
+        case let .gray(gray):
+            result += "gray: \(gray)"
+        }
+        result += ")"
+        return result
+    }
+}
+
 extension Color: _ExpressibleByColorLiteral {
     
-    public init(_colorLiteralRed: Float, green: Float, blue: Float, alpha: Float) {
-        self.init(red: _colorLiteralRed, green: green, blue: blue, alpha: alpha)!
+    public init(_colorLiteralRed red: Float, green: Float, blue: Float, alpha: Float) {
+        self.init(red: red, green: green, blue: blue, alpha: alpha)!
     }
 }
 

@@ -12,28 +12,18 @@ import SwiftyHaru
 
 final class PDFPageTests: TestCase {
     
-    static var allTests : [(String, (PDFPageTests) -> () throws -> Void)] {
-        return [
-            ("testGetSetWidth", testGetSetWidth),
-            ("testGetSetHeight", testGetSetHeight),
-            ("testRotatePage", testRotatePage),
-            ("testDrawObject", testDrawObject)
-        ]
-    }
-
-    var sut: PDFPage!
-    
-    override func setUp() {
-        super.setUp()
-        
-        record = false
-        
-        sut = document.addPage()
-    }
+    static let allTests = [
+        ("testGetSetWidth", testGetSetWidth),
+        ("testGetSetHeight", testGetSetHeight),
+        ("testRotatePage", testRotatePage),
+        ("testDrawObject", testDrawObject)
+    ]
 
     func testGetSetWidth() {
-        
+
         // Given
+        let sut = document.addPage()
+        XCTAssertEqual(sut.width, PDFPage.defaultWidth, accuracy: 1.0)
         let expectedWidth: Float = 1000
         
         // When
@@ -48,6 +38,8 @@ final class PDFPageTests: TestCase {
     func testGetSetHeight() {
 
         // Given
+        let sut = document.addPage()
+        XCTAssertEqual(sut.height, PDFPage.defaultHeight, accuracy: 1.0)
         let expectedHeight: Float = 2000
         
         // When
@@ -62,7 +54,7 @@ final class PDFPageTests: TestCase {
     func testRotatePage() {
 
         // Given
-        let page0 = sut!
+        let page0 = document.addPage()
         let page1 = document.addPage()
         let page2 = document.addPage()
         
@@ -75,10 +67,10 @@ final class PDFPageTests: TestCase {
         assertPDFSnapshot()
     }
     
-    func testDrawObject() {
+    func testDrawObject() throws {
         
         // Given
-        class DrawableObject: Drawable {
+        final class DrawableObject: Drawable {
             
             func draw(in context: DrawingContext, position: Point) {
                 context.fillColor = .red
@@ -89,9 +81,12 @@ final class PDFPageTests: TestCase {
         
         // When
         let object = DrawableObject()
-        sut.draw(object: object, x: 300, y: 300)
+        try document.addPage { context in
+            try context.draw(object, x: 300, y: 300)
+        }
 
         // Then
         assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
 }
