@@ -9,69 +9,73 @@
 import XCTest
 import SwiftyHaru
 
-class DrawingContextTests: XCTestCase {
+final class DrawingContextTests: TestCase {
     
-    static var allTests : [(String, (DrawingContextTests) -> () throws -> Void)] {
-        return [
-            ("testPathLineWidth", testPathLineWidth),
-            ("testPathDashStyle", testPathDashStyle),
-            ("testPathLineCap", testPathLineCap),
-            ("testPathLineJoin", testPathLineJoin),
-            ("testPathMiterLimit", testPathMiterLimit),
-            ("testSaveRestoreGState", testSaveRestoreGState),
-            ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
-            ("testStrokeColorRGB", testStrokeColorRGB),
-            ("testStrokeColorCMYK", testStrokeColorCMYK),
-            ("testStrokeColorGray", testStrokeColorGray),
-            ("testFillColorRGB", testFillColorRGB),
-            ("testFillColorCMYK", testFillColorCMYK),
-            ("testFillColorGray", testFillColorGray),
-            ("testConstructPath", testConstructPath),
-            ("testPaintPath", testPaintPath),
-            ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
-            ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
-            ("testTextFont", testTextFont),
-            ("testTextFontSize", testTextFontSize),
-            ("testTextEncoding", testTextEncoding),
-            ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
-            ("testTextWidthForString", testTextWidthForString),
-            ("testTextBoundingBox", testTextBoundingBox),
-            ("testFontAscent", testFontAscent),
-            ("testFontDescent", testFontDescent),
-            ("testFontXHeight", testFontXHeight),
-            ("testFontCapHeight", testFontCapHeight),
-            ("testTextLeading", testTextLeading),
-            ("testShowOnelineText", testShowOnelineText),
-            ("testShowMultilineText", testShowMultilineText),
-            ("testShowUnicodeText", testShowUnicodeText),
-            ("testShowTextInRect", testShowTextInRect)
-        ]
-    }
+    static let allTests = [
+        // Graphics state
+        ("testPathLineWidth", testPathLineWidth),
+        ("testPathDashStyle", testPathDashStyle),
+        ("testPathLineCap", testPathLineCap),
+        ("testPathLineJoin", testPathLineJoin),
+        ("testPathMiterLimit", testPathMiterLimit),
+        ("testSaveRestoreGState", testSaveRestoreGState),
+        ("testGetGraphicsStateDepth", testGetGraphicsStateDepth),
+        ("testRotateContext", testRotateContext),
+        ("testScaleContext", testScaleContext),
+        ("testTranslateContext", testTranslateContext),
+        // Color
+        ("testStrokeColorRGB", testStrokeColorRGB),
+        ("testStrokeColorCMYK", testStrokeColorCMYK),
+        ("testStrokeColorGray", testStrokeColorGray),
+        ("testFillColorRGB", testFillColorRGB),
+        ("testFillColorCMYK", testFillColorCMYK),
+        ("testFillColorGray", testFillColorGray),
+        // Path construction
+        ("testConstructPath", testConstructPath),
+        // Path painting
+        ("testPaintPath", testPaintPath),
+        ("testClipToPathNonzeroWindingNumberRule", testClipToPathNonzeroWindingNumberRule),
+        ("testClipToPathEvenOddRule", testClipToPathEvenOddRule),
+        // Text state
+        ("testTextFont", testTextFont),
+        ("testTextFontSize", testTextFontSize),
+        ("testTextEncoding", testTextEncoding),
+        ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
+        ("testTextWidthForString", testTextWidthForString),
+        ("testTextBoundingBox", testTextBoundingBox),
+        ("testFontAscent", testFontAscent),
+        ("testFontDescent", testFontDescent),
+        ("testFontXHeight", testFontXHeight),
+        ("testFontCapHeight", testFontCapHeight),
+        ("testTextLeading", testTextLeading),
+        // Text showing
+        ("testShowOnelineText", testShowOnelineText),
+        ("testShowMultilineText", testShowMultilineText),
+        ("testShowUnicodeText", testShowUnicodeText),
+        ("testShowTextInRect", testShowTextInRect)
+    ]
     
-    var recordMode = false
+    // MARK: - Helpers
     
-    var page: PDFPage!
-    
-    var document: PDFDocument!
-    
-    override func setUp() {
-        super.setUp()
+    private func drawPoint(_ p: Point, in context: DrawingContext) {
+        let size = Size(width: 2, height: 2).applying(context.currentTransform.inverted())
+        let path = Path()
+            .appendingEllipse(center: p, horizontalRadius: size.width, verticalRadius: size.height)
         
-        recordMode = false
-        
-        document = PDFDocument()
-        page = document.addPage()
-    }
-    
-    override func tearDown() {
-        
-        if recordMode {
-            saveReferenceFile(document.getData(), ofType: "pdf")
+        context.withNewGState {
+            context.fillColor = .red
+            context.fill(path)
         }
+    }
+    
+    private func drawSampleGrid(in context: DrawingContext) throws {
         
-        document = nil
+        let grid = Grid(width: context.page.width / 2, height: context.page.height / 2)
+        let gridCenter = Point(x: context.page.width / 2, y: context.page.height / 2)
+        let gridOrigin = gridCenter - Point(x: context.page.width / 4, y: context.page.height / 4)
         
-        super.tearDown()
+        try grid.draw(in: context, position: .zero + gridOrigin)
+        drawPoint(gridCenter, in: context)
     }
     
     // MARK: - Graphics state
@@ -81,35 +85,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialLineWidth: Float = 1
         let expectedLineWidth: Float = 10
-        let expectedFinalLineWidth = expectedInitialLineWidth
-        
+
         // When
         var returnedInitialLineWidth: Float = -1
-        page.draw { context in
+        var returnedLineWidth: Float        = -1
+
+        document.addPage { context in
             returnedInitialLineWidth = context.lineWidth
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialLineWidth, returnedInitialLineWidth)
-        
-        // When
-        var returnedLineWidth: Float = -1
-        page.draw { context in
             context.lineWidth = 10
             returnedLineWidth = context.lineWidth
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialLineWidth, returnedInitialLineWidth)
         XCTAssertEqual(expectedLineWidth, returnedLineWidth)
-        
-        // When
-        var returnedFinalLineWidth: Float = -1
-        page.draw { context in
-            returnedFinalLineWidth = context.lineWidth
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalLineWidth, returnedFinalLineWidth)
     }
     
     func testPathDashStyle() {
@@ -118,45 +107,24 @@ class DrawingContextTests: XCTestCase {
         let expectedInitialDashStyle = DashStyle.straightLine
         let expectedDashStyle1 = DashStyle(pattern: [10, 5], phase: 3)!
         let expectedDashStyle2 = DashStyle(pattern: [], phase: 0)!
-        let expectedFinalDashStyle = expectedInitialDashStyle
-        
+
         // When
         var returnedInitialDashStyle: DashStyle?
-        page.draw { context in
-            returnedInitialDashStyle = context.dashStyle
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialDashStyle, returnedInitialDashStyle)
-        
-        // When
         var returnedDashStyle1: DashStyle?
-        page.draw { context in
+        var returnedDashStyle2: DashStyle?
+
+        document.addPage { context in
+            returnedInitialDashStyle = context.dashStyle
             context.dashStyle = DashStyle(pattern: [10, 5], phase: 3)!
             returnedDashStyle1 = context.dashStyle
-        }
-        
-        // Then
-        XCTAssertEqual(expectedDashStyle1, returnedDashStyle1)
-        
-        // When
-        var returnedDashStyle2: DashStyle?
-        page.draw { context in
             context.dashStyle = DashStyle(pattern: [], phase: 10)!
             returnedDashStyle2 = context.dashStyle
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialDashStyle, returnedInitialDashStyle)
+        XCTAssertEqual(expectedDashStyle1, returnedDashStyle1)
         XCTAssertEqual(expectedDashStyle2, returnedDashStyle2)
-        
-        // When
-        var returnedFinalDashStyle: DashStyle?
-        page.draw { context in
-            returnedFinalDashStyle = context.dashStyle
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalDashStyle, returnedFinalDashStyle)
     }
     
     func testPathLineCap() {
@@ -164,35 +132,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialLineCap = LineCap.butt
         let expectedLineCap = LineCap.round
-        let expectedFinalLineCap = expectedInitialLineCap
         
         // When
         var returnedInitialLineCap: LineCap?
-        page.draw { context in
-            returnedInitialLineCap = context.lineCap
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialLineCap, returnedInitialLineCap)
-        
-        // When
         var returnedLineCap: LineCap?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedInitialLineCap = context.lineCap
             context.lineCap = .round
             returnedLineCap = context.lineCap
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialLineCap, returnedInitialLineCap)
         XCTAssertEqual(expectedLineCap, returnedLineCap)
-        
-        // When
-        var returnedFinalLineCap: LineCap?
-        page.draw { context in
-            returnedFinalLineCap = context.lineCap
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalLineCap, returnedFinalLineCap)
     }
     
     func testPathLineJoin() {
@@ -200,35 +153,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialLineJoin = LineJoin.miter
         let expectedLineJoin = LineJoin.round
-        let expectedFinalLineJoin = expectedInitialLineJoin
-        
+
         // When
         var returnedInitialLineJoin: LineJoin?
-        page.draw { context in
-            returnedInitialLineJoin = context.lineJoin
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialLineJoin, returnedInitialLineJoin)
-        
-        // When
         var returnedLineJoin: LineJoin?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedInitialLineJoin = context.lineJoin
             context.lineJoin = .round
             returnedLineJoin = context.lineJoin
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialLineJoin, returnedInitialLineJoin)
         XCTAssertEqual(expectedLineJoin, returnedLineJoin)
-        
-        // When
-        var returnedFinalLineJoin: LineJoin?
-        page.draw { context in
-            returnedFinalLineJoin = context.lineJoin
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalLineJoin, returnedFinalLineJoin)
     }
     
     func testPathMiterLimit() {
@@ -236,35 +174,19 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialMiterLimit: Float = 10
         let expectedMiterLimit: Float = 5
-        let expectedFinalMiterLimit = expectedInitialMiterLimit
-        
+
         // When
         var returnedInitialMiterLimit: Float = -1
-        page.draw { context in
-            returnedInitialMiterLimit = context.miterLimit
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialMiterLimit, returnedInitialMiterLimit)
-        
-        // When
         var returnedMiterLimit: Float = -1
-        page.draw { context in
+        document.addPage { context in
+            returnedInitialMiterLimit = context.miterLimit
             context.miterLimit = 5
             returnedMiterLimit = context.miterLimit
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialMiterLimit, returnedInitialMiterLimit)
         XCTAssertEqual(expectedMiterLimit, returnedMiterLimit)
-        
-        // When
-        var returnedFinalMiterLimit: Float = -1
-        page.draw { context in
-            returnedFinalMiterLimit = context.miterLimit
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalMiterLimit, returnedFinalMiterLimit)
     }
 
     func testSaveRestoreGState() {
@@ -274,63 +196,163 @@ class DrawingContextTests: XCTestCase {
 
         // When
         var returnedOuterColor: Color?
-        page.draw { context in
+        document.addPage { context in
 
             context.fillColor = expectedOuterColor
-
-            do {
-
-                try context.withNewGState {
-                    context.fillColor = .blue
-                }
-            } catch {
-                XCTFail()
+            
+            context.withNewGState {
+                context.fillColor = .blue
             }
 
             returnedOuterColor = context.fillColor
 
         }
-
-        // Doesn't compile without `try`.
-        try! page.draw { context in
-
-            // Compose a function that nests context.withNewGState calls
-            let function = Array(repeating: context.withNewGState, count: 35)
-                .reduce({}, { (result, next) -> () throws -> Void in { try next(result) } })
-
-            XCTAssertThrowsError(try function()) { error in
-                XCTAssertEqual(PDFError.exceedGStateLimit, error as? PDFError)
-            }
-        }
-
+        
         // Then
         XCTAssertEqual(expectedOuterColor, returnedOuterColor)
     }
     
     func testGetGraphicsStateDepth() {
-        
-        do {
-            try page.draw { context in
-                
-                XCTAssertEqual(context.graphicsStateDepth, 1)
-                
-                try context.withNewGState {
-                    
-                    XCTAssertEqual(context.graphicsStateDepth, 2)
-                    
-                    try context.clip(to: Path()) {
-                        
-                        XCTAssertEqual(context.graphicsStateDepth, 3)
-                    }
-                    
-                    XCTAssertEqual(context.graphicsStateDepth, 2)
+
+        // When
+        var depthOuterBefore: Int?
+        var depthNewGStateBefore: Int?
+        var depthClip: Int?
+        var depthNewGStateAfter: Int?
+        var depthOuterAfter: Int?
+
+        document.addPage { context in
+
+            depthOuterBefore = context.graphicsStateDepth
+
+            context.withNewGState {
+
+                depthNewGStateBefore = context.graphicsStateDepth
+
+                context.clip(to: Path()) {
+
+                    depthClip = context.graphicsStateDepth
+
                 }
                 
-                XCTAssertEqual(context.graphicsStateDepth, 1)
+                depthNewGStateAfter = context.graphicsStateDepth
             }
-        } catch {
-            XCTFail(String(describing: error))
+            
+            depthOuterAfter = context.graphicsStateDepth
         }
+
+        // Then
+        XCTAssertEqual(depthOuterBefore, 1)
+        XCTAssertEqual(depthNewGStateBefore, 2)
+        XCTAssertEqual(depthClip, 3)
+        XCTAssertEqual(depthNewGStateAfter, 2)
+        XCTAssertEqual(depthOuterAfter, 1)
+    }
+    
+    // MARK: Transforms
+
+    typealias AffineTransform = SwiftyHaru.AffineTransform
+    
+    func testRotateContext() throws {
+
+        // Given
+        let angle: Float = .pi / 180 * 10
+        let expectedTransform = AffineTransform(rotationAngle: angle)
+        
+        // When
+        var returnedTransform: AffineTransform?
+        try document.addPage { context in
+            
+            try self.drawSampleGrid(in: context)
+            
+            context.rotate(byAngle: angle)
+            
+            try self.drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
+    }
+    
+    func testScaleContext() throws {
+
+        // Given
+        let sx: Float = 0.7
+        let sy: Float = 1.3
+        let expectedTransform = AffineTransform(scaleX: sx, y: sy)
+        
+        // When
+        var returnedTransform: AffineTransform?
+        try document.addPage { context in
+            
+            try self.drawSampleGrid(in: context)
+            
+            context.scale(byX: sx, y: sy)
+            
+            try self.drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
+    }
+    
+    func testTranslateContext() throws {
+
+        // Given
+        let tx: Float = -PDFPage.defaultWidth / 3
+        let ty: Float = PDFPage.defaultHeight / 5
+        let expectedTransform = AffineTransform(translationX: tx, y: ty)
+        
+        // When
+        var returnedTransform: AffineTransform?
+        try document.addPage { context in
+            
+            try self.drawSampleGrid(in: context)
+            
+            context.translate(byX: tx, y: ty)
+            
+            try self.drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+        
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
+    }
+    
+    func testConcatContext() throws {
+
+        // Given
+        let expectedTransform = AffineTransform(translationX: 100, y: 200)
+            .scaled(byX: 1.5, y: 0.5)
+            .rotated(byAngle: .pi / 6)
+        
+        // When
+        var returnedTransform: AffineTransform?
+        try document.addPage { context in
+            
+            try self.drawSampleGrid(in: context)
+            
+            context.concatenate(expectedTransform)
+            
+            try self.drawSampleGrid(in: context)
+            
+            returnedTransform = context.currentTransform
+        }
+                
+        // Then
+        XCTAssertEqual(expectedTransform, returnedTransform)
+        assertPDFSnapshot()
     }
     
     // MARK: - Color
@@ -338,20 +360,28 @@ class DrawingContextTests: XCTestCase {
     func testStrokeColorRGB() {
         
         // Given
+        let expectedInitialStrokeColor = Color.black
         let expectedStrokeColor = Color(red: 0.1, green: 0.3, blue: 0.5)!
+        let expectedInitialColorSpace = PDFColorSpace.deviceGray
         let expectedColorSpace = PDFColorSpace.deviceRGB
         
         // When
-        var returnedStrokeColor = Color(red: 0, green: 0, blue: 0)!
-        var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        var returnedInitialStrokeColor: Color?
+        var returnedStrokeColor: Color?
+        var returnedInitialColorSpace: PDFColorSpace?
+        var returnedColorSpace: PDFColorSpace?
+        document.addPage { context in
+            returnedInitialColorSpace = context.strokingColorSpace
+            returnedInitialStrokeColor = context.strokeColor
             context.strokeColor = expectedStrokeColor
             returnedStrokeColor = context.strokeColor
             returnedColorSpace = context.strokingColorSpace
         }
         
         // Then
+        XCTAssertEqual(expectedInitialStrokeColor, returnedInitialStrokeColor)
         XCTAssertEqual(expectedStrokeColor, returnedStrokeColor)
+        XCTAssertEqual(expectedInitialColorSpace, returnedInitialColorSpace)
         XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
     
@@ -364,7 +394,7 @@ class DrawingContextTests: XCTestCase {
         // When
         var returnedStrokeColor = Color(cyan: 0, magenta: 0, yellow: 0, black: 0)!
         var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        document.addPage { context in
             context.strokeColor = expectedStrokeColor
             returnedStrokeColor = context.strokeColor
             returnedColorSpace = context.strokingColorSpace
@@ -384,7 +414,7 @@ class DrawingContextTests: XCTestCase {
         // When
         var returnedStrokeColor = Color(gray: 0)!
         var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        document.addPage { context in
             context.strokeColor = expectedStrokeColor
             returnedStrokeColor = context.strokeColor
             returnedColorSpace = context.strokingColorSpace
@@ -398,20 +428,28 @@ class DrawingContextTests: XCTestCase {
     func testFillColorRGB() {
         
         // Given
+        let expectedInitialFillColor = Color.black
         let expectedFillColor = Color(red: 0.1, green: 0.3, blue: 0.5)!
+        let expectedInitialColorSpace = PDFColorSpace.deviceGray
         let expectedColorSpace = PDFColorSpace.deviceRGB
         
         // When
-        var returnedFillColor = Color(red: 0, green: 0, blue: 0)!
-        var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        var returnedInitialFillColor: Color?
+        var returnedFillColor: Color?
+        var returnedInitialColorSpace: PDFColorSpace?
+        var returnedColorSpace: PDFColorSpace?
+        document.addPage { context in
+            returnedInitialColorSpace = context.fillingColorSpace
+            returnedInitialFillColor = context.fillColor
             context.fillColor = expectedFillColor
             returnedFillColor = context.fillColor
             returnedColorSpace = context.fillingColorSpace
         }
         
         // Then
+        XCTAssertEqual(expectedInitialFillColor, returnedInitialFillColor)
         XCTAssertEqual(expectedFillColor, returnedFillColor)
+        XCTAssertEqual(expectedInitialColorSpace, returnedInitialColorSpace)
         XCTAssertEqual(expectedColorSpace, returnedColorSpace)
     }
     
@@ -424,7 +462,7 @@ class DrawingContextTests: XCTestCase {
         // When
         var returnedFillColor = Color(cyan: 0, magenta: 0, yellow: 0, black: 0)!
         var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        document.addPage { context in
             context.fillColor = expectedFillColor
             returnedFillColor = context.fillColor
             returnedColorSpace = context.fillingColorSpace
@@ -444,7 +482,7 @@ class DrawingContextTests: XCTestCase {
         // When
         var returnedFillColor = Color(gray: 0)!
         var returnedColorSpace = PDFColorSpace.undefined
-        page.draw { context in
+        document.addPage { context in
             context.fillColor = expectedFillColor
             returnedFillColor = context.fillColor
             returnedColorSpace = context.fillingColorSpace
@@ -458,14 +496,9 @@ class DrawingContextTests: XCTestCase {
     // MARK: - Path construction
     
     func testConstructPath() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
-        page.draw { context in
+        document.addPage { context in
             
             let path = Path()
                 .moving(toX: 100, y: 100)
@@ -492,10 +525,8 @@ class DrawingContextTests: XCTestCase {
                 .appendingEllipse(x: 200, y: 200, horizontalRadius: 40, verticalRadius: 20)
             
             context.stroke(path)
-        }
-        
-        // Test that creating circles, ellipses and rectangles starts a new subpath in `currentPosition`
-        page.draw { context in
+
+            // Test that creating circles, ellipses and rectangles starts a new subpath in `currentPosition`
             let pathWithCircle = Path()
                 .appendingCircle(x: 100, y: 400, radius: 30)
                 .appendingLine(toX: 150, y: 400)
@@ -518,11 +549,10 @@ class DrawingContextTests: XCTestCase {
             context.stroke(pathWithEllipse)
             context.stroke(pathWithRectangle)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     // MARK: - Path paiting
@@ -531,41 +561,36 @@ class DrawingContextTests: XCTestCase {
         
         let path = Path()
             .moving(to: point)
-            .appendingLine(to: point + Vector(x: 37.5, y: -25))
-            .appendingCurve(controlPoint1: point + Vector(x: 75, y: 0),
-                            controlPoint2: point + Vector(x: 75, y: 137.5),
-                            endPoint: point + Vector(x: 50, y: 125))
-            .appendingCurve(controlPoint1: point + Vector(x: 25, y: 112.5),
-                            controlPoint2: point + Vector(x: 12.5, y: 12.5),
-                            endPoint: point + Vector(x: 62.5, y: 12.5))
-            .appendingCurve(controlPoint1: point + Vector(x: 87.5, y: 12.5),
-                            controlPoint2: point + Vector(x: 100, y: 25),
-                            endPoint: point + Vector(x: 100, y: 0))
-            .appendingCurve(controlPoint1: point + Vector(x: 100, y: -25),
-                            controlPoint2: point + Vector(x: 50, y: -25),
-                            endPoint: point + Vector(x: 25, y: 0))
-            .appendingCurve(controlPoint1: point + Vector(x: 0, y: 25),
-                            controlPoint2: point + Vector(x: -25, y: 75),
-                            endPoint: point + Vector(x: 37.5, y: 87.5))
-            .appendingCurve(controlPoint1: point + Vector(x: 100, y: 100),
-                            controlPoint2: point + Vector(x: 100, y: -12.5),
-                            endPoint: point + Vector(x: 25, y: -50))
+            .appendingLine(to: point + Vector(dx: 37.5, dy: -25))
+            .appendingCurve(controlPoint1: point + Vector(dx: 75, dy: 0),
+                            controlPoint2: point + Vector(dx: 75, dy: 137.5),
+                            endPoint: point + Vector(dx: 50, dy: 125))
+            .appendingCurve(controlPoint1: point + Vector(dx: 25, dy: 112.5),
+                            controlPoint2: point + Vector(dx: 12.5, dy: 12.5),
+                            endPoint: point + Vector(dx: 62.5, dy: 12.5))
+            .appendingCurve(controlPoint1: point + Vector(dx: 87.5, dy: 12.5),
+                            controlPoint2: point + Vector(dx: 100, dy: 25),
+                            endPoint: point + Vector(dx: 100, dy: 0))
+            .appendingCurve(controlPoint1: point + Vector(dx: 100, dy: -25),
+                            controlPoint2: point + Vector(dx: 50, dy: -25),
+                            endPoint: point + Vector(dx: 25, dy: 0))
+            .appendingCurve(controlPoint1: point + Vector(dx: 0, dy: 25),
+                            controlPoint2: point + Vector(dx: -25, dy: 75),
+                            endPoint: point + Vector(dx: 37.5, dy: 87.5))
+            .appendingCurve(controlPoint1: point + Vector(dx: 100, dy: 100),
+                            controlPoint2: point + Vector(dx: 100, dy: -12.5),
+                            endPoint: point + Vector(dx: 25, dy: -50))
             .closingSubpath()
         
         return path
     }
     
     func testPaintPath() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
         
         // Draw some simple paths
-        page.draw { context in
+        document.addPage { context in
             
             let path1 = Path()
                 .moving(toX: 100, y: 100)
@@ -585,64 +610,42 @@ class DrawingContextTests: XCTestCase {
             context.lineWidth = 5
             context.fillColor = .blue
             context.fill(path2, stroke: true)
-        }
-        
-        // Filling using even-odd rule with stroking
-        
-        page.draw { context in
-            XCTAssertEqual(context.lineWidth, 1)
-            XCTAssertEqual(context.strokeColor, .black)
-            XCTAssertEqual(context.fillColor, .black)
-            
-            let curve = constructExampleCurve(startingWith: Point(x: 100, y: 300))
+
+            // Filling using even-odd rule with stroking
+            let curve1 = self.constructExampleCurve(startingWith: Point(x: 100, y: 300))
+
+            context.lineWidth = 1
+            context.fillColor = .green
+            context.strokeColor = .black
+            context.fill(curve1, rule: .evenOdd, stroke: true)
+
+            // Filling using nonzero winding number rule with stroking
+            let curve2 = self.constructExampleCurve(startingWith: Point(x: 225, y: 300))
             
             context.fillColor = .green
-            context.fill(curve, rule: .evenOdd, stroke: true)
-        }
-        
-        // Filling using nonzero winding number rule with stroking
-        
-        page.draw { context in
-            
-            let curve = constructExampleCurve(startingWith: Point(x: 225, y: 300))
+            context.fill(curve2, rule: .winding, stroke: true)
+
+            // Filling using even-odd number rule without stroking
+
+            let curve3 = self.constructExampleCurve(startingWith: Point(x: 100, y: 500))
             
             context.fillColor = .green
-            context.fill(curve, rule: .winding, stroke: true)
-        }
-        
-        // Filling using even-odd number rule without stroking
-        
-        page.draw { context in
-            
-            let curve = constructExampleCurve(startingWith: Point(x: 100, y: 500))
+            context.fill(curve3, rule: .evenOdd, stroke: false)
+
+            // Filling using nonzero winding number rule without stroking
+            let curve4 = self.constructExampleCurve(startingWith: Point(x: 225, y: 500))
             
             context.fillColor = .green
-            context.fill(curve, rule: .evenOdd, stroke: false)
+            context.fill(curve4, rule: .winding, stroke: false)
         }
-        
-        // Filling using nonzero winding number rule without stroking
-        
-        page.draw { context in
-            
-            let curve = constructExampleCurve(startingWith: Point(x: 225, y: 500))
-            
-            context.fillColor = .green
-            context.fill(curve, rule: .winding, stroke: false)
-        }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     func testClipToPathNonzeroWindingNumberRule() {
         
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
         // When
         
         let path = Path()
@@ -655,34 +658,23 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        do {
-            try page.draw { context in
-                
-                context.stroke(path)
-                
-                try context.clip(to: path, rule: .winding) {
-                    context.fill(rectangle)
-                }
+        document.addPage { context in
+            
+            context.stroke(path)
+            
+            context.clip(to: path, rule: .winding) {
+                context.fill(rectangle)
             }
-        } catch {
-            XCTFail(String(describing: error))
         }
         
-        let returnedDocumentData = document.getData()
-        
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     func testClipToPathEvenOddRule() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+
         // When
-        
         let path = Path()
             .moving(toX: 100, y: 100)
             .appendingLine(toX: 200, y: 400)
@@ -693,23 +685,18 @@ class DrawingContextTests: XCTestCase {
         
         let rectangle = Path().appendingRectangle(x: 75, y: 150, width: 250, height: 200)
         
-        do {
-            try page.draw { context in
-                
-                context.stroke(path)
-                
-                try context.clip(to: path, rule: .evenOdd) {
-                    context.fill(rectangle)
-                }
+        document.addPage { context in
+            
+            context.stroke(path)
+            
+            context.clip(to: path, rule: .evenOdd) {
+                context.fill(rectangle)
             }
-        } catch {
-            XCTFail(String(describing: error))
         }
-        
-        let returnedDocumentData = document.getData()
-        
+                
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     // MARK: - Text State
@@ -719,36 +706,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialFont = Font.helvetica
         let expectedFont = Font.courierBold
-        let expectedFinalFont = expectedInitialFont
-        
+
         // When
         var returnedInitialFont: Font?
-        page.draw { context in
-            returnedInitialFont = context.font
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialFont, returnedInitialFont)
-        
-        // When
         var returnedFont: Font?
-        page.draw { context in
-            
+
+        document.addPage { context in
+            returnedInitialFont = context.font
             context.font = .courierBold
             returnedFont = context.font
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialFont, returnedInitialFont)
         XCTAssertEqual(expectedFont, returnedFont)
-        
-        // When
-        var returnedFinalFont: Font?
-        page.draw { context in
-            returnedFinalFont = context.font
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalFont, returnedFinalFont)
     }
     
     func testTextFontSize() {
@@ -756,36 +727,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialFontSize: Float = 11
         let expectedFontSize: Float = 64
-        let expectedFinalFontSize = expectedInitialFontSize
-        
+
         // When
         var returnedInitialFontSize: Float?
-        page.draw { context in
-            returnedInitialFontSize = context.fontSize
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialFontSize, returnedInitialFontSize)
-        
-        // When
         var returnedFontSize: Float?
-        page.draw { context in
-            
+
+        document.addPage { context in
+            returnedInitialFontSize = context.fontSize
             context.fontSize = 64
             returnedFontSize = context.fontSize
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialFontSize, returnedInitialFontSize)
         XCTAssertEqual(expectedFontSize, returnedFontSize)
-        
-        // When
-        var returnedFinalFontSize: Float?
-        page.draw { context in
-            returnedFinalFontSize = context.fontSize
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalFontSize, returnedFinalFontSize)
     }
     
     func testTextEncoding() {
@@ -793,36 +748,20 @@ class DrawingContextTests: XCTestCase {
         // Given
         let expectedInitialEncoding = Encoding.standard
         let expectedEncoding = Encoding.cp1251
-        let expectedFinalEncoding = expectedInitialEncoding
-        
+
         // When
         var returnedInitialEncoding: Encoding?
-        page.draw { context in
-            returnedInitialEncoding = context.encoding
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialEncoding, returnedInitialEncoding)
-        
-        // When
         var returnedEncoding: Encoding?
-        page.draw { context in
-            
+
+        document.addPage { context in
+            returnedInitialEncoding = context.encoding
             context.encoding = .cp1251
             returnedEncoding = context.encoding
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialEncoding, returnedInitialEncoding)
         XCTAssertEqual(expectedEncoding, returnedEncoding)
-        
-        // When
-        var returnedFinalEncoding: Encoding?
-        page.draw { context in
-            returnedFinalEncoding = context.encoding
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalEncoding, returnedFinalEncoding)
     }
     
     func testTextEncodingUnsupportedByCurrentFont() {
@@ -832,7 +771,7 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedEncoding: Encoding?
-        page.draw { context in
+        document.addPage { context in
             context.font = .helvetica
             context.encoding = .utf8
             returnedEncoding = context.encoding
@@ -852,20 +791,14 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedWidth: Float?
-        page.draw { context in
-            returnedWidth = context.textWidth(for: text)
-        }
-        
-        // Then
-        XCTAssertEqual(expectedWidth, returnedWidth)
-        
-        // When
         var returnedWidthForMultilineText: Float?
-        page.draw { context in
+        document.addPage { context in
+            returnedWidth = context.textWidth(for: text)
             returnedWidthForMultilineText = context.textWidth(for: multilineText)
         }
-        
+
         // Then
+        XCTAssertEqual(expectedWidth, returnedWidth)
         XCTAssertEqual(expectedWidthForMultilineText, returnedWidthForMultilineText)
     }
     
@@ -886,20 +819,16 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedBBox: Rectangle?
-        page.draw { context in
-            returnedBBox = context.boundingBox(for: text, atPosition: textPosition)
-        }
-        
-        // Then
-        XCTAssertEqual(expectedBBox, returnedBBox)
-        
-        // When
         var returnedBBoxForMultilineText: Rectangle?
-        page.draw { context in
+
+        document.addPage { context in
+            context.textLeading = 11
+            returnedBBox = context.boundingBox(for: text, atPosition: textPosition)
             returnedBBoxForMultilineText = context.boundingBox(for: multilineText, atPosition: textPosition)
         }
-        
+
         // Then
+        XCTAssertEqual(expectedBBox, returnedBBox)
         XCTAssertEqual(expectedBBoxForMultilineText, returnedBBoxForMultilineText)
     }
     
@@ -911,22 +840,17 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedAscentForHelvetica: Float?
-        page.draw { context in
-            returnedAscentForHelvetica = context.fontAscent
-        }
-        
-        // Then
-        XCTAssertEqual(expectedAscentForHelvetica, returnedAscentForHelvetica)
-        
-        // When
         var returnedAscentForTimes: Float?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedAscentForHelvetica = context.fontAscent
             context.font = .timesRoman
             context.fontSize = 30
             returnedAscentForTimes = context.fontAscent
         }
-        
+
         // Then
+        XCTAssertEqual(expectedAscentForHelvetica, returnedAscentForHelvetica)
         XCTAssertEqual(expectedAscentForTimes, returnedAscentForTimes)
     }
     
@@ -938,22 +862,17 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedDescentForHelvetica: Float?
-        page.draw { context in
-            returnedDescentForHelvetica = context.fontDescent
-        }
-        
-        // Then
-        XCTAssertEqual(expectedDescentForHelvetica, returnedDescentForHelvetica)
-        
-        // When
         var returnedDescentForTimes: Float?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedDescentForHelvetica = context.fontDescent
             context.font = .timesRoman
             context.fontSize = 30
             returnedDescentForTimes = context.fontDescent
         }
-        
+
         // Then
+        XCTAssertEqual(expectedDescentForHelvetica, returnedDescentForHelvetica)
         XCTAssertEqual(expectedDescentForTimes, returnedDescentForTimes)
     }
     
@@ -965,22 +884,17 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedXHeightForHelvetica: Float?
-        page.draw { context in
-            returnedXHeightForHelvetica = context.fontXHeight
-        }
-        
-        // Then
-        XCTAssertEqual(expectedXHeightForHelvetica, returnedXHeightForHelvetica)
-        
-        // When
         var returnedXHeightForTimes: Float?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedXHeightForHelvetica = context.fontXHeight
             context.font = .timesRoman
             context.fontSize = 30
             returnedXHeightForTimes = context.fontXHeight
         }
-        
+
         // Then
+        XCTAssertEqual(expectedXHeightForHelvetica, returnedXHeightForHelvetica)
         XCTAssertEqual(expectedXHeightForTimes, returnedXHeightForTimes)
     }
     
@@ -992,184 +906,146 @@ class DrawingContextTests: XCTestCase {
         
         // When
         var returnedCapHeightForHelvetica: Float?
-        page.draw { context in
-            returnedCapHeightForHelvetica = context.fontCapHeight
-        }
-        
-        // Then
-        XCTAssertEqual(expectedCapHeightForHelvetica, returnedCapHeightForHelvetica)
-        
-        // When
         var returnedCapHeightForTimes: Float?
-        page.draw { context in
+
+        document.addPage { context in
+            returnedCapHeightForHelvetica = context.fontCapHeight
             context.font = .timesRoman
             context.fontSize = 30
             returnedCapHeightForTimes = context.fontCapHeight
         }
-        
+
         // Then
+        XCTAssertEqual(expectedCapHeightForHelvetica, returnedCapHeightForHelvetica)
         XCTAssertEqual(expectedCapHeightForTimes, returnedCapHeightForTimes)
     }
     
     func testTextLeading() {
         
         // Given
-        let expectedInitialTextLeading: Float = 11
+        let expectedInitialTextLeading: Float = 0
         let expectedTextLeading: Float = 24
-        let expectedFinalTextLeading = expectedInitialTextLeading
-        
+
         // When
         var returnedInitialTextLeading: Float?
-        page.draw { context in
-            returnedInitialTextLeading = context.textLeading
-        }
-        
-        // Then
-        XCTAssertEqual(expectedInitialTextLeading, returnedInitialTextLeading)
-        
-        // When
         var returnedTextLeading: Float?
-        page.draw { context in
+        document.addPage { context in
+            returnedInitialTextLeading = context.textLeading
             context.textLeading = 24
             returnedTextLeading = context.textLeading
         }
-        
+
         // Then
+        XCTAssertEqual(expectedInitialTextLeading, returnedInitialTextLeading)
         XCTAssertEqual(expectedTextLeading, returnedTextLeading)
-        
-        // When
-        var returnedFinalTextLeading: Float?
-        page.draw { context in
-            returnedFinalTextLeading = context.textLeading
-        }
-        
-        // Then
-        XCTAssertEqual(expectedFinalTextLeading, returnedFinalTextLeading)
     }
     
     // MARK: - Text Showing
     
-    func testShowOnelineText() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
+    func testShowOnelineText() throws {
+
         // When
-        page.draw { context in
-            context.show(text: "Hello World!", atX: 100, y: 100)
-            context.show(text: "", atX: 100, y: 200)
+        try document.addPage { context in
+            try context.show(text: "Hello World!", atX: 100, y: 100)
+            try context.show(text: "", atX: 100, y: 200)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testShowMultilineText() {
-        
-//        recordMode = true
-        
-        // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+    func testShowMultilineText() throws {
         
         // When
-        page.draw { context in
-            context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
-                         atX: 100, y: 200)
+        try document.addPage { context in
+            context.textLeading = 11
+            try context.show(text: "Roses are red,\nViolets are blue,\nSugar is sweet,\nAnd so are you.",
+                             atX: 100, y: 200)
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testShowUnicodeText() {
-        
-//        recordMode = true
-        
+    func testShowUnicodeText() throws {
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
         let fontData = getTestingResource(fromFile: "Andale Mono", ofType: "ttf")!
-        let loadedFont = try! document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
+        let loadedFont = try document.loadTrueTypeFont(from: fontData, embeddingGlyphData: true)
         
         // When
-        page.draw { context in
-            
+        try document.addPage { context in
+
+            context.textLeading = 11
             context.font = loadedFont
             context.encoding = .utf8
             
-            context.show(text: "Math poetry!", atX: 100, y: 220)
+            try context.show(text: "Math poetry!", atX: 100, y: 220)
             
-            context.show(text: "Гомоморфный образ группы,\n" +
-                "(Будь во имя коммунизма)\n" +
-                "Изоморфен фактор-группе\n" +
-                "По ядру гомоморфизма.",
-                         atX: 100, y: 200)
+            try context.show(text: """
+            Гомоморфный образ группы,
+            (Будь во имя коммунизма)
+            Изоморфен фактор-группе
+            По ядру гомоморфизма.
+            """, atX: 100, y: 200)
             
             // Test that setting a multibyte encoding twice doesn't cause an error in LibHaru
             context.encoding = .utf8
         }
-        
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
 
-    func testShowTextInRect() {
-
-//        recordMode = true
+    func testShowTextInRect() throws {
 
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        let text =
-            "Lorem ipsum\ndolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-            " incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud" +
-            " exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure" +
-            " dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-            " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit" +
-            " anim id est laborum."
+        let text = """
+        Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor \
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud \
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure \
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. \
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit \
+        anim id est laborum.
+        """
 
         // When
         var result1: (isSufficientSpace: Bool, charactersPrinted: Int)!
+        var result2: (isSufficientSpace: Bool, charactersPrinted: Int)!
 
-        page.draw { context in
+        try document.addPage { context in
+
+            context.textLeading = 11
 
             // Center alignment, insufficient space
 
-            let rectangle = Rectangle(x: 100, y: 100, width: 200, height: 100)
+            let rectangle1 = Rectangle(x: 100, y: 100, width: 200, height: 100)
 
-            context.stroke(Path().appendingRectangle(rectangle))
+            context.stroke(Path().appendingRectangle(rectangle1))
 
-            result1 = context.show(text: text, in: rectangle, alignment: .center)
-        }
-
-        var result2: (isSufficientSpace: Bool, charactersPrinted: Int)!
-
-        page.draw { context in
+            result1 = try context.show(text: text, in: rectangle1, alignment: .center)
 
             // Justified, sufficient space
 
-            let rectangle = Rectangle(x: 350, y: 100, width: 200, height: 200)
+            let rectangle2 = Rectangle(x: 350, y: 100, width: 200, height: 200)
 
-            context.stroke(Path().appendingRectangle(rectangle))
+            context.stroke(Path().appendingRectangle(rectangle2))
 
-            result2 = context.show(text: text, in: rectangle, alignment: .justify)
+            result2 = try context.show(text: text, in: rectangle2, alignment: .justify)
         }
 
-        let returnedDocumentData = document.getData()
-
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
 
         XCTAssertEqual(result1.charactersPrinted, 284)
         XCTAssertFalse(result1.isSufficientSpace)
 
-        XCTAssertEqual(result2.charactersPrinted, text.characters.count)
+        XCTAssertEqual(result2.charactersPrinted, text.count)
         XCTAssertTrue(result2.isSufficientSpace)
     }
 }

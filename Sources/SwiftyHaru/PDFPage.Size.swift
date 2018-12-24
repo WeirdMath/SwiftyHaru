@@ -10,7 +10,7 @@
 import CLibHaru
 #endif
 
-public extension PDFPage {
+extension PDFPage {
     
     /// A predefined size for a page.
     public enum Size: UInt32 {
@@ -53,7 +53,7 @@ public extension PDFPage {
     }
 }
 
-public extension PDFPage.Size {
+extension PDFPage.Size {
     
     internal init(haruEnum: HPDF_PageSizes) {
         self.init(rawValue: haruEnum.rawValue)!

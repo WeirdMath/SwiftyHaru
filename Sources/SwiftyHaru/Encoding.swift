@@ -6,7 +6,7 @@
 //
 //
 
-public struct Encoding {
+public struct Encoding: Hashable {
     
     // MARK: - Singlebyte encodings
     
@@ -160,20 +160,5 @@ public struct Encoding {
     /// The name of the encoding
     public var name: String {
         return _name
-    }
-}
-
-extension Encoding: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Encoding, rhs: Encoding) -> Bool {
-        return lhs._name == rhs._name
     }
 }

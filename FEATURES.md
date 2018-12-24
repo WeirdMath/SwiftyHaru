@@ -42,8 +42,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_GetPageMode()` | Unimplemented | None | N/A |
     | `HPDF_SetOpenAction()` | Unimplemented | None | N/A |
     | `HPDF_GetCurrentPage()` | **N/A** | N/A | N/A |
-    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage()`, `PDFDocument.addPage(width:height:)`, `PDFDocument.addPage(size:direction:)` |
-    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:)`, `PDFDocument.insertPage(width:height:atIndex:)`, `PDFDocument.insertPage(size:direction:atIndex:)` |
+    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage(_:)`, `PDFDocument.addPage(width:height:_:)`, `PDFDocument.addPage(size:direction:_:)` |
+    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:_:)`, `PDFDocument.insertPage(width:height:atIndex:_:)`, `PDFDocument.insertPage(size:direction:atIndex:_:)` |
     
 * **[Font Handling](https://github.com/libharu/libharu/wiki/API%3A-Document#Font_Handling)**
 
@@ -87,9 +87,9 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`|
     | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`, `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
     | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
-    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user)` |
-    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPermissions(to:)` |
-    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setEncryptionMode(to:)` |
+    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
     | `HPDF_SetCompressionMode()` | **Implemented** | Incomplete | `PDFDocument.setCompressionMode(to:)` |
 `
 ## Page Handling
@@ -113,7 +113,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetCurrentTextPos()` | **Implemented** | None | `DrawingContext.currentTextPosition` |
 | `HPDF_Page_GetCurrentFont()` | **Implemented** | Complete | `DrawingContext.font` |
 | `HPDF_Page_GetCurrentFontSize()` | **Implemented** | Complete | `DrawingContext.fontSize` |
-| `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetTransMatrix()` | **Implemented** | Complete | `DrawingContext.currentTransform` |
 | `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `DrawingContext.lineWidth` |
 | `HPDF_Page_GetLineCap()` | **Implemented** | Complete | `DrawingContext.lineCap` |
 | `HPDF_Page_GetLineJoin()` | **Implemented** | Complete | `DrawingContext.lineJoin` |
@@ -152,7 +152,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_ClosePathStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathEofillStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathFillStroke()` | **N/A** | N/A | N/A |
-| `HPDF_Page_Concat()` | Unimplemented | None | N/A |
+| `HPDF_Page_Concat()` | **Implemented** | Complete | `DrawingContext.concatenate(_:)`, `DrawingContext.translate(byX:y:)`, `DrawingContext.rotate(byAngle:)`, `DrawingContext.scale(byX:y:)` |
 | `HPDF_Page_CurveTo()` | **Implemented** | Complete | `Path.appendCurve(controlPoint1:controlPoint2:endPoint:)` |
 | `HPDF_Page_CurveTo2()` | **Implemented** | Complete | `Path.appendCurve(controlPoint2:endPoint:)` |
 | `HPDF_Page_CurveTo3()` | **Implemented** | Complete | `Path.appendCurve(controlPoint1:endPoint:)` |

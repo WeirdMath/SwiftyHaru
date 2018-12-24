@@ -72,12 +72,12 @@ public final class PDFDateFormatter : Formatter {
 
         let components = string.components(separatedBy: CharacterSet(charactersIn: "Z+- "))
 
-        guard string.characters.count >= 2 else { return nil }
+        guard string.count >= 2 else { return nil }
 
         let dateString = components[0]
 
-        let distance = dateString.characters.distance(from: dateString.startIndex, to: dateString.endIndex)
-        let ind = String(string.characters[string.characters.index(string.startIndex, offsetBy: distance)])
+        let distance = dateString.count
+        let ind = String(string[string.index(string.startIndex, offsetBy: distance)])
 
         let timezoneString = ind + components[1]
 
@@ -90,7 +90,7 @@ public final class PDFDateFormatter : Formatter {
 
     private func _timeZoneOffset(from string: String) -> Int? {
 
-        guard let ind = string.characters.first else { return nil }
+        guard let ind = string.first else { return nil }
 
         let sign: Int
         switch ind {
@@ -104,9 +104,7 @@ public final class PDFDateFormatter : Formatter {
             return nil
         }
 
-        let timeZoneComponents = string
-            .substring(from: string.index(after: string.startIndex))
-            .components(separatedBy: "'")
+        let timeZoneComponents = string[string.index(after: string.startIndex)...].components(separatedBy: "'")
         
         guard timeZoneComponents.count >= 2,
             let timezoneHour = Int(timeZoneComponents[0]),

@@ -49,10 +49,7 @@ public extension Grid {
                                   fontColor: Color = Color(gray: 0.5)!,
                                   frequency: Int = 5,
                                   offset: Vector = .zero,
-                                  reversed: Bool = false)
-            where S.Iterator.Element == String, S.SubSequence : Sequence,
-                  S.SubSequence.Iterator.Element == String,
-                  S.SubSequence.SubSequence == S.SubSequence {
+                                  reversed: Bool = false) where S.Element == String {
 
             self.sequence = AnySequence(sequence)
             self.font = font

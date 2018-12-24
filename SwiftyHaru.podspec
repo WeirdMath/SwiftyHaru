@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftyHaru'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Object-oriented and safe Swift wrapper for LibHaru — a library for creating PDF documents'
 
   s.description      = <<-DESC
@@ -20,6 +20,8 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.10'
   s.tvos.deployment_target = '9.0'
   s.watchos.deployment_target = '2.0'
+
+  s.swift_version = '4.2'
 
   s.source_files = 'Sources/**/*.{swift,h,c}'
   s.public_header_files = 'Sources/CLibPNG/include/*.h', 'Sources/CLibHaru/include/*.h'

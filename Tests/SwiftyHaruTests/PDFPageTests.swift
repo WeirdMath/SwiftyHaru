@@ -7,51 +7,23 @@
 //
 
 import XCTest
+import SnapshotTesting
 import SwiftyHaru
 
-class PDFPageTests: XCTestCase {
+final class PDFPageTests: TestCase {
     
-    static var allTests : [(String, (PDFPageTests) -> () throws -> Void)] {
-        return [
-            ("testGetSetWidth", testGetSetWidth),
-            ("testGetSetHeight", testGetSetHeight),
-            ("testRotatePage", testRotatePage),
-            ("testDrawObject", testDrawObject)
-        ]
-    }
-    
-    var recordMode = false
-    
-    var sut: PDFPage!
-    
-    var document: PDFDocument!
-    
-    override func setUp() {
-        super.setUp()
-        
-        recordMode = false
-        
-        document = PDFDocument()
-        sut = document.addPage()
-    }
-    
-    override func tearDown() {
-        
-        if recordMode {
-            saveReferenceFile(document.getData(), ofType: "pdf")
-        }
-        
-        document = nil
-        
-        super.tearDown()
-    }
-    
+    static let allTests = [
+        ("testGetSetWidth", testGetSetWidth),
+        ("testGetSetHeight", testGetSetHeight),
+        ("testRotatePage", testRotatePage),
+        ("testDrawObject", testDrawObject)
+    ]
+
     func testGetSetWidth() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let sut = document.addPage()
+        XCTAssertEqual(sut.width, PDFPage.defaultWidth, accuracy: 1.0)
         let expectedWidth: Float = 1000
         
         // When
@@ -60,20 +32,14 @@ class PDFPageTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedWidth, returnedWidth)
-        
-        // When
-        let returnedDocumentData = document.getData()
-        
-        // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testGetSetHeight() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
+        let sut = document.addPage()
+        XCTAssertEqual(sut.height, PDFPage.defaultHeight, accuracy: 1.0)
         let expectedHeight: Float = 2000
         
         // When
@@ -82,21 +48,13 @@ class PDFPageTests: XCTestCase {
         
         // Then
         XCTAssertEqual(expectedHeight, returnedHeight)
-        
-        // When
-        let returnedDocumentData = document.getData()
-        
-        // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
     func testRotatePage() {
-        
-//        recordMode = true
-        
+
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        let page0 = sut!
+        let page0 = document.addPage()
         let page1 = document.addPage()
         let page2 = document.addPage()
         
@@ -104,20 +62,15 @@ class PDFPageTests: XCTestCase {
         page0.rotate(byAngle: 90)
         page1.rotate(byAngle: 810)
         page2.rotate(byAngle: -270)
-        let returnedDocumentData = document.getData()
-        
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
     }
     
-    func testDrawObject() {
-        
-//        recordMode = true
+    func testDrawObject() throws {
         
         // Given
-        let expectedDocumentData = getTestingResource(fromFile: currentTestName, ofType: "pdf")
-        
-        class DrawableObject: Drawable {
+        final class DrawableObject: Drawable {
             
             func draw(in context: DrawingContext, position: Point) {
                 context.fillColor = .red
@@ -128,11 +81,12 @@ class PDFPageTests: XCTestCase {
         
         // When
         let object = DrawableObject()
-        sut.draw(object: object, x: 300, y: 300)
-        
-        let returnedDocumentData = document.getData()
-        
+        try document.addPage { context in
+            try context.draw(object, x: 300, y: 300)
+        }
+
         // Then
-        XCTAssertEqual(expectedDocumentData, returnedDocumentData)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
 }

@@ -1,376 +1,369 @@
 {
   "warnings": [
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Encoding.swift",
-      "line": null,
-      "symbol": "Encoding",
-      "symbol_kind": "source.lang.swift.decl.extension",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/DrawingContext.swift",
+      "line": 524,
+      "symbol": "DrawingContext.defaultFontSize",
+      "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Encoding.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Encoding.swift",
       "line": 9,
       "symbol": "Encoding",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": null,
       "symbol": "Font",
       "symbol_kind": "source.lang.swift.decl.extension",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
-      "line": null,
-      "symbol": "Font",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
-      "line": null,
-      "symbol": "Font",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 13,
       "symbol": "Font",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 15,
       "symbol": "Font.name",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 17,
       "symbol": "Font.courier",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 19,
       "symbol": "Font.courierBold",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 21,
       "symbol": "Font.courierOblique",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 23,
       "symbol": "Font.courierBoldOblique",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 25,
       "symbol": "Font.helvetica",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 27,
       "symbol": "Font.helveticaBold",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 29,
       "symbol": "Font.helveticaOblique",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 31,
       "symbol": "Font.helveticaBoldOblique",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 33,
       "symbol": "Font.timesRoman",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 35,
       "symbol": "Font.timesBold",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 37,
       "symbol": "Font.timesItalic",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 39,
       "symbol": "Font.timesBoldItalic",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 41,
       "symbol": "Font.symbol",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Font.swift",
       "line": 43,
       "symbol": "Font.zapfDingbats",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/DashStyle.swift",
-      "line": 23,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/DashStyle.swift",
+      "line": 21,
       "symbol": "DashStyle.maxDashPattern",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/Geometry.swift",
+      "line": null,
+      "symbol": "Vector",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/Geometry.swift",
+      "line": 150,
+      "symbol": "Vector",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 15,
       "symbol": "PDFColorSpace.deviceGray",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 16,
       "symbol": "PDFColorSpace.deviceRGB",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 17,
       "symbol": "PDFColorSpace.deviceCMYK",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 18,
       "symbol": "PDFColorSpace.calGray",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 19,
       "symbol": "PDFColorSpace.calRGB",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 20,
       "symbol": "PDFColorSpace.lab",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 21,
       "symbol": "PDFColorSpace.iccBased",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 22,
       "symbol": "PDFColorSpace.separation",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 23,
       "symbol": "PDFColorSpace.deviceN",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 24,
       "symbol": "PDFColorSpace.indexed",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 25,
       "symbol": "PDFColorSpace.pattern",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/Graphics/PDFColorSpace.swift",
       "line": 26,
       "symbol": "PDFColorSpace.undefined",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.PageLayout.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.PageLayout.swift",
       "line": 30,
       "symbol": "PDFDocument.PageLayout.twoPageLeft",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.PageLayout.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.PageLayout.swift",
       "line": 32,
       "symbol": "PDFDocument.PageLayout.twoPageRight",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFDocument.swift",
-      "line": 496,
-      "symbol": "PDFDocument.metadata",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": null,
-      "symbol": "PDFError",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
       "line": 13,
       "symbol": "PDFError",
       "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
       "line": 15,
       "symbol": "PDFError.code",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 202,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 199,
       "symbol": "PDFError.pageInvalidParametersCount",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 228,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 225,
       "symbol": "PDFError.pageInvalidGMode",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 318,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 315,
       "symbol": "PDFError.pageInsufficientSpace",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 320,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 317,
       "symbol": "PDFError.pageInvalidDisplayTime",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 322,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 319,
       "symbol": "PDFError.pageInvalidTransitionTime",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 324,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 321,
       "symbol": "PDFError.invalidPageSlideshowType",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 326,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 323,
       "symbol": "PDFError.extGStateOutOfRange",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 328,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 325,
       "symbol": "PDFError.invalidExtGState",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 330,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 327,
       "symbol": "PDFError.extGStateReadOnly",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 332,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 329,
       "symbol": "PDFError.invalidU3DData",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 334,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 331,
       "symbol": "PDFError.nameCannotGetNames",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 336,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 333,
       "symbol": "PDFError.invalidICCComponentNumber",
       "symbol_kind": "source.lang.swift.decl.var.static",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/sergej/Developer/WeirdMath/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
-      "line": 445,
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFError.swift",
+      "line": 457,
       "symbol": "PDFError.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/sergej/Developer/SwiftyHaru/Sources/SwiftyHaru/PDFPage.swift",
+      "line": 34,
+      "symbol": "PDFPage.document",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/sergej/Developer/WeirdMath/SwiftyHaru"
+  "source_directory": "/Users/sergej/Developer/SwiftyHaru"
 }

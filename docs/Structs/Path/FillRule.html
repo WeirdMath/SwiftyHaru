@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>FillRule Enum Reference</title>
+    <title>FillRule Enumeration Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset='utf-8'>
@@ -11,10 +11,10 @@
   </head>
   <body>
     <a name="//apple_ref/swift/Enum/FillRule" class="dashAnchor"></a>
-    <a title="FillRule Enum Reference"></a>
+    <a title="FillRule Enumeration Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../../index.html">SwiftyHaru Docs</a> (90% documented)</p>
+        <p><a href="../../index.html">SwiftyHaru Docs</a> (91% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="../../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../../index.html">SwiftyHaru Reference</a>
         <img id="carat" src="../../img/carat.png" />
-        FillRule Enum Reference
+        FillRule Enumeration Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -70,7 +70,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Enums.html">Enums</a>
+            <a href="../../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../../Enums/LineCap.html">LineCap</a>
@@ -95,8 +95,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../../Structs.html">Structs</a>
+            <a href="../../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../../Structs/AffineTransform.html">AffineTransform</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../../Structs/Color.html">Color</a>
               </li>
@@ -151,13 +154,8 @@
               <li class="nav-group-task">
                 <a href="../../Structs/Size.html">Size</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="../../Typealiases.html">Typealiases</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../../Typealiases.html#/s:10SwiftyHaru6Vector">Vector</a>
+                <a href="../../Structs/Vector.html">Vector</a>
               </li>
             </ul>
           </li>
@@ -169,12 +167,12 @@
             <h1>FillRule</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FillRule</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FillRule</span></code></pre>
 
                 </div>
               </div>
-            <p>Rules for determining which regions are interior to a path, used by the <code><a href="../../Classes/DrawingContext.html#/s:FC10SwiftyHaru14DrawingContext4clipFzT2toVS_4Path4ruleOS1_8FillRuleFzT_T__T_">DrawingContext.clip(to:rule:_:)</a></code>
-and <code><a href="../../Classes/DrawingContext.html#/s:FC10SwiftyHaru14DrawingContext4fillFTVS_4Path4ruleOS1_8FillRule6strokeSb_T_">DrawingContext.fill(_:rule:stroke:)</a></code> methods.</p>
+            <p>Rules for determining which regions are interior to a path, used by the <code><a href="../../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC4clip2to4rule_yAA4PathV_AH8FillRuleOyyKXEtKF">DrawingContext.clip(to:rule:_:)</a></code>
+and <code><a href="../../Classes/DrawingContext.html#/s:10SwiftyHaru14DrawingContextC4fill_4rule6strokeyAA4PathV_AH8FillRuleOSbtF">DrawingContext.fill(_:rule:stroke:)</a></code> methods.</p>
 
           </section>
           <section class="section task-group-section">
@@ -183,9 +181,9 @@ and <code><a href="../../Classes/DrawingContext.html#/s:FC10SwiftyHaru14DrawingC
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOV10SwiftyHaru4Path8FillRule7evenOddFMS1_S1_"></a>
+                    <a name="/s:10SwiftyHaru4PathV8FillRuleO7evenOddyA2EmF"></a>
                     <a name="//apple_ref/swift/Element/evenOdd" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOV10SwiftyHaru4Path8FillRule7evenOddFMS1_S1_">evenOdd</a>
+                    <a class="token" href="#/s:10SwiftyHaru4PathV8FillRuleO7evenOddyA2EmF">evenOdd</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -201,23 +199,19 @@ based on the number of times it is enclosed by path elements.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">evenOdd</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">evenOdd</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FOV10SwiftyHaru4Path8FillRule7windingFMS1_S1_"></a>
+                    <a name="/s:10SwiftyHaru4PathV8FillRuleO7windingyA2EmF"></a>
                     <a name="//apple_ref/swift/Element/winding" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FOV10SwiftyHaru4Path8FillRule7windingFMS1_S1_">winding</a>
+                    <a class="token" href="#/s:10SwiftyHaru4PathV8FillRuleO7windingyA2EmF">winding</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -233,7 +227,7 @@ if the winding number for that region is nonzero.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">winding</span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">case</span> <span class="n">winding</span></code></pre>
 
                         </div>
                       </div>
@@ -245,8 +239,8 @@ if the winding number for that region is nonzero.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2017-06-25)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.8.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2018-12-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
