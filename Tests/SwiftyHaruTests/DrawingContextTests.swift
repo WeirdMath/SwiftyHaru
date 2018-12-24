@@ -722,46 +722,54 @@ final class DrawingContextTests: TestCase {
     
     // MARK: - Text State
     
-    func testTextFont() {
+    func testTextFont() throws {
         
         // Given
         let expectedInitialFont = Font.helvetica
-        let expectedFont = Font.courierBold
 
         // When
         var returnedInitialFont: Font?
-        var returnedFont: Font?
 
-        document.addPage { context in
+        try document.addPage { context in
             returnedInitialFont = context.font
-            context.font = .courierBold
-            returnedFont = context.font
+
+            let ys = sequence(first: 100, next: { $0 + 1.2 * context.fontSize })
+            for (font, y) in zip(Font.baseFonts, ys) {
+                context.font = font
+                try context.show(text: font.name, atX: 100, y: y)
+            }
         }
 
         // Then
         XCTAssertEqual(expectedInitialFont, returnedInitialFont)
-        XCTAssertEqual(expectedFont, returnedFont)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
-    func testTextFontSize() {
+    func testTextFontSize() throws {
         
         // Given
         let expectedInitialFontSize: Float = 11
-        let expectedFontSize: Float = 64
 
         // When
         var returnedInitialFontSize: Float?
-        var returnedFontSize: Float?
 
-        document.addPage { context in
+        try document.addPage { context in
             returnedInitialFontSize = context.fontSize
-            context.fontSize = 64
-            returnedFontSize = context.fontSize
+
+            let fontSizes = stride(from: 1 as Float, to: 70, by: 5)
+            let ys = sequence(first: 100, next: { $0 + 1.2 * context.fontSize })
+
+            for (fontSize, y) in zip(fontSizes, ys) {
+                context.fontSize = fontSize
+                try context.show(text: "font size is \(Int(fontSize))", atX: 100, y: y)
+            }
         }
 
         // Then
         XCTAssertEqual(expectedInitialFontSize, returnedInitialFontSize)
-        XCTAssertEqual(expectedFontSize, returnedFontSize)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
     
     func testTextEncoding() {

@@ -41,6 +41,23 @@ public struct Font: Hashable {
     public static let symbol               = Font(name: "Symbol")
     
     public static let zapfDingbats         = Font(name: "ZapfDingbats")
+
+    public static let baseFonts: [Font] = [
+        .courier,
+        .courierBold,
+        .courierOblique,
+        .courierBoldOblique,
+        .helvetica,
+        .helveticaBold,
+        .helveticaOblique,
+        .helveticaBoldOblique,
+        .timesRoman,
+        .timesBold,
+        .timesItalic,
+        .timesBoldItalic,
+        .symbol,
+        .zapfDingbats
+    ]
 }
 
 extension Font: CustomStringConvertible {

@@ -148,6 +148,59 @@ public struct Encoding: Hashable {
     
     /// Unicode (*UTF-8*)
     public static let utf8 = Encoding(name: "UTF-8", isMultibyte: true)
+
+    public static let builtinSingleByteEncodings: [Encoding] = [
+        .standard,
+        .macRoman,
+        .windowsANSI,
+        .latinAlphabet2,
+        .latinAlphabet3,
+        .latinAlphabet4,
+        .latinCyrillicAlphabet,
+        .latinArabicAlphabet,
+        .latinGreekAlphabet,
+        .latinHebrewAlphabet,
+        .latinAlphabet5,
+        .latinAlphabet6,
+        .thai,
+        .latinAlphabet7,
+        .latinAlphabet8,
+        .latinAlphabet9,
+        .latinAlphabet10,
+        .cp1250,
+        .cp1251,
+        .cp1252,
+        .cp1253,
+        .cp1254,
+        .cp1255,
+        .cp1256,
+        .cp1257,
+        .cp1258,
+        .koi8r
+    ]
+
+    public static let builtinMultibyteEncodings: [Encoding] = [
+        .gbEucCnHorisontal,
+        .gbEucCnVertical,
+        .gbkEucHorisontal,
+        .gbkEucVertical,
+        .eTenB5Horisontal,
+        .eTenB5Vertical,
+        .rksjHorisontal,
+        .rksjVertical,
+        .rksjHorisontalProportional,
+        .eucHorisontal,
+        .eucVertical,
+        .kscEucHorisontal,
+        .kscEucVertical,
+        .kscMsUhcProportional,
+        .kscMsUhsHorisontalFixedWidth,
+        .kscMsUhsVerticalFixedWidth,
+        .utf8
+    ]
+
+    /// `builtinSingleByteEncodings` and `builtinMultibyteEncodings` combined.
+    public static let builtinEncodings: [Encoding] = builtinSingleByteEncodings + builtinMultibyteEncodings
     
     // MARK: - Interface
     
