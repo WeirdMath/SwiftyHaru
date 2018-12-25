@@ -42,6 +42,7 @@ final class DrawingContextTests: TestCase {
         ("testTextEncoding", testTextEncoding),
         ("testTextEncodingUnsupportedByCurrentFont", testTextEncodingUnsupportedByCurrentFont),
         ("testTextWidthForString", testTextWidthForString),
+        ("testMeasureText", testMeasureText),
         ("testTextBoundingBox", testTextBoundingBox),
         ("testFontAscent", testFontAscent),
         ("testFontDescent", testFontDescent),
@@ -49,6 +50,8 @@ final class DrawingContextTests: TestCase {
         ("testFontCapHeight", testFontCapHeight),
         ("testTextLeading", testTextLeading),
         ("testTextRenderingMode", testTextRenderingMode),
+        ("testCharacterSpacing", testCharacterSpacing),
+        ("testWordSpacing", testWordSpacing),
         // Text showing
         ("testShowOnelineText", testShowOnelineText),
         ("testShowMultilineText", testShowMultilineText),
@@ -831,6 +834,39 @@ final class DrawingContextTests: TestCase {
         XCTAssertEqual(expectedWidth, returnedWidth)
         XCTAssertEqual(expectedWidthForMultilineText, returnedWidthForMultilineText)
     }
+
+    func testMeasureText() throws {
+
+        // Given
+        let expectedLengthNoWordwrap = 12
+        let expectedWidthNoWordwrap: Float = 75.78999
+        let expectedLengthWordwrap = 10
+        let expectedWidthWordwrap: Float = 64.173996
+        let text = "ABCDE FGH IJKL"
+
+        // When
+        var returnedLengthNoWordwrap: Int?
+        var returnedWidthNoWordwrap: Float?
+        var returnedLengthWordwrap: Int?
+        var returnedWidthWordwrap: Float?
+
+        try document.addPage { context in
+
+            let noWordWrap = try context.measureText(text, width: 80, wordwrap: false)
+            returnedLengthNoWordwrap = noWordWrap.utf8Length
+            returnedWidthNoWordwrap  = noWordWrap.realWidth
+
+            let withWordWrap = try context.measureText(text, width: 80, wordwrap: true)
+            returnedLengthWordwrap = withWordWrap.utf8Length
+            returnedWidthWordwrap  = withWordWrap.realWidth
+        }
+
+        // Then
+        XCTAssertEqual(expectedLengthNoWordwrap, returnedLengthNoWordwrap)
+        XCTAssertEqual(expectedWidthNoWordwrap, returnedWidthNoWordwrap)
+        XCTAssertEqual(expectedLengthWordwrap, returnedLengthWordwrap)
+        XCTAssertEqual(expectedWidthWordwrap, returnedWidthWordwrap)
+    }
     
     func testTextBoundingBox() {
         
@@ -985,18 +1021,18 @@ final class DrawingContextTests: TestCase {
             context.fillColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
             context.fontSize = 24
 
-            let stride = sequence(first: 100, next: { $0 + 2 * context.fontSize })
-            for (mode, offset) in zip(TextRenderingMode.allCases, stride) {
+            let ys = sequence(first: 100, next: { $0 + 2 * context.fontSize })
+            for (mode, y) in zip(TextRenderingMode.allCases, ys) {
 
                 try context.withNewGState {
                     context.textRenderingMode = mode
                     let text = String(describing: mode)
-                    try context.show(text: text, atX: 100, y: offset)
+                    try context.show(text: text, atX: 100, y: y)
 
                     switch mode {
                     case .fillClipping, .strokeClipping, .fillStrokeClipping, .clipping:
                         drawStripePattern(in: context, rect: Rectangle(x: 100,
-                                                                       y: offset,
+                                                                       y: y,
                                                                        width: context.textWidth(for: text),
                                                                        height: context.fontCapHeight))
                     default:
@@ -1008,6 +1044,68 @@ final class DrawingContextTests: TestCase {
 
         // Then
         XCTAssertEqual(expectedInitialMode, returnedInitialMode)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
+    }
+
+    func testCharacterSpacing() throws {
+
+        // Given
+        let expectedInitialSpacing: Float = 0
+
+        // When
+        var returnedInitialSpacing: Float?
+
+        try document.addPage { context in
+
+            returnedInitialSpacing = context.characterSpacing
+            context.fontSize = 7
+
+            let ys = sequence(first: 100, next: { $0 + 1.2 * context.fontSize })
+            let spacings = stride(from: -7 as Float,
+                                  to: 7,
+                                  by: 1)
+
+            for (spacing, y) in zip(spacings, ys) {
+                context.characterSpacing = spacing
+
+                try context.show(text: "All work and no play makes Jack a dull boy", atX: 170, y: y)
+            }
+        }
+
+        // Then
+        XCTAssertEqual(expectedInitialSpacing, returnedInitialSpacing)
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
+    }
+
+    func testWordSpacing() throws {
+
+        // Given
+        let expectedInitialSpacing: Float = 0
+
+        // When
+        var returnedInitialSpacing: Float?
+
+        try document.addPage { context in
+
+            returnedInitialSpacing = context.wordSpacing
+            context.fontSize = 7
+
+            let ys = sequence(first: 100, next: { $0 + 1.2 * context.fontSize })
+            let spacings = stride(from: DrawingContext.minWordSpacing,
+                                  to: 30,
+                                  by: 1)
+
+            for (spacing, y) in zip(spacings, ys) {
+                context.wordSpacing = spacing
+
+                try context.show(text: "All work and no play makes Jack a dull boy", atX: 160, y: y)
+            }
+        }
+
+        // Then
+        XCTAssertEqual(expectedInitialSpacing, returnedInitialSpacing)
         assertPDFSnapshot()
         assertPDFImageSnapshot(page: 1, named: "1")
     }

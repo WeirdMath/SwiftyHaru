@@ -107,7 +107,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_CreateLinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_CreateURILinkAnnot()` | Unimplemented | None | N/A |
 | `HPDF_Page_TextWidth()` | **Implemented** | Complete | `DrawingContext.textWidth(for:)` |
-| `HPDF_Page_MeasureText()` | Unimplemented | None | N/A |
+| `HPDF_Page_MeasureText()` | **Implemented** | Incomplete | `DrawingContext.measureText(_:width:wordwrap:)` |
 | `HPDF_Page_GetGMode()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_GetCurrentPos()` | **Implemented** | Complete | `Path.currentPosition` |
 | `HPDF_Page_GetCurrentTextPos()` | **Implemented** | None | `DrawingContext.currentTextPosition` |
@@ -120,8 +120,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetMiterLimit()` | **Implemented** | Complete | `DrawingContext.miterLimit`|
 | `HPDF_Page_GetDash()` | **Implemented** | Complete | `DrawingContext.dashStyle` |
 | `HPDF_Page_GetFlat()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetCharSpace()` | Unimplemented | None | N/A |
-| `HPDF_Page_GetWordSpace()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetCharSpace()` | **Implemented** | Complete | `DrawingContext.characterSpacing` |
+| `HPDF_Page_GetWordSpace()` | **Implemented** | None | `DrawingContext.wordSpacing` |
 | `HPDF_Page_GetHorizontalScalling()` | Unimplemented | None | N/A |
 | `HPDF_Page_GetTextLeading()` | **Implemented** | Complete | `DrawingContext.textLeading` |
 | `HPDF_Page_GetTextRenderingMode()` | **Implemented** | Complete | `DrawingContext.textRenderingMode` |
@@ -174,7 +174,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_MoveTo()` | **Implemented** | Complete | `Path.move(to:)` |
 | `HPDF_Page_MoveToNextLine()` | Unimplemented | None | N/A |
 | `HPDF_Page_Rectangle()` | **Implemented** | Complete | `Path.appendRectangle(_:)`, `Path.appendRectangle(origin:size:)`, `Path.appendRectangle(x:y:width:height:)` |
-| `HPDF_Page_SetCharSpace()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetCharSpace()` | **Implemented** | Complete | `DrawingContext.characterSpacing` |
 | `HPDF_Page_SetCMYKFill()` | **Implemented** | Complete | `DrawingContext.fillColor` |
 | `HPDF_Page_SetCMYKStroke()` | **Implemented** | Complete | `DrawingContext.strokeColor` |
 | `HPDF_Page_SetDash()` | **Implemented** | Complete | `DrawingContext.dashStyle` |
@@ -193,7 +193,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_SetTextMatrix()` | **Implemented** | None | `DrawingContext.show(text:atPosition:textMatrix:)` |
 | `HPDF_Page_SetTextRenderingMode()` | **Implemented** | Complete | `DrawingContext.textRenderingMode` |
 | `HPDF_Page_SetTextRise()` | Unimplemented | None | N/A |
-| `HPDF_Page_SetWordSpace()` | Unimplemented | None | N/A |
+| `HPDF_Page_SetWordSpace()` | **Implemented** | Complete | `DrawingContext.wordSpacing` |
 | `HPDF_Page_ShowText()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ShowTextNextLine()` | **Implemented** | None | `DrawingContext.show(text:atPosition:textMatrix:)` |
 | `HPDF_Page_ShowTextNextLineEx()` | TBD | N/A | N/A |
