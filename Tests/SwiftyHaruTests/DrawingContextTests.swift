@@ -53,7 +53,8 @@ final class DrawingContextTests: TestCase {
         ("testShowOnelineText", testShowOnelineText),
         ("testShowMultilineText", testShowMultilineText),
         ("testShowUnicodeText", testShowUnicodeText),
-        ("testShowTextInRect", testShowTextInRect)
+        ("testShowTextInRect", testShowTextInRect),
+        ("testShowWithTextMatrix", testShowWithTextMatrix)
     ]
     
     // MARK: - Helpers
@@ -1118,5 +1119,29 @@ final class DrawingContextTests: TestCase {
 
         XCTAssertEqual(result2.charactersPrinted, text.count)
         XCTAssertTrue(result2.isSufficientSpace)
+    }
+
+    func testShowWithTextMatrix() throws {
+
+        // Given
+        let matrices = [
+            AffineTransform.identity,
+            AffineTransform(translationX: 210, y: 160).scaled(byX: 1, y: 2),
+            AffineTransform(translationX: 210, y: 220).rotated(byAngle: .pi / 6),
+            AffineTransform(a: 1, b: tan(.pi / 18), c: tan(.pi / 9), d: 1, tx: 210, ty: 280),
+        ]
+
+        // When
+        try document.addPage { context in
+
+            let ys = sequence(first: 100 as Float, next: { $0 + 60 })
+            for (matrix, y) in zip(matrices, ys) {
+                try context.show(text: "Hello World!", atX: 200, y: y, textMatrix: matrix)
+            }
+        }
+
+        // Then
+        assertPDFSnapshot()
+        assertPDFImageSnapshot(page: 1, named: "1")
     }
 }

@@ -690,7 +690,7 @@ public final class DrawingContext {
             HPDF_Page_SetTextRenderingMode(_page, HPDF_TextRenderingMode(newValue.rawValue))
         }
     }
-    
+
     // MARK: - Text showing
     
     private func _moveTextPosition(to point: Point) {
@@ -726,12 +726,23 @@ public final class DrawingContext {
     
     /// Prints the text at the specified position on the page. You can use "\n" to print multiline text.
     ///
-    /// - parameter text: The text to print.
-    /// - parameter position: The position to show the text at.
-    public func show(text: String, atPosition position: Point) throws {
+    /// - Parameters:
+    ///   - text:       The text to print.
+    ///   - position:   The position to show the text at.
+    ///   - textMatrix: A transformation matrix for text to be drawn in. Default value is `nil`,
+    ///                 in which case the identity matrix is used. Must not be degenerate.
+    public func show(text: String, atPosition position: Point, textMatrix: AffineTransform? = nil) throws {
         
         HPDF_Page_BeginText(_page)
-        
+
+        if let textMatrix = textMatrix {
+            precondition(!textMatrix.isDegenerate, "The text matrix must not be degenerate")
+            HPDF_Page_SetTextMatrix(_page,
+                                    textMatrix.a,  textMatrix.b,
+                                    textMatrix.c,  textMatrix.d,
+                                    textMatrix.tx, textMatrix.ty)
+        }
+
         _moveTextPosition(to: position)
         
         let lines = text.components(separatedBy: .newlines)
@@ -747,15 +758,20 @@ public final class DrawingContext {
     
     /// Prints the text at the specified position on the page. You can use "\n" to print multiline text.
     ///
-    /// - parameter text: The text to print.
-    /// - parameter x:    x coordinate of the position to show the text at.
-    /// - parameter y:    y coordinate of the position to show the text at.
+    /// - Parameters:
+    ///   - text:       The text to print.
+    ///   - x:          x coordinate of the position to show the text at.
+    ///   - y:          y coordinate of the position to show the text at.
+    ///   - textMatrix: A transformation matrix for text to be drawn in. Default value is `nil`,
+    ///                 in which case the identity matrix is used. Must not be degenerate.
     @inlinable
-    public func show(text: String, atX x: Float, y: Float) throws {
-        try show(text: text, atPosition: Point(x: x, y: y))
+    public func show(text: String, atX x: Float, y: Float, textMatrix: AffineTransform? = nil) throws {
+        try show(text: text, atPosition: Point(x: x, y: y), textMatrix: textMatrix)
     }
 
     /// Prints the text inside the specified region.
+    ///
+    /// This function does not use the active text matrix.
     ///
     /// - Parameters:
     ///   - text:      The text to show.

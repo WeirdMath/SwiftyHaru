@@ -217,11 +217,8 @@ public struct AffineTransform: Hashable {
     ///            If the affine transform cannot be inverted, it is returned unchanged.
     @inlinable
     public func inverted() -> AffineTransform {
-        
-        let det = a * d - c * b
-        
+        let det = determinant
         guard det != 0 else { return self }
-        
         return AffineTransform(a:  d / det,
                                b:  -b / det,
                                c:  -c / det,
@@ -288,6 +285,18 @@ public struct AffineTransform: Hashable {
     @inlinable
     public static func * (lhs: AffineTransform, rhs: AffineTransform) -> AffineTransform {
         return lhs.concatenating(rhs)
+    }
+
+    /// The determinant of this matrix, computed as `a * d - c * b`.
+    @inlinable
+    public var determinant: Float {
+        return a * d - c * b
+    }
+
+    /// Whether `determinant` is zero.
+    @inlinable
+    public var isDegenerate: Bool {
+        return determinant.isZero
     }
 }
 

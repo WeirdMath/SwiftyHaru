@@ -75,6 +75,11 @@ final class AffineTransformTests: TestCase {
         XCTAssertEqual(expectedTransform2, returnedTransform2)
         XCTAssertEqual(expectedTransform3, returnedTransform3)
         XCTAssertEqual(expectedTransform4, returnedTransform4)
+
+        XCTAssertEqual(returnedTransform1.determinant, 1, accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform2.determinant, 1, accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform3.determinant, 1, accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform4.determinant, 1, accuracy: 0.0001)
     }
     
     func testMakeScale() {
@@ -103,6 +108,11 @@ final class AffineTransformTests: TestCase {
         XCTAssertEqual(expectedTransform2, returnedTransform2)
         XCTAssertEqual(expectedTransform3, returnedTransform3)
         XCTAssertTrue(returnedTransform4.isIdentity)
+
+        XCTAssertEqual(returnedTransform1.determinant, 6,  accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform2.determinant, 0,  accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform3.determinant, -1, accuracy: 0.0001)
+        XCTAssertEqual(returnedTransform4.determinant, 1,  accuracy: 0.0001)
     }
     
     func testMakeTranslation() {
