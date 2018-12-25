@@ -26,7 +26,7 @@ public enum PDFColorSpace: UInt32, CaseIterable {
     case undefined
 }
 
-internal extension PDFColorSpace {
+extension PDFColorSpace {
     
     internal init(haruEnum: HPDF_ColorSpace) {
         self.init(rawValue: haruEnum.rawValue)!

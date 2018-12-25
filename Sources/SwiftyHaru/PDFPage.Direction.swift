@@ -10,7 +10,7 @@
 import CLibHaru
 #endif
 
-public extension PDFPage {
+extension PDFPage {
     
     /// Orientation of a page.
     public enum Direction: UInt32, CaseIterable {
@@ -23,7 +23,7 @@ public extension PDFPage {
     }
 }
 
-internal extension PDFPage.Direction {
+extension PDFPage.Direction {
     
     internal init?(haruEnum: HPDF_PageDirection) {
         self.init(rawValue: haruEnum.rawValue)

@@ -33,7 +33,7 @@ public enum LineCap: UInt32, CaseIterable {
     case projectingSquare
 }
 
-internal extension LineCap {
+extension LineCap {
     
     internal init(_ haruEnum: HPDF_LineCap) {
         self.init(rawValue: haruEnum.rawValue)!

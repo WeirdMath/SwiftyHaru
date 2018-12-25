@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Encapsulates the parameters of the labels for vertical and horizontal lines.
     public struct Labels: Equatable {

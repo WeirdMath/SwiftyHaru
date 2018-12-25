@@ -10,7 +10,7 @@
 import CLibHaru
 #endif
 
-public extension PDFDocument {
+extension PDFDocument {
     
     /// Determines a page labeling style of the document.
     public enum PageNumberStyle: UInt32, CaseIterable {

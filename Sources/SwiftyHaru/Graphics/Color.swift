@@ -390,7 +390,7 @@ extension Color: _ExpressibleByColorLiteral {
     }
 }
 
-internal extension Color {
+extension Color {
     
     internal init(_ haruRGBColor: HPDF_RGBColor) {
         self.init(red: haruRGBColor.r, green: haruRGBColor.g, blue: haruRGBColor.b)!

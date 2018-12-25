@@ -180,6 +180,9 @@ public struct Vector: Hashable {
         self.init(dx: Float(dx), dy: Float(dy))
     }
 
+#if swift(>=5.0)
+    // This operator is implemented in an extension of the `AdditiveArithmetic` protodol in the standard library.
+#else
     /// Returns the given vector unchanged.
     ///
     /// You can use the unary plus operator (+) to provide symmetry in your code.
@@ -190,6 +193,7 @@ public struct Vector: Hashable {
     public prefix static func +(x: Vector) -> Vector {
         return x
     }
+#endif
 
     /// Returns the inverse of the specified vector.
     ///
@@ -220,6 +224,29 @@ public struct Vector: Hashable {
     @inlinable
     public static func -(lhs: Vector, rhs: Vector) -> Vector {
         return Vector(dx: lhs.dx - rhs.dx, dy: lhs.dy - rhs.dy)
+    }
+
+    /// Adds two vectors and stores the result in the left-hand-side variable.
+    ///
+    /// - Parameters:
+    ///   - lhs: The first vector to add.
+    ///   - rhs: The second vector to add.
+    @inlinable
+    public static func +=(lhs: inout Vector, rhs: Vector) {
+        lhs.dx += rhs.dx
+        lhs.dy += rhs.dy
+    }
+
+    /// Subtracts the second vector from the first and stores the difference in the
+    /// left-hand-side variable.
+    ///
+    /// - Parameters:
+    ///   - lhs: A vector.
+    ///   - rhs: The vector to subtract from `lhs`.
+    @inlinable
+    public static func -=(lhs: inout Vector, rhs: Vector) {
+        lhs.dx -= rhs.dx
+        lhs.dy -= rhs.dy
     }
 
     /// Multiplies a vector by a floating-point scalar value.
@@ -266,6 +293,10 @@ public struct Vector: Hashable {
         return Vector(dx: rhs.dx * Float(lhs), dy: rhs.dy * Float(lhs))
     }
 }
+
+#if swift(>=5.0)
+extension Vector: AdditiveArithmetic {}
+#endif
 
 extension Vector: CustomDebugStringConvertible {
     public var debugDescription: String {

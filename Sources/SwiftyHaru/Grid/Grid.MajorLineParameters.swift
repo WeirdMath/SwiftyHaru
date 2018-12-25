@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Represents the properties of a grid's major lines.
     public struct MajorLineParameters: Hashable {

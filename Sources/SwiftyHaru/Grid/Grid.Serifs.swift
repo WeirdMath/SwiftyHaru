@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Encapsulates the parameters of the top, bottom, left and right serifs of the grid.
     public struct Serifs: Hashable {

@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Encapsulates the parameters of the vertical and horizontal major and minor lines.
     public struct Lines: Hashable {

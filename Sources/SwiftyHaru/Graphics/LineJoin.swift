@@ -33,7 +33,7 @@ public enum LineJoin: UInt32, CaseIterable {
     case bevel
 }
 
-internal extension LineJoin {
+extension LineJoin {
     
     internal init(_ haruEnum: HPDF_LineJoin) {
         self.init(rawValue: haruEnum.rawValue)!

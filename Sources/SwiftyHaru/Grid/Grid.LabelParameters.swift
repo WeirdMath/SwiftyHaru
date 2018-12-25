@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Represents the properties of a grid's line labels. Labels can only be placed near serifs.
     public struct LabelParameters {

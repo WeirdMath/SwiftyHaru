@@ -6,7 +6,7 @@
 //
 //
 
-public extension Grid {
+extension Grid {
     
     /// Represents the properties of a grid's serifs. Serifs are short lines that can be placed on the edges of
     /// a grid and serve to put labels near them.
