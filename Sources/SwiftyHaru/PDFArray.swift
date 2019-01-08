@@ -16,6 +16,7 @@ internal final class PDFArray: Collection {
         self.handle = handle
     }
 
+    // TODO: In the future we need to create the PDFObject class and use it here.
     typealias Element = UnsafeMutableRawPointer?
 
     var startIndex: Int {

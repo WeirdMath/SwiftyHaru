@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+**Breaking changes:**
+
+- `PDFError.pageInvalidSize` and `PDFError.pageInvalidDirection` are removed.
+
 **Implemented features:**
 
 - Setting text rendering mode
