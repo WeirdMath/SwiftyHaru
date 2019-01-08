@@ -6,10 +6,6 @@
 //
 //
 
-#if SWIFT_PACKAGE
-import CLibHaru
-#endif
-
 extension PDFPage {
     
     /// Orientation of a page.

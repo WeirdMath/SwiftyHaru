@@ -5,7 +5,9 @@
 //  Created by Sergej Jaskiewicz on 08/01/2019.
 //
 
+#if SWIFT_PACKAGE
 import CLibHaru
+#endif
 
 internal final class PDFArray: Collection {
 

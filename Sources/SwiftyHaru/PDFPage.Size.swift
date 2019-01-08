@@ -6,10 +6,6 @@
 //
 //
 
-#if SWIFT_PACKAGE
-import CLibHaru
-#endif
-
 extension PDFPage {
     
     /// A predefined size for a page.
