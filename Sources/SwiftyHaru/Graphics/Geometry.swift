@@ -100,6 +100,17 @@ public struct Point: Hashable {
     public static func +(lhs: Point, rhs: Vector) -> Point {
         return Point(x: lhs.x + rhs.dx, y: lhs.y + rhs.dy)
     }
+
+    /// Translates the `lhs` point by the specified `rhs` vector and stores the result in `lhs`.
+    ///
+    /// - Parameters:
+    ///   - lhs: The point to translate.
+    ///   - rhs: The difference vector.
+    @inlinable
+    public static func +=(lhs: inout Point, rhs: Vector) {
+        lhs.x += rhs.dx
+        lhs.y += rhs.dy
+    }
     
     /// Translates the `lhs` point by negation of the specified `rhs` vector.
     ///
@@ -110,6 +121,18 @@ public struct Point: Hashable {
     @inlinable
     public static func -(lhs: Point, rhs: Vector) -> Point {
         return Point(x: lhs.x - rhs.dx, y: lhs.y - rhs.dy)
+    }
+
+    /// Translates the `lhs` point by negation of the specified `rhs` vector and stores the result
+    /// in `lhs`.
+    ///
+    /// - Parameters:
+    ///   - lhs: The point to translate.
+    ///   - rhs: The difference vector.
+    @inlinable
+    public static func -=(lhs: inout Point, rhs: Vector) {
+        lhs.x -= rhs.dx
+        lhs.y -= rhs.dy
     }
 
     /// Returns the vector that needs to be added to `rhs` to get `lhs`.
