@@ -26,26 +26,6 @@
 
 /*----------------------------------------------------------------------------*/
 
-typedef struct _HPDF_PageSizeValue {
-    HPDF_REAL x;
-    HPDF_REAL y;
-} HPDF_PageSizeValue;
-
-static const HPDF_PageSizeValue HPDF_PREDEFINED_PAGE_SIZES[] = {
-    {612, 792},                               /* HPDF_PAGE_SIZE_LETTER */
-    {612, 1008},                              /* HPDF_PAGE_SIZE_LEGAL */
-    {(HPDF_REAL)841.89, (HPDF_REAL)1190.551}, /* HPDF_PAGE_SIZE_A3 */
-    {(HPDF_REAL)595.276, (HPDF_REAL)841.89},  /* HPDF_PAGE_SIZE_A4 */
-    {(HPDF_REAL)419.528, (HPDF_REAL)595.276}, /* HPDF_PAGE_SIZE_A5 */
-    {(HPDF_REAL)708.661, (HPDF_REAL)1000.63}, /* HPDF_PAGE_SIZE_B4 */
-    {(HPDF_REAL)498.898, (HPDF_REAL)708.661}, /* HPDF_PAGE_SIZE_B5 */
-    {522, 756},                               /* HPDF_PAGE_SIZE_EXECUTIVE */
-    {288, 432},                               /* HPDF_PAGE_SIZE_US4x6 */
-    {288, 576},                               /* HPDF_PAGE_SIZE_US4x8 */
-    {360, 504},                               /* HPDF_PAGE_SIZE_US5x7 */
-    {297, 684}                                /* HPDF_PAGE_SIZE_COMM10 */
-};
-
 static const HPDF_RGBColor DEF_RGB_COLOR = {0, 0, 0};
 
 static const HPDF_CMYKColor DEF_CMYK_COLOR = {0, 0, 0, 0};
@@ -464,41 +444,6 @@ const char* HPDF_Page_GetLocalFontName(HPDF_Page page, HPDF_Font font) {
     return key;
 }
 
-HPDF_Box HPDF_Page_GetMediaBox(HPDF_Page page) {
-    HPDF_Box media_box = {0, 0, 0, 0};
-
-    HPDF_PTRACE((" HPDF_Page_GetMediaBox\n"));
-
-    if (HPDF_Page_Validate(page)) {
-        HPDF_Array array = HPDF_Page_GetInheritableItem(page, "MediaBox", HPDF_OCLASS_ARRAY);
-
-        if (array) {
-            HPDF_Real r;
-
-            r = HPDF_Array_GetItem(array, 0, HPDF_OCLASS_REAL);
-            if (r)
-                media_box.left = r->value;
-
-            r = HPDF_Array_GetItem(array, 1, HPDF_OCLASS_REAL);
-            if (r)
-                media_box.bottom = r->value;
-
-            r = HPDF_Array_GetItem(array, 2, HPDF_OCLASS_REAL);
-            if (r)
-                media_box.right = r->value;
-
-            r = HPDF_Array_GetItem(array, 3, HPDF_OCLASS_REAL);
-            if (r)
-                media_box.top = r->value;
-
-            HPDF_CheckError(page->error);
-        } else
-            HPDF_RaiseError(page->error, HPDF_PAGE_CANNOT_FIND_OBJECT, 0);
-    }
-
-    return media_box;
-}
-
 const char* HPDF_Page_GetXObjectName(HPDF_Page page, HPDF_XObject xobj) {
     HPDF_PageAttr attr = (HPDF_PageAttr)page->attr;
     const char* key;
@@ -685,10 +630,6 @@ HPDF_UINT HPDF_Page_MeasureText(HPDF_Page page,
 
     return ret;
 }
-
-HPDF_REAL HPDF_Page_GetWidth(HPDF_Page page) { return HPDF_Page_GetMediaBox(page).right; }
-
-HPDF_REAL HPDF_Page_GetHeight(HPDF_Page page) { return HPDF_Page_GetMediaBox(page).top; }
 
 HPDF_Font HPDF_Page_GetCurrentFont(HPDF_Page page) {
     HPDF_PTRACE((" HPDF_Page_GetFontName\n"));
@@ -1060,29 +1001,6 @@ HPDF_STATUS HPDF_Page_GetCurrentTextPos2(HPDF_Page page, HPDF_Point* pos) {
     return HPDF_OK;
 }
 
-HPDF_STATUS
-HPDF_Page_SetBoxValue(HPDF_Page page, const char* name, HPDF_UINT index, HPDF_REAL value) {
-    HPDF_Real r;
-    HPDF_Array array;
-
-    HPDF_PTRACE((" HPDF_Page_SetBoxValue\n"));
-
-    if (!HPDF_Page_Validate(page))
-        return HPDF_INVALID_PAGE;
-
-    array = HPDF_Page_GetInheritableItem(page, name, HPDF_OCLASS_ARRAY);
-    if (!array)
-        return HPDF_SetError(page->error, HPDF_PAGE_CANNOT_FIND_OBJECT, 0);
-
-    r = HPDF_Array_GetItem(array, index, HPDF_OCLASS_REAL);
-    if (!r)
-        return HPDF_SetError(page->error, HPDF_PAGE_INVALID_INDEX, 0);
-
-    r->value = value;
-
-    return HPDF_OK;
-}
-
 HPDF_STATUS HPDF_Page_SetRotate(HPDF_Page page, HPDF_UINT16 angle) {
     HPDF_Number n;
     HPDF_STATUS ret = HPDF_OK;
@@ -1120,56 +1038,6 @@ HPDF_STATUS HPDF_Page_SetZoom(HPDF_Page page, HPDF_REAL zoom) {
 
     ret = HPDF_Dict_AddReal(page, "PZ", zoom);
     return ret;
-}
-
-HPDF_STATUS HPDF_Page_SetWidth(HPDF_Page page, HPDF_REAL value) {
-    HPDF_PTRACE((" HPDF_Page_SetWidth\n"));
-
-    if (value < 3 || value > 14400)
-        return HPDF_RaiseError(page->error, HPDF_PAGE_INVALID_SIZE, 0);
-
-    if (HPDF_Page_SetBoxValue(page, "MediaBox", 2, value) != HPDF_OK)
-        return HPDF_CheckError(page->error);
-
-    return HPDF_OK;
-}
-
-HPDF_STATUS HPDF_Page_SetHeight(HPDF_Page page, HPDF_REAL value) {
-    HPDF_PTRACE((" HPDF_Page_SetWidth\n"));
-
-    if (value < 3 || value > 14400)
-        return HPDF_RaiseError(page->error, HPDF_PAGE_INVALID_SIZE, 0);
-
-    if (HPDF_Page_SetBoxValue(page, "MediaBox", 3, value) != HPDF_OK)
-        return HPDF_CheckError(page->error);
-
-    return HPDF_OK;
-}
-
-HPDF_STATUS HPDF_Page_SetSize(HPDF_Page page, HPDF_PageSizes size, HPDF_PageDirection direction) {
-    HPDF_STATUS ret = HPDF_OK;
-
-    HPDF_PTRACE((" HPDF_Page_SetSize\n"));
-
-    if (!HPDF_Page_Validate(page))
-        return HPDF_INVALID_PAGE;
-
-    if (size > HPDF_PAGE_SIZE_EOF)
-        return HPDF_RaiseError(page->error, HPDF_PAGE_INVALID_SIZE, (HPDF_STATUS)direction);
-
-    if (direction == HPDF_PAGE_LANDSCAPE) {
-        ret += HPDF_Page_SetHeight(page, HPDF_PREDEFINED_PAGE_SIZES[(HPDF_UINT)size].x);
-        ret += HPDF_Page_SetWidth(page, HPDF_PREDEFINED_PAGE_SIZES[(HPDF_UINT)size].y);
-    } else if (direction == HPDF_PAGE_PORTRAIT) {
-        ret += HPDF_Page_SetHeight(page, HPDF_PREDEFINED_PAGE_SIZES[(HPDF_UINT)size].y);
-        ret += HPDF_Page_SetWidth(page, HPDF_PREDEFINED_PAGE_SIZES[(HPDF_UINT)size].x);
-    } else
-        ret = HPDF_SetError(page->error, HPDF_PAGE_INVALID_DIRECTION, (HPDF_STATUS)direction);
-
-    if (ret != HPDF_OK)
-        return HPDF_CheckError(page->error);
-
-    return HPDF_OK;
 }
 
 HPDF_BOOL

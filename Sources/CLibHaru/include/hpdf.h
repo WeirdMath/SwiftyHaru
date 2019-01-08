@@ -104,10 +104,6 @@ HPDF_Page HPDF_AddPage(HPDF_Doc pdf);
 
 HPDF_Page HPDF_InsertPage(HPDF_Doc pdf, HPDF_Page page);
 
-HPDF_STATUS HPDF_Page_SetWidth(HPDF_Page page, HPDF_REAL value);
-
-HPDF_STATUS HPDF_Page_SetHeight(HPDF_Page page, HPDF_REAL value);
-
 HPDF_STATUS HPDF_Page_SetSize(HPDF_Page page, HPDF_PageSizes size, HPDF_PageDirection direction);
 
 HPDF_STATUS HPDF_Page_SetRotate(HPDF_Page page, HPDF_UINT16 angle);
@@ -530,10 +526,6 @@ HPDF_REAL HPDF_Page_TextWidth(HPDF_Page page, const char* text);
 
 HPDF_UINT
 HPDF_Page_MeasureText(HPDF_Page page, const char* text, HPDF_REAL width, HPDF_BOOL wordwrap, HPDF_REAL* real_width);
-
-HPDF_REAL HPDF_Page_GetWidth(HPDF_Page page);
-
-HPDF_REAL HPDF_Page_GetHeight(HPDF_Page page);
 
 HPDF_UINT16 HPDF_Page_GetGMode(HPDF_Page page);
 

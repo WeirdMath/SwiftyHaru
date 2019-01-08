@@ -22,10 +22,3 @@ extension PDFPage {
         case landscape
     }
 }
-
-extension PDFPage.Direction {
-    
-    internal init?(haruEnum: HPDF_PageDirection) {
-        self.init(rawValue: haruEnum.rawValue)
-    }
-}

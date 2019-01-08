@@ -230,9 +230,6 @@ public struct PDFError: Error, Hashable {
     /// Specified value is not multiple of 90.
     public static let pageInvalidRotateValue = PDFError(code: HPDF_PAGE_INVALID_ROTATE_VALUE)
     
-    /// An invalid page-size was set.
-    public static let pageInvalidSize = PDFError(code: HPDF_PAGE_INVALID_SIZE)
-    
     /// An invalid image-handle was set.
     public static let pageInvalidXObject = PDFError(code: HPDF_PAGE_INVALID_XOBJECT)
     
@@ -305,10 +302,7 @@ public struct PDFError: Error, Hashable {
     
     /// An invalid border-style was set.
     public static let annotationInvalidBorderStyle = PDFError(code: HPDF_ANNOT_INVALID_BORDER_STYLE)
-    
-    /// An invalid page-direction was set.
-    public static let pageInvalidDirection = PDFError(code: HPDF_PAGE_INVALID_DIRECTION)
-    
+
     /// An invalid font-handle was specified.
     public static let invalidFont = PDFError(code: HPDF_INVALID_FONT)
     
@@ -422,7 +416,6 @@ public struct PDFError: Error, Hashable {
         HPDF_PAGE_INVALID_FONT_SIZE : "An invalid font-size was set.",
         HPDF_PAGE_INVALID_INDEX : "Internal error. Data consistency was lost.",
         HPDF_PAGE_INVALID_ROTATE_VALUE : "Specified value is not multiple of 90.",
-        HPDF_PAGE_INVALID_SIZE : "An invalid page-size was set.",
         HPDF_PAGE_INVALID_XOBJECT : "An invalid image-handle was set.",
         HPDF_PAGE_OUT_OF_RANGE : "The specified value is out of range.",
         HPDF_REAL_OUT_OF_RANGE : "The specified value is out of range.",
@@ -450,7 +443,6 @@ public struct PDFError: Error, Hashable {
         HPDF_PAGE_NUM_STYLE_OUT_OF_RANGE : "An invalid page-num-style was set.",
         HPDF_ANNOT_INVALID_ICON : "An invalid icon was set.",
         HPDF_ANNOT_INVALID_BORDER_STYLE : "An invalid border-style was set.",
-        HPDF_PAGE_INVALID_DIRECTION : "An invalid page-direction was set.",
         HPDF_INVALID_FONT : "An invalid font-handle was specified.",
     ]
     

@@ -12,6 +12,9 @@ import typealias CLibHaru.HPDF_Point
 
 /// A structure that contains width and height values.
 public struct Size: Hashable {
+
+    /// The size whose width and height are both zero.
+    public static let zero = Size(width: 0, height: 0)
     
     /// A width value.
     public var width: Float
@@ -329,6 +332,9 @@ extension Vector: CustomDebugStringConvertible {
 
 /// A structure that contains the location and dimensions of a rectangle.
 public struct Rectangle: Hashable {
+
+    /// The rectangle whose origin and size are both zero.
+    public static let zero = Rectangle(origin: .zero, size: .zero)
     
     /// A point that specifies the coordinates of the rectangle’s origin.
     public var origin: Point
@@ -442,4 +448,17 @@ infix operator ×
 /// - returns: The size representing provided width and height.
 internal func × (width: Float, height: Float) -> Size {
     return Size(width: width, height: height)
+}
+
+extension Rectangle {
+
+    internal init?(decoding array: PDFArray) {
+        guard array.count == 4,
+              let x      = array[0]?.pointee.value,
+              let y      = array[1]?.pointee.value,
+              let width  = array[2]?.pointee.value,
+              let height = array[3]?.pointee.value else { return nil }
+
+        self.init(x: x, y: y, width: width, height: height)
+    }
 }

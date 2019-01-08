@@ -40,28 +40,65 @@ public final class PDFPage {
     }
     
     // MARK: - Page layout
+
+    internal var mediaBox: Rectangle {
+        get {
+            guard let arrayHandle = HPDF_Page_GetInheritableItem(_pageHandle,
+                                                                 "MediaBox",
+                                                                 HPDF_UINT16(HPDF_OCLASS_ARRAY)) else {
+                preconditionFailure("The page must contain the MediaBox entry")
+            }
+
+            let array = PDFArray(handle: arrayHandle.assumingMemoryBound(to: _HPDF_Array_Rec.self))
+
+            guard let rect = Rectangle(decoding: array) else {
+                preconditionFailure("The MediaBox entry must be a rectangle")
+            }
+
+            return rect
+        }
+        set {
+            guard let arrayHandle = HPDF_Page_GetInheritableItem(_pageHandle,
+                                                                 "MediaBox",
+                                                                 HPDF_UINT16(HPDF_OCLASS_ARRAY)) else {
+                preconditionFailure("The page must contain the MediaBox entry")
+            }
+
+            let array = PDFArray(handle: arrayHandle.assumingMemoryBound(to: _HPDF_Array_Rec.self))
+            precondition(array.count == 4 &&
+                         array[0] as UnsafeMutableRawPointer? != nil &&
+                         array[1] as UnsafeMutableRawPointer? != nil &&
+                         array[2] as UnsafeMutableRawPointer? != nil &&
+                         array[3] as UnsafeMutableRawPointer? != nil,
+                         "The MediaBox entry must be a rectangle")
+            array[0]?.pointee.value = newValue.x
+            array[1]?.pointee.value = newValue.y
+            array[2]?.pointee.value = newValue.width
+            array[3]?.pointee.value = newValue.height
+        }
+    }
     
     /// The width of the page. The valid values are between `PDFPage.minWidth` and `PDFPage.maxWidth`.
     public var width: Float {
         get {
-            return HPDF_Page_GetWidth(_pageHandle)
+            return mediaBox.width
         }
         set {
             precondition(newValue >= PDFPage.minWidth && newValue <= PDFPage.maxWidth,
                          "The valid values for width are between `PDFPage.minWidth` and `PDFPage.maxWidth`.")
-            HPDF_Page_SetWidth(_pageHandle, newValue)
+            mediaBox.size.width = newValue
         }
     }
     
     /// The height of the page. The valid values are between `PDFPage.minHeight` and `PDFPage.maxHeight`.
     public var height: Float {
         get {
-            return HPDF_Page_GetHeight(_pageHandle)
+            return mediaBox.height
         }
         set {
             precondition(newValue >= PDFPage.minHeight && newValue <= PDFPage.maxHeight,
                          "The valid values for height are between `PDFPage.minHeight` and `PDFPage.maxHeight`.")
-            HPDF_Page_SetHeight(_pageHandle, newValue)
+            mediaBox.size.height = newValue
         }
     }
     
@@ -70,10 +107,14 @@ public final class PDFPage {
     /// - parameter size:      A predefined page-size value.
     /// - parameter direction: The direction of the page.
     public func set(size: PDFPage.Size, direction: PDFPage.Direction) {
-        
-        HPDF_Page_SetSize(_pageHandle,
-                          HPDF_PageSizes(size.rawValue),
-                          HPDF_PageDirection(direction.rawValue))
+        switch direction {
+        case .portrait:
+            height = size.sizeInPixels.height
+            width = size.sizeInPixels.width
+        case .landscape:
+            height = size.sizeInPixels.width
+            width = size.sizeInPixels.height
+        }
     }
     
     /// Sets rotation angle of the page.
