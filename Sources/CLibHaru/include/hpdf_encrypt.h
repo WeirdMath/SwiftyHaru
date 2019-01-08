@@ -48,112 +48,76 @@ extern "C" {
 /*----------------------------------------------------------------------------*/
 /*----- encrypt-dict ---------------------------------------------------------*/
 
-#define HPDF_ID_LEN              16
-#define HPDF_PASSWD_LEN          32
-#define HPDF_ENCRYPT_KEY_MAX     16
-#define HPDF_MD5_KEY_LEN         16
-#define HPDF_PERMISSION_PAD      0xFFFFFFC0
-#define HPDF_ARC4_BUF_SIZE       256
+#define HPDF_ID_LEN 16
+#define HPDF_PASSWD_LEN 32
+#define HPDF_ENCRYPT_KEY_MAX 16
+#define HPDF_MD5_KEY_LEN 16
+#define HPDF_PERMISSION_PAD 0xFFFFFFC0
+#define HPDF_ARC4_BUF_SIZE 256
 
-
-typedef struct HPDF_MD5Context
-{
+typedef struct HPDF_MD5Context {
     HPDF_UINT32 buf[4];
     HPDF_UINT32 bits[2];
     HPDF_BYTE in[64];
 } HPDF_MD5_CTX;
 
-
 typedef struct _HPDF_ARC4_Ctx_Rec {
-    HPDF_BYTE    idx1;
-    HPDF_BYTE    idx2;
-    HPDF_BYTE    state[HPDF_ARC4_BUF_SIZE];
+    HPDF_BYTE idx1;
+    HPDF_BYTE idx2;
+    HPDF_BYTE state[HPDF_ARC4_BUF_SIZE];
 } HPDF_ARC4_Ctx_Rec;
 
-
-typedef struct _HPDF_Encrypt_Rec  *HPDF_Encrypt;
+typedef struct _HPDF_Encrypt_Rec* HPDF_Encrypt;
 
 typedef struct _HPDF_Encrypt_Rec {
-    HPDF_EncryptMode   mode;
+    HPDF_EncryptMode mode;
 
     /* key_len must be a multiple of 8, and between 40 to 128 */
-    HPDF_UINT          key_len;
+    HPDF_UINT key_len;
 
     /* owner-password (not encrypted) */
-    HPDF_BYTE          owner_passwd[HPDF_PASSWD_LEN];
+    HPDF_BYTE owner_passwd[HPDF_PASSWD_LEN];
 
     /* user-password (not encrypted) */
-    HPDF_BYTE          user_passwd[HPDF_PASSWD_LEN];
+    HPDF_BYTE user_passwd[HPDF_PASSWD_LEN];
 
     /* owner-password (encrypted) */
-    HPDF_BYTE          owner_key[HPDF_PASSWD_LEN];
+    HPDF_BYTE owner_key[HPDF_PASSWD_LEN];
 
     /* user-password (encrypted) */
-    HPDF_BYTE          user_key[HPDF_PASSWD_LEN];
+    HPDF_BYTE user_key[HPDF_PASSWD_LEN];
 
-    HPDF_INT           permission;
-    HPDF_BYTE          encrypt_id[HPDF_ID_LEN];
-    HPDF_BYTE          encryption_key[HPDF_MD5_KEY_LEN + 5];
-    HPDF_BYTE          md5_encryption_key[HPDF_MD5_KEY_LEN];
-    HPDF_ARC4_Ctx_Rec  arc4ctx;
+    HPDF_INT permission;
+    HPDF_BYTE encrypt_id[HPDF_ID_LEN];
+    HPDF_BYTE encryption_key[HPDF_MD5_KEY_LEN + 5];
+    HPDF_BYTE md5_encryption_key[HPDF_MD5_KEY_LEN];
+    HPDF_ARC4_Ctx_Rec arc4ctx;
 } HPDF_Encrypt_Rec;
 
+void HPDF_MD5Init(struct HPDF_MD5Context* ctx);
 
-void
-HPDF_MD5Init  (struct HPDF_MD5Context  *ctx);
+void HPDF_MD5Update(struct HPDF_MD5Context* ctx, const HPDF_BYTE* buf, HPDF_UINT32 len);
 
+void HPDF_MD5Final(HPDF_BYTE digest[16], struct HPDF_MD5Context* ctx);
 
-void
-HPDF_MD5Update  (struct HPDF_MD5Context *ctx,
-                 const HPDF_BYTE        *buf,
-                 HPDF_UINT32            len);
+void HPDF_PadOrTrancatePasswd(const char* pwd, HPDF_BYTE* new_pwd);
 
+void HPDF_Encrypt_Init(HPDF_Encrypt attr);
 
-void
-HPDF_MD5Final  (HPDF_BYTE              digest[16],
-                struct HPDF_MD5Context *ctx);
+void HPDF_Encrypt_CreateUserKey(HPDF_Encrypt attr);
 
-void
-HPDF_PadOrTrancatePasswd  (const char  *pwd,
-                           HPDF_BYTE        *new_pwd);
+void HPDF_Encrypt_CreateOwnerKey(HPDF_Encrypt attr);
 
+void HPDF_Encrypt_CreateEncryptionKey(HPDF_Encrypt attr);
 
-void
-HPDF_Encrypt_Init  (HPDF_Encrypt  attr);
+void HPDF_Encrypt_InitKey(HPDF_Encrypt attr, HPDF_UINT32 object_id, HPDF_UINT16 gen_no);
 
+void HPDF_Encrypt_Reset(HPDF_Encrypt attr);
 
-void
-HPDF_Encrypt_CreateUserKey  (HPDF_Encrypt  attr);
-
-
-void
-HPDF_Encrypt_CreateOwnerKey  (HPDF_Encrypt  attr);
-
-
-void
-HPDF_Encrypt_CreateEncryptionKey  (HPDF_Encrypt  attr);
-
-
-void
-HPDF_Encrypt_InitKey  (HPDF_Encrypt  attr,
-                       HPDF_UINT32       object_id,
-                       HPDF_UINT16       gen_no);
-
-
-void
-HPDF_Encrypt_Reset  (HPDF_Encrypt  attr);
-
-
-void
-HPDF_Encrypt_CryptBuf  (HPDF_Encrypt  attr,
-                        const HPDF_BYTE   *src,
-                        HPDF_BYTE         *dst,
-                        HPDF_UINT         len);
+void HPDF_Encrypt_CryptBuf(HPDF_Encrypt attr, const HPDF_BYTE* src, HPDF_BYTE* dst, HPDF_UINT len);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
 #endif /* _HPDF_ENCRYPT_H */
-
-

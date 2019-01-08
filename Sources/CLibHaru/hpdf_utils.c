@@ -22,10 +22,9 @@
 /*---------------------------------------------------------------------------*/
 
 HPDF_INT
-HPDF_AToI  (const char  *s)
-{
+HPDF_AToI(const char* s) {
     HPDF_BOOL flg = HPDF_FALSE;
-    HPDF_INT  v = 0;
+    HPDF_INT v = 0;
 
     if (!s) {
         return 0;
@@ -58,10 +57,8 @@ HPDF_AToI  (const char  *s)
     return v;
 }
 
-
 HPDF_DOUBLE
-HPDF_AToF  (const char  *s)
-{
+HPDF_AToF(const char* s) {
     HPDF_BOOL flg = HPDF_FALSE;
     HPDF_INT i = 0;
     HPDF_DOUBLE v;
@@ -112,12 +109,7 @@ HPDF_AToF  (const char  *s)
     return v;
 }
 
-
-char*
-HPDF_IToA  (char        *s,
-            HPDF_INT32   val,
-            char        *eptr)
-{
+char* HPDF_IToA(char* s, HPDF_INT32 val, char* eptr) {
     char* t;
     char buf[HPDF_INT_LEN + 1];
 
@@ -143,18 +135,13 @@ HPDF_IToA  (char        *s,
 
     t++;
     while (s < eptr && *t != 0)
-      *s++ = *t++;
+        *s++ = *t++;
     *s = 0;
 
     return s;
 }
 
-
-char*
-HPDF_IToA2  (char         *s,
-             HPDF_UINT32   val,
-             HPDF_UINT     len)
-{
+char* HPDF_IToA2(char* s, HPDF_UINT32 val, HPDF_UINT len) {
     char* t;
     char* u;
 
@@ -176,12 +163,7 @@ HPDF_IToA2  (char         *s,
     return s + len - 1;
 }
 
-
-char*
-HPDF_FToA  (char       *s,
-            HPDF_REAL   val,
-            char       *eptr)
-{
+char* HPDF_FToA(char* s, HPDF_REAL val, char* eptr) {
     HPDF_INT32 int_val;
     HPDF_INT32 fpart_val;
     char buf[HPDF_REAL_LEN + 1];
@@ -191,8 +173,7 @@ HPDF_FToA  (char       *s,
 
     if (val > HPDF_LIMIT_MAX_REAL)
         val = HPDF_LIMIT_MAX_REAL;
-    else
-    if (val < HPDF_LIMIT_MIN_REAL)
+    else if (val < HPDF_LIMIT_MIN_REAL)
         val = HPDF_LIMIT_MIN_REAL;
 
     t = buf + HPDF_REAL_LEN;
@@ -246,12 +227,7 @@ HPDF_FToA  (char       *s,
     return (*s == 0) ? s : ++s;
 }
 
-
-HPDF_BYTE*
-HPDF_MemCpy  (HPDF_BYTE*         out,
-              const HPDF_BYTE   *in,
-              HPDF_UINT          n)
-{
+HPDF_BYTE* HPDF_MemCpy(HPDF_BYTE* out, const HPDF_BYTE* in, HPDF_UINT n) {
     while (n > 0) {
         *out++ = *in++;
         n--;
@@ -260,12 +236,7 @@ HPDF_MemCpy  (HPDF_BYTE*         out,
     return out;
 }
 
-
-HPDF_BYTE*
-HPDF_StrCpy  (char          *out,
-              const char    *in,
-              char          *eptr)
-{
+HPDF_BYTE* HPDF_StrCpy(char* out, const char* in, char* eptr) {
     if (in != NULL) {
         while (eptr > out && *in != 0)
             *out++ = *in++;
@@ -273,15 +244,11 @@ HPDF_StrCpy  (char          *out,
 
     *out = 0;
 
-    return (HPDF_BYTE *)out;
+    return (HPDF_BYTE*)out;
 }
 
-
 HPDF_INT
-HPDF_MemCmp  (const HPDF_BYTE   *s1,
-              const HPDF_BYTE   *s2,
-              HPDF_UINT          n)
-{
+HPDF_MemCmp(const HPDF_BYTE* s1, const HPDF_BYTE* s2, HPDF_UINT n) {
     if (n == 0)
         return 0;
 
@@ -296,11 +263,8 @@ HPDF_MemCmp  (const HPDF_BYTE   *s1,
     return *s1 - *s2;
 }
 
-
 HPDF_INT
-HPDF_StrCmp  (const char   *s1,
-              const char   *s2)
-{
+HPDF_StrCmp(const char* s1, const char* s2) {
     if (!s1 || !s2) {
         if (!s1 && s2)
             return -1;
@@ -318,12 +282,7 @@ HPDF_StrCmp  (const char   *s1,
     return (HPDF_BYTE)*s1 - (HPDF_BYTE)*s2;
 }
 
-
-void*
-HPDF_MemSet  (void        *s,
-              HPDF_BYTE    c,
-              HPDF_UINT    n)
-{
+void* HPDF_MemSet(void* s, HPDF_BYTE c, HPDF_UINT n) {
     HPDF_BYTE* b = (HPDF_BYTE*)s;
 
     while (n > 0) {
@@ -335,11 +294,8 @@ HPDF_MemSet  (void        *s,
     return b;
 }
 
-
 HPDF_UINT
-HPDF_StrLen  (const char   *s,
-              HPDF_INT      maxlen)
-{
+HPDF_StrLen(const char* s, HPDF_INT maxlen) {
     HPDF_INT len = 0;
 
     if (!s)
@@ -353,13 +309,8 @@ HPDF_StrLen  (const char   *s,
     return (HPDF_UINT)len;
 }
 
-
-const char*
-HPDF_StrStr  (const char   *s1,
-              const char   *s2,
-              HPDF_UINT     maxlen)
-{
-    HPDF_UINT len = HPDF_StrLen (s2, -1);
+const char* HPDF_StrStr(const char* s1, const char* s2, HPDF_UINT maxlen) {
+    HPDF_UINT len = HPDF_StrLen(s2, -1);
 
     if (!s1)
         return NULL;
@@ -368,7 +319,7 @@ HPDF_StrStr  (const char   *s1,
         return s1;
 
     if (maxlen == 0)
-        maxlen = HPDF_StrLen (s1, -1);
+        maxlen = HPDF_StrLen(s1, -1);
 
     if (maxlen < len)
         return NULL;
@@ -377,7 +328,7 @@ HPDF_StrStr  (const char   *s1,
     maxlen++;
 
     while (maxlen > 0) {
-        if (HPDF_MemCmp ((HPDF_BYTE *)s1, (HPDF_BYTE *)s2, len) == 0)
+        if (HPDF_MemCmp((HPDF_BYTE*)s1, (HPDF_BYTE*)s2, len) == 0)
             return s1;
 
         s1++;
@@ -387,13 +338,7 @@ HPDF_StrStr  (const char   *s1,
     return NULL;
 }
 
-
-HPDF_Box
-HPDF_ToBox  (HPDF_INT16   left,
-             HPDF_INT16   bottom,
-             HPDF_INT16   right,
-             HPDF_INT16   top)
-{
+HPDF_Box HPDF_ToBox(HPDF_INT16 left, HPDF_INT16 bottom, HPDF_INT16 right, HPDF_INT16 top) {
     HPDF_Box box;
 
     box.left = left;
@@ -404,11 +349,7 @@ HPDF_ToBox  (HPDF_INT16   left,
     return box;
 }
 
-
-HPDF_Point
-HPDF_ToPoint  (HPDF_INT16   x,
-               HPDF_INT16   y)
-{
+HPDF_Point HPDF_ToPoint(HPDF_INT16 x, HPDF_INT16 y) {
     HPDF_Point point;
 
     point.x = x;
@@ -417,12 +358,7 @@ HPDF_ToPoint  (HPDF_INT16   x,
     return point;
 }
 
-HPDF_Rect
-HPDF_ToRect  (HPDF_REAL   left,
-              HPDF_REAL   bottom,
-              HPDF_REAL   right,
-              HPDF_REAL   top)
-{
+HPDF_Rect HPDF_ToRect(HPDF_REAL left, HPDF_REAL bottom, HPDF_REAL right, HPDF_REAL top) {
     HPDF_Rect rect;
 
     rect.left = left;
@@ -433,13 +369,9 @@ HPDF_ToRect  (HPDF_REAL   left,
     return rect;
 }
 
-
-void
-HPDF_UInt16Swap  (HPDF_UINT16  *value)
-{
+void HPDF_UInt16Swap(HPDF_UINT16* value) {
     HPDF_BYTE u[2];
 
-    HPDF_MemCpy (u, (HPDF_BYTE*)value, 2);
+    HPDF_MemCpy(u, (HPDF_BYTE*)value, 2);
     *value = (HPDF_UINT16)((HPDF_UINT16)u[0] << 8 | (HPDF_UINT16)u[1]);
 }
-

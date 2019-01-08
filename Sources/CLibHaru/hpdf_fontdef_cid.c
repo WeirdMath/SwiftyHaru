@@ -19,80 +19,66 @@
 #include "hpdf_utils.h"
 #include "hpdf_fontdef.h"
 
-void
-HPDF_CIDFontDef_FreeWidth  (HPDF_FontDef  fontdef);
+void HPDF_CIDFontDef_FreeWidth(HPDF_FontDef fontdef);
 
-
-void
-HPDF_CIDFontDef_FreeFunc (HPDF_FontDef  fontdef);
-
+void HPDF_CIDFontDef_FreeFunc(HPDF_FontDef fontdef);
 
 /*----------------------------------------------------------------------*/
 /*----- HPDF_CIDFontDef ------------------------------------------------*/
 
-void
-HPDF_CIDFontDef_FreeWidth  (HPDF_FontDef  fontdef)
-{
+void HPDF_CIDFontDef_FreeWidth(HPDF_FontDef fontdef) {
     HPDF_CIDFontDefAttr attr = (HPDF_CIDFontDefAttr)fontdef->attr;
     HPDF_UINT i;
 
-    HPDF_PTRACE ((" HPDF_FontDef_Validate\n"));
+    HPDF_PTRACE((" HPDF_FontDef_Validate\n"));
 
     for (i = 0; i < attr->widths->count; i++) {
-        HPDF_CID_Width *w =
-                    (HPDF_CID_Width *)HPDF_List_ItemAt (attr->widths, i);
+        HPDF_CID_Width* w = (HPDF_CID_Width*)HPDF_List_ItemAt(attr->widths, i);
 
-        HPDF_FreeMem (fontdef->mmgr, w);
+        HPDF_FreeMem(fontdef->mmgr, w);
     }
 
-    HPDF_List_Free (attr->widths);
+    HPDF_List_Free(attr->widths);
     attr->widths = NULL;
 
     fontdef->valid = HPDF_FALSE;
 }
 
-
-HPDF_FontDef
-HPDF_CIDFontDef_New  (HPDF_MMgr               mmgr,
-                      char              *name,
-                      HPDF_FontDef_InitFunc   init_fn)
-{
+HPDF_FontDef HPDF_CIDFontDef_New(HPDF_MMgr mmgr, char* name, HPDF_FontDef_InitFunc init_fn) {
     HPDF_FontDef fontdef;
     HPDF_CIDFontDefAttr fontdef_attr;
 
-    HPDF_PTRACE ((" HPDF_CIDFontDef_New\n"));
+    HPDF_PTRACE((" HPDF_CIDFontDef_New\n"));
 
     if (!mmgr)
         return NULL;
 
-    fontdef = HPDF_GetMem (mmgr, sizeof(HPDF_FontDef_Rec));
+    fontdef = HPDF_GetMem(mmgr, sizeof(HPDF_FontDef_Rec));
     if (!fontdef)
         return NULL;
 
-    HPDF_MemSet (fontdef, 0, sizeof(HPDF_FontDef_Rec));
+    HPDF_MemSet(fontdef, 0, sizeof(HPDF_FontDef_Rec));
     fontdef->sig_bytes = HPDF_FONTDEF_SIG_BYTES;
-    HPDF_StrCpy (fontdef->base_font, name, fontdef->base_font +
-                    HPDF_LIMIT_MAX_NAME_LEN);
+    HPDF_StrCpy(fontdef->base_font, name, fontdef->base_font + HPDF_LIMIT_MAX_NAME_LEN);
     fontdef->mmgr = mmgr;
     fontdef->error = mmgr->error;
     fontdef->type = HPDF_FONTDEF_TYPE_UNINITIALIZED;
     fontdef->free_fn = HPDF_CIDFontDef_FreeFunc;
     fontdef->init_fn = init_fn;
     fontdef->valid = HPDF_FALSE;
-    fontdef_attr = HPDF_GetMem (mmgr, sizeof(HPDF_CIDFontDefAttr_Rec));
+    fontdef_attr = HPDF_GetMem(mmgr, sizeof(HPDF_CIDFontDefAttr_Rec));
     if (!fontdef_attr) {
-        HPDF_FreeMem (fontdef->mmgr, fontdef);
+        HPDF_FreeMem(fontdef->mmgr, fontdef);
         return NULL;
     }
 
     fontdef->attr = fontdef_attr;
-    HPDF_MemSet ((HPDF_BYTE *)fontdef_attr, 0,
-                sizeof(HPDF_CIDFontDefAttr_Rec));
+    HPDF_MemSet((HPDF_BYTE*)fontdef_attr, 0, sizeof(HPDF_CIDFontDefAttr_Rec));
 
-    fontdef_attr->widths = HPDF_List_New (mmgr, HPDF_DEF_CHAR_WIDTHS_NUM);
+    fontdef_attr->widths = HPDF_List_New(mmgr, HPDF_DEF_CHAR_WIDTHS_NUM);
     if (!fontdef_attr->widths) {
-        HPDF_FreeMem (fontdef->mmgr, fontdef);
-        HPDF_FreeMem (fontdef->mmgr, fontdef_attr);
+        HPDF_FreeMem(fontdef->mmgr, fontdef);
+        HPDF_FreeMem(fontdef->mmgr, fontdef_attr);
         return NULL;
     }
 
@@ -104,19 +90,15 @@ HPDF_CIDFontDef_New  (HPDF_MMgr               mmgr,
     return fontdef;
 }
 
-
 HPDF_INT16
-HPDF_CIDFontDef_GetCIDWidth  (HPDF_FontDef  fontdef,
-                              HPDF_UINT16    cid)
-{
+HPDF_CIDFontDef_GetCIDWidth(HPDF_FontDef fontdef, HPDF_UINT16 cid) {
     HPDF_CIDFontDefAttr attr = (HPDF_CIDFontDefAttr)fontdef->attr;
     HPDF_UINT i;
 
-    HPDF_PTRACE ((" HPDF_CIDFontDef_GetCIDWidth\n"));
+    HPDF_PTRACE((" HPDF_CIDFontDef_GetCIDWidth\n"));
 
     for (i = 0; i < attr->widths->count; i++) {
-        HPDF_CID_Width *w = (HPDF_CID_Width *)HPDF_List_ItemAt (attr->widths,
-                i);
+        HPDF_CID_Width* w = (HPDF_CID_Width*)HPDF_List_ItemAt(attr->widths, i);
 
         if (w->cid == cid)
             return w->width;
@@ -126,29 +108,23 @@ HPDF_CIDFontDef_GetCIDWidth  (HPDF_FontDef  fontdef,
     return attr->DW;
 }
 
-void
-HPDF_CIDFontDef_FreeFunc (HPDF_FontDef  fontdef)
-{
+void HPDF_CIDFontDef_FreeFunc(HPDF_FontDef fontdef) {
     HPDF_CIDFontDefAttr attr = (HPDF_CIDFontDefAttr)fontdef->attr;
 
-    HPDF_PTRACE ((" HPDF_CIDFontDef_FreeFunc\n"));
+    HPDF_PTRACE((" HPDF_CIDFontDef_FreeFunc\n"));
 
-    HPDF_CIDFontDef_FreeWidth (fontdef);
-    HPDF_FreeMem (fontdef->mmgr, attr);
+    HPDF_CIDFontDef_FreeWidth(fontdef);
+    HPDF_FreeMem(fontdef->mmgr, attr);
 }
 
-
 HPDF_STATUS
-HPDF_CIDFontDef_AddWidth  (HPDF_FontDef            fontdef,
-                           const HPDF_CID_Width   *widths)
-{
+HPDF_CIDFontDef_AddWidth(HPDF_FontDef fontdef, const HPDF_CID_Width* widths) {
     HPDF_CIDFontDefAttr attr = (HPDF_CIDFontDefAttr)fontdef->attr;
 
-    HPDF_PTRACE ((" HPDF_CIDFontDef_AddWidth\n"));
+    HPDF_PTRACE((" HPDF_CIDFontDef_AddWidth\n"));
 
     while (widths->cid != 0xFFFF) {
-        HPDF_CID_Width *w = HPDF_GetMem (fontdef->mmgr,
-                sizeof (HPDF_CID_Width));
+        HPDF_CID_Width* w = HPDF_GetMem(fontdef->mmgr, sizeof(HPDF_CID_Width));
         HPDF_STATUS ret;
 
         if (!w)
@@ -157,8 +133,8 @@ HPDF_CIDFontDef_AddWidth  (HPDF_FontDef            fontdef,
         w->cid = widths->cid;
         w->width = widths->width;
 
-        if ((ret = HPDF_List_Add (attr->widths, w)) != HPDF_OK) {
-            HPDF_FreeMem (fontdef->mmgr, w);
+        if ((ret = HPDF_List_Add(attr->widths, w)) != HPDF_OK) {
+            HPDF_FreeMem(fontdef->mmgr, w);
 
             return ret;
         }
@@ -169,13 +145,9 @@ HPDF_CIDFontDef_AddWidth  (HPDF_FontDef            fontdef,
     return HPDF_OK;
 }
 
-
 HPDF_STATUS
-HPDF_CIDFontDef_ChangeStyle  (HPDF_FontDef   fontdef,
-                              HPDF_BOOL      bold,
-                              HPDF_BOOL      italic)
-{
-    HPDF_PTRACE ((" HPDF_CIDFontDef_ChangeStyle\n"));
+HPDF_CIDFontDef_ChangeStyle(HPDF_FontDef fontdef, HPDF_BOOL bold, HPDF_BOOL italic) {
+    HPDF_PTRACE((" HPDF_CIDFontDef_ChangeStyle\n"));
 
     if (!fontdef || !fontdef->attr)
         return HPDF_INVALID_FONTDEF_DATA;
@@ -192,6 +164,3 @@ HPDF_CIDFontDef_ChangeStyle  (HPDF_FontDef   fontdef,
 
     return HPDF_OK;
 }
-
-
-

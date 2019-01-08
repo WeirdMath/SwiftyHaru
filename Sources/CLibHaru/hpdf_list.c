@@ -20,10 +20,7 @@
 #include "hpdf_consts.h"
 #include "hpdf_list.h"
 
-static HPDF_STATUS
-Resize  (HPDF_List  list,
-         HPDF_UINT  count);
-
+static HPDF_STATUS Resize(HPDF_List list, HPDF_UINT count);
 
 /*
  *  HPDF_List_new
@@ -36,10 +33,7 @@ Resize  (HPDF_List  list,
  *
  */
 
-HPDF_List
-HPDF_List_New  (HPDF_MMgr  mmgr,
-                HPDF_UINT  items_per_block)
-{
+HPDF_List HPDF_List_New(HPDF_MMgr mmgr, HPDF_UINT items_per_block) {
     HPDF_List list;
 
     HPDF_PTRACE((" HPDF_List_New\n"));
@@ -47,13 +41,12 @@ HPDF_List_New  (HPDF_MMgr  mmgr,
     if (mmgr == NULL)
         return NULL;
 
-    list = (HPDF_List)HPDF_GetMem (mmgr, sizeof(HPDF_List_Rec));
+    list = (HPDF_List)HPDF_GetMem(mmgr, sizeof(HPDF_List_Rec));
     if (list) {
         list->mmgr = mmgr;
         list->error = mmgr->error;
         list->block_siz = 0;
-        list->items_per_block =
-            (items_per_block <= 0 ? HPDF_DEF_ITEMS_PER_BLOCK : items_per_block);
+        list->items_per_block = (items_per_block <= 0 ? HPDF_DEF_ITEMS_PER_BLOCK : items_per_block);
         list->count = 0;
         list->obj = NULL;
     }
@@ -74,14 +67,11 @@ HPDF_List_New  (HPDF_MMgr  mmgr,
  */
 
 HPDF_STATUS
-HPDF_List_Add  (HPDF_List  list,
-                void       *item)
-{
+HPDF_List_Add(HPDF_List list, void* item) {
     HPDF_PTRACE((" HPDF_List_Add\n"));
 
     if (list->count >= list->block_siz) {
-        HPDF_STATUS ret = Resize (list,
-                list->block_siz + list->items_per_block);
+        HPDF_STATUS ret = Resize(list, list->block_siz + list->items_per_block);
 
         if (ret != HPDF_OK) {
             return ret;
@@ -91,7 +81,6 @@ HPDF_List_Add  (HPDF_List  list,
     list->obj[list->count++] = item;
     return HPDF_OK;
 }
-
 
 /*
  *  HPDF_List_Insert
@@ -111,12 +100,9 @@ HPDF_List_Add  (HPDF_List  list,
  */
 
 HPDF_STATUS
-HPDF_List_Insert  (HPDF_List  list,
-                   void       *target,
-                   void       *item)
-{
-    HPDF_INT target_idx = HPDF_List_Find (list, target);
-    void      *last_item = list->obj[list->count - 1];
+HPDF_List_Insert(HPDF_List list, void* target, void* item) {
+    HPDF_INT target_idx = HPDF_List_Find(list, target);
+    void* last_item = list->obj[list->count - 1];
     HPDF_INT i;
 
     HPDF_PTRACE((" HPDF_List_Insert\n"));
@@ -130,7 +116,7 @@ HPDF_List_Insert  (HPDF_List  list,
 
     list->obj[target_idx] = item;
 
-    return HPDF_List_Add (list, last_item);
+    return HPDF_List_Add(list, last_item);
 }
 
 /*
@@ -149,11 +135,9 @@ HPDF_List_Insert  (HPDF_List  list,
  */
 
 HPDF_STATUS
-HPDF_List_Remove  (HPDF_List  list,
-                   void       *item)
-{
+HPDF_List_Remove(HPDF_List list, void* item) {
     HPDF_UINT i;
-    void **obj = list->obj;
+    void** obj = list->obj;
 
     HPDF_PTRACE((" HPDF_List_Remove\n"));
 
@@ -182,11 +166,8 @@ HPDF_List_Remove  (HPDF_List  list,
  *
  */
 
-void*
-HPDF_List_RemoveByIndex  (HPDF_List  list,
-                          HPDF_UINT  index)
-{
-    void *tmp;
+void* HPDF_List_RemoveByIndex(HPDF_List list, HPDF_UINT index) {
+    void* tmp;
 
     HPDF_PTRACE((" HPDF_List_RemoveByIndex\n"));
 
@@ -216,10 +197,7 @@ HPDF_List_RemoveByIndex  (HPDF_List  list,
  *
  */
 
-void*
-HPDF_List_ItemAt  (HPDF_List  list,
-                   HPDF_UINT  index)
-{
+void* HPDF_List_ItemAt(HPDF_List list, HPDF_UINT index) {
     HPDF_PTRACE((" HPDF_List_ItemAt\n"));
 
     return (list->count <= index) ? NULL : list->obj[index];
@@ -232,16 +210,14 @@ HPDF_List_ItemAt  (HPDF_List  list,
  *
  */
 
-void
-HPDF_List_Free  (HPDF_List  list)
-{
+void HPDF_List_Free(HPDF_List list) {
     HPDF_PTRACE((" HPDF_List_Free\n"));
 
     if (!list)
-        return ;
+        return;
 
-    HPDF_List_Clear (list);
-    HPDF_FreeMem (list->mmgr, list);
+    HPDF_List_Clear(list);
+    HPDF_FreeMem(list->mmgr, list);
 }
 
 /*
@@ -251,13 +227,11 @@ HPDF_List_Free  (HPDF_List  list)
  *
  */
 
-void
-HPDF_List_Clear  (HPDF_List  list)
-{
+void HPDF_List_Clear(HPDF_List list) {
     HPDF_PTRACE((" HPDF_List_Clear\n"));
 
     if (list->obj)
-        HPDF_FreeMem (list->mmgr, list->obj);
+        HPDF_FreeMem(list->mmgr, list->obj);
 
     list->block_siz = 0;
     list->count = 0;
@@ -275,11 +249,8 @@ HPDF_List_Clear  (HPDF_List  list)
  *
  */
 
-static HPDF_STATUS
-Resize  (HPDF_List   list,
-         HPDF_UINT   count)
-{
-    void **new_obj;
+static HPDF_STATUS Resize(HPDF_List list, HPDF_UINT count) {
+    void** new_obj;
 
     HPDF_PTRACE((" HPDF_List_Resize\n"));
 
@@ -290,18 +261,17 @@ Resize  (HPDF_List   list,
             return HPDF_INVALID_PARAMETER;
     }
 
-    new_obj = (void **)HPDF_GetMem (list->mmgr, count * sizeof(void *));
+    new_obj = (void**)HPDF_GetMem(list->mmgr, count * sizeof(void*));
 
     if (!new_obj)
-        return HPDF_Error_GetCode (list->error);
+        return HPDF_Error_GetCode(list->error);
 
     if (list->obj)
-        HPDF_MemCpy ((HPDF_BYTE *)new_obj, (HPDF_BYTE *)list->obj,
-                list->block_siz * sizeof(void *));
+        HPDF_MemCpy((HPDF_BYTE*)new_obj, (HPDF_BYTE*)list->obj, list->block_siz * sizeof(void*));
 
     list->block_siz = count;
     if (list->obj)
-        HPDF_FreeMem (list->mmgr, list->obj);
+        HPDF_FreeMem(list->mmgr, list->obj);
     list->obj = new_obj;
 
     return HPDF_OK;
@@ -319,9 +289,7 @@ Resize  (HPDF_List   list,
  */
 
 HPDF_INT32
-HPDF_List_Find  (HPDF_List  list,
-                 void       *item)
-{
+HPDF_List_Find(HPDF_List list, void* item) {
     HPDF_UINT i;
 
     HPDF_PTRACE((" HPDF_List_Find\n"));
@@ -333,4 +301,3 @@ HPDF_List_Find  (HPDF_List  list,
 
     return -1;
 }
-

@@ -22,10 +22,6 @@
 
 #define HPDF_UNUSED(a) ((void)(a))
 
-#ifndef HPDF_EXPORT
-#define HPDF_EXPORT(A) A
-#endif /* HPDF_EXPORT  */
-
 #include "hpdf_consts.h"
 #include "hpdf_doc.h"
 #include "hpdf_error.h"

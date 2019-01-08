@@ -19,28 +19,25 @@
 #include "hpdf_utils.h"
 #include "hpdf_gstate.h"
 
-HPDF_GState
-HPDF_GState_New  (HPDF_MMgr    mmgr,
-                  HPDF_GState  current)
-{
-    HPDF_GState  gstate;
+HPDF_GState HPDF_GState_New(HPDF_MMgr mmgr, HPDF_GState current) {
+    HPDF_GState gstate;
 
     if (current && current->depth >= HPDF_LIMIT_MAX_GSTATE) {
-        HPDF_SetError (mmgr->error, HPDF_EXCEED_GSTATE_LIMIT, 0);
+        HPDF_SetError(mmgr->error, HPDF_EXCEED_GSTATE_LIMIT, 0);
 
         return NULL;
     }
 
-    gstate = HPDF_GetMem (mmgr, sizeof(HPDF_GState_Rec));
+    gstate = HPDF_GetMem(mmgr, sizeof(HPDF_GState_Rec));
     if (!gstate)
         return NULL;
 
     if (current) {
         gstate->trans_matrix = current->trans_matrix;
-        gstate->line_width =  current->line_width;
-        gstate->line_cap =  current->line_cap;
-        gstate->line_join =  current->line_join;
-        gstate->miter_limit =  current->miter_limit;
+        gstate->line_width = current->line_width;
+        gstate->line_cap = current->line_cap;
+        gstate->line_join = current->line_join;
+        gstate->miter_limit = current->miter_limit;
         gstate->dash_mode = current->dash_mode;
         gstate->flatness = current->flatness;
 
@@ -107,17 +104,13 @@ HPDF_GState_New  (HPDF_MMgr    mmgr,
     return gstate;
 }
 
-HPDF_GState
-HPDF_GState_Free  (HPDF_MMgr    mmgr,
-                   HPDF_GState  gstate)
-{
+HPDF_GState HPDF_GState_Free(HPDF_MMgr mmgr, HPDF_GState gstate) {
     HPDF_GState current = NULL;
 
     if (gstate) {
-      current = gstate->prev;
-      HPDF_FreeMem (mmgr, gstate);
+        current = gstate->prev;
+        HPDF_FreeMem(mmgr, gstate);
     }
 
     return current;
 }
-

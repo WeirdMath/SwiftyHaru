@@ -24,23 +24,18 @@
 #define HPDF_UNUSED(a) ((void)(a))
 #endif
 
-static const char * const HPDF_NAMEDICT_KEYS[] = {
-                                        "EmbeddedFiles"
-                                        };
+static const char* const HPDF_NAMEDICT_KEYS[] = {"EmbeddedFiles"};
 
-HPDF_NameDict
-HPDF_NameDict_New  (HPDF_MMgr  mmgr,
-                    HPDF_Xref  xref)
-{
+HPDF_NameDict HPDF_NameDict_New(HPDF_MMgr mmgr, HPDF_Xref xref) {
     HPDF_NameDict ndict;
 
     HPDF_PTRACE((" HPDF_NameDict_New\n"));
 
-    ndict = HPDF_Dict_New (mmgr);
+    ndict = HPDF_Dict_New(mmgr);
     if (!ndict)
         return NULL;
 
-    if (HPDF_Xref_Add (xref, ndict) != HPDF_OK)
+    if (HPDF_Xref_Add(xref, ndict) != HPDF_OK)
         return NULL;
 
     ndict->header.obj_class |= HPDF_OSUBCLASS_NAMEDICT;
@@ -48,65 +43,53 @@ HPDF_NameDict_New  (HPDF_MMgr  mmgr,
     return ndict;
 }
 
-HPDF_NameTree
-HPDF_NameDict_GetNameTree  (HPDF_NameDict     namedict,
-                            HPDF_NameDictKey  key)
-{
+HPDF_NameTree HPDF_NameDict_GetNameTree(HPDF_NameDict namedict, HPDF_NameDictKey key) {
     if (!namedict)
         return NULL;
-    return HPDF_Dict_GetItem (namedict, HPDF_NAMEDICT_KEYS[key], HPDF_OCLASS_DICT);
+    return HPDF_Dict_GetItem(namedict, HPDF_NAMEDICT_KEYS[key], HPDF_OCLASS_DICT);
 }
 
 HPDF_STATUS
-HPDF_NameDict_SetNameTree  (HPDF_NameDict     namedict,
-                            HPDF_NameDictKey  key,
-                            HPDF_NameTree     ntree)
-{
-    return HPDF_Dict_Add (namedict, HPDF_NAMEDICT_KEYS[key], ntree);
+HPDF_NameDict_SetNameTree(HPDF_NameDict namedict, HPDF_NameDictKey key, HPDF_NameTree ntree) {
+    return HPDF_Dict_Add(namedict, HPDF_NAMEDICT_KEYS[key], ntree);
 }
 
 HPDF_BOOL
-HPDF_NameDict_Validate  (HPDF_NameDict  namedict)
-{
+HPDF_NameDict_Validate(HPDF_NameDict namedict) {
     if (!namedict)
         return HPDF_FALSE;
 
-    if (namedict->header.obj_class != (HPDF_OSUBCLASS_NAMEDICT |
-                HPDF_OCLASS_DICT)) {
-        HPDF_SetError (namedict->error, HPDF_INVALID_OBJECT, 0);
+    if (namedict->header.obj_class != (HPDF_OSUBCLASS_NAMEDICT | HPDF_OCLASS_DICT)) {
+        HPDF_SetError(namedict->error, HPDF_INVALID_OBJECT, 0);
         return HPDF_FALSE;
     }
 
     return HPDF_TRUE;
 }
 
-
 /*------- NameTree -------*/
 
-HPDF_NameTree
-HPDF_NameTree_New  (HPDF_MMgr  mmgr,
-                    HPDF_Xref  xref)
-{
+HPDF_NameTree HPDF_NameTree_New(HPDF_MMgr mmgr, HPDF_Xref xref) {
     HPDF_STATUS ret = HPDF_OK;
     HPDF_NameTree ntree;
     HPDF_Array items;
 
     HPDF_PTRACE((" HPDF_NameTree_New\n"));
 
-    ntree = HPDF_Dict_New (mmgr);
+    ntree = HPDF_Dict_New(mmgr);
     if (!ntree)
         return NULL;
 
-    if (HPDF_Xref_Add (xref, ntree) != HPDF_OK)
+    if (HPDF_Xref_Add(xref, ntree) != HPDF_OK)
         return NULL;
 
     ntree->header.obj_class |= HPDF_OSUBCLASS_NAMETREE;
 
-    items = HPDF_Array_New (mmgr);
+    items = HPDF_Array_New(mmgr);
     if (!ntree)
         return NULL;
 
-    ret += HPDF_Dict_Add (ntree, "Names", items);
+    ret += HPDF_Dict_Add(ntree, "Names", items);
     if (ret != HPDF_OK)
         return NULL;
 
@@ -114,17 +97,14 @@ HPDF_NameTree_New  (HPDF_MMgr  mmgr,
 }
 
 HPDF_STATUS
-HPDF_NameTree_Add  (HPDF_NameTree  tree,
-                    HPDF_String    name,
-                    void          *obj)
-{
+HPDF_NameTree_Add(HPDF_NameTree tree, HPDF_String name, void* obj) {
     HPDF_Array items;
     HPDF_INT32 i, icount;
 
     if (!tree || !name)
         return HPDF_INVALID_PARAMETER;
 
-    items = HPDF_Dict_GetItem (tree, "Names", HPDF_OCLASS_ARRAY);
+    items = HPDF_Dict_GetItem(tree, "Names", HPDF_OCLASS_ARRAY);
     if (!items)
         return HPDF_INVALID_OBJECT;
 
@@ -165,63 +145,56 @@ HPDF_NameTree_Add  (HPDF_NameTree  tree,
 }
 
 HPDF_BOOL
-HPDF_NameTree_Validate  (HPDF_NameTree  nametree)
-{
+HPDF_NameTree_Validate(HPDF_NameTree nametree) {
     if (!nametree)
         return HPDF_FALSE;
 
-    if (nametree->header.obj_class != (HPDF_OSUBCLASS_NAMETREE |
-                HPDF_OCLASS_DICT)) {
-        HPDF_SetError (nametree->error, HPDF_INVALID_OBJECT, 0);
+    if (nametree->header.obj_class != (HPDF_OSUBCLASS_NAMETREE | HPDF_OCLASS_DICT)) {
+        HPDF_SetError(nametree->error, HPDF_INVALID_OBJECT, 0);
         return HPDF_FALSE;
     }
 
     return HPDF_TRUE;
 }
 
-
 /*------- EmbeddedFile -------*/
 
-HPDF_EmbeddedFile
-HPDF_EmbeddedFile_New  (HPDF_MMgr  mmgr,
-                        HPDF_Xref  xref,
-                        const char *file)
-{
+HPDF_EmbeddedFile HPDF_EmbeddedFile_New(HPDF_MMgr mmgr, HPDF_Xref xref, const char* file) {
     HPDF_STATUS ret = HPDF_OK;
-    HPDF_Dict ef;               /* the dictionary for the embedded file: /Type /EF */
-    HPDF_String name;           /* the name of the file: /F (name) */
-    HPDF_Dict eff;              /* ef has an /EF <<blah>> key - this is it */
-    HPDF_Dict filestream;       /* the stream that /EF <</F _ _ R>> refers to */
+    HPDF_Dict ef;         /* the dictionary for the embedded file: /Type /EF */
+    HPDF_String name;     /* the name of the file: /F (name) */
+    HPDF_Dict eff;        /* ef has an /EF <<blah>> key - this is it */
+    HPDF_Dict filestream; /* the stream that /EF <</F _ _ R>> refers to */
     HPDF_Stream stream;
 
-    ef = HPDF_Dict_New (mmgr);
+    ef = HPDF_Dict_New(mmgr);
     if (!ef)
         return NULL;
-    if (HPDF_Xref_Add (xref, ef) != HPDF_OK)
+    if (HPDF_Xref_Add(xref, ef) != HPDF_OK)
         return NULL;
 
-    filestream = HPDF_DictStream_New (mmgr, xref);
+    filestream = HPDF_DictStream_New(mmgr, xref);
     if (!filestream)
         return NULL;
-    stream = HPDF_FileReader_New (mmgr, file);
+    stream = HPDF_FileReader_New(mmgr, file);
     if (!stream)
         return NULL;
     HPDF_Stream_Free(filestream->stream);
     filestream->stream = stream;
     filestream->filter = HPDF_STREAM_FILTER_FLATE_DECODE;
 
-    eff = HPDF_Dict_New (mmgr);
+    eff = HPDF_Dict_New(mmgr);
     if (!eff)
         return NULL;
 
-    name = HPDF_String_New (mmgr, file, NULL);
+    name = HPDF_String_New(mmgr, file, NULL);
     if (!name)
         return NULL;
 
-    ret += HPDF_Dict_AddName (ef, "Type", "F");
-    ret += HPDF_Dict_Add (ef, "F", name);
-    ret += HPDF_Dict_Add (ef, "EF", eff);
-    ret += HPDF_Dict_Add (eff, "F", filestream);
+    ret += HPDF_Dict_AddName(ef, "Type", "F");
+    ret += HPDF_Dict_Add(ef, "F", name);
+    ret += HPDF_Dict_Add(ef, "EF", eff);
+    ret += HPDF_Dict_Add(eff, "F", filestream);
 
     if (ret != HPDF_OK)
         return NULL;
@@ -230,8 +203,7 @@ HPDF_EmbeddedFile_New  (HPDF_MMgr  mmgr,
 }
 
 HPDF_BOOL
-HPDF_EmbeddedFile_Validate  (HPDF_EmbeddedFile  emfile)
-{
-    HPDF_UNUSED (emfile);
+HPDF_EmbeddedFile_Validate(HPDF_EmbeddedFile emfile) {
+    HPDF_UNUSED(emfile);
     return HPDF_TRUE;
 }

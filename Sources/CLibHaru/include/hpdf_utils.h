@@ -26,119 +26,51 @@ extern "C" {
 #endif /* __cplusplus */
 
 HPDF_INT
-HPDF_AToI  (const char*  s);
-
+HPDF_AToI(const char* s);
 
 HPDF_DOUBLE
-HPDF_AToF  (const char*  s);
+HPDF_AToF(const char* s);
 
+char* HPDF_IToA(char* s, HPDF_INT32 val, char* eptr);
 
-char*
-HPDF_IToA  (char*  s,
-            HPDF_INT32  val,
-            char*  eptr);
+char* HPDF_IToA2(char* s, HPDF_UINT32 val, HPDF_UINT len);
 
+char* HPDF_FToA(char* s, HPDF_REAL val, char* eptr);
 
-char*
-HPDF_IToA2  (char    *s,
-             HPDF_UINT32  val,
-             HPDF_UINT    len);
+HPDF_BYTE* HPDF_MemCpy(HPDF_BYTE* out, const HPDF_BYTE* in, HPDF_UINT n);
 
-
-char*
-HPDF_FToA  (char  *s,
-            HPDF_REAL  val,
-            char  *eptr);
-
-
-HPDF_BYTE*
-HPDF_MemCpy  (HPDF_BYTE*        out,
-              const HPDF_BYTE*  in,
-              HPDF_UINT         n);
-
-
-HPDF_BYTE*
-HPDF_StrCpy  (char*        out,
-              const char*  in,
-              char*        eptr);
-
+HPDF_BYTE* HPDF_StrCpy(char* out, const char* in, char* eptr);
 
 HPDF_INT
-HPDF_MemCmp  (const HPDF_BYTE*  s1,
-              const HPDF_BYTE*  s2,
-              HPDF_UINT         n);
-
+HPDF_MemCmp(const HPDF_BYTE* s1, const HPDF_BYTE* s2, HPDF_UINT n);
 
 HPDF_INT
-HPDF_StrCmp  (const char*  s1,
-              const char*  s2);
+HPDF_StrCmp(const char* s1, const char* s2);
 
+const char* HPDF_StrStr(const char* s1, const char* s2, HPDF_UINT maxlen);
 
-const char*
-HPDF_StrStr  (const char  *s1,
-              const char  *s2,
-              HPDF_UINT        maxlen);
-
-
-void*
-HPDF_MemSet  (void*      s,
-              HPDF_BYTE  c,
-              HPDF_UINT  n);
-
+void* HPDF_MemSet(void* s, HPDF_BYTE c, HPDF_UINT n);
 
 HPDF_UINT
-HPDF_StrLen  (const char*  s,
-              HPDF_INT          maxlen);
+HPDF_StrLen(const char* s, HPDF_INT maxlen);
 
+HPDF_Box HPDF_ToBox(HPDF_INT16 left, HPDF_INT16 bottom, HPDF_INT16 right, HPDF_INT16 top);
 
-HPDF_Box
-HPDF_ToBox  (HPDF_INT16  left,
-             HPDF_INT16  bottom,
-             HPDF_INT16  right,
-             HPDF_INT16  top);
+HPDF_Point HPDF_ToPoint(HPDF_INT16 x, HPDF_INT16 y);
 
+HPDF_Rect HPDF_ToRect(HPDF_REAL left, HPDF_REAL bottom, HPDF_REAL right, HPDF_REAL top);
 
-HPDF_Point
-HPDF_ToPoint  (HPDF_INT16  x,
-               HPDF_INT16  y);
-
-
-HPDF_Rect
-HPDF_ToRect  (HPDF_REAL  left,
-              HPDF_REAL  bottom,
-              HPDF_REAL  right,
-              HPDF_REAL  top);
-
-
-void
-HPDF_UInt16Swap  (HPDF_UINT16  *value);
-
+void HPDF_UInt16Swap(HPDF_UINT16* value);
 
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
-#define HPDF_NEEDS_ESCAPE(c)    (c < 0x20 || \
-                                 c > 0x7e || \
-                                 c == '\\' || \
-                                 c == '%' || \
-                                 c == '#' || \
-                                 c == '/' || \
-                                 c == '(' || \
-                                 c == ')' || \
-                                 c == '<' || \
-                                 c == '>' || \
-                                 c == '[' || \
-                                 c == ']' || \
-                                 c == '{' || \
-                                 c == '}' )  \
+#define HPDF_NEEDS_ESCAPE(c)                                                                                           \
+    (c < 0x20 || c > 0x7e || c == '\\' || c == '%' || c == '#' || c == '/' || c == '(' || c == ')' || c == '<' ||      \
+     c == '>' || c == '[' || c == ']' || c == '{' || c == '}')
 
-#define HPDF_IS_WHITE_SPACE(c)   (c == 0x00 || \
-                                 c == 0x09 || \
-                                 c == 0x0A || \
-                                 c == 0x0C || \
-                                 c == 0x0D || \
-                                 c == 0x20 ) \
+#define HPDF_IS_WHITE_SPACE(c) (c == 0x00 || c == 0x09 || c == 0x0A || c == 0x0C || c == 0x0D || c == 0x20)
 
 /*----------------------------------------------------------------------------*/
 /*----- macros for debug -----------------------------------------------------*/
@@ -150,10 +82,10 @@ HPDF_UInt16Swap  (HPDF_UINT16  *value);
 #endif /* LIBHPDF_DEBUG_TRACE */
 
 #ifdef HPDF_PTRACE_ON
-#define HPDF_PTRACE(ARGS)  HPDF_PRINTF ARGS
+#define HPDF_PTRACE(ARGS) HPDF_PRINTF ARGS
 #else
-#define HPDF_PTRACE(ARGS)  /* do nothing */
-#endif /* HPDF_PTRACE */
+#define HPDF_PTRACE(ARGS) /* do nothing */
+#endif                    /* HPDF_PTRACE */
 
 #ifdef LIBHPDF_DEBUG
 #define HPDF_PRINT_BINARY(BUF, LEN, CAPTION) HPDF_PrintBinary(BUF, LEN, CAPTION)
@@ -162,4 +94,3 @@ HPDF_UInt16Swap  (HPDF_UINT16  *value);
 #endif
 
 #endif /* _HPDF_UTILS_H */
-
