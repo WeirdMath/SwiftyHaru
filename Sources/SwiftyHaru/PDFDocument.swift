@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import DefaultStringConvertible
 import CLibHaru
 
 /// A handle to operate on a document object.

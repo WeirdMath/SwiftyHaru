@@ -8,12 +8,12 @@ let package = Package(
         .library(name: "SwiftyHaru", targets: ["SwiftyHaru"])
     ],
     dependencies: [
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.1.0"),
+       
     ],
     targets: [
-        .target(name: "CLibPNG"),
-        .target(name: "CLibHaru", dependencies: ["CLibPNG"]),
+       .systemLibrary(name: "CPNG", path: "Library/CPNG", pkgConfig: "libpng", providers: [ .brew(["libpng"]), .apt(["libpng"])]),
+        .target(name: "CLibHaru", dependencies: [ "CPNG"]),
         .target(name: "SwiftyHaru", dependencies: ["CLibHaru"]),
-        .testTarget(name: "SwiftyHaruTests", dependencies: ["SwiftyHaru", "SnapshotTesting"])
+ 
     ]
 )
