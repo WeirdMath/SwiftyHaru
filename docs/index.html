@@ -13,7 +13,7 @@
     <a title="SwiftyHaru  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftyHaru Docs</a> (75% documented)</p>
+        <p><a href="index.html">SwiftyHaru Docs</a> (91% documented)</p>
         <p class="header-right"><a href="https://github.com/WeirdMath/SwiftyHaru"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -34,13 +34,28 @@
                 <a href="Classes/DrawingContext.html">DrawingContext</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/PDFDateFormatter.html">PDFDateFormatter</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/PDFDocument.html">PDFDocument</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PDFDocument/CompressionMode.html">– CompressionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PDFDocument/EncryptionMode.html">– EncryptionMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PDFDocument/Metadata.html">– Metadata</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/PDFDocument/PageLayout.html">– PageLayout</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/PDFDocument/PageNumberStyle.html">– PageNumberStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PDFDocument/Permissions.html">– Permissions</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/PDFPage.html">PDFPage</a>
@@ -54,7 +69,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Enums.html">Enums</a>
+            <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Enums/LineCap.html">LineCap</a>
@@ -65,13 +80,8 @@
               <li class="nav-group-task">
                 <a href="Enums/PDFColorSpace.html">PDFColorSpace</a>
               </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a href="Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Sequence.html">Sequence</a>
+                <a href="Enums/TextAlignment.html">TextAlignment</a>
               </li>
             </ul>
           </li>
@@ -84,8 +94,11 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="Structs.html">Structs</a>
+            <a href="Structs.html">Structures</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/AffineTransform.html">AffineTransform</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Structs/Color.html">Color</a>
               </li>
@@ -102,31 +115,34 @@
                 <a href="Structs/Grid.html">Grid</a>
               </li>
               <li class="nav-group-task">
-                <a href="Structs/Grid/Lines.html">– Lines</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/Grid/SerifParameters.html">– SerifParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Structs/Grid/Serifs.html">– Serifs</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Structs/Grid/LabelParameters.html">– LabelParameters</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Grid/Labels.html">– Labels</a>
               </li>
               <li class="nav-group-task">
+                <a href="Structs/Grid/Lines.html">– Lines</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Grid/MajorLineParameters.html">– MajorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Grid/MinorLineParameters.html">– MinorLineParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Grid/SerifParameters.html">– SerifParameters</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Grid/Serifs.html">– Serifs</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Structs/PDFError.html">PDFError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Path.html">Path</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Path/FillRule.html">– FillRule</a>
               </li>
               <li class="nav-group-task">
                 <a href="Structs/Point.html">Point</a>
@@ -137,6 +153,9 @@
               <li class="nav-group-task">
                 <a href="Structs/Size.html">Size</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Structs/Vector.html">Vector</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -145,31 +164,30 @@
         <section>
           <section class="section">
             
-            <a href='#swiftyharu' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='swiftyharu'>SwiftyHaru</h1>
+            <h1 id='swiftyharu' class='heading'>SwiftyHaru</h1>
 
 <p><a href="https://travis-ci.org/WeirdMath/SwiftyHaru"><img src="https://travis-ci.org/WeirdMath/SwiftyHaru.svg?branch=dev" alt="Build Status"></a>
 <a href="https://codecov.io/gh/WeirdMath/SwiftyHaru"><img src="https://codecov.io/gh/WeirdMath/SwiftyHaru/branch/dev/graph/badge.svg" alt="codecov"></a>
-<a href="https://www.codacy.com/app/broadway_lamb/SwiftyHaru?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=WeirdMath/SwiftyHaru&amp;amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/66cfcbcec9884191a0f8aa1bef26deb8" alt="Codacy Badge"></a>
-<a href="https://codebeat.co/projects/github-com-weirdmath-swiftyharu"><img src="https://codebeat.co/badges/4ce84f1a-1ab5-4533-a609-afb168128538" alt="codebeat badge"></a>
-<img src="https://img.shields.io/badge/Swift-3.0-orange.svg" alt="Language">
+<a href="https://weirdmath.github.io/SwiftyHaru/"><img src="docs/badge.svg" alt="documentation"></a>
+<img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Language">
 <img src="https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20iOS%20%7C%20watchOS%20%7C%20tvOS-lightgrey.svg" alt="Platform">
 <img src="https://img.shields.io/cocoapods/v/SwiftyHaru.svg?style=flat" alt="Cocoapods"></p>
 
-<p>SwiftyHaru is an object-oriented Swift wrapper for <a href="https://github.com/libharu/libharu">LibHaru</a>, a C library for creating PDF documents. It brings the safety of Swift itself to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.</p>
+<p>SwiftyHaru is an object-oriented Swift wrapper for <a href="https://github.com/libharu/libharu">LibHaru</a>, a C library for creating PDF documents. It brings the safety of Swift to the process of creating PDFs on different platforms like Linux, macOS, iOS, watchOS and tvOS.</p>
 
 <p>Check out which <a href="https://github.com/libharu/libharu/wiki">features of LibHaru</a> has already been implemented in <a href="FEATURES.md">FEATURES.md</a></p>
-<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='requirements'>Requirements</h2>
+<h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
-<li>Swift 3</li>
+<li>Swift 4.2+</li>
 <li>iOS 8.0+</li>
-<li>OSX 10.10+</li>
+<li>macOS 10.10+</li>
 <li>tvOS 9.0+</li>
 <li>watchOS 2.0+</li>
 <li>Ubuntu 14.04+</li>
 </ul>
-<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
-<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='cocoapods'>CocoaPods</h4>
+<h2 id='installation' class='heading'>Installation</h2>
+<h4 id='cocoapods' class='heading'>CocoaPods</h4>
 
 <p>For the latest release in CocoaPods add the following to your <code>Podfile</code>:</p>
 <pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
@@ -182,75 +200,78 @@
 
 <span class="n">pod</span> <span class="s1">'SwiftyHaru'</span><span class="p">,</span> <span class="ss">:git</span> <span class="o">=&gt;</span> <span class="s1">'https://github.com/WeirdMath/SwiftyHaru.git'</span><span class="p">,</span> <span class="ss">:branch</span> <span class="o">=&gt;</span> <span class="s1">'dev'</span>
 </code></pre>
-<a href='#swift-package-manager' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='swift-package-manager'>Swift Package Manager</h3>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
 
 <p>Add SwiftyHaru as a dependency to your <code>Package.swift</code>. For example:</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">package</span> <span class="o">=</span> <span class="kt">Package</span><span class="p">(</span>
     <span class="nv">name</span><span class="p">:</span> <span class="s">"YourPackageName"</span><span class="p">,</span>
     <span class="nv">dependencies</span><span class="p">:</span> <span class="p">[</span>
-        <span class="o">.</span><span class="kt">Package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/WeirdMath/SwiftyHaru.git"</span><span class="p">,</span> <span class="nv">majorVersion</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">package</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="s">"https://github.com/WeirdMath/SwiftyHaru.git"</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="s">"0.3.0"</span><span class="p">)</span>
     <span class="p">]</span>
 <span class="p">)</span>
 </code></pre>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
+
+<p><strong>Important:</strong> when building your project that has SwiftyHaru as a dependency, 
+you need to pass the <code>-Xlinker -lz</code> flags to the compiler. This is because SwiftyHaru has to be linked with zlib (which must be intalled on your computer). For example:</p>
+<pre class="highlight plaintext"><code>$ swift build -Xlinker -lz
+$ swift test -Xlinker -lz
+</code></pre>
+<h2 id='documentation' class='heading'>Documentation</h2>
 
 <p>Available <a href="https://weirdmath.github.io/SwiftyHaru/">here</a>.</p>
-<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='getting-started'>Getting started</h2>
+<h2 id='getting-started' class='heading'>Getting started</h2>
 <pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">SwiftyHaru</span>
 
 <span class="c1">// Initialize stuff</span>
 <span class="k">let</span> <span class="nv">document</span> <span class="o">=</span> <span class="kt">PDFDocument</span><span class="p">()</span>
-<span class="k">let</span> <span class="nv">page</span> <span class="o">=</span> <span class="n">document</span><span class="o">.</span><span class="nf">addPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">400</span><span class="p">)</span>
 
-<span class="c1">// Construct a path</span>
-<span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">Path</span><span class="p">()</span>
-    <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">appendingLine</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">appendingArc</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">beginningAngle</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="mi">180</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">appendingCircle</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">50</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
-    <span class="o">.</span><span class="nf">appendingCurve</span><span class="p">(</span><span class="nv">controlPoint1</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">),</span>
-                    <span class="nv">controlPoint2</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">300</span><span class="p">),</span>
-                    <span class="nv">endPoint</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">300</span><span class="p">))</span>
-    <span class="o">.</span><span class="nf">closingSubpath</span><span class="p">()</span>
+<span class="k">try</span> <span class="n">document</span><span class="o">.</span><span class="nf">addPage</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">600</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">400</span><span class="p">)</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
 
-<span class="c1">// Paint the path</span>
-<span class="n">page</span><span class="o">.</span><span class="n">draw</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+    <span class="c1">// Construct a path</span>
+    <span class="k">let</span> <span class="nv">path</span> <span class="o">=</span> <span class="kt">Path</span><span class="p">()</span>
+        <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">appendingLine</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">appendingArc</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nv">beginningAngle</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="nv">endAngle</span><span class="p">:</span> <span class="mi">180</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">appendingCircle</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="nv">radius</span><span class="p">:</span> <span class="mi">50</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">moving</span><span class="p">(</span><span class="nv">toX</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">appendingCurve</span><span class="p">(</span><span class="nv">controlPoint1</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">),</span>
+                        <span class="nv">controlPoint2</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">300</span><span class="p">),</span>
+                        <span class="nv">endPoint</span><span class="p">:</span> <span class="kt">Point</span><span class="p">(</span><span class="nv">x</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">300</span><span class="p">))</span>
+        <span class="o">.</span><span class="nf">closingSubpath</span><span class="p">()</span>
 
+    <span class="c1">// Paint the path</span>
     <span class="n">context</span><span class="o">.</span><span class="n">strokeColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">blue</span>
     <span class="n">context</span><span class="o">.</span><span class="nf">stroke</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="c1">// Put some text</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">textLeading</span> <span class="o">=</span> <span class="mi">11</span>
+    <span class="k">try</span> <span class="n">context</span><span class="o">.</span><span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"Roses are red,</span><span class="se">\n</span><span class="s">Violets are blue,</span><span class="se">\n</span><span class="s">Sugar is sweet,</span><span class="se">\n</span><span class="s">And so are you."</span><span class="p">,</span>
+                     <span class="nv">atX</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
 <span class="p">}</span>
-
-<span class="c1">// Put some text</span>
-<span class="n">page</span><span class="o">.</span><span class="n">draw</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
-    <span class="n">context</span><span class="o">.</span><span class="nf">show</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"Roses are red,</span><span class="se">\n</span><span class="s">Violets are blue,</span><span class="se">\n</span><span class="s">Sugar is sweet,</span><span class="se">\n</span><span class="s">And so are you."</span><span class="p">,</span>
-                 <span class="nv">atX</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span> <span class="nv">y</span><span class="p">:</span> <span class="mi">200</span><span class="p">)</span>
-<span class="p">}</span>
 </code></pre>
-<a href='#contributing' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='contributing'>Contributing</h2>
-
-<p>Building in macOS:</p>
-<pre class="highlight plaintext"><code>$ swift build -Xlinker -lz
+<h2 id='contributing' class='heading'>Contributing</h2>
+<h3 id='building' class='heading'>Building:</h3>
+<pre class="highlight plaintext"><code>$ make debug
 </code></pre>
 
-<p>Testing in macOS:</p>
-<pre class="highlight plaintext"><code>$ swift test -Xlinker -lz
+<p>Or:</p>
+<pre class="highlight plaintext"><code>$ make release
 </code></pre>
-
-<p>Building in Ubuntu:</p>
-<pre class="highlight plaintext"><code>$ swift build -Xlinker -rpath=.build/debug/ -Xlinker -lz
+<h3 id='testing' class='heading'>Testing:</h3>
+<pre class="highlight plaintext"><code>$ make test
 </code></pre>
+<h3 id='generating-xcode-project' class='heading'>Generating Xcode project</h3>
 
-<p>Testing in Ubuntu:</p>
-<pre class="highlight plaintext"><code>$ swift test -Xlinker -rpath=.build/debug/ -Xlinker -lz
+<p>Since the Xcode project is explicitly <code>gitignore</code>d, you might want to generate it in order to make development comfortable for you. This can be accomplished by running the following command:</p>
+<pre class="highlight plaintext"><code>make generate-xcodeproj
 </code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2016-11-06)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2018 <a class="link" href="https://twitter.com/broadway_lamb" target="_blank" rel="external">Sergej Jaskiewicz</a>. All rights reserved. (Last updated: 2018-12-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

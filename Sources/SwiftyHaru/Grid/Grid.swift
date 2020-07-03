@@ -6,10 +6,8 @@
 //
 //
 
-import DefaultStringConvertible
-
 /// Represents a grid that can be drawn on a PDF page.
-public struct Grid {
+public struct Grid: Equatable {
     
     /// Creates a new grid.
     ///
@@ -72,23 +70,3 @@ public struct Grid {
     public var serifs: Serifs
     
 }
-
-extension Grid: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid, rhs: Grid) -> Bool {
-        return lhs.size == rhs.size &&
-            lhs.lines == rhs.lines &&
-            lhs.labels == rhs.labels &&
-            lhs.serifs == rhs.serifs
-    }
-}
-
-extension Grid: CustomStringConvertible {}

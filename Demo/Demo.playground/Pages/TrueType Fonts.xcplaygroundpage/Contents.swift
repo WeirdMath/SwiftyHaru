@@ -10,9 +10,6 @@
     import Foundation
 
     let document = PDFDocument()
-    let page = document.addPage(width: 210, height: 210)
-
-    let sampleText = "The quick brown fox jumps over the lazy dog."
 /*:
  
  
@@ -27,68 +24,64 @@
  */
     let embedding = true
 
-    try! document.setCompressionMode(to: .all)
+    try document.setCompressionMode(to: .all)
 
     let titleFont = Font.helvetica
 /*:
  Let's load our cool font.
  */
-    let detailFont = try! document
-        .loadTrueTypeFont(from: try! Data(contentsOf: #fileLiteral(resourceName: "Megrim.ttf")),
+    let detailFont = try document
+        .loadTrueTypeFont(from: Data(contentsOf: #fileLiteral(resourceName: "Megrim.ttf")),
                           embeddingGlyphData: embedding)
 /*:
  Draw the title:
  */
-    page.draw { context in
+    let sampleText = "The quick brown fox jumps over the lazy dog."
+    try document.addPage(width: 210, height: 210) { context in
 
+        context.textLeading = 11
         context.font = titleFont
         context.fontSize = 10
 
-        context.show(text: "\(detailFont.name) (Embedded Subset)",
-                     atX: 10, y: 190)
-    }
+        try context.show(text: "\(detailFont.name) (Embedded Subset)",
+                         atX: 10, y: 190)
 /*:
  And place some text using the loaded font:
  */
-    page.draw { context in
-
         context.font = detailFont
         context.fontSize = 15
-        context.show(text: "abcdefghijklmnopqrstuvwxyz", atX: 10, y: 170)
-        context.show(text: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", atX: 10, y: 150)
-        context.show(text: "1234567890", atX: 10, y: 130)
+        try context.show(text: "abcdefghijklmnopqrstuvwxyz", atX: 10, y: 170)
+        try context.show(text: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", atX: 10, y: 150)
+        try context.show(text: "1234567890", atX: 10, y: 130)
 
         context.fontSize = 10
-        context.show(text: sampleText, atX: 10, y: 110)
+        try context.show(text: sampleText, atX: 10, y: 110)
 
         context.fontSize = 16
-        context.show(text: sampleText, atX: 10, y: 92)
+        try context.show(text: sampleText, atX: 10, y: 92)
 
         context.fontSize = 23
-        context.show(text: sampleText, atX: 10, y: 65)
+        try context.show(text: sampleText, atX: 10, y: 65)
 
         context.fontSize = 30
-        context.show(text: sampleText, atX: 10, y: 29)
+        try context.show(text: sampleText, atX: 10, y: 29)
 
-        page.width = context.textWidth(for: sampleText) + 40
-    }
+        try context.page.width = context.textWidth(for: sampleText) + 40
 /*:
  Separate the different parts of the page with lines:
  */
-    page.draw { context in
-
         context.lineWidth = 0.5
 
         context.stroke(
             Path()
-                .moving(toX: 10, y: page.height - 25)
-                .appendingLine(toX: page.width - 10, y: page.height - 25)
+                .moving(toX: 10, y: context.page.height - 25)
+                .appendingLine(toX: context.page.width - 10, y: context.page.height - 25)
         )
 
         context.stroke(
             Path()
-                .moving(toX: 10, y: page.height - 85)
-                .appendingLine(toX: page.width - 10, y: page.height - 85)
+                .moving(toX: 10, y: context.page.height - 85)
+                .appendingLine(toX: context.page.width - 10, y: context.page.height - 85)
         )
     }
 

@@ -9,66 +9,80 @@
 import CLibHaru
 import Foundation
 
+/// The `DrawingContext` class represents a PDF drawing destination.
+///
+/// You cannot initialize the context directly. You need to call the `PDFDocument.addPage(_:)` method; an instance
+/// of `DrawingContext` will be passed to the provided closure. That instance is only valid during the lifetime
+/// of that closure.
+///
+/// Each instance of `DrawingContext` is bound to some `PDFPage`, hence you can use it to perform
+/// drawing operations on only one page.
 public final class DrawingContext {
-    
-    private weak var _document: PDFDocument?
-    private var __page: HPDF_Page
-    private var _documentHandle: HPDF_Doc
-    private var _isInvalidated = false
-    
-    internal var _page: HPDF_Page {
-        if _isInvalidated {
-            fatalError("The context has been revoked.")
-        }
-        
-        return __page
+
+    /// The page this context is bound to.
+    public let page: PDFPage
+
+    private let _document: PDFDocument
+    internal var _isInvalidated = false
+
+    private var _documentHandle: HPDF_Doc {
+        return _document._documentHandle
     }
-    
-    internal init(for page: PDFPage) {
-        
-        __page = page._pageHandle
-        
-        _document = page.document
-        
-        _documentHandle = _document!._documentHandle
+
+    private var _page: HPDF_Page {
+        precondition(
+            !_isInvalidated,
+            """
+            The context is invalidated. It is possible that it is being used outside of the closure it has been \
+            passed to.
+            """
+        )
+        return page._pageHandle
     }
-    
-    internal func _cleanup() {
-        
-        // Reset to the default state
-        
-        lineWidth = 1
-        strokeColor = .black
-        fillColor = .black
-        dashStyle = .straightLine
-        lineCap = .butt
-        lineJoin = .miter
-        miterLimit = 10
-        
-        let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
-        HPDF_Page_SetFontAndSize(__page, font, 11)
-        
-        textLeading = 11
+
+    internal init(page: PDFPage, document: PDFDocument) {
+        self.page = page
+        _document = document
     }
-    
-    internal func _invalidate() {
-        _isInvalidated = true
+
+    /// Puts the `drawable` visualization onto the page at the specified position.
+    ///
+    /// - parameter drawable: The entity to draw.
+    /// - parameter position: The position to put the `drawable` at. The meaning of this property depends
+    ///                       on the `drawable`'s implementation.
+    @inlinable
+    public func draw(_ drawable: Drawable, position: Point) throws {
+        try drawable.draw(in: self, position: position)
+    }
+
+    /// Puts the `drawable` visualization onto the page at the specified position.
+    ///
+    /// - parameter drawable: The entity to draw.
+    /// - parameter x:        The x coordinate of the position to put the `drawable` at.
+    /// - parameter y:        The y coordinate of the position.
+    @inlinable
+    public func draw(_ drawable: Drawable, x: Float, y: Float) throws {
+        try draw(drawable, position: Point(x: x, y: y))
     }
     
     // MARK: - Graphics state
+
+    /// The default line width.
+    public static let defaultLineWidth = Float(HPDF_DEF_LINEWIDTH)
     
-    /// The current line width for path painting of the page. Must be nonegative. Default value is 1.
+    /// The current line width for path painting of the page. Must be nonegative.
+    /// Default value is `DrawingContext.defaultLineWidth`.
     public var lineWidth: Float {
         get {
             return HPDF_Page_GetLineWidth(_page)
         }
         set {
-            guard newValue >= 0 else { return }
+            precondition(newValue >= 0, "Line width must be nonnegative")
             HPDF_Page_SetLineWidth(_page, newValue)
         }
     }
     
-    /// The dash pattern for lines in the page.
+    /// The dash pattern for lines in the page. Default value is `DashStyle.straightLine`.
     public var dashStyle: DashStyle {
         get {
             return DashStyle(HPDF_Page_GetDash(_page))
@@ -82,7 +96,7 @@ public final class DrawingContext {
         }
     }
     
-    /// The shape to be used at the ends of lines. Default value is `LineCap.buttEnd`.
+    /// The shape to be used at the ends of lines. Default value is `LineCap.butt`.
     public var lineCap: LineCap {
         get {
             return LineCap(HPDF_Page_GetLineCap(_page))
@@ -101,14 +115,18 @@ public final class DrawingContext {
             HPDF_Page_SetLineJoin(_page, HPDF_LineJoin(rawValue: newValue.rawValue))
         }
     }
+
+    /// The default miter limit for the joins of connected lines.
+    public static let defaultMiterLimit = Float(HPDF_DEF_MITERLIMIT)
     
-    /// The miter limit for the joins of connected lines. Minimum value is 1. Default value is 10.
+    /// The miter limit for the joins of connected lines. Minimum value is 1.
+    /// Default value is `DrawingContext.defaultMiterLimit`.
     public var miterLimit: Float {
         get {
             return HPDF_Page_GetMiterLimit(_page)
         }
         set {
-            guard newValue >= 1 else { return }
+            precondition(newValue >= 1, "The minimum value of miterLimit is 1.0.")
             HPDF_Page_SetMiterLimit(_page, newValue)
         }
     }
@@ -116,23 +134,24 @@ public final class DrawingContext {
     /// The number of the page's graphics state stack.
     ///
     /// This number is increased whenever you call `withNewGState(_:)` or
-    /// `clip(to:evenOddRule:_:)` and decreased as soon as such a function returns.
+    /// `clip(to:rule:_:)` and decreased as soon as such a function returns.
     ///
-    /// The maximum value of this property is `DrawingContext.maxGraphicsStateDepth`.
+    /// The value of this property must not be greater than `DrawingContext.maxGraphicsStateDepth`.
     public var graphicsStateDepth: Int {
         return Int(HPDF_Page_GetGStateDepth(_page))
     }
     
     /// The maximum depth of the graphics state stack.
-    public static var maxGraphicsStateDepth: Int {
-        return Int(HPDF_LIMIT_MAX_GSTATE)
-    }
+    public static let maxGraphicsStateDepth = Int(HPDF_LIMIT_MAX_GSTATE)
 
     /// Saves the page's current graphics state to the stack, then executes `body`,
     /// then restores the saved graphics state.
     ///
+    /// - Precondition: The value of `graphicsStateDepth` must be less than
+    ///                 `static DrawingContext.maxGraphicsStateDepth`.
+    ///
     /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
-    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///              Check it to prevent the precondition failure.
     ///
     /// The parameters that are saved at the beginning of the call and restored at the end are:
     ///
@@ -170,34 +189,98 @@ public final class DrawingContext {
     /// ```
     ///
     /// - Parameter body: The code to execute using a new graphics state.
-    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
-    ///                   `DrawingContext.maxGraphicsStateDepth`;
     ///                   rethrows errors thrown by `body`.
-    public func withNewGState(_ body: () throws -> Void) throws {
-
-        if HPDF_Page_GSave(_page) != UInt(HPDF_OK) {
-            HPDF_ResetError(_documentHandle)
-            throw PDFError.exceedGStateLimit
-        }
+    public func withNewGState(_ body: () throws -> Void) rethrows {
+        
+        let status = HPDF_Page_GSave(_page)
+        
+        precondition(
+            status == UInt(HPDF_OK),
+            "The graphics state stack depth must not be greater than `DrawingContext.maxGraphicsStateDepth`."
+        )
 
         try body()
 
         HPDF_Page_GRestore(_page)
     }
     
+    // MARK: Transforms
+    
+    /// The transformation matrix for the current graphics state
+    public var currentTransform: AffineTransform {
+        return AffineTransform(HPDF_Page_GetTransMatrix(_page))
+    }
+    
+    /// Rotates the coordinate system of the page.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameter angle: The angle, in radians, by which to rotate the coordinate space.
+    ///                    Positive values rotate counterclockwise and negative values rotate clockwise.
+    @inlinable
+    public func rotate(byAngle angle: Float) {
+        concatenate(AffineTransform(rotationAngle: angle))
+    }
+    
+    /// Changes the scale of the coordinate system of the page.
+    ///
+    /// For example, to change the coordinate system of the page to 300 dpi:
+    /// ```swift
+    /// context.scale(byX: 72.0 / 300.0, y: 72.0 / 300)
+    /// ```
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameters:
+    ///   - sx: The factor by which to scale the x-axis of the coordinate space.
+    ///   - sy: The factor by which to scale the y-axis of the coordinate space.
+    @inlinable
+    public func scale(byX sx: Float, y sy: Float) {
+        concatenate(AffineTransform(scaleX: sx, y: sy))
+    }
+    
+    /// Changes the origin of the coordinate system of the page.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameters:
+    ///   - tx: The amount to displace the x-axis of the coordinate space.
+    ///   - ty: The amount to displace the y-axis of the coordinate space.
+    @inlinable
+    public func translate(byX tx: Float, y ty: Float) {
+        concatenate(AffineTransform(translationX: tx, y: ty))
+    }
+    
+    /// Concatenates the page's current transformation matrix and the specified matrix.
+    ///
+    /// When you call this function, it concatenates (that is, it combines) two matrices,
+    /// by multiplying them together. The order in which matrices are concatenated is important,
+    /// as the operations are not commutative.
+    ///
+    /// You can call this method inside the `withNewGState(_:)` block, thereby being able to use the
+    /// old coordinate system after `withNewGState(_:)` returns.
+    ///
+    /// - Parameter transform: The transformation to apply to the page's current transformation.
+    public func concatenate(_ transform: AffineTransform) {
+        HPDF_Page_Concat(_page, transform.a, transform.b, transform.c, transform.d, transform.tx, transform.ty)
+    }
+    
     // MARK: - Color
     
-    /// The current value of the page's stroking color space.
+    /// The current value of the page's stroking color space. Default value is `PDFColorSpace.deviceGray`
     public var strokingColorSpace: PDFColorSpace {
         return PDFColorSpace(haruEnum: HPDF_Page_GetStrokingColorSpace(_page))
     }
     
-    /// The current value of the page's filling color space.
+    /// The current value of the page's filling color space. Default value is `PDFColorSpace.deviceGray`
     public var fillingColorSpace: PDFColorSpace {
         return PDFColorSpace(haruEnum: HPDF_Page_GetFillingColorSpace(_page))
     }
     
-    /// The current value of the page's stroking color. Default is RGB black.
+    /// The current value of the page's stroking color. Default is black in the `deviceGray` color space.
     public var strokeColor: Color {
         get {
             switch strokingColorSpace {
@@ -230,7 +313,7 @@ public final class DrawingContext {
         }
     }
     
-    /// The current value of the page's filling color. Default is RGB black.
+    /// The current value of the page's filling color. Default is black in the `deviceGray` color space.
     public var fillColor: Color {
         get {
             switch fillingColorSpace {
@@ -305,9 +388,11 @@ public final class DrawingContext {
         
         assert(path.currentPosition.x - HPDF_Page_GetCurrentPos(_page).x < 0.001 &&
                path.currentPosition.y - HPDF_Page_GetCurrentPos(_page).y < 0.001,
-               "The value of property `currentPosition` (\(path.currentPosition)) is not equal to " +
-               "the value returned from the function " +
-               "`HPDF_Page_GetCurrentPos` (\(HPDF_Page_GetCurrentPos(_page)))")
+               """
+               The value of property `currentPosition` (\(path.currentPosition)) is not equal to \
+               the value returned from the function \
+               `HPDF_Page_GetCurrentPos` (\(HPDF_Page_GetCurrentPos(_page)))
+               """)
         
         HPDF_Page_MoveTo(_page, 0, 0)
     }
@@ -316,8 +401,11 @@ public final class DrawingContext {
     
     /// Sets the clipping area for drawing.
     ///
+    /// - Precondition: The value of `graphicsStateDepth` must be less than
+    ///                 `static DrawingContext.maxGraphicsStateDepth`.
+    ///
     /// - Important: Inside the provided block the value of `graphicsStateDepth` is incremented.
-    ///              Check it to prevent throwing the `PDFError.exceedGStateLimit` error.
+    ///              Check it to prevent the precondition failure.
     ///
     /// - Important: Graphics parameters that are set inside the `drawInsideClippingArea` closure do not
     ///              persist outside the call of that closure. I. e. if, for example, the context's fill color
@@ -326,15 +414,12 @@ public final class DrawingContext {
     ///              returns it is black again.
     ///
     /// - parameter path:                   The path that constraints the clipping area. Must be closed.
-    /// - parameter evenOddRule:            If `true`, uses even-odd rule for specifying a clipping area.
-    ///                                     Otherwise uses nonzero winding number rule.
+    /// - parameter rule:                   The rule for determining which areas to treat as the interior
+    ///                                     of the path. Default value is `.winding`.
     /// - parameter drawInsideClippingArea: All that is drawn inside this closure is clipped to the
     ///                                     provided `path`.
-    /// - Throws:         `PDFError.exceedGStateLimit` if `graphicsStateDepth` is greater than
-    ///                   `DrawingContext.maxGraphicsStateDepth`;
-    ///                   rethrows errors thrown by the`drawInsideClippingArea` block.
-    public func clip(to path: Path, evenOddRule: Bool = false,
-                     _ drawInsideClippingArea: () throws -> Void) throws {
+    public func clip(to path: Path, rule: Path.FillRule = .winding,
+                     _ drawInsideClippingArea: () throws -> Void) rethrows {
         
         try withNewGState {
             
@@ -342,9 +427,10 @@ public final class DrawingContext {
             
             HPDF_Page_ClosePath(_page)
             
-            if evenOddRule {
+            switch rule {
+            case .evenOdd:
                 HPDF_Page_Eoclip(_page)
-            } else {
+            case .winding:
                 HPDF_Page_Clip(_page)
             }
             
@@ -357,11 +443,10 @@ public final class DrawingContext {
     /// Fills the `path`.
     ///
     /// - parameter path:        The path to fill.
-    /// - parameter evenOddRule: If specified `true`, fills the path using the even-odd rule.
-    ///                          Otherwise fills it using the nonzero winding number rule.
-    ///                          Default value is `false`.
+    /// - parameter rule:        The rule for determining which areas to treat as the interior
+    ///                          of the path. Default value is `.winding`.
     /// - parameter stroke:      If specified `true`, also paints the path itself. Default value is `false`.
-    public func fill(_ path: Path, evenOddRule: Bool = false, stroke: Bool = false) {
+    public func fill(_ path: Path, rule: Path.FillRule = .winding, stroke: Bool = false) {
         
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PAGE_DESCRIPTION)
         
@@ -369,14 +454,14 @@ public final class DrawingContext {
         
         assert(Int32(HPDF_Page_GetGMode(_page)) == HPDF_GMODE_PATH_OBJECT)
         
-        switch (evenOddRule, stroke) {
-        case (true, true):
+        switch (rule, stroke) {
+        case (.evenOdd, true):
             HPDF_Page_EofillStroke(_page)
-        case (true, false):
+        case (.evenOdd, false):
             HPDF_Page_Eofill(_page)
-        case (false, true):
+        case (.winding, true):
             HPDF_Page_FillStroke(_page)
-        case (false, false):
+        case (.winding, false):
             HPDF_Page_Fill(_page)
         }
         
@@ -400,33 +485,54 @@ public final class DrawingContext {
     }
     
     // MARK: - Text state
-    
-    /// Tha current font of the context.
+
+    /// The current font of the context. Default value is `Font.helvetica`
+    ///
+    /// You can only set fonts that has previously been loaded in the document using
+    /// `loadTrueTypeFont(from:embeddingGlyphData:)` or
+    /// `loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:)` methods, or
+    /// ones predefined in the `Font` struct.
     public var font: Font {
         get {
             let fontHandle = HPDF_Page_GetCurrentFont(_page)
-            return Font(name: String(cString: HPDF_Font_GetFontName(fontHandle)))
+            return fontHandle.map { Font(name: String(cString: HPDF_Font_GetFontName($0))) } ?? .helvetica
         }
         set {
-            let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name)
+            guard let font = HPDF_GetFont(_documentHandle, newValue.name, encoding.name) else {
+                
+                switch _document._error {
+                case PDFError.invalidFontName:
+                    preconditionFailure("""
+                    Font \(newValue) must be loaded in the document using \
+                    loadTrueTypeFont(from:embeddingGlyphData:) or \
+                    loadTrueTypeFontFromCollection(from:index:embeddingGlyphData:) methods.
+                    """)
+                default:
+                    preconditionFailure(_document._error.description)
+                }
+            }
             
             HPDF_Page_SetFontAndSize(_page, font, fontSize)
         }
     }
     
     /// The maximum size of a font that can be set.
-    public var maximumFontSize: Float {
-        return Float(HPDF_MAX_FONTSIZE)
-    }
+    public static let maximumFontSize = Float(HPDF_MAX_FONTSIZE)
+
+    public static let defaultFontSize: Float = 11
     
-    /// The size of the current font of the context. Valid values are between 0 and `maximumFontSize`.
-    /// Setting an invalid value makes mo change. Default value is 11.
+    /// The size of the current font of the context. Valid values are positive numbers up to
+    /// `DrawingContext.maximumFontSize`.
+    /// Default value is `DrawingContext.defaultFontSize`.
     public var fontSize: Float {
         get {
-            return HPDF_Page_GetCurrentFontSize(_page)
+            let fontSize = HPDF_Page_GetCurrentFontSize(_page)
+            return fontSize > 0 ? fontSize : DrawingContext.defaultFontSize
         }
         set {
-            guard newValue > 0 && newValue < maximumFontSize else { return }
+            
+            precondition(newValue > 0 && newValue < DrawingContext.maximumFontSize,
+                         "Valid values for fontSize are positive numbers up to `DrawingContext.maximumFontSize`.")
             
             let font = HPDF_GetFont(_documentHandle, self.font.name, encoding.name)
             
@@ -437,9 +543,9 @@ public final class DrawingContext {
     /// The encoding to use for a text. If the encoding cannot be used with the specified font, does nothing.
     public var encoding: Encoding {
         get {
-            let font = HPDF_Page_GetCurrentFont(_page)
-            let encodingName = HPDF_Font_GetEncodingName(font)!
-            return Encoding(name: String(cString: encodingName))
+            return HPDF_Page_GetCurrentFont(_page)
+                .flatMap(HPDF_Font_GetEncodingName)
+                .map { Encoding(name: String(cString: $0)) } ?? .standard
         }
         set {
             _enableMultibyteEncoding(for: newValue)
@@ -457,30 +563,40 @@ public final class DrawingContext {
     private func _enableMultibyteEncoding(for encoding: Encoding) {
         
         switch encoding {
-        case Encoding.gbEucCnHorisontal,
-             Encoding.gbEucCnVertical,
-             Encoding.gbkEucHorisontal,
-             Encoding.gbkEucVertical:
-            _document?._useCNSEncodings()
-        case Encoding.eTenB5Vertical,
-             Encoding.eTenB5Horisontal:
-            _document?._useCNTEncodings()
-        case Encoding.rksjHorisontal,
-             Encoding.rksjVertical,
-             Encoding.rksjHorisontalProportional,
-             Encoding.eucHorisontal,
-             Encoding.eucVertical:
-            _document?._useJPEncodings()
-        case Encoding.kscEucHorisontal,
-             Encoding.kscEucVertical,
-             Encoding.kscMsUhcProportional,
-             Encoding.kscMsUhsVerticalFixedWidth,
-             Encoding.kscMsUhsHorisontalFixedWidth:
-            _document?._useKREncodings()
-        case Encoding.utf8:
-            _document?._useUTFEncodings()
+        case .gbEucCnHorisontal,
+             .gbEucCnVertical,
+             .gbkEucHorisontal,
+             .gbkEucVertical:
+            
+            _document._useCNSEncodings()
+            
+        case .eTenB5Vertical,
+             .eTenB5Horisontal:
+            
+            _document._useCNTEncodings()
+            
+        case .rksjHorisontal,
+             .rksjVertical,
+             .rksjHorisontalProportional,
+             .eucHorisontal,
+             .eucVertical:
+            
+            _document._useJPEncodings()
+            
+        case .kscEucHorisontal,
+             .kscEucVertical,
+             .kscMsUhcProportional,
+             .kscMsUhsVerticalFixedWidth,
+             .kscMsUhsHorisontalFixedWidth:
+            
+            _document._useKREncodings()
+            
+        case .utf8:
+            
+            _document._useUTFEncodings()
+            
         default:
-            return
+            break
         }
     }
     
@@ -491,6 +607,8 @@ public final class DrawingContext {
     ///
     /// - returns: The width of the text in current fontsize, character spacing and word spacing.
     public func textWidth(for text: String) -> Float {
+
+        _setFontIfNeeded()
         
         let lines = text.components(separatedBy: .newlines)
         
@@ -547,8 +665,11 @@ public final class DrawingContext {
         
         return Float(HPDF_Font_GetCapHeight(fontHandle)) * fontSize / 1000
     }
+
+    /// The default text leading.
+    public static let defaultTextLeading = Float(HPDF_DEF_LEADING)
     
-    /// Text leading (line spacing) for text showing. Default value is 11.
+    /// Text leading (line spacing) for text showing. Default value is `DrawingContext.defaultTextLeading`.
     public var textLeading: Float {
         get {
             return HPDF_Page_GetTextLeading(_page)
@@ -560,33 +681,55 @@ public final class DrawingContext {
     
     // MARK: - Text showing
     
-    private func moveTextPosition(to point: Point) {
+    private func _moveTextPosition(to point: Point) {
         
         let currentTextPosition = Point(HPDF_Page_GetCurrentTextPos(_page))
         let offsetFromCurrentToSpecifiedPosition = point - currentTextPosition
         HPDF_Page_MoveTextPos(_page,
-                              offsetFromCurrentToSpecifiedPosition.x,
-                              offsetFromCurrentToSpecifiedPosition.y)
+                              offsetFromCurrentToSpecifiedPosition.dx,
+                              offsetFromCurrentToSpecifiedPosition.dy)
+    }
+
+    private func _setFontIfNeeded() {
+        if HPDF_Page_GetCurrentFont(_page) == nil {
+            let font = HPDF_GetFont(_documentHandle, Font.helvetica.name, Encoding.standard.name)
+            HPDF_Page_SetFontAndSize(_page, font, DrawingContext.defaultFontSize)
+        }
+    }
+
+    private func _showText(_ text: String) throws {
+        _setFontIfNeeded()
+        if HPDF_Page_ShowText(_page, text) != UInt(HPDF_OK) {
+            HPDF_ResetError(_documentHandle)
+            throw _document._error
+        }
+    }
+
+    private func _showTextNextLine(_ text: String) throws {
+        if HPDF_Page_ShowTextNextLine(_page, text) != UInt(HPDF_OK) {
+            HPDF_ResetError(_documentHandle)
+            throw _document._error
+        }
     }
     
     /// Prints the text at the specified position on the page. You can use "\n" to print multiline text.
     ///
     /// - parameter text: The text to print.
     /// - parameter position: The position to show the text at.
-    public func show(text: String, atPosition position: Point) {
+    public func show(text: String, atPosition position: Point) throws {
         
         HPDF_Page_BeginText(_page)
         
-        moveTextPosition(to: position)
+        _moveTextPosition(to: position)
         
         let lines = text.components(separatedBy: .newlines)
-        
-        HPDF_Page_ShowText(_page, lines.first!)
-        
+
+        try lines.first.map(_showText)
+
         for line in lines.dropFirst() {
-            HPDF_Page_ShowTextNextLine(_page, line)
+            try _showTextNextLine(line)
         }
-        
+
         HPDF_Page_EndText(_page)
     }
     
@@ -595,8 +738,9 @@ public final class DrawingContext {
     /// - parameter text: The text to print.
     /// - parameter x:    x coordinate of the position to show the text at.
     /// - parameter y:    y coordinate of the position to show the text at.
-    public func show(text: String, atX x: Float, y: Float) {
-        show(text: text, atPosition: Point(x: x, y: y))
+    @inlinable
+    public func show(text: String, atX x: Float, y: Float) throws {
+        try show(text: text, atPosition: Point(x: x, y: y))
     }
 
     /// Prints the text inside the specified region.
@@ -608,9 +752,10 @@ public final class DrawingContext {
     /// - Returns:    
     ///     - `isSufficientSpace`: `false` if whole text doesn't fit into declared space.
     ///     - `charactersPrinted`: The number of characters printed in the area.
+    @discardableResult
     public func show(text: String,
                      in rect: Rectangle,
-                     alignment: TextAlignment) -> (isSufficientSpace: Bool, charactersPrinted: Int) {
+                     alignment: TextAlignment) throws -> (isSufficientSpace: Bool, charactersPrinted: Int) {
 
         HPDF_Page_BeginText(_page)
 
@@ -620,12 +765,21 @@ public final class DrawingContext {
 
         var charactersPrinted: HPDF_UINT = 0
 
+        _setFontIfNeeded()
+
         let status = HPDF_Page_TextRect(_page,
                                         rect.x, rect.maxY, rect.maxX, rect.y,
                                         text,
                                         HPDF_TextAlignment(rawValue: alignment.rawValue), &charactersPrinted)
 
-        return (isSufficientSpace: status != UInt(HPDF_PAGE_INSUFFICIENT_SPACE),
-                charactersPrinted: Int(charactersPrinted))
+        let isInsufficientSpace = status == UInt(HPDF_PAGE_INSUFFICIENT_SPACE)
+
+        if status != UInt(HPDF_OK) && !isInsufficientSpace {
+
+            HPDF_ResetError(_documentHandle)
+            throw _document._error
+        }
+
+        return (isSufficientSpace: !isInsufficientSpace, charactersPrinted: Int(charactersPrinted))
     }
 }

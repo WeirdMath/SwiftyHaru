@@ -1,16 +1,19 @@
-// swift-tools-version:3.1
+// swift-tools-version:4.2
 
 import PackageDescription
 
 let package = Package(
     name: "SwiftyHaru",
-    targets: [
-        Target(name: "CLibHaru"),
-        Target(name: "SwiftyHaru", dependencies: ["CLibHaru"])
+    products: [
+        .library(name: "SwiftyHaru", targets: ["SwiftyHaru"])
     ],
     dependencies: [
-        .Package(url: "https://github.com/jessesquires/DefaultStringConvertible.git", majorVersion: 2),
-        .Package(url: "https://github.com/WeirdMath/CZlib.git", majorVersion: 0),
-        .Package(url: "https://github.com/WeirdMath/CLibPNG.git", majorVersion: 0)
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.1.0"),
+    ],
+    targets: [
+        .target(name: "CLibPNG"),
+        .target(name: "CLibHaru", dependencies: ["CLibPNG"]),
+        .target(name: "SwiftyHaru", dependencies: ["CLibHaru"]),
+        .testTarget(name: "SwiftyHaruTests", dependencies: ["SwiftyHaru", "SnapshotTesting"])
     ]
 )

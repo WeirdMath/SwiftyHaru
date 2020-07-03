@@ -12,7 +12,7 @@ extension Grid: Drawable {
     ///
     /// - parameter context:  The context to draw the grid in.
     /// - parameter position: The lower-left corner of the grid.
-    public func draw(in context: DrawingContext, position: Point) {
+    public func draw(in context: DrawingContext, position: Point) throws {
         
         // Memorize the initial state
         let _lineWidth = context.lineWidth
@@ -43,10 +43,10 @@ extension Grid: Drawable {
         _drawLeftSerifs(context: context, initialPoint: position)
         _drawRightSerifs(context: context, initialPoint: position)
         
-        _drawTopLabels(context: context, initialPoint: position)
-        _drawBottomLabels(context: context, initialPoint: position)
-        _drawLeftLabels(context: context, initialPoint: position)
-        _drawRightLabels(context: context, initialPoint: position)
+        try _drawTopLabels(context: context, initialPoint: position)
+        try _drawBottomLabels(context: context, initialPoint: position)
+        try _drawLeftLabels(context: context, initialPoint: position)
+        try _drawRightLabels(context: context, initialPoint: position)
         
         // Return to the initial state
         context.lineWidth = _lineWidth
@@ -235,7 +235,7 @@ extension Grid: Drawable {
     
     // MARK: - Draw labels
     
-    private func _drawTopLabels(context: DrawingContext, initialPoint: Point) {
+    private func _drawTopLabels(context: DrawingContext, initialPoint: Point) throws {
         
         guard let top = labels.top else { return }
         
@@ -260,11 +260,11 @@ extension Grid: Drawable {
             let textPosition = Point(x: x - labelWidth / 2,
                                      y: initialPoint.y + size.height - ascent) + top.offset
             
-            context.show(text: text, atPosition: textPosition)
+            try context.show(text: text, atPosition: textPosition)
         }
     }
     
-    private func _drawBottomLabels(context: DrawingContext, initialPoint: Point) {
+    private func _drawBottomLabels(context: DrawingContext, initialPoint: Point) throws {
         
         guard let bottom = labels.bottom else { return }
         
@@ -289,11 +289,11 @@ extension Grid: Drawable {
             let textPosition = Point(x: x - labelWidth / 2,
                                      y: initialPoint.y - descent) + bottom.offset
             
-            context.show(text: text, atPosition: textPosition)
+            try context.show(text: text, atPosition: textPosition)
         }
     }
     
-    private func _drawLeftLabels(context: DrawingContext, initialPoint: Point) {
+    private func _drawLeftLabels(context: DrawingContext, initialPoint: Point) throws {
         
         guard let left = labels.left else { return }
         
@@ -318,11 +318,11 @@ extension Grid: Drawable {
             let textPosition = Point(x: initialPoint.x,
                                      y: y + bboxHeight / 2 - ascent) + left.offset
             
-            context.show(text: text, atPosition: textPosition)
+            try context.show(text: text, atPosition: textPosition)
         }
     }
     
-    private func _drawRightLabels(context: DrawingContext, initialPoint: Point) {
+    private func _drawRightLabels(context: DrawingContext, initialPoint: Point) throws {
         
         guard let right = labels.right else { return }
         
@@ -347,7 +347,7 @@ extension Grid: Drawable {
             let textPosition = Point(x: initialPoint.x + size.width - bboxSize.width,
                                      y: y + bboxSize.height / 2 - ascent) + right.offset
             
-            context.show(text: text, atPosition: textPosition)
+            try context.show(text: text, atPosition: textPosition)
         }
     }
 

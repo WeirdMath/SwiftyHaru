@@ -6,12 +6,10 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the top, bottom, left and right serifs of the grid.
-    public struct Serifs {
+    public struct Serifs: Hashable {
         
         /// Default set, where all the serif parameters are set to their `.default`.
         public static let `default` = Serifs()
@@ -56,23 +54,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.Serifs: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.Serifs, rhs: Grid.Serifs) -> Bool {
-        return lhs.left == rhs.left &&
-            lhs.right == rhs.right &&
-            lhs.top == rhs.top &&
-            lhs.bottom == rhs.bottom
-    }
-}
-
-extension Grid.Serifs: CustomStringConvertible {}

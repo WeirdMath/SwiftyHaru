@@ -8,5 +8,6 @@ XCTMain([
     testCase(DrawingContextTests.allTests),
     testCase(DashStyleTests.allTests),
     testCase(GridTests.allTests),
-    testCase(PDFDateFormatterTests.allTests)
+    testCase(PDFDateFormatterTests.allTests),
+    testCase(AffineTransformTests.allTests)
 ])

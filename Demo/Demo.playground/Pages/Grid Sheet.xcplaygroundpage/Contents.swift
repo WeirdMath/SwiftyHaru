@@ -20,24 +20,23 @@
  Let's setup our document.
  */
     let document = PDFDocument()
-    let page = document.addPage(width: 400, height: 600)
 /*:
  And set some parameters
  */
     let topLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 50),
                              frequency: 5,
-                             offset: Vector(x: 0, y: -6))
+                             offset: Vector(dx: 0, dy: -6))
 
     let bottomLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 50),
                              frequency: 5,
-                             offset: Vector(x: 0, y: 6))
+                             offset: Vector(dx: 0, dy: 6))
 
     let leftLabelParameters =
         Grid.LabelParameters(sequence: createLabelSequence(stride: 10),
                              frequency: 1,
-                             offset: Vector(x: 6, y: 0))
+                             offset: Vector(dx: 6, dy: 0))
 
     let labels = Grid.Labels(top: topLabelParameters,
                              bottom: bottomLabelParameters,
@@ -54,12 +53,13 @@
 /*:
  Finally, assemble everything:
  */
-    let grid = Grid(width: page.width,
-                    height: page.height,
-                    labels: labels,
-                    serifs: serifs)
-
-    page.draw(object: grid, position: .zero)
+    try document.addPage(width: 400, height: 600) { context in
+        let grid = Grid(width: context.page.width,
+                        height: context.page.height,
+                        labels: labels,
+                        serifs: serifs)
+        try context.draw(grid, position: .zero)
+    }
 /*:
  Yep, it's that simple.
  

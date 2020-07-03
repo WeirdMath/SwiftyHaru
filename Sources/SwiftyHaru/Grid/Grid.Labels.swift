@@ -6,12 +6,10 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the labels for vertical and horizontal lines.
-    public struct Labels {
+    public struct Labels: Equatable {
 
         /// The labels for vertical lines at the top of the grid.
         public var top: LabelParameters?
@@ -51,23 +49,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.Labels: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.Labels, rhs: Grid.Labels) -> Bool {
-        return lhs.left == rhs.left &&
-            lhs.right == rhs.right &&
-            lhs.top == rhs.top &&
-            lhs.bottom == rhs.bottom
-    }
-}
-
-extension Grid.Labels: CustomStringConvertible {}

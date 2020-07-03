@@ -6,8 +6,6 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's line labels. Labels can only be placed near serifs.
@@ -51,10 +49,7 @@ public extension Grid {
                                   fontColor: Color = Color(gray: 0.5)!,
                                   frequency: Int = 5,
                                   offset: Vector = .zero,
-                                  reversed: Bool = false)
-            where S.Iterator.Element == String, S.SubSequence : Sequence,
-                  S.SubSequence.Iterator.Element == String,
-                  S.SubSequence.SubSequence == S.SubSequence {
+                                  reversed: Bool = false) where S.Element == String {
 
             self.sequence = AnySequence(sequence)
             self.font = font
@@ -89,5 +84,3 @@ extension Grid.LabelParameters: Equatable {
             lhs.reversed == rhs.reversed
     }
 }
-
-extension Grid.LabelParameters: CustomStringConvertible {}

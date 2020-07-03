@@ -9,13 +9,11 @@
 import XCTest
 import SwiftyHaru
 
-class DashStyleTests: XCTestCase {
+final class DashStyleTests: TestCase {
     
-    static var allTests : [(String, (DashStyleTests) -> () throws -> Void)] {
-        return [
-            ("testPattern", testPattern),
-        ]
-    }
+    static let allTests = [
+        ("testPattern", testPattern),
+    ]
 
     func testPattern() {
         

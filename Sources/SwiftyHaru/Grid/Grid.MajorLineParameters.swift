@@ -6,12 +6,10 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's major lines.
-    public struct MajorLineParameters {
+    public struct MajorLineParameters: Hashable {
         
         /// Default parameters, where line width is 0.5, line spacing is 10, line color is 80% gray.
         public static let `default` = MajorLineParameters()
@@ -37,22 +35,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.MajorLineParameters: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.MajorLineParameters, rhs: Grid.MajorLineParameters) -> Bool {
-        return lhs.lineColor == rhs.lineColor &&
-            lhs.lineSpacing == rhs.lineSpacing &&
-            lhs.lineWidth == rhs.lineWidth
-    }
-}
-
-extension Grid.MajorLineParameters: CustomStringConvertible {}

@@ -8,6 +8,7 @@
 
 import CLibHaru
 
+/// A profile that specifies how to interpret a color value for display.
 public enum PDFColorSpace: UInt32 {
     case deviceGray
     case deviceRGB

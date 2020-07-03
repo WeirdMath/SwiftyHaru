@@ -8,7 +8,7 @@
 
 import CLibHaru
 
-public struct Font {
+public struct Font: Hashable {
     
     public let name: String
     
@@ -41,28 +41,9 @@ public struct Font {
     public static let zapfDingbats         = Font(name: "ZapfDingbats")
 }
 
-extension Font: Hashable {
+extension Font: CustomStringConvertible {
     
-    /// The hash value.
-    ///
-    /// Hash values are not guaranteed to be equal across different executions of
-    /// your program. Do not save hash values to use during a future execution.
-    public var hashValue: Int {
-        return name.hashValue
-    }
-}
-
-extension Font: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Font, rhs: Font) -> Bool {
-        return lhs.name == rhs.name
+    public var description: String {
+        return name
     }
 }

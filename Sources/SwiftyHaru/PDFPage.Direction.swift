@@ -10,10 +10,13 @@ import CLibHaru
 
 public extension PDFPage {
     
+    /// Orientation of a page.
     public enum Direction: UInt32 {
         
+        /// The width is less than the height.
         case portrait
         
+        /// The height is less than the width.
         case landscape
     }
 }

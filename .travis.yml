@@ -2,22 +2,25 @@ language: generic
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode8.3
-      env: SWIFT_VERSION="3.1" RUN_TESTS="NO" POD_LINT="YES"
-    - os: osx
-      osx_image: xcode8.3
-      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
-    - os: linux
+    - name: "pod lib lint"
+      os: osx
+      osx_image: xcode10.1
+      env: SWIFT_VERSION="4.2" RUN_TESTS="NO" POD_LINT="YES"
+    - name: "Running tests (macOS)"
+      os: osx
+      osx_image: xcode10.1
+      env: SWIFT_VERSION="4.2" RUN_TESTS="YES" POD_LINT="NO"
+    - name: "Running tests (Ubuntu 18.04)"
+      os: linux
       sudo: required
-      dist: trusty
-      env: SWIFT_VERSION="3.1" RUN_TESTS="YES" POD_LINT="NO"
+      dist: xenial
+      env: SWIFT_VERSION="4.2" RUN_TESTS="YES" POD_LINT="NO"
 
 script:
   - if [[ $POD_LINT == "YES" ]]; then
-      gem install cocoapods;
+      gem install cocoapods --pre;
       pod repo update --silent;
-      pod lib lint --swift-version=$SWIFT_VERSION --allow-warnings;
+      pod lib lint --allow-warnings --verbose;
     fi
   - if [[ $RUN_TESTS == "YES" ]]; then
       eval .scripts/ci.sh;

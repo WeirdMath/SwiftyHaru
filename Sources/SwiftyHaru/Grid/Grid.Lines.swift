@@ -6,12 +6,10 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Encapsulates the parameters of the vertical and horizontal major and minor lines.
-    public struct Lines {
+    public struct Lines: Hashable {
         
         /// Default set, where all the major and minor line parameters are set to their `.default`.
         public static let `default` = Lines()
@@ -82,25 +80,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.Lines: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.Lines, rhs: Grid.Lines) -> Bool {
-        return lhs.horizontalMajor == rhs.horizontalMajor &&
-            lhs.horizontalMinor == rhs.horizontalMinor &&
-            lhs.verticalMajor == rhs.verticalMajor &&
-            lhs.verticalMinor == rhs.verticalMinor &&
-            lhs.drawVerticalMajorLinesFirst == rhs.drawVerticalMajorLinesFirst &&
-            lhs.drawVerticalMinorLinesFirst == rhs.drawVerticalMinorLinesFirst
-    }
-}
-
-extension Grid.Lines: CustomStringConvertible {}

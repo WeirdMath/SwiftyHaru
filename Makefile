@@ -18,6 +18,16 @@ test:
 generate-xcodeproj:
 	swift package $(SWIFT_FLAGS) generate-xcodeproj --enable-code-coverage
 
+docs: generate-xcodeproj
+	jazzy -o docs/ \
+      --source-directory ./ \
+      --readme README.md \
+      -a 'Sergej Jaskiewicz' \
+      -u 'https://twitter.com/broadway_lamb' \
+      -m 'SwiftyHaru' \
+      -g 'https://github.com/WeirdMath/SwiftyHaru' \
+      -x '-scheme,SwiftyHaru-Package' \
+
 clean:
 	swift package clean
 

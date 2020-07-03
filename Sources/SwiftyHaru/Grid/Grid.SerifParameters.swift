@@ -6,13 +6,11 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's serifs. Serifs are short lines that can be placed on the edges of
     /// a grid and serve to put labels near them.
-    public struct SerifParameters {
+    public struct SerifParameters: Hashable {
         
         /// Default parameters, where the frequency is 5, the width of the serifs is 0.5
         /// and the color of the serifs is 50% gray.
@@ -48,23 +46,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.SerifParameters: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.SerifParameters, rhs: Grid.SerifParameters) -> Bool {
-        return lhs.frequency == rhs.frequency &&
-            lhs.color == rhs.color &&
-            lhs.width == rhs.width &&
-            lhs.length == rhs.length
-    }
-}
-
-extension Grid.SerifParameters: CustomStringConvertible {}

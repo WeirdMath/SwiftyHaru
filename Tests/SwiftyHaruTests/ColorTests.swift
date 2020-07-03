@@ -9,24 +9,22 @@
 import XCTest
 @testable import SwiftyHaru
 
-class ColorTests: XCTestCase {
+final class ColorTests: XCTestCase {
 
-    static var allTests : [(String, (ColorTests) -> () throws -> Void)] {
-        return [
-            ("testInitializeRGBColor", testInitializeRGBColor),
-            ("testInitializeCMYKColor", testInitializeCMYKColor),
-            ("testInitializeFromColorLiteral", testInitializeFromColorLiteral),
-            ("testInitializeGrayColor", testInitializeGrayColor),
-            ("testGetComponentsForRGBColor", testGetComponentsForRGBColor),
-            ("testGetComponentsForCMYKColor", testGetComponentsForCMYKColor),
-            ("testGetComponentsForGrayColor", testGetComponentsForGrayColor),
-            ("testSetComponentsForRGBColor", testSetComponentsForRGBColor),
-            ("testSetComponentsForCMYKColor", testSetComponentsForCMYKColor),
-            ("testSetComponentsForGrayColor", testSetComponentsForGrayColor),
-            ("testConvertingFromRGBToCMYK", testConvertingFromRGBToCMYK),
-            ("testConvertingFromCMYKToRGB", testConvertingFromCMYKToRGB)
-        ]
-    }
+    static let allTests = [
+        ("testInitializeRGBColor", testInitializeRGBColor),
+        ("testInitializeCMYKColor", testInitializeCMYKColor),
+        ("testInitializeFromColorLiteral", testInitializeFromColorLiteral),
+        ("testInitializeGrayColor", testInitializeGrayColor),
+        ("testGetComponentsForRGBColor", testGetComponentsForRGBColor),
+        ("testGetComponentsForCMYKColor", testGetComponentsForCMYKColor),
+        ("testGetComponentsForGrayColor", testGetComponentsForGrayColor),
+        ("testSetComponentsForRGBColor", testSetComponentsForRGBColor),
+        ("testSetComponentsForCMYKColor", testSetComponentsForCMYKColor),
+        ("testSetComponentsForGrayColor", testSetComponentsForGrayColor),
+        ("testConvertingFromRGBToCMYK", testConvertingFromRGBToCMYK),
+        ("testConvertingFromCMYKToRGB", testConvertingFromCMYKToRGB)
+    ]
     
     static let colorComparisonAccuracy: Float = 0.00390625 // 1/256 — enough accuracy
     
@@ -146,10 +144,10 @@ class ColorTests: XCTestCase {
         XCTAssertEqual(expectedRed, returnedRed)
         XCTAssertEqual(expectedGreen, returnedGreen)
         XCTAssertEqual(expectedBlue, returnedBlue)
-        XCTAssertEqualWithAccuracy(expectedCyan, returnedCyan, accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedMagenta, returnedMagenta, accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedYellow, returnedYellow, accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedBlack, returnedBlack, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedCyan, returnedCyan, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedMagenta, returnedMagenta, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedYellow, returnedYellow, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedBlack, returnedBlack, accuracy: ColorTests.colorComparisonAccuracy)
     }
     
     func testGetComponentsForCMYKColor() {
@@ -178,9 +176,9 @@ class ColorTests: XCTestCase {
         XCTAssertEqual(expectedMagenta, returnedMagenta)
         XCTAssertEqual(expectedYellow, returnedYellow)
         XCTAssertEqual(expectedBlack, returnedBlack)
-        XCTAssertEqualWithAccuracy(expectedRed, returnedRed, accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedGreen, returnedGreen, accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedBlue, returnedBlue, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedRed, returnedRed, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedGreen, returnedGreen, accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedBlue, returnedBlue, accuracy: ColorTests.colorComparisonAccuracy)
     }
     
     func testGetComponentsForGrayColor() {
@@ -252,60 +250,60 @@ class ColorTests: XCTestCase {
         actualColorChangedCyan?.cyan = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedCyan!.red,
-                                   actualColorChangedCyan!.red,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedCyan!.green,
-                                   actualColorChangedCyan!.green,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedCyan!.blue,
-                                   actualColorChangedCyan!.blue,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedCyan!.red,
+                       actualColorChangedCyan!.red,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedCyan!.green,
+                       actualColorChangedCyan!.green,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedCyan!.blue,
+                       actualColorChangedCyan!.blue,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         
         // When
         var actualColorChangedMagenta = initialColor
         actualColorChangedMagenta?.magenta = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedMagenta!.red,
-                                   actualColorChangedMagenta!.red,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedMagenta!.green,
-                                   actualColorChangedMagenta!.green,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedMagenta!.blue,
-                                   actualColorChangedMagenta!.blue,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedMagenta!.red,
+                       actualColorChangedMagenta!.red,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedMagenta!.green,
+                       actualColorChangedMagenta!.green,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedMagenta!.blue,
+                       actualColorChangedMagenta!.blue,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         
         // When
         var actualColorChangedYellow = initialColor
         actualColorChangedYellow?.yellow = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedYellow!.red,
-                                   actualColorChangedYellow!.red,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedYellow!.green,
-                                   actualColorChangedYellow!.green,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedYellow!.blue,
-                                   actualColorChangedYellow!.blue,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedYellow!.red,
+                       actualColorChangedYellow!.red,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedYellow!.green,
+                       actualColorChangedYellow!.green,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedYellow!.blue,
+                       actualColorChangedYellow!.blue,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         
         // When
         var actualColorChangedBlack = initialColor
         actualColorChangedBlack?.black = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlack!.red,
-                                   actualColorChangedBlack!.red,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlack!.green,
-                                   actualColorChangedBlack!.green,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlack!.blue,
-                                   actualColorChangedBlack!.blue,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlack!.red,
+                       actualColorChangedBlack!.red,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlack!.green,
+                       actualColorChangedBlack!.green,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlack!.blue,
+                       actualColorChangedBlack!.blue,
+                       accuracy: ColorTests.colorComparisonAccuracy)
     }
     
     func testSetComponentsForCMYKColor() {
@@ -353,54 +351,54 @@ class ColorTests: XCTestCase {
         actualColorChangedRed?.red = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedRed!.cyan,
-                                   actualColorChangedRed!.cyan,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedRed!.magenta,
-                                   actualColorChangedRed!.magenta,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedRed!.yellow,
-                                   actualColorChangedRed!.yellow,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedRed!.black,
-                                   actualColorChangedRed!.black,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedRed!.cyan,
+                       actualColorChangedRed!.cyan,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedRed!.magenta,
+                       actualColorChangedRed!.magenta,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedRed!.yellow,
+                       actualColorChangedRed!.yellow,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedRed!.black,
+                       actualColorChangedRed!.black,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         
         // When
         var actualColorChangedGreen = initialColor
         actualColorChangedGreen?.green = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedGreen!.cyan,
-                                   actualColorChangedGreen!.cyan,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedGreen!.magenta,
-                                   actualColorChangedGreen!.magenta,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedGreen!.yellow,
-                                   actualColorChangedGreen!.yellow,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedGreen!.black,
-                                   actualColorChangedGreen!.black,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedGreen!.cyan,
+                       actualColorChangedGreen!.cyan,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedGreen!.magenta,
+                       actualColorChangedGreen!.magenta,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedGreen!.yellow,
+                       actualColorChangedGreen!.yellow,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedGreen!.black,
+                       actualColorChangedGreen!.black,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         
         // When
         var actualColorChangedBlue = initialColor
         actualColorChangedBlue?.blue = 0.5
         
         // Then
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlue!.cyan,
-                                   actualColorChangedBlue!.cyan,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlue!.magenta,
-                                   actualColorChangedBlue!.magenta,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlue!.yellow,
-                                   actualColorChangedBlue!.yellow,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedColorChangedBlue!.black,
-                                   actualColorChangedBlue!.black,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlue!.cyan,
+                       actualColorChangedBlue!.cyan,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlue!.magenta,
+                       actualColorChangedBlue!.magenta,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlue!.yellow,
+                       actualColorChangedBlue!.yellow,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedColorChangedBlue!.black,
+                       actualColorChangedBlue!.black,
+                       accuracy: ColorTests.colorComparisonAccuracy)
     }
     
     func testSetComponentsForGrayColor() {
@@ -486,18 +484,18 @@ class ColorTests: XCTestCase {
             return
         }
         
-        XCTAssertEqualWithAccuracy(expectedCyan,
-                                   actualColor.cyan,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedMagenta,
-                                   actualColor.magenta,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedYellow,
-                                   actualColor.yellow,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedBlack,
-                                   actualColor.black,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedCyan,
+                       actualColor.cyan,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedMagenta,
+                       actualColor.magenta,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedYellow,
+                       actualColor.yellow,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedBlack,
+                       actualColor.black,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         XCTAssertEqual(returnedCMYKColor.colorSpace, .deviceCMYK)
     }
     
@@ -521,15 +519,15 @@ class ColorTests: XCTestCase {
             return
         }
         
-        XCTAssertEqualWithAccuracy(expectedRed,
-                                   actualColor.red,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedGreen,
-                                   actualColor.green,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
-        XCTAssertEqualWithAccuracy(expectedBlue,
-                                   actualColor.blue,
-                                   accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedRed,
+                       actualColor.red,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedGreen,
+                       actualColor.green,
+                       accuracy: ColorTests.colorComparisonAccuracy)
+        XCTAssertEqual(expectedBlue,
+                       actualColor.blue,
+                       accuracy: ColorTests.colorComparisonAccuracy)
         XCTAssertEqual(returnedRGBColor.colorSpace, .deviceRGB)
     }
 }

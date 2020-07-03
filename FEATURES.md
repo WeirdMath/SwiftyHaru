@@ -42,8 +42,8 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_GetPageMode()` | Unimplemented | None | N/A |
     | `HPDF_SetOpenAction()` | Unimplemented | None | N/A |
     | `HPDF_GetCurrentPage()` | **N/A** | N/A | N/A |
-    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage()`, `PDFDocument.addPage(width:height:)`, `PDFDocument.addPage(size:direction:)` |
-    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:)`, `PDFDocument.insertPage(width:height:atIndex:)`, `PDFDocument.insertPage(size:direction:atIndex:)` |
+    | `HPDF_AddPage()` | **Implemented** | Complete | `PDFDocument.addPage(_:)`, `PDFDocument.addPage(width:height:_:)`, `PDFDocument.addPage(size:direction:_:)` |
+    | `HPDF_InsertPage()` | **Implemented** | Complete | `PDFDocument.insertPage(atIndex:_:)`, `PDFDocument.insertPage(width:height:atIndex:_:)`, `PDFDocument.insertPage(size:direction:atIndex:_:)` |
     
 * **[Font Handling](https://github.com/libharu/libharu/wiki/API%3A-Document#Font_Handling)**
 
@@ -84,12 +84,12 @@ This file describes the features of LibHaru that has already been wrapped by Swi
     | `HPDF_LoadPngImageFromMem()` | Unimplemented | None | N/A |
     | `HPDF_LoadJpegImageFromMem()` | Unimplemented | None | N/A |
     | `HPDF_LoadJpegImageFromFile()` | Unimplemented | None | N/A |
-    | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.author`, `PDFDocument.creator`, `PDFDocument.title`, `PDFDocument.subject`, `PDFDocument.keywords`|
-    | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.author`, `PDFDocument.creator`, `PDFDocument.title`, `PDFDocument.subject`, `PDFDocument.keywords`, `PDFDocument.creationDate`, `PDFDocument.modificationDate` |
-    | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.creationDate`, `PDFDocument.modificationDate` |
-    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user)` |
-    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPermissions(to:)` |
-    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setEncryptionMode(to:)` |
+    | `HPDF_SetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`|
+    | `HPDF_GetInfoAttr()` | **Implemented** | Complete | `PDFDocument.metadata.author`, `PDFDocument.metadata.creator`, `PDFDocument.metadata.title`, `PDFDocument.metadata.subject`, `PDFDocument.metadata.keywords`, `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
+    | `HPDF_SetInfoDateAttr()` | **Implemented** | Complete | `PDFDocument.metadata.creationDate`, `PDFDocument.metadata.modificationDate` |
+    | `HPDF_SetPassword()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetPermission()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
+    | `HPDF_SetEncryptionMode()` | **Implemented** | Complete | `PDFDocument.setPassword(owner:user:permissions:encryptionMode:)` |
     | `HPDF_SetCompressionMode()` | **Implemented** | Incomplete | `PDFDocument.setCompressionMode(to:)` |
 `
 ## Page Handling
@@ -113,7 +113,7 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_GetCurrentTextPos()` | **Implemented** | None | `DrawingContext.currentTextPosition` |
 | `HPDF_Page_GetCurrentFont()` | **Implemented** | Complete | `DrawingContext.font` |
 | `HPDF_Page_GetCurrentFontSize()` | **Implemented** | Complete | `DrawingContext.fontSize` |
-| `HPDF_Page_GetTransMatrix()` | Unimplemented | None | N/A |
+| `HPDF_Page_GetTransMatrix()` | **Implemented** | Complete | `DrawingContext.currentTransform` |
 | `HPDF_Page_GetLineWidth()` | **Implemented** | Complete | `DrawingContext.lineWidth` |
 | `HPDF_Page_GetLineCap()` | **Implemented** | Complete | `DrawingContext.lineCap` |
 | `HPDF_Page_GetLineJoin()` | **Implemented** | Complete | `DrawingContext.lineJoin` |
@@ -147,12 +147,12 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Arc()` | **Implemented** | Complete | `Path.appendArc(center:radius:beginningAngle:endAngle:)`, `Path.arc(x:y:radius:beginningAngle:endAngle:)` |
 | `HPDF_Page_BeginText()` | **For internal use only** | N/A | N/A |
 | `HPDF_Page_Circle()` | **Implemented** | Complete | `Path.appendCircle(center:radius:)`, `Path.appendCircle(x:y:radius:)` |
-| `HPDF_Page_Clip()` | **Implemented** | Complete | `DrawingContext.clip(to:evenOddRule:_:)` |
+| `HPDF_Page_Clip()` | **Implemented** | Complete | `DrawingContext.clip(to:rule:_:)` |
 | `HPDF_Page_ClosePath()` | **Implemented** | Complete | `Path.close()` |
 | `HPDF_Page_ClosePathStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathEofillStroke()` | **N/A** | N/A | N/A |
 | `HPDF_Page_ClosePathFillStroke()` | **N/A** | N/A | N/A |
-| `HPDF_Page_Concat()` | Unimplemented | None | N/A |
+| `HPDF_Page_Concat()` | **Implemented** | Complete | `DrawingContext.concatenate(_:)`, `DrawingContext.translate(byX:y:)`, `DrawingContext.rotate(byAngle:)`, `DrawingContext.scale(byX:y:)` |
 | `HPDF_Page_CurveTo()` | **Implemented** | Complete | `Path.appendCurve(controlPoint1:controlPoint2:endPoint:)` |
 | `HPDF_Page_CurveTo2()` | **Implemented** | Complete | `Path.appendCurve(controlPoint2:endPoint:)` |
 | `HPDF_Page_CurveTo3()` | **Implemented** | Complete | `Path.appendCurve(controlPoint1:endPoint:)` |
@@ -160,12 +160,12 @@ This file describes the features of LibHaru that has already been wrapped by Swi
 | `HPDF_Page_Ellipse()` | **Implemented** | Complete | `Path.appendEllipse(center:horizontalRadius:verticalRadius:)`, `Path.appendEllipse(x:y:horizontalRadius:verticalRadius:)`, `Path.appendEllipse(inscribedIn:)` |
 | `HPDF_Page_EndPath()` | **N/A** | N/A | N/A |
 | `HPDF_Page_EndText()` | **For internal use only** | N/A | N/A |
-| `HPDF_Page_Eoclip()` | **Implemented** | Complete | `DrawingContext.clip(to:evenOddRule:_:)` |
-| `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
-| `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
+| `HPDF_Page_Eoclip()` | **Implemented** | Complete | `DrawingContext.clip(to:rule:_:)` |
+| `HPDF_Page_Eofill()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
+| `HPDF_Page_EofillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
 | `HPDF_Page_ExecuteXObject()` | Unimplemented | None | N/A |
-| `HPDF_Page_Fill()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
-| `HPDF_Page_FillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:evenOddRule:stroke:)` |
+| `HPDF_Page_Fill()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
+| `HPDF_Page_FillStroke()` | **Implemented** | Complete | `DrawingContext.fill(_:rule:stroke:)` |
 | `HPDF_Page_GRestore()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
 | `HPDF_Page_GSave()` | **Implemented** | Complete | `DrawingContext.withNewGState(_:)` |
 | `HPDF_Page_LineTo()` | **Implemented** | Complete | `Path.appendLine(to:)` |

@@ -14,7 +14,7 @@ public extension PDFDocument {
     public enum PageLayout: UInt32 {
         
         /// Only one page is displayed.
-        case single
+        case single = 0
         
         /// Display the pages in one column.
         case oneColumn
@@ -34,7 +34,7 @@ public extension PDFDocument {
     }
 }
 
-internal extension PDFDocument.PageLayout {
+extension PDFDocument.PageLayout {
     
     internal init(haruEnum: HPDF_PageLayout) {
         self.init(rawValue: haruEnum.rawValue)!

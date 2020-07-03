@@ -6,12 +6,10 @@
 //
 //
 
-import DefaultStringConvertible
-
 public extension Grid {
     
     /// Represents the properties of a grid's minor lines.
-    public struct MinorLineParameters {
+    public struct MinorLineParameters: Hashable {
         
         /// Default parameters, where line width is 0.25, line color is 80% gray and the default
         /// number of minor segments per one major segment is 2.
@@ -44,22 +42,3 @@ public extension Grid {
         }
     }
 }
-
-extension Grid.MinorLineParameters: Equatable {
-    
-    /// Returns a Boolean value indicating whether two values are equal.
-    ///
-    /// Equality is the inverse of inequality. For any values `a` and `b`,
-    /// `a == b` implies that `a != b` is `false`.
-    ///
-    /// - Parameters:
-    ///   - lhs: A value to compare.
-    ///   - rhs: Another value to compare.
-    public static func ==(lhs: Grid.MinorLineParameters, rhs: Grid.MinorLineParameters) -> Bool {
-        return lhs.lineColor == rhs.lineColor &&
-            lhs.minorSegmentsPerMajorSegment == rhs.minorSegmentsPerMajorSegment &&
-            lhs.lineWidth == rhs.lineWidth
-    }
-}
-
-extension Grid.MinorLineParameters: CustomStringConvertible {}

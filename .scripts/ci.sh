@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "Swift 3 Continuous Integration";
-
 # Determine OS
 UNAME=`uname`;
 if [[ $UNAME == "Darwin" ]];
