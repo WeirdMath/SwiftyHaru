@@ -16,9 +16,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/WeirdMath/SwiftyHaru.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/broadway_lamb'
 
-  s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.10'
-  s.tvos.deployment_target = '9.0'
+  # FIXME: Remove this as soon as we find a way to compile libpng for non-macOS targets
+  s.platform = :osx
+
+  s.ios.deployment_target     = '8.0'
+  s.osx.deployment_target     = '10.10'
+  s.tvos.deployment_target    = '9.0'
   s.watchos.deployment_target = '2.0'
 
   s.swift_version = '4.2'

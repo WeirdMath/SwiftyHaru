@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 
 public struct Font: Hashable {
     

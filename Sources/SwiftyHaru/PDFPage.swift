@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 
 /// A class that is used to manipulate an individual page.
 public final class PDFPage {

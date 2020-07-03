@@ -17,8 +17,8 @@
 
 #include "hpdf_conf.h"
 #include "hpdf_consts.h"
-#include "hpdf_mmgr.h"
 #include "hpdf_utils.h"
+#include "hpdf_mmgr.h"
 
 #ifndef HPDF_STDCALL
 #ifdef HPDF_DLL_MAKE

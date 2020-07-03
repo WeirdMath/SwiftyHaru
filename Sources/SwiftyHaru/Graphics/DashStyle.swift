@@ -6,9 +6,9 @@
 //
 //
 
-#if SWIFT_PACKAGE
-import CLibHaru
-#endif
+import typealias CLibHaru.HPDF_DashMode
+import typealias CLibHaru.HPDF_UINT16
+import var CLibHaru.HPDF_MAX_DASH_PATTERN
 
 /// Dash pattern for lines in a page.
 public struct DashStyle: Hashable {

@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 import Foundation
 
 /// The `DrawingContext` class represents a PDF drawing destination.

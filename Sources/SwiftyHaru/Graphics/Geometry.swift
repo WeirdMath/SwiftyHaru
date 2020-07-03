@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import typealias CLibHaru.HPDF_Point
-#endif
 
 /// A structure that contains width and height values.
 public struct Size: Hashable {

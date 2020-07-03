@@ -7,9 +7,8 @@
 //
 
 import Foundation
-#if SWIFT_PACKAGE
+import DefaultStringConvertible
 import CLibHaru
-#endif
 
 /// A handle to operate on a document object.
 public final class PDFDocument {

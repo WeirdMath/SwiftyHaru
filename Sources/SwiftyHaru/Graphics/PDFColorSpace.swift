@@ -6,9 +6,7 @@
 //
 //
 
-#if SWIFT_PACKAGE
 import CLibHaru
-#endif
 
 /// A profile that specifies how to interpret a color value for display.
 public enum PDFColorSpace: UInt32 {
